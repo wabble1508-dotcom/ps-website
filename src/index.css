@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 200 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 50% 15%;
+
+    --primary: 183 75% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 209 51% 21%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 186 20% 96%;
+    --muted-foreground: 200 20% 40%;
+
+    --accent: 186 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 20% 90%;
+    --input: 200 20% 90%;
+    --ring: 186 70% 40%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 200 50% 10%;
+    --foreground: 0 0% 100%;
+
+    --card: 200 50% 15%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 200 50% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 183 75% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 209 51% 21%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 30% 20%;
+    --muted-foreground: 200 20% 70%;
+
+    --accent: 186 70% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 30% 20%;
+    --input: 200 30% 20%;
+    --ring: 186 70% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    top: 0px !important;
+  }
+}

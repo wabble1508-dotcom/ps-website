@@ -1,0 +1,114 @@
+import { useEffect, useRef, useState } from "react";
+import { MessageCircle, Send, X } from "lucide-react";
+import { useLanguage } from "./LanguageContext";
+
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
+const TEXTS: Record<string, { greeting: string; placeholder: string; error: string; title: string }> = {
+  de: { title: "KI-Assistent", greeting: "Hallo! 👋 Wie kann ich Ihnen helfen? Fragen Sie mich gern zu unseren Leistungen und Preisen.", placeholder: "Nachricht schreiben …", error: "Das hat leider nicht geklappt. Schreiben Sie uns gern per WhatsApp." },
+  en: { title: "AI Assistant", greeting: "Hi! 👋 How can I help you? Feel free to ask about our services and prices.", placeholder: "Type a message …", error: "Sorry, something went wrong. Feel free to message us on WhatsApp." },
+  tr: { title: "Yapay Zekâ Asistanı", greeting: "Merhaba! 👋 Size nasıl yardımcı olabilirim?", placeholder: "Mesaj yazın …", error: "Bir sorun oluştu. Bize WhatsApp'tan yazabilirsiniz." },
+  es: { title: "Asistente IA", greeting: "¡Hola! 👋 ¿En qué puedo ayudarle?", placeholder: "Escriba un mensaje …", error: "Algo salió mal. Escríbanos por WhatsApp." },
+  fr: { title: "Assistant IA", greeting: "Bonjour ! 👋 Comment puis-je vous aider ?", placeholder: "Écrivez un message …", error: "Une erreur s'est produite. Écrivez-nous sur WhatsApp." },
+  it: { title: "Assistente IA", greeting: "Ciao! 👋 Come posso aiutarla?", placeholder: "Scriva un messaggio …", error: "Qualcosa è andato storto. Ci scriva su WhatsApp." },
+  ro: { title: "Asistent AI", greeting: "Bună! 👋 Cu ce vă pot ajuta?", placeholder: "Scrieți un mesaj …", error: "Ceva nu a funcționat. Scrieți-ne pe WhatsApp." },
+  ru: { title: "ИИ-ассистент", greeting: "Здравствуйте! 👋 Чем могу помочь?", placeholder: "Напишите сообщение …", error: "Что-то пошло не так. Напишите нам в WhatsApp." },
+  bg: { title: "AI асистент", greeting: "Здравейте! 👋 С какво мога да помогна?", placeholder: "Напишете съобщение …", error: "Нещо се обърка. Пишете ни в WhatsApp." },
+  ar: { title: "المساعد الذكي", greeting: "مرحبًا! 👋 كيف يمكنني مساعدتك؟", placeholder: "اكتب رسالة …", error: "حدث خطأ. راسلنا عبر واتساب." },
+  zh: { title: "AI 助手", greeting: "您好！👋 有什么可以帮您？", placeholder: "输入消息 …", error: "出了点问题，请通过 WhatsApp 联系我们。" },
+  fa: { title: "دستیار هوش مصنوعی", greeting: "سلام! 👋 چطور می‌توانم کمکتان کنم؟", placeholder: "پیام بنویسید …", error: "مشکلی پیش آمد. در واتساپ به ما پیام دهید." },
+  ps: { title: "AI مرستیال", greeting: "سلام! 👋 څنګه مرسته کولای شم؟", placeholder: "پیغام ولیکئ …", error: "یوه ستونزه پېښه شوه. موږ ته په واټساپ کې ولیکئ." },
+};
+
+export const AiChatWidget = () => {
+  const { language } = useLanguage();
+  const t = TEXTS[language] || TEXTS.de;
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const listRef = useRef<HTMLDivElement>(null);
+  const sessionId = useRef(crypto.randomUUID());
+
+  useEffect(() => {
+    listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages, loading, open]);
+
+  const send = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text || loading) return;
+    const next: ChatMessage[] = [...messages, { role: "user", content: text }];
+    setMessages(next);
+    setInput("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: next, sessionId: sessionId.current, page: window.location.pathname }),
+      });
+      const data = await res.json();
+      setMessages([...next, { role: "assistant", content: data.reply || t.error }]);
+    } catch {
+      setMessages([...next, { role: "assistant", content: t.error }]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {open && (
+        <div
+          dir={["ar", "fa", "ps"].includes(language) ? "rtl" : "ltr"}
+          className="fixed z-[70] bottom-[76px] right-3 left-3 sm:left-auto sm:w-[370px] lg:bottom-28 lg:right-8 h-[min(520px,calc(100vh-140px))] flex flex-col rounded-2xl border border-border bg-background shadow-2xl overflow-hidden"
+        >
+          <div className="flex items-center justify-between bg-primary text-white px-4 py-3">
+            <span className="font-semibold">{t.title}</span>
+            <button onClick={() => setOpen(false)} aria-label="Schließen" className="hover:opacity-80">
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div ref={listRef} className="flex-1 overflow-y-auto p-4 space-y-3 text-sm">
+            {[{ role: "assistant", content: t.greeting } as ChatMessage, ...messages].map((m, i) => (
+              <div
+                key={i}
+                className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 ${
+                  m.role === "user" ? "ms-auto bg-primary text-white" : "bg-muted text-foreground"
+                }`}
+              >
+                {m.content}
+              </div>
+            ))}
+            {loading && <div className="bg-muted rounded-2xl px-3 py-2 w-14 animate-pulse">…</div>}
+          </div>
+          <form onSubmit={send} className="flex gap-2 border-t border-border p-3">
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              maxLength={2000}
+              placeholder={t.placeholder}
+              className="flex-1 rounded-full border border-border bg-background px-4 py-2 text-sm focus:outline-none focus:border-primary"
+            />
+            <button
+              type="submit"
+              disabled={loading || !input.trim()}
+              aria-label="Senden"
+              className="rounded-full bg-primary text-white p-2 disabled:opacity-50"
+            >
+              <Send className="h-4 w-4" />
+            </button>
+          </form>
+        </div>
+      )}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-label={t.title}
+        className="fixed z-[65] bottom-2 right-3 h-12 w-12 lg:bottom-8 lg:right-8 lg:h-14 lg:w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
+      >
+        {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+      </button>
+    </>
+  );
+};

@@ -33,7 +33,9 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     return json({ error: "bad_request" }, 400);
   }
 
-  const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, baseURL: env.ANTHROPIC_BASE_URL || undefined });
+  // Leerzeichen oder Zeilenumbrüche, die beim Einfügen mitrutschen, entfernen
+  const apiKey = (env.ANTHROPIC_API_KEY || "").trim();
+  const client = new Anthropic({ apiKey, baseURL: env.ANTHROPIC_BASE_URL || undefined });
   try {
     const response = await client.messages.create({
       model: "claude-opus-5-5",
@@ -58,7 +60,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     if (err instanceof Anthropic.APIError) {
       console.error("Claude API error", err.status, err.message);
       // Statuscode mitschicken, damit Fehler wie ein falscher Schlüssel (401) erkennbar sind
-      return json({ error: "server", status: err.status }, 500);
+      return json({ error: "server", status: err.status ?? err.name }, 500);
     }
     console.error(err);
     return json({ error: "server" }, 500);

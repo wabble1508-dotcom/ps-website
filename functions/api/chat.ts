@@ -55,8 +55,12 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     return json({ reply });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) return json({ error: "busy" }, 429);
-    if (err instanceof Anthropic.APIError) console.error("Claude API error", err.status, err.message);
-    else console.error(err);
+    if (err instanceof Anthropic.APIError) {
+      console.error("Claude API error", err.status, err.message);
+      // Statuscode mitschicken, damit Fehler wie ein falscher Schlüssel (401) erkennbar sind
+      return json({ error: "server", status: err.status }, 500);
+    }
+    console.error(err);
     return json({ error: "server" }, 500);
   }
 };

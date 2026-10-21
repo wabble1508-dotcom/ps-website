@@ -32,5 +32,3 @@ Nach Änderungen an Bindings oder Variablen: **Deployments → … → Retry dep
 ## Arbeitszeiten für Termine ändern
 Datei `server/config.ts` → `hours`. Standard: Mo–Do 9–18 Uhr, Fr 9–16 Uhr, 30-Minuten-Termine, mindestens 12 Stunden im Voraus.
 
-## Hinweis
-Der Ordner `netlify/` und `netlify.toml` gehören zur bisherigen Netlify-Version und werden nach dem Umzug entfernt.

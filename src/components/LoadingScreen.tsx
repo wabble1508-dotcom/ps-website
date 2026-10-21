@@ -1,29 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { Check } from "lucide-react";
-import { useLanguage } from "./LanguageContext";
 
 const LOGO =
   "/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png";
 
-// Die Schritte werden nacheinander abgehakt, sobald der Ladestand die Schwelle erreicht
-const STEPS = {
-  de: ["Design wird geladen", "KI-Assistent wird verbunden", "Terminkalender wird vorbereitet", "Bereit"],
-  en: ["Loading design", "Connecting AI assistant", "Preparing calendar", "Ready"],
-};
-const THRESHOLDS = [20, 50, 80, 100];
+// Lage der Bildteile im Logo (in % der Bildgröße, gemessen am 500×500-PNG)
+const EMBLEM = { top: 20.6, bottom: 57.2 }; // „PS“ mit Zahnrad
+const TEXT = { top: 60.4, bottom: 65.8, left: 14, right: 86 }; // „Professional Solutions“
+const LEFT = 14;
+const RIGHT = 86;
 
-const MIN_MS = 1600; // mindestens so lange sichtbar, damit die Animation wirken kann
+const MIN_MS = 1800; // mindestens so lange sichtbar, damit die Animation wirken kann
 const MAX_MS = 4000; // spätestens dann ausblenden, auch wenn die Seite noch lädt
 
-const RADIUS = 104;
-const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
-
-// Weiche Kurve: schnell starten, zum Ende hin abbremsen
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+// Weiche Kurve: sanft starten und sanft abbremsen, damit man das Füllen gut sieht
+const ease = (t: number) => (1 - Math.cos(Math.PI * t)) / 2;
+const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 
 export const LoadingScreen = () => {
-  const { language } = useLanguage();
-  const steps = language === "de" ? STEPS.de : STEPS.en;
   const [progress, setProgress] = useState(0);
   const [fade, setFade] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -37,10 +30,10 @@ export const LoadingScreen = () => {
     let frame = 0;
     const tick = (now: number) => {
       const elapsed = now - start;
-      // Bis 90 % läuft der Balken von selbst, die letzten 10 % erst, wenn die Seite fertig ist
+      // Bis 90 % läuft es von selbst, die letzten 10 % erst, wenn die Seite fertig ist
       const ready = elapsed >= MIN_MS && (pageLoaded.current || elapsed >= MAX_MS);
-      const target = ready ? 100 : 90 * easeOut(Math.min(elapsed / MIN_MS, 1));
-      setProgress((p) => Math.max(p, ready ? Math.min(100, p + 4) : target));
+      const target = ready ? 100 : 90 * ease(Math.min(elapsed / MIN_MS, 1));
+      setProgress((p) => Math.max(p, ready ? Math.min(100, p + 3) : target));
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
@@ -53,8 +46,8 @@ export const LoadingScreen = () => {
 
   useEffect(() => {
     if (progress < 100 || fade) return;
-    const t1 = setTimeout(() => setFade(true), 250);
-    const t2 = setTimeout(() => setVisible(false), 1000);
+    const t1 = setTimeout(() => setFade(true), 500);
+    const t2 = setTimeout(() => setVisible(false), 1200);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -64,112 +57,92 @@ export const LoadingScreen = () => {
   if (!visible) return null;
 
   const percent = Math.round(progress);
-  const activeStep = THRESHOLDS.findIndex((t) => percent < t);
+  const done = percent >= 100;
+  // 0–75 %: Emblem füllt sich von unten nach oben, 60–100 %: Schriftzug erscheint von links
+  const emblemFill = clamp01(progress / 75);
+  const textFill = clamp01((progress - 60) / 40);
+  const fillTop = EMBLEM.bottom - (EMBLEM.bottom - EMBLEM.top) * emblemFill;
+  const textRight = TEXT.left + (TEXT.right - TEXT.left) * textFill;
 
   return (
     <div
       className={`fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-slate-950 transition-all duration-700 ${
-        fade ? "opacity-0 scale-105 pointer-events-none" : "opacity-100 scale-100"
+        fade ? "opacity-0 scale-110 pointer-events-none" : "opacity-100 scale-100"
       }`}
       role="progressbar"
+      aria-label="PS Professional Solutions"
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={percent}
     >
-      {/* Weiche Farbflächen im Hintergrund */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary/15 blur-3xl animate-pulse motion-reduce:animate-none" />
+      {/* Weicher Lichtschein hinter dem Logo, wird mit dem Fortschritt stärker */}
       <div
-        className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-secondary/15 blur-3xl animate-pulse motion-reduce:animate-none"
-        style={{ animationDelay: "1s" }}
+        className="absolute w-[28rem] h-[28rem] rounded-full bg-primary blur-3xl transition-opacity duration-300"
+        style={{ opacity: 0.05 + 0.15 * (progress / 100) }}
       />
 
-      <div className="relative flex flex-col items-center animate-in fade-in zoom-in-95 duration-700">
-        {/* Logo mit Fortschrittsring */}
-        <div className="relative w-60 h-60 flex items-center justify-center">
-          <svg className="absolute inset-0 -rotate-90" viewBox="0 0 240 240" aria-hidden="true">
-            <defs>
-              <linearGradient id="loader-gradient" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="hsl(var(--primary))" />
-                <stop offset="100%" stopColor="hsl(var(--secondary))" />
-              </linearGradient>
-            </defs>
-            <circle cx="120" cy="120" r={RADIUS} fill="none" stroke="hsl(var(--muted))" strokeWidth="6" />
-            <circle
-              cx="120"
-              cy="120"
-              r={RADIUS}
-              fill="none"
-              stroke="url(#loader-gradient)"
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeDasharray={CIRCUMFERENCE}
-              strokeDashoffset={CIRCUMFERENCE * (1 - progress / 100)}
-              style={{ filter: "drop-shadow(0 0 6px hsl(var(--primary) / 0.6))" }}
-            />
-          </svg>
+      <div
+        className={`relative w-72 h-72 md:w-96 md:h-96 transition-transform duration-500 ${done ? "scale-105" : "scale-100"}`}
+        style={{ marginTop: "-2rem" }}
+      >
+        {/* Graue Vorlage: so sieht das Logo vor dem Laden aus */}
+        <img
+          src={LOGO}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-contain grayscale opacity-20"
+        />
 
-          {/* Kreisende Punkte */}
-          <div className="absolute inset-3 animate-spin motion-reduce:animate-none" style={{ animationDuration: "6s" }}>
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary))]" />
-          </div>
+        {/* Emblem in Farbe, füllt sich von unten nach oben */}
+        <img
+          src={LOGO}
+          alt="PS Professional Solutions"
+          className="absolute inset-0 w-full h-full object-contain"
+          style={{
+            clipPath: `inset(${fillTop}% 0 ${100 - EMBLEM.bottom}% 0)`,
+            filter: done ? "drop-shadow(0 0 18px hsl(var(--primary) / 0.7))" : "none",
+            transition: "filter 0.4s",
+          }}
+        />
+
+        {/* Leuchtende Linie an der Füllkante */}
+        {emblemFill < 1 && (
           <div
-            className="absolute inset-8 animate-spin motion-reduce:animate-none"
-            style={{ animationDuration: "4s", animationDirection: "reverse" }}
-          >
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-secondary/70" />
-          </div>
-
-          <img
-            src={LOGO}
-            alt="PS Professional Solutions"
-            className="relative w-36 h-auto object-contain drop-shadow-xl animate-float motion-reduce:animate-none"
+            className="absolute h-[3px] rounded-full bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_16px_4px_hsl(var(--primary)/0.6)]"
+            style={{ top: `${fillTop}%`, left: `${LEFT}%`, right: `${100 - RIGHT}%` }}
           />
-        </div>
+        )}
 
-        {/* Prozentzahl */}
-        <div className="mt-6 text-5xl font-bold tabular-nums bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          {percent}%
-        </div>
+        {/* Schriftzug erscheint von links nach rechts */}
+        <img
+          src={LOGO}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-contain"
+          style={{
+            clipPath: `inset(${TEXT.top - 1}% ${100 - textRight}% ${100 - TEXT.bottom - 1}% 0)`,
+            filter: done ? "drop-shadow(0 0 10px hsl(var(--primary) / 0.5))" : "none",
+          }}
+        />
 
-        {/* Balken mit Lichtreflex */}
-        <div className="relative mt-4 w-64 h-2 rounded-full bg-muted overflow-hidden">
+        {/* Funkelnder Cursor am Ende des Schriftzugs */}
+        {textFill > 0 && textFill < 1 && (
           <div
-            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-primary to-secondary"
+            className="absolute w-[3px] rounded-full bg-primary shadow-[0_0_10px_2px_hsl(var(--primary))]"
+            style={{ left: `${textRight}%`, top: `${TEXT.top - 1}%`, height: `${TEXT.bottom - TEXT.top + 2}%` }}
+          />
+        )}
+      </div>
+
+      {/* Prozentzahl und dünner Balken */}
+      <div className="relative -mt-10 md:-mt-14 flex flex-col items-center gap-3">
+        <span className="text-sm font-semibold tabular-nums tracking-widest text-primary">{percent}%</span>
+        <div className="w-40 h-1 rounded-full bg-muted overflow-hidden">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-primary to-secondary"
             style={{ width: `${progress}%` }}
           />
-          <div
-            className="absolute inset-y-0 w-16 bg-gradient-to-r from-transparent via-white/70 to-transparent animate-[shine_1.2s_linear_infinite] motion-reduce:hidden"
-          />
         </div>
-
-        {/* Schritte */}
-        <ul className="mt-6 flex flex-col gap-2 text-sm">
-          {steps.map((label, i) => {
-            const done = percent >= THRESHOLDS[i];
-            const active = i === activeStep;
-            return (
-              <li
-                key={label}
-                className={`flex items-center gap-2 transition-all duration-300 ${
-                  done ? "text-foreground" : active ? "text-muted-foreground" : "text-muted-foreground/40"
-                }`}
-              >
-                <span
-                  className={`flex items-center justify-center w-5 h-5 rounded-full border transition-all duration-300 ${
-                    done
-                      ? "bg-primary border-primary text-white scale-110"
-                      : active
-                        ? "border-primary border-t-transparent animate-spin"
-                        : "border-muted-foreground/30"
-                  }`}
-                >
-                  {done && <Check className="w-3 h-3" strokeWidth={3} />}
-                </span>
-                {label}
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </div>
   );

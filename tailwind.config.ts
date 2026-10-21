@@ -92,10 +92,6 @@ export default {
           "0%, 100%": { transform: "translateY(0) scale(1)" },
           "50%": { transform: "translateY(-10px) scale(1.05)" },
         },
-        "shine": {
-          "0%": { transform: "translateX(-4rem)" },
-          "100%": { transform: "translateX(16rem)" },
-        },
         "progress": {
           "0%": { transform: "translateX(-100%)" },
           "50%": { transform: "translateX(0)" },

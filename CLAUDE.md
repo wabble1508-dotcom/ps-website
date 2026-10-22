@@ -11,12 +11,18 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 ## Diese Website
 - Frontend: Vite + React + TypeScript + Tailwind (`src/`), 18 Sprachen.
 - Backend: Cloudflare Pages Functions (`functions/api/`), gemeinsamer Code in `server/`.
-  - `/api/chat` – KI-Livechat (Claude), Anweisungen in `server/prompt.ts`
+  - `/api/chat` – KI-Livechat (Claude Haiku 5.5), Anweisungen in `server/prompt.ts`
   - `/api/forms`, `/api/slots`, `/api/book`, `/api/admin`
 - Datenbank: Cloudflare D1, Binding `DB` (Datenbank `ps-website-db`, EU).
 - Secrets in Cloudflare: `ADMIN_PASSWORD`, `ANTHROPIC_API_KEY`, optional `RESEND_API_KEY`, `NOTIFY_EMAIL`, `MAIL_FROM`.
 - Live: https://ps-professional-solutions.de (Pages-Projekt `ps-website`, ps-website-dv6.pages.dev). Domain bei Strato registriert, DNS bei Cloudflare.
 - Details für den Inhaber: `ANLEITUNG.md`.
+
+## SEO
+- `functions/_middleware.ts` setzt Titel, Beschreibung, Canonical, Open-Graph-Tags und JSON-LD pro Seite ins HTML (für Google und Link-Vorschauen), Daten aus `server/seo-meta.json`.
+- Nach Änderungen an Seitentiteln/-beschreibungen oder neuen Routen: `npm run build && node tools/seo-snapshot.mjs "$(npm root -g)/playwright"` – aktualisiert `server/seo-meta.json` und `public/sitemap.xml`.
+- Unbekannte Adressen liefern Status 404, `/admin` ist noindex.
+- Vorschaubild für geteilte Links: `public/og-image.jpg` (1200×630).
 
 ## Prüfen vor dem Push
 - `npm run build` und `npx tsc -p functions/tsconfig.json`

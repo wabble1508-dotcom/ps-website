@@ -11,8 +11,7 @@ export interface SEOHeadProps {
 }
 
 const DEFAULT_DOMAIN = "https://ps-professional-solutions.de";
-const DEFAULT_OG_IMAGE =
-  "/media/vibe.filesafe.space/1778931020193405557/attachments/7b0c0d72-8ebc-4422-ad74-f9dbd2f547ec.png";
+const DEFAULT_OG_IMAGE = "/og-image.jpg";
 
 export const SEOHead = ({
   title,
@@ -63,6 +62,10 @@ export const SEOHead = ({
       <meta property="og:type" content="website" />
       <meta property="og:url" content={fullCanonical} />
       <meta property="og:image" content={fullOgImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:site_name" content="PS Professional Solutions" />
+      <meta property="og:locale" content="de_DE" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

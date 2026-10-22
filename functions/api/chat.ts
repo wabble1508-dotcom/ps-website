@@ -38,7 +38,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
   const client = new Anthropic({ apiKey, baseURL: env.ANTHROPIC_BASE_URL || undefined });
   try {
     const response = await client.messages.create({
-      model: "claude-opus-5-5",
+      model: "claude-haiku-5-5",
       max_tokens: 1024,
       output_config: { effort: "low" },
       system: SYSTEM_PROMPT,

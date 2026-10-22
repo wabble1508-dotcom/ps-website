@@ -2,132 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ps-professional-solutions.de/</loc>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-22</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ps-professional-solutions.de/webseiten</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/preise</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/kfz-zulassung</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://ps-professional-solutions.de/handwerker</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/beautysalon</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/gesundheitswesen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/festivals</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/vereine</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/textil</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/ki-telefon-assistent</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/ki-live-chat</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/intelligente-termin-automation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/google-business-optimierung</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ps-professional-solutions.de/design-druck</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://ps-professional-solutions.de/webseiten</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ps-professional-solutions.de/nfc-karten</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://ps-professional-solutions.de/ki-live-chat</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ps-professional-solutions.de/all-in-one-dashboard</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://ps-professional-solutions.de/magazin</loc>
+    <lastmod>2026-10-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/ueber-uns</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/erfolgsgeschichten</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/ablauf</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-10-22</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ps-professional-solutions.de/karriere</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://ps-professional-solutions.de/magazin</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://ps-professional-solutions.de/ki-lexikon</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/integrationen</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/all-in-one-dashboard</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/ablauf</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/preise</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/karriere</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/nfc-karten</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/design-druck</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/kfz-zulassung</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/festivals</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/vereine</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/textil</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/gastronomie</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/bildung</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ps-professional-solutions.de/schneiderei</loc>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/info</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ps-professional-solutions.de/datenschutz</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-22</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>

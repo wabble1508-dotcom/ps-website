@@ -124,6 +124,7 @@ export const VielenDankPage = () => {
   return (
     <div className="container mx-auto px-4 py-20 max-w-4xl">
       <SEO
+        noIndex
         title={
           isEn
             ? "Thank you! — PS Professional Solutions"

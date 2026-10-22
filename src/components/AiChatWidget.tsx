@@ -20,6 +20,35 @@ const TEXTS: Record<string, { greeting: string; placeholder: string; error: stri
   ps: { title: "AI مرستیال", greeting: "سلام! 👋 څنګه مرسته کولای شم؟", placeholder: "پیغام ولیکئ …", error: "یوه ستونزه پېښه شوه. موږ ته په واټساپ کې ولیکئ." },
 };
 
+// Macht Web-Adressen, E-Mail-Adressen und Telefonnummern in Antworten anklickbar
+const LINK_PATTERN = /(https?:\/\/[^\s)]+|[\w.+-]+@[\w-]+\.[\w.-]+|(?<![\d.])(?:\+|0)\d[\d\s/-]{6,}\d)/g;
+
+const linkify = (text: string) =>
+  text.split(LINK_PATTERN).map((part, i) => {
+    if (i % 2 === 0) return part;
+    const url = part.replace(/[.,!?]+$/, "");
+    const rest = part.slice(url.length);
+    const href = url.startsWith("http")
+      ? url
+      : url.includes("@")
+        ? `mailto:${url}`
+        : `tel:${url.replace(/[^\d+]/g, "")}`;
+    const label = href.includes("wa.me/") ? "WhatsApp" : url;
+    return (
+      <span key={i}>
+        <a
+          href={href}
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel="noopener noreferrer"
+          className="font-medium text-primary underline underline-offset-2 break-all"
+        >
+          {label}
+        </a>
+        {rest}
+      </span>
+    );
+  });
+
 export const AiChatWidget = () => {
   const { language } = useLanguage();
   const t = TEXTS[language] || TEXTS.de;
@@ -78,7 +107,7 @@ export const AiChatWidget = () => {
                   m.role === "user" ? "ms-auto bg-primary text-white" : "bg-muted text-foreground"
                 }`}
               >
-                {m.content}
+                {m.role === "assistant" ? linkify(m.content) : m.content}
               </div>
             ))}
             {loading && <div className="bg-muted rounded-2xl px-3 py-2 w-14 animate-pulse">…</div>}

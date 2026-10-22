@@ -1,0 +1,236 @@
+{
+  "/": {
+    "title": "Webdesign & professionelle Webseiten | KI-Automatisierung aus einer Hand | PS Professional Solutions",
+    "description": "Professionelle Webseiten & Webdesign von PS Professional Solutions. Wir programmieren SEO-optimierte Websites mit KI-Automatisierung, KI-Live-Chat und Terminbuchung – alles aus einer Hand. Jetzt Website-Check sichern!",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/7b0c0d72-8ebc-4422-ad74-f9dbd2f547ec.png",
+    "schemas": [
+      "[{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie kann ich mein Unternehmen automatisieren und Zeit sparen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch den Einsatz von KI-Telefonassistenten, automatisierten Terminbuchungen und einem zentralen CRM-System. Diese Tools übernehmen wiederkehrende Aufgaben wie Anrufannahme, Terminbestätigungen und Lead-Management. So gewinnen Sie wöchentlich wertvolle Stunden zurück und können sich auf Ihr Kerngeschäft konzentrieren.\"}},{\"@type\":\"Question\",\"name\":\"Was kostet ein KI-Telefonassistent für kleine Unternehmen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Die Kosten für einen KI-Telefonassistenten sind deutlich geringer als für eine Vollzeitkraft am Empfang und amortisieren sich meist schon im ersten Monat. Das System fängt verpasste Anrufe auf, verwandelt diese in zahlende Kunden und verhindert so teure Umsatzverluste durch Nichterreichbarkeit.\"}},{\"@type\":\"Question\",\"name\":\"Wie bekomme ich mehr Kunden über Google und meine Webseite?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch lokales SEO (Suchmaschinenoptimierung) und einen perfekt gepflegten Google Business Eintrag. Wenn Ihre Webseite für Smartphones optimiert ist und klare Handlungsaufforderungen (Call-to-Action) bietet, konvertieren Besucher viel schneller zu echten Anfragen und messbarem Umsatz.\"}},{\"@type\":\"Question\",\"name\":\"Welche Vorteile bietet ein CRM System für Handwerker und Praxen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ein CRM (Customer Relationship Management) bündelt alle Kundenanfragen aus E-Mails, Telefonaten und Social Media an einem zentralen Ort. Es ermöglicht automatische Follow-Ups, SMS-Terminerinnerungen (gegen No-Shows) und automatisierte Bewertungsanfragen nach dem Termin.\"}}]},{\"@context\":\"https://schema.org\",\"@type\":\"ProfessionalService\",\"@id\":\"https://ps-professional-solutions.de/#business\",\"name\":\"PS Professional Solutions\",\"description\":\"Webdesign Agentur Dortmund — Professionell programmierte Webseiten, KI Automatisierung, KI Telefonassistent und KI Live-Chat.\",\"url\":\"https://ps-professional-solutions.de\",\"logo\":\"https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png\",\"image\":\"https://ps-professional-solutions.de/og-image.jpg\",\"telephone\":\"+4915207595260\",\"email\":\"info@ps-professional-solutions.de\",\"founder\":{\"@type\":\"Person\",\"name\":\"Pankaj Mondjal\"},\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Lindenhorster Str. 185\",\"postalCode\":\"44339\",\"addressLocality\":\"Dortmund\",\"addressRegion\":\"NRW\",\"addressCountry\":\"DE\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":51.5381,\"longitude\":7.4378},\"areaServed\":[{\"@type\":\"City\",\"name\":\"Dortmund\"},{\"@type\":\"Country\",\"name\":\"Deutschland\"}],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"09:00\",\"closes\":\"18:00\"}],\"priceRange\":\"€€\",\"sameAs\":[\"https://www.instagram.com/ps_professional_solutions/\",\"https://www.tiktok.com/@psprofessional.solutions\",\"https://www.youtube.com/@psprofessionalsolutions\"]}]"
+    ]
+  },
+  "/handwerker": {
+    "title": "KI-Anruf-Rettung für Handwerker | PS Professional Solutions",
+    "description": "Verpassen Sie keine Aufträge mehr. Wir automatisieren Erreichbarkeit und Marketing für Handwerksbetriebe bundesweit.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/43a309d7-acd4-49f0-bf96-43245c6d52b2.png",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie gewinne ich als Handwerker mehr Kunden über Google?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Die meisten Kunden suchen heute online nach Handwerkern in ihrer Nähe. Durch lokale Suchmaschinenoptimierung (Local SEO) und einen gepflegten Google Business Eintrag sorgen wir dafür, dass Ihr Betrieb bei Suchanfragen in Ihrer Region ganz oben steht – auch ohne technisches Vorwissen.\"}},{\"@type\":\"Question\",\"name\":\"Brauche ich als kleiner Handwerksbetrieb überhaupt eine professionelle Webseite?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, Ihre Webseite ist Ihr digitales Aushängeschild. Auch wenn Sie aktuell genug Aufträge haben, suchen gute Fachkräfte und lukrative Neukunden online nach Ihnen. Eine moderne, für Smartphones optimierte Webseite baut Vertrauen auf und hebt Sie von der Konkurrenz ab.\"}},{\"@type\":\"Question\",\"name\":\"Ich habe keine Ahnung von Technik und SEO. Können Sie alles übernehmen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Absolut. Wir richten uns speziell an kleine und mittelständische Unternehmen (KMU), die sich auf ihr Handwerk konzentrieren wollen. Wir übernehmen die komplette Erstellung der Webseite, die Google-Optimierung und die Automatisierung Ihrer Kundenanfragen – schlüsselfertig und verständlich.\"}},{\"@type\":\"Question\",\"name\":\"Wie hilft mir eine neue Webseite dabei, Zeit im Büro zu sparen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Eine intelligente Webseite verkauft und informiert für Sie. Durch integrierte Kontaktformulare, automatisierte Terminbuchungen und klare Antworten auf häufige Kundenfragen (FAQs) auf der Webseite rufen weniger Leute wegen Kleinigkeiten an. Sie erhalten qualifizierte Anfragen direkt auf Ihr Handy.\"}}]}"
+    ]
+  },
+  "/beautysalon": {
+    "title": "Automatisierung für Beautysalons — PS Professional Solutions",
+    "description": "Ihr Salon auf Autopilot. Vollautomatische Termine, Online-Buchungen und weniger Ausfälle für Ihren Beauty-Salon.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Kann ich die Buchung von einer Anzahlung abhängig machen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, das ist bei hochpreisigen Behandlungen absolut ratsam. Kunden können direkt bei der Online-Terminbuchung eine Reservierungsgebühr via PayPal oder Kreditkarte leisten. Das sorgt für maximale Verbindlichkeit und schützt Sie vor Umsatzeinbußen durch kurzfristige Absagen.\"}},{\"@type\":\"Question\",\"name\":\"Was passiert, wenn ich während einer Behandlung angerufen werde?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ihr neuer KI-gesteuerter Buchungsassistent übernimmt das für Sie. Statt die Arbeit am Kunden zu unterbrechen, Ihr System den Anrufer sanft zur Online-Terminauswahl. So sichern Sie sich neue Termine, während Sie sich zu 100% auf Ihr Handwerk konzentrieren können.\"}},{\"@type\":\"Question\",\"name\":\"Wie werden meine Kunden an ihre Termine erinnert?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Um No-Shows (Nichterscheinen) fast vollständig zu eliminieren, sendet das System automatisierte SMS- und WhatsApp-Reminder (z. B. 24 Stunden vorher). Ihre Kunden in Dortmund schätzen diesen exklusiven Service, und Ihr Terminkalender bleibt profitabel ausgelastet.\"}},{\"@type\":\"Question\",\"name\":\"Können Kunden auch Zusatzleistungen direkt mitbuchen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Definitiv. Sie können den Buchungsprozess so einstellen, dass Kunden direkt Upsells oder Zusatzservices (z. B. Haarkur, Wimpern färben oder Spezial-Finish) auswählen. Das erhöht Ihren Durchschnittsumsatz pro Kunde vollautomatisch, ohne dass Sie aktiv verkaufen müssen.\"}}]}"
+    ]
+  },
+  "/gesundheitswesen": {
+    "title": "PS Professional Solutions | Digitale Praxis & KI-Automatisierung Dortmund",
+    "description": "Revolutionieren Sie Ihren Praxisalltag in Dortmund. KI-Telefon-Assistent, automatisierte Terminbuchung & SEO für Ärzte. Gewinnen Sie 10 Stunden Patientenzeit pro Woche zurück. Jetzt Gratis-Check buchen!",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/bcc34588-a3fc-45fa-8078-9646b445d833.png",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie entlastet die Termin-Automation mein Praxis-Team?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch die digitale Patientenaufnahme und Online-Terminbuchung fallen zeitfressende Telefonate weg. Ihr Team am Empfang wird massiv entlastet und kann sich voll auf die Patientenbetreuung vor Ort in Dortmund konzentrieren, während das System die Terminplanung vollautomatisch im Hintergrund erledigt.\"}},{\"@type\":\"Question\",\"name\":\"Ist die Online-Terminvergabe sicher und DSGVO-konform?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Absolut. Im Gesundheitswesen hat der Schutz sensibler Patientendaten oberste Priorität. Unsere Lösung nutzt verschlüsselte Datenübertragung (SSL) und speichert Informationen nach strengsten deutschen Datenschutzrichtlinien. So bleibt die ärztliche Schweigepflicht auch im digitalen Prozess zu 100% gewahrt.\"}},{\"@type\":\"Question\",\"name\":\"Verhindert das System aktiv Terminausfälle in meiner Praxis?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Durch automatisierte Terminerinnerungen via SMS oder E-Mail werden sogenannte No-Shows drastisch reduziert. Patienten können Termine zudem frühzeitig online verschieben oder absagen, sodass der frei gewordene Slot sofort wieder für andere Patienten in der Warteliste verfügbar ist.\"}},{\"@type\":\"Question\",\"name\":\"Kann das System zwischen verschiedenen Behandlungsarten unterscheiden?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Definitiv. Sie können für jede Behandlungsart (z.B. Erstuntersuchung, Vorsorge oder Akut-Termin) individuelle Zeitfenster und Pufferzeiten definieren. Die KI stellt sicher, dass nur Termine gebucht werden, die in Ihren Praxis-Workflow passen, und vermeidet so ein überfülltes Wartezimmer.\"}}]}"
+    ]
+  },
+  "/ki-telefon-assistent": {
+    "title": "KI Telefonassistent — PS Professional Solutions",
+    "description": "Ihr 24/7 KI-Mitarbeiter am Telefon. Unsere Voice-KI nimmt Anrufe entgegen, beantwortet Fragen und bucht Termine – damit Sie nie wieder einen Kunden verlieren.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Was ist ein KI-Telefonassistent?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ein KI-Telefonassistent ist eine Voice-KI, die eingehende Anrufe automatisch annimmt, Kundenfragen in natürlicher Sprache beantwortet und Termine direkt in Ihren Kalender bucht. So verlieren Sie nie wieder einen Kunden durch einen unbeantworteten Anruf.\"}},{\"@type\":\"Question\",\"name\":\"Kann die KI meine Kundenfragen richtig beantworten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Wir trainieren die KI mit Ihren Unternehmensdaten – Öffnungszeiten, Leistungen, Preise, FAQs. Die KI versteht natürliche Sprache und antwortet professionell, als wäre sie ein echter Mitarbeiter.\"}},{\"@type\":\"Question\",\"name\":\"Was kostet ein KI-Telefonassistent?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ein KI-Telefonassistent ist deutlich günstiger als eine Vollzeitkraft am Empfang und amortisiert sich meist schon im ersten Monat. Er fängt verpasste Anrufe auf und verwandelt diese in zahlende Kunden.\"}},{\"@type\":\"Question\",\"name\":\"Kann die KI Termine buchen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Die KI ist direkt mit Ihrem Kalender verbunden. Sie erfasst freie Termine, bucht diese für den Anrufer und sendet automatisch eine SMS-Bestätigung – rund um die Uhr.\"}}]}"
+    ]
+  },
+  "/intelligente-termin-automation": {
+    "title": "Intelligente Termin-Automation — PS Professional Solutions",
+    "description": "Schluss mit dem Hin-und-Her-Schreiben. Ihr Kalender füllt sich von alleine, inklusive automatischer Erinnerung für Ihre Kunden.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie synchronisiert sich das System mit meinem Kalender?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Unser System bietet eine nahtlose Live-Synchronisation mit Google Calendar, Outlook und Apple iCloud. Sobald ein Kunde online bucht, wird der Termin automatisch blockiert, sodass keine Doppelbuchungen entstehen können.\"}},{\"@type\":\"Question\",\"name\":\"Was passiert, wenn ein Kunde seinen Termin vergisst?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Um teure Terminausfälle (No-Shows) zu vermeiden, verschickt unser System automatisierte SMS-Erinnerungen und WhatsApp-Notifications. Das steigert die Verbindlichkeit und reduziert Ausfälle um bis zu 80%.\"}},{\"@type\":\"Question\",\"name\":\"Kann ich für Buchungen direkt eine Anzahlung verlangen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, absolut. Sie können eine integrierte Anzahlungsfunktion aktivieren. Kunden zahlen eine Reservierungsgebühr direkt bei der Buchung via Stripe oder PayPal. Das sichert Ihren Umsatz und minimiert das Risiko unbezahlter Ausfallzeiten.\"}},{\"@type\":\"Question\",\"name\":\"Muss ich meine bestehende Webseite dafür aufgeben?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Nein. Das Online-Buchungsportal lässt sich ganz einfach als Button oder Widget in Ihre vorhandene Webseite einbauen oder als eigenständige Landingpage nutzen. Wir von PS Professional Solutions kümmern uns um die komplette technische Einbindung.\"}}]}"
+    ]
+  },
+  "/google-business-optimierung": {
+    "title": "Google Business Optimierung — PS Professional Solutions",
+    "description": "Sichtbarkeit bei Google, die Leads bringt. Wir optimieren Ihren Google-Eintrag.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Warum ist ein optimierter Google-Eintrag so wichtig?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Über 80% der lokalen Suchanfragen nach Dienstleistungen beginnen bei Google. Wenn Ihr Eintrag nicht optimiert ist, verschenken Sie täglich wertvolle Kunden an die Konkurrenz.\"}},{\"@type\":\"Question\",\"name\":\"Wie bekomme ich mehr 5-Sterne-Bewertungen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Wir richten eine Automatisierung ein, die Kunden nach einem erfolgreichen Termin per SMS oder E-Mail höflich um eine Bewertung bittet. Das steigert die Anzahl positiver Feedbacks enorm.\"}},{\"@type\":\"Question\",\"name\":\"Können Kunden wirklich direkt über Google buchen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja! Wir integrieren unseren Buchungskalender direkt in Ihr Google Business Profil. Kunden sehen Ihre freien Termine sofort in der Google-Suche und können mit einem Klick buchen.\"}},{\"@type\":\"Question\",\"name\":\"Wie lange dauert es, bis ich Ergebnisse sehe?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Erste Verbesserungen in der Sichtbarkeit sind oft schon nach wenigen Wochen spürbar, besonders wenn die automatisierten Bewertungen anfangen zu greifen.\"}}]}"
+    ]
+  },
+  "/webseiten": {
+    "title": "Webdesign Dortmund | Professionell Programmierte Webseiten | PS Professional Solutions",
+    "description": "Webdesign Dortmund: Wir programmieren moderne, SEO-optimierte Firmenhomepages, die bei Google auf Seite 1 ranken. Professionelle Websites für Handwerker, Praxen und Dienstleister in Dortmund und bundesweit. Jetzt kostenlose Beratung sichern!",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "[{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Webdesign Dortmund: Warum sollte ich meine Website bei PS Professional Solutions erstellen lassen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Als Webdesign-Agentur in Dortmund kennen wir den lokalen Markt und wissen genau, worauf es bei der Suchmaschinenoptimierung ankommt. Wir programmieren Ihre Website individuell — kein Baukasten, sondern echtes Webdesign aus Dortmund. Das bedeutet: schnellere Ladezeiten, besseres Google-Ranking und mehr Anfragen aus Ihrer Region.\"}},{\"@type\":\"Question\",\"name\":\"Was kostet eine professionelle Webseite bei Ihnen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Die Kosten hängen vom Umfang ab (z.B. einfache Landingpage vs. große Homepage mit Buchungssystem). Da wir als Agentur auf messbaren ROI setzen, refinanziert sich die Webseite durch neue Kunden meist innerhalb weniger Monate.\"}},{\"@type\":\"Question\",\"name\":\"Wie stellen Sie sicher, dass ich bei Google gefunden werde — auch lokal in Dortmund?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Unsere Webseiten werden von Grund an SEO-optimiert (Suchmaschinenoptimierung) entwickelt. Wir setzen auf lokales SEO für Dortmund: Google My Business Optimierung, lokale Keywords wie 'Webdesign Dortmund', strukturierte Daten (LocalBusiness Schema) und regionale Inhalte. So ranken Sie sowohl bei lokalen Suchanfragen in Dortmund als auch bundesweit.\"}},{\"@type\":\"Question\",\"name\":\"Muss ich mich um Updates und Hosting kümmern?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Nein. Wir bieten ein Rundum-Sorglos-Paket. Hosting, Sicherheit, Backups und technische Updates werden komplett von uns übernommen.\"}},{\"@type\":\"Question\",\"name\":\"Was ist der Vorteil einer professionell programmierten Webseite im Vergleich zum Baukasten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Eine individuell programmierte Webseite lädt wesentlich schneller, ist technisch zu 100% für Google (SEO) optimierbar und wächst mit Ihrem Unternehmen mit. Baukästen sind oft langsam, voller unnötigem Code und stoßen bei individuellen Wünschen schnell an ihre Grenzen.\"}},{\"@type\":\"Question\",\"name\":\"Ist die Webseite für Smartphones optimiert?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Absolut. Über 70% der lokalen Suchanfragen passieren auf dem Handy. Unsere programmierten Webseiten sind 'Mobile First' entwickelt und sehen auf jedem Gerät perfekt aus.\"}}]},{\"@context\":\"https://schema.org\",\"@type\":\"ProfessionalService\",\"@id\":\"https://ps-professional-solutions.de/#business\",\"name\":\"PS Professional Solutions\",\"description\":\"Webdesign Agentur Dortmund — Professionell programmierte Webseiten, KI Automatisierung, KI Telefonassistent und KI Live-Chat.\",\"url\":\"https://ps-professional-solutions.de\",\"logo\":\"https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png\",\"image\":\"https://ps-professional-solutions.de/og-image.jpg\",\"telephone\":\"+4915207595260\",\"email\":\"info@ps-professional-solutions.de\",\"founder\":{\"@type\":\"Person\",\"name\":\"Pankaj Mondjal\"},\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Lindenhorster Str. 185\",\"postalCode\":\"44339\",\"addressLocality\":\"Dortmund\",\"addressRegion\":\"NRW\",\"addressCountry\":\"DE\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":51.5381,\"longitude\":7.4378},\"areaServed\":[{\"@type\":\"City\",\"name\":\"Dortmund\"},{\"@type\":\"Country\",\"name\":\"Deutschland\"}],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"09:00\",\"closes\":\"18:00\"}],\"priceRange\":\"€€\",\"sameAs\":[\"https://www.instagram.com/ps_professional_solutions/\",\"https://www.tiktok.com/@psprofessional.solutions\",\"https://www.youtube.com/@psprofessionalsolutions\"]}]"
+    ]
+  },
+  "/ki-live-chat": {
+    "title": "KI Live-Chat für Unternehmen | PS Professional Solutions",
+    "description": "Besucher rund um die Uhr in Kunden verwandeln mit dem intelligenten KI Live-Chat. Sofortige Antworten, Lead-Qualifizierung und Terminbuchung – vollautomatisch.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie verbessert ein KI Live-Chat die Conversion-Rate meiner Webseite?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ein KI Live-Chat spricht Besucher proaktiv an, genau dann, wenn sie Fragen haben. Durch den sofortigen 24/7-Support reduzieren Sie die Absprungrate und steigern die Anzahl der generierten Leads aus Ihrem Website-Traffic signifikant.\"}},{\"@type\":\"Question\",\"name\":\"Kann der KI Chatbot automatisch Termine buchen und Leads qualifizieren?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Der KI Chatbot ist direkt mit Ihrem Kalendersystem und CRM verknüpft. Er stellt qualifizierende Fragen, erfasst Kontaktdaten und ermöglicht es Besuchern, rund um die Uhr Termine zu buchen – komplett ohne manuellen Aufwand für Ihr Team.\"}},{\"@type\":\"Question\",\"name\":\"Wie schnell lässt sich die KI Live-Chat Integration auf meiner Webseite einrichten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Die Integration dauert weniger als 24 Stunden. Wir installieren das Chat-Widget auf Ihrer Webseite, trainieren die KI mit Ihren spezifischen Unternehmensdaten und FAQs und gehen live. Sie benötigen dafür keinerlei technisches Wissen.\"}},{\"@type\":\"Question\",\"name\":\"Was passiert, wenn der KI-Kundenservice eine komplexe Frage nicht beantworten kann?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Das System erkennt seine Grenzen. Bei zu komplexen Fragen eskaliert die KI den Chat nahtlos an einen menschlichen Mitarbeiter per E-Mail oder SMS-Benachrichtigung. Die gesammelten Lead-Daten bleiben erhalten, sodass kein potenzieller Kunde verloren geht.\"}}]}"
+    ]
+  },
+  "/magazin": {
+    "title": "Magazin & Wissen | PS Professional Solutions",
+    "description": "Expertenartikel rund um KI-Automatisierung, Webdesign und lokale Leadgenerierung.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/ueber-uns": {
+    "title": "Über uns | PS Professional Solutions",
+    "description": "Wir sind Ihr Team für KI-Automatisierung und Webdesign. Erfahren Sie mehr über unsere Mission, Ihren Unternehmensalltag zu erleichtern.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/erfolgsgeschichten": {
+    "title": "Erfolgsgeschichten & Fallstudien | PS Professional Solutions",
+    "description": "Echte Ergebnisse von echten Kunden. Sehen Sie, wie wir Unternehmen durch KI-Automation und Webdesign helfen, Zeit zu sparen und mehr Kunden zu gewinnen.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/ki-lexikon": {
+    "title": "KI & Marketing Lexikon | PS Professional Solutions",
+    "description": "Verstehen Sie die wichtigsten Begriffe rund um KI-Automation, SEO und Leadgenerierung. Unser Lexikon erklärt alles einfach und verständlich.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/integrationen": {
+    "title": "Integrationen & Schnittstellen | PS Professional Solutions",
+    "description": "Wir verbinden Ihre Lieblings-Tools. Entdecken Sie unsere Integrationen für Zapier, Make, WhatsApp, Google Kalender und mehr.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/all-in-one-dashboard": {
+    "title": "All-in-One CRM Dashboard | PS Professional Solutions",
+    "description": "Das komplette CRM für Marketing, Vertrieb und Kommunikation. Alle Kundenanfragen an einem Ort – zentral, übersichtlich, hocheffizient.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Was ist das beste CRM System für kleine Unternehmen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Das beste CRM System zentralisiert Ihr Marketing, den Vertrieb und die Kommunikation, ohne unnötig komplex zu sein. Unser All-in-One Dashboard ersetzt viele zersplitterte Tools und automatisiert Ihr Lead-Management, was Zeit spart und Softwarekosten senkt.\"}},{\"@type\":\"Question\",\"name\":\"Wie kann ich Leadgenerierung und Kundenverwaltung automatisieren?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Indem Sie Ihre Webseite, Social Media und Google direkt mit einem zentralen Dashboard verbinden. Anfragen werden automatisch erfasst, per KI beantwortet und in eine Vertriebs-Pipeline verschoben, sodass kein potenzieller Kunde vergessen wird.\"}},{\"@type\":\"Question\",\"name\":\"Gibt es eine Software für Terminbuchung und CRM kombiniert?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, unser All-in-One Dashboard integriert intelligente Terminbuchung nahtlos mit einem vollwertigen CRM. Wenn ein Kunde bucht, werden seine Daten automatisch gespeichert und das System sendet SMS-Erinnerungen, um Ausfälle zu verhindern.\"}},{\"@type\":\"Question\",\"name\":\"Kann ich meine bestehenden Tools durch eine All-in-One Software ersetzen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja! Ein All-in-One Dashboard vereint Kundenverwaltung (CRM), E-Mail-Marketing, Terminbuchung und Kommunikation in einer einzigen Plattform. Dadurch sparen Sie sich viele teure Einzel-Abos und komplizierte Verknüpfungen.\"}}]}"
+    ]
+  },
+  "/ablauf": {
+    "title": "Unser Ablauf | PS Professional Solutions",
+    "description": "Von der Analyse bis zum Go-Live: So setzen wir Ihre KI-Automatisierung und Website transparent und effizient um.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/preise": {
+    "title": "Preise & Pakete | Webdesign & KI Automatisierung | PS Professional Solutions",
+    "description": "Transparente Preise für Webdesign, KI-Automatisierung & Wartung. Ab 99€/Monat, monatlich kündbar, keine versteckten Kosten. Jetzt passendes Paket finden.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Was kostet eine professionelle Website mit KI-Automatisierung?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Unsere Pakete starten bei 1.990 € einmalig + 99 €/Monat (Essential). Das komplette Automatisierungs-System (Elite) kostet 2.490 € einmalig + 149 €/Monat — inklusive Website, KI-Telefonassistent, Termin-Automation und Wartung. Bei unter 5 €/Tag finanziert sich die Investition durch einen einzigen neuen Kunden im Monat.\"}},{\"@type\":\"Question\",\"name\":\"Sind die Preise wirklich monatlich kündbar?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Alle Pakete sind monatlich kündbar — keine lange Vertragsbindung, keine versteckten Kosten. Sie behalten jederzeit die volle Kontrolle und Flexibilität.\"}},{\"@type\":\"Question\",\"name\":\"Brauche ich das Premium Care Wartungs-Paket, wenn ich Elite habe?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Nein. Bei Elite ist die komplette Wartung (Backups, Updates, Malware-Schutz) bereits inklusive — im Wert von 150 €/Monat. Das separate Premium Care Paket ist nur für Kunden mit bestehenden Websites gedacht, die ausschließlich Wartung ohne Automatisierung wünschen.\"}},{\"@type\":\"Question\",\"name\":\"Was ist im Hosting und SSL-Zertifikat enthalten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Sowohl Essential als auch Elite beinhalten professionelles Webhosting auf deutschen Servern und ein SSL-Zertifikat für sichere, verschlüsselte Datenübertragung. Das sorgt für Vertrauen bei Ihren Kunden und ist gleichzeitig ein wichtiger Ranking-Faktor für Google.\"}},{\"@type\":\"Question\",\"name\":\"Wie schnell ist meine Website online?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Nach dem Erstgespräch und der Bereitstellung Ihrer Inhalte (Logos, Texte, Bilder) geht Ihre Website in der Regel innerhalb von 7–14 Werktagen online. Bei dringenden Fällen bieten wir auch Express-Umsetzungen an.\"}},{\"@type\":\"Question\",\"name\":\"Kann ich später von Essential auf Elite upgraden?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, jederzeit. Wenn Sie feststellen, dass Sie Automatisierung, KI-Telefonassistent oder Termin-Management benötigen, upgraden wir Ihr Paket nahtlos. Die bereits geleistete Einrichtung wird dabei angerechnet.\"}},{\"@type\":\"Question\",\"name\":\"Was passiert mit meiner alten Website?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Wir übernehmen Ihre bestehende Domain und leiten alle Inhalte professionell auf die neue Website um — ohne Ranking-Verlust bei Google. Ihre alte Website bleibt während des gesamten Umzugs erreichbar, bis die neue Version final freigeschaltet wird.\"}}]}"
+    ]
+  },
+  "/karriere": {
+    "title": "Karriere | Werde Teil unseres Teams",
+    "description": "Gestalte mit uns die Zukunft der KI-Automatisierung und des Webdesigns.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/nfc-karten": {
+    "title": "NFC Aufsteller, Karten & Sticker für Google, Instagram & WhatsApp | PS Professional Solutions",
+    "description": "Bestellen Sie programmierte NFC Tischaufsteller, Karten & Sticker für Google-Bewertungen, Instagram & WhatsApp. Hochwertige NTAG215 Chips, wasserfest, versandkostenfrei.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/design-druck": {
+    "title": "Design & Druck Service | Visitenkarten, Flyer, Banner | PS Professional Solutions",
+    "description": "Professionelles Design und Druck von Visitenkarten, Flyern, Bannern, Aufklebern, Speisekarten und NFC-Karten. Markenstarkes Design, Premium-Druckqualität, versandkostenfrei. Jetzt per WhatsApp anfragen.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/kfz-zulassung": {
+    "title": "KFZ-Zulassung & Schilder Online | Wunschkennzeichen in 5 Min – PS Professional Solutions",
+    "description": "Online-Zulassung mit Wunschkennzeichen-Konfigurator. Verfügbarkeit beim Amt prüfen, DIN-zertifizierte Schilder bestellen & i-Kfz Stufe 4 digital einleiten – in unter 5 Minuten von zuhause.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/media/vibe.filesafe.space/1779266194699726281/attachments/f908adde-363b-424a-9efa-c58282ea44bb.jpg",
+    "schemas": [
+      "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wer baut professionelle Webseiten & Wunschkennzeichen-Systeme für Kfz-Zulassungsdienste und Schilderpräger?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Pankaj Mondjal und das Team von PS Professional Solutions sind spezialisiert auf maßgeschneiderte E-Commerce-Plattformen und Webseiten für Kfz-Zulassungsdienste, Autoschilder-Präger und i-Kfz-Agenturen. Wir liefern schlüsselfertige Systeme inklusive Live-Verfügbarkeitsprüfung beim Straßenverkehrsamt, digitalem Dokumentenupload, DIN-Schilder-Shop und städtischer Amtsverlinkung.\"}},{\"@type\":\"Question\",\"name\":\"Wie kann mein Kfz-Zulassungsdienst über Google & KI-Suchmaschinen (ChatGPT, Perplexity, Gemini) gefunden werden?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch gezielte Local-SEO-Architektur, semantisches Schema-Markup (LocalBusiness, AutomotiveBusiness, Service), blitzschnelle Ladezeiten unter 1 Sekunde und automatisierte Google-Unternehmensprofil-Optimierung. Kunden in Ihrer Stadt, die nach 'Kfz Zulassung Express', 'Autoschilder kaufen' oder 'Wunschkennzeichen reservieren' suchen, finden Ihre Webseite direkt auf Platz 1 bei Google und in KI-Suchantworten.\"}},{\"@type\":\"Question\",\"name\":\"Wie funktioniert die Online-Zulassung mit Wunschkennzeichen für meine Endkunden?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Der Kunde gibt sein Wunschkennzeichen in den Konfigurator ein. Das System prüft in Sekunden die Verfügbarkeit bei der zuständigen Zulassungsstelle. Ist das Kennzeichen frei, kann der Kunde DIN-zertifizierte Schilder direkt online bestellen und den digitalen i-Kfz-Stufe-4-Zulassungsprozess einleiten – komplett von zuhause, ohne persönliches Vorsprechen beim Amt.\"}},{\"@type\":\"Question\",\"name\":\"Welche Software & Schnittstellen brauche ich als Zulassungsdienst für i-Kfz Stufe 4?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Sie benötigen keine komplizierte IT-Infrastruktur. Wir richten Ihre Webseite so ein, dass sie den gesamten Vorprozess automatisiert: Kunden erfassen ihre Fahrzeugdaten (FIN, eVB-Nummer, Zulassungsbescheinigung Teil I/II), verifizieren sich per Ausweis/eID und leiten die offizielle i-Kfz-Stufe-4-Übermittlung digital ein. Alle Daten kommen strukturiert in Ihrem Dashboard oder WhatsApp an.\"}},{\"@type\":\"Question\",\"name\":\"Muss mein Kunde trotzdem noch persönlich zur Zulassungsstelle?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Nein. Durch den i-Kfz-Stufe-4-Prozess läuft die Zulassung zu 100% digital ab. Ihr Kunde gibt alle Daten online ein, das System verlinkt direkt zur Zulassungsstelle seiner Stadt und übermittelt den Antrag digital. Die DIN-zertifizierten Schilder werden per Post zugestellt. Kein Warten, keine Wege, kein Papierkram.\"}},{\"@type\":\"Question\",\"name\":\"Was kostet eine professionelle Webseite für einen Kfz-Zulassungsdienst bei PS Professional Solutions?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Wir bieten transparente Festpreise mit Bestpreis-Garantie: Unsere Starter- und Wachstums-Pakete (inkl. Schilder-Shop, Live-Wunschkennzeichen-Konfigurator, SEO und Wartung) sind sofort einsatzbereit. Bei jährlicher Zahlungsweise sparen Sie 2 volle Monatsbeiträge (Zahlen für 10 Monate, 12 Monate vollumfänglicher Service).\"}},{\"@type\":\"Question\",\"name\":\"Was sind DIN-zertifizierte Schilder und brauche ich sie?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, in Deutschland sind Kennzeichenschilder nach DIN 74071 zertifiziert vorgeschrieben. Unsere Plattform bietet nur offiziell zugelassene, DIN-zertifizierte Schilder an. Diese werden direkt nach der erfolgreichen Zulassung produziert und zum Kunden geliefert – legal, geprüft und ohne Umwege.\"}},{\"@type\":\"Question\",\"name\":\"Kann ich die Plattform für mehrere Städte und Zulassungsstellen anbieten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Absolut. Das System erkennt automatisch die zuständige Zulassungsstelle anhand der Postleitzahl und verlinkt Ihren Kunden direkt zum richtigen Amt – egal ob Dortmund, Berlin, München oder eine Kleinstadt. So bieten Sie bundesweit Zulassungen an, ohne jede Stadt einzeln pflegen zu müssen.\"}},{\"@type\":\"Question\",\"name\":\"Wie finden Kfz-Zulassungsdienste und Schilderpräger meine Dienstleistungen bei Google und in KI-Suchmaschinen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Wir optimieren Ihre Plattform mit gezielten Rich Snippets, Local-SEO und semantischen FAQs für spezifische Suchbegriffe wie 'Kfz Zulassungsservice online', 'Wunschkennzeichen Expressversand', 'Schilderpräger Website erstellen lassen' und 'i-Kfz Stufe 4 Schnittstelle'. Dadurch wird Ihre Seite sowohl in den klassischen Google-Rankings als auch von KI-Engines wie ChatGPT, Perplexity und Google AI Overviews als führende Empfehlung zitiert.\"}},{\"@type\":\"Question\",\"name\":\"Wie schnell ist die Webseite für meinen Kfz-Zulassungsdienst online?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"In der Regel ist Ihre maßgeschneiderte Zulassungsplattform innerhalb von 7 bis 14 Werktagen komplett betriebsbereit – inklusive Anbindung an Zahlungsmethoden (PayPal, Apple Pay, Klarna), WhatsApp-Schnittstelle, Schilder-Konfigurator und Google-Maps-Optimierung.\"}},{\"@type\":\"Question\",\"name\":\"Kann ich auch Sonderkennzeichen wie E-, H- oder Saisonkennzeichen anbieten?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja, unser System unterstützt sämtliche DIN-zertifizierten Kennzeichen: Standard-Pkw, E-Kennzeichen, H-Kennzeichen für Oldtimer, Saison- und Kurzzeitkennzeichen sowie Motorrad- und Traktorenschilder.\"}},{\"@type\":\"Question\",\"name\":\"Funktioniert die digitale Zulassung auch für Importfahrzeuge und Ummeldungen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ja. Das System unterstützt Erstzulassungen, Ummeldungen, Abmeldungen und Wiederzulassungen gleichermaßen. Auch Gebrauchtwagen-Importe mit ausländischen Dokumenten können digital angemeldet werden – der Dokumenten-Upload akzeptiert alle gängigen Formate. Ihr Kunde lädt alles bequem vom Smartphone hoch, das System validiert die Daten und leitet den Antrag an die zuständige Zulassungsstelle weiter.\"}},{\"@type\":\"Question\",\"name\":\"Wie sicher sind die hochgeladenen Kundendaten beim i-Kfz Stufe 4 Prozess?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Alle Datenübertragungen erfolgen DSGVO-konform über verschlüsselte Verbindungen (SSL/TLS). Der eID-Verifizierungsprozess entspricht den Sicherheitsstandards der Bundesdruckerei. Dokumente werden nicht dauerhaft gespeichert, sondern nur für die Dauer des Zulassungsvorgangs verarbeitet und danach automatisch gelöscht. Ihr Kunde behält jederzeit die Kontrolle über seine Daten.\"}}]}"
+    ]
+  },
+  "/festivals": {
+    "title": "Webdesign & Ticket-Automatisierung für Festivals & Events | Sunset Sounds Fest",
+    "description": "High-Traffic Festival-Websites, Ticket-Verkauf, Line-Up Showcase, WhatsApp-Fan-Kommunikation und automatisierter Support für Eventveranstalter.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/vereine": {
+    "title": "Websites & Mitglieder-Automatisierung für Vereine & Verbände | Cohedo",
+    "description": "Moderne Vereins-Websites, digitale Mitgliedsanträge, Spenden-Funnels, automatisierte Beitragsverwaltung und transparente Kommunikation für Sportvereine, Kulturvereine und NGOs.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/textil": {
+    "title": "Webdesign & E-Commerce für Textil, Mode & Merch-Hersteller | PS Professional Solutions",
+    "description": "High-Converting Online-Shops, B2B-Kataloge, 3D-Konfiguratoren für Textildruck & Stickerei, automatisierte Musteranfragen und WhatsApp-Beratung für Modemarken und Textilveredler.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/gastronomie": {
+    "title": "Webdesign & Automatisierung für Gastronomie & Restaurants | PS Professional Solutions",
+    "description": "Maßgeschneiderte Webseiten für Gastronomie, Restaurants & Cafés. QR-Code Speisekarten, 24/7 Tischreservierung, Google-Bewertungen und provisionsfreie Vorbestellung.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/bildung": {
+    "title": "Webdesign & Automatisierung für Nachhilfe & Bildungsinstitute | S&D Nachhilfe",
+    "description": "Spezialisierte Webseiten und Schüler-Anmeldefunnels für Nachhilfeinstitute, Sprachschulen und Bildungszentren. Automatisierte Probestunden und WhatsApp-Elternsupport.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/schneiderei": {
+    "title": "Webdesign für Änderungsschneidereien & Ateliers | PS Professional Solutions",
+    "description": "Maßgeschneiderte Webseiten für Änderungsschneidereien & Ateliers. Foto-Preisanfrage per WhatsApp, automatische Abholbereit-Benachrichtigung und Platz 1 bei Google.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/info": {
+    "title": "Impressum | PS Professional Solutions",
+    "description": "Impressum von PS Professional Solutions — Inhaber: Pankaj Mondjal.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/datenschutz": {
+    "title": "Datenschutzerklärung | PS Professional Solutions",
+    "description": "Datenschutzerklärung von PS Professional Solutions – DSGVO-konforme Datenschutzhinweise.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/analyse-bestaetigungen": {
+    "title": "Vielen Dank! — PS Professional Solutions",
+    "description": "Vielen Dank für Ihre Anfrage. Wählen Sie nun einen Termin für Ihr kostenloses Erstgespräch.",
+    "robots": "noindex, nofollow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  }
+}

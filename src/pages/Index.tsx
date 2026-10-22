@@ -186,6 +186,8 @@ const Index = () => {
   return (
     <div className="w-full">
       <SEO
+        localBusiness
+        canonical="/"
         title={
           language === "tr"
             ? "Profesyonel Web Siteleri & Web Tasarım | AI Otomasyon tek elden | PS Professional Solutions"

@@ -99,7 +99,7 @@ export const AiChatWidget = () => {
               <X className="h-5 w-5" />
             </button>
           </div>
-          <div ref={listRef} className="flex-1 overflow-y-auto p-4 space-y-3 text-sm">
+          <div ref={listRef} data-no-translate className="flex-1 overflow-y-auto p-4 space-y-3 text-sm">
             {[{ role: "assistant", content: t.greeting } as ChatMessage, ...messages].map((m, i) => (
               <div
                 key={i}

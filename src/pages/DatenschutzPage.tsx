@@ -14,6 +14,13 @@ export default function DatenschutzPage() {
         <h1 className="text-4xl font-bold mb-8 text-primary">
           {isEn ? "Privacy Policy" : "Datenschutzerklärung"}
         </h1>
+        {language !== "de" && (
+          <p className="-mt-4 mb-8 rounded-lg bg-muted px-4 py-3 text-sm text-muted-foreground">
+            {isEn
+              ? "This translation is provided for convenience. Only the German version is legally binding."
+              : "Diese Übersetzung dient nur zur Information. Rechtlich verbindlich ist ausschließlich die deutsche Fassung."}
+          </p>
+        )}
         <div className="prose prose-lg text-muted-foreground space-y-6">
           {/* 1. Datenschutz auf einen Blick */}
           <div>

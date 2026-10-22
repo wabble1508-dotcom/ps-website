@@ -14,6 +14,13 @@ export default function ImpressumPage() {
         <h1 className="text-4xl font-bold mb-8 text-primary">
           {isEn ? "Imprint" : "Impressum"}
         </h1>
+        {language !== "de" && (
+          <p className="-mt-4 mb-8 rounded-lg bg-muted px-4 py-3 text-sm text-muted-foreground">
+            {isEn
+              ? "This translation is provided for convenience. Only the German version is legally binding."
+              : "Diese Übersetzung dient nur zur Information. Rechtlich verbindlich ist ausschließlich die deutsche Fassung."}
+          </p>
+        )}
         <div className="prose prose-lg text-muted-foreground">
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
             {isEn

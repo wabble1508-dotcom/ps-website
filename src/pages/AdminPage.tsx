@@ -91,7 +91,7 @@ export const AdminPage = () => {
   const now = new Date().toISOString();
 
   return (
-    <div className="min-h-screen bg-muted/40">
+    <div className="min-h-screen bg-muted/40" data-no-translate>
       <Helmet>
         <title>Admin – PS Professional Solutions</title>
         <meta name="robots" content="noindex,nofollow" />

@@ -24,5 +24,10 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Unbekannte Adressen liefern Status 404, `/admin` ist noindex.
 - Vorschaubild für geteilte Links: `public/og-image.jpg` (1200×630).
 
+## Übersetzungen
+- Viele Seiten haben Texte nur auf Deutsch/Englisch/Türkisch im Code. Fehlende Übersetzungen ergänzt `src/lib/i18n/overlay.ts` zur Laufzeit aus `src/lib/i18n/dict/<sprache>.json` (Schlüssel = exakt angezeigter deutscher bzw. englischer Text).
+- Nach Textänderungen oder neuen Seiten: `npm run build && node tools/i18n-extract.mjs "$(npm root -g)/playwright"` → `tools/i18n-todo/<sprache>.json` listet neue, unübersetzte Texte; diese übersetzen und in die jeweilige `dict/<sprache>.json` eintragen.
+- Bereiche mit `data-no-translate` (Chat-Verlauf, Admin) werden nicht angefasst. Impressum/Datenschutz zeigen in Fremdsprachen den Hinweis, dass die deutsche Fassung verbindlich ist.
+
 ## Prüfen vor dem Push
 - `npm run build` und `npx tsc -p functions/tsconfig.json`

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { applyLanguage } from "@/lib/i18n/overlay";
 import { Language, translations } from "@/lib/translations";
 
 interface LanguageContextType {
@@ -38,6 +39,7 @@ export const LanguageProvider = ({
 
   useEffect(() => {
     localStorage.setItem("app_language", language);
+    void applyLanguage(language);
     document.documentElement.lang = language;
     document.documentElement.dir =
       language === "ar" || language === "fa" || language === "ps"

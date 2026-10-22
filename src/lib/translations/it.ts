@@ -38,11 +38,6 @@ export const it = {
     successDescMagnet: "La tua richiesta è stata inviata con successo.",
   },
   home: {
-    heroTitle:
-      "Più clienti. Meno stress telefonico. Completamente automatizzato.",
-    heroSubtitle:
-      "Trasformiamo le tue competenze in guide automatizzate, corsi online e aree membri. Ottieni libertà attraverso la scalabilità digitale – senza frustrazioni tecniche.",
-    heroBtn: "Prenota ora un controllo strategico",
     whyTitle: "Perché PS Professional Solutions?",
     whySubtitle: "Il tuo percorso verso la libertà digitale.",
     whyDesc:

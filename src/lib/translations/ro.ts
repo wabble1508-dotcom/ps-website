@@ -39,11 +39,6 @@ export const ro = {
     successDescMagnet: "Solicitarea dumneavoastră a fost trimisă cu succes.",
   },
   home: {
-    heroTitle:
-      "Mai mulți clienți. Mai puțin stres telefonic. Complet automatizat.",
-    heroSubtitle:
-      "Transformăm expertiza dumneavoastră în ghiduri automatizate, cursuri online și zone pentru membri. Câștigați libertate prin scalare digitală – fără frustrații tehnice.",
-    heroBtn: "Rezervați acum un control strategic",
     whyTitle: "De ce PS Professional Solutions?",
     whySubtitle: "Drumul dumneavoastră spre libertatea digitală.",
     whyDesc:

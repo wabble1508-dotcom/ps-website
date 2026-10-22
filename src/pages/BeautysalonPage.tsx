@@ -2,6 +2,19 @@ import { IndustryPage } from "@/components/IndustryPage";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/components/LanguageContext";
 
+// Logos der Partner-Salons (in allen Sprachen gleich)
+const PARTNER_LOGOS = [
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/b0d176a1-eb5e-4139-953f-f6ebd8af6d1a.png", // Lilyum Cosmetics
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.png", // PureSkin Bochum
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/5ec2ed97-535c-4ec2-8c6b-c5b459c2f643.jpg",
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/1581d816-62fb-42c0-934a-b764b6c059a5.png",
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/b8943ca4-7beb-4f04-9a19-6a27cb624eb0.jpg",
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/679d3f78-3acb-4ba2-ae74-6d056734ab5f.jpg",
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/b644a54f-e4a4-4718-846c-d73a3ab96bb2.png",
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/3c0772b0-8ceb-4ebb-84cd-f7152044fa7c.png",
+  "/media/kunden/friseur-salon-haifa.jpg", // Friseur Salon Haifa
+];
+
 export default function BeautysalonPage() {
   const { language } = useLanguage();
 
@@ -14,16 +27,7 @@ export default function BeautysalonPage() {
         keywords:
           "Beautysalon, Friseur, Terminbuchung, Automatisierung, KI, Salon Software",
       },
-      customPartnerLogos: [
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/b0d176a1-eb5e-4139-953f-f6ebd8af6d1a.png", // Lilyum Cosmetics
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.png", // PureSkin Bochum
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/5ec2ed97-535c-4ec2-8c6b-c5b459c2f643.jpg",
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/1581d816-62fb-42c0-934a-b764b6c059a5.png",
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/b8943ca4-7beb-4f04-9a19-6a27cb624eb0.jpg",
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/679d3f78-3acb-4ba2-ae74-6d056734ab5f.jpg",
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/b644a54f-e4a4-4718-846c-d73a3ab96bb2.png",
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/3c0772b0-8ceb-4ebb-84cd-f7152044fa7c.png",
-      ],
+      customPartnerLogos: PARTNER_LOGOS,
       customPartnerTitle:
         "Erfolgreiche Partner-Salons (Lilyum Cosmetics, PureSkin Bochum, Istanbul Barbershop, Caracalla & mehr)",
       hero: {
@@ -157,6 +161,7 @@ export default function BeautysalonPage() {
       ],
     },
     en: {
+      customPartnerLogos: PARTNER_LOGOS,
       seo: {
         title: "Automation for Beauty Salons — PS Professional Solutions",
         description:
@@ -295,6 +300,7 @@ export default function BeautysalonPage() {
       ],
     },
     tr: {
+      customPartnerLogos: PARTNER_LOGOS,
       seo: {
         title: "Güzellik Salonları için Otomasyon — PS Professional Solutions",
         description:

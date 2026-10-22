@@ -36,10 +36,6 @@ export const ar = {
     successDescMagnet: "تم إرسال طلبك بنجاح.",
   },
   home: {
-    heroTitle: "عملاء أكثر. توتر هاتفي أقل. أتمتة كاملة.",
-    heroSubtitle:
-      "نحوّل خبرتك إلى أدلة آلية ودورات عبر الإنترنت ومناطق للأعضاء. اكتسب الحرية عبر التوسع الرقمي – بدون إحباط تقني.",
-    heroBtn: "احجز تحليلاً استراتيجياً الآن",
     whyTitle: "لماذا PS Professional Solutions؟",
     whySubtitle: "طريقك نحو الحرية الرقمية.",
     whyDesc:

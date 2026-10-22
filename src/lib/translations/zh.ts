@@ -36,10 +36,6 @@ export const zh = {
     successDescMagnet: "您的请求已成功提交。",
   },
   home: {
-    heroTitle: "更多客户。更少电话压力。全自动。",
-    heroSubtitle:
-      "我们将您的专业知识转化为自动化指南、在线课程和会员专区。通过数字化扩展获得自由——无需技术烦恼。",
-    heroBtn: "立即预约策略分析",
     whyTitle: "为什么选择 PS Professional Solutions？",
     whySubtitle: "您通往数字化自由的道路。",
     whyDesc:

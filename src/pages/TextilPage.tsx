@@ -1,4 +1,5 @@
 import { SEO } from "@/components/SEO";
+import { ExternalEmbed } from "@/components/ExternalEmbed";
 import {
   IndustryPage,
   type IndustryPageProps,
@@ -362,12 +363,7 @@ export default function TextilPage() {
       {/* Cinematic background video section (YouTube QVEFNfRUe90) */}
       <section className="relative overflow-hidden bg-black py-0">
         <div className="absolute inset-0 overflow-hidden">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/QVEFNfRUe90?autoplay=1&mute=1&controls=0&loop=1&playlist=QVEFNfRUe90&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1"
-            title="Textil Cinematic Background"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] h-[100vh] min-w-full min-h-full border-0"
-          />
+          <ExternalEmbed src="https://www.youtube-nocookie.com/embed/QVEFNfRUe90?autoplay=1&mute=1&controls=0&loop=1&playlist=QVEFNfRUe90&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1" title="Textil Cinematic Background" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] h-[100vh] min-w-full min-h-full border-0" background />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none" />
         <div className="relative z-10 container mx-auto px-4 py-24 text-center text-white">
@@ -420,13 +416,7 @@ export default function TextilPage() {
                 : "Sehen Sie, wie wir Modemarken und Textilmanufakturen mit gestochen scharfen Visuals und glasklaren Konversionspfaden inszenieren."}
           </p>
           <div className="relative mx-auto max-w-3xl overflow-hidden rounded-3xl shadow-2xl border border-border bg-black aspect-video group">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/QVEFNfRUe90?rel=0&modestbranding=1&playsinline=1"
-              title="Textil & Veredelung Showcase Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full border-0 rounded-3xl"
-            />
+            <ExternalEmbed src="https://www.youtube-nocookie.com/embed/QVEFNfRUe90?rel=0&modestbranding=1&playsinline=1" title="Textil & Veredelung Showcase Video" className="w-full h-full border-0 rounded-3xl" allowFullScreen />
           </div>
         </div>
       </section>

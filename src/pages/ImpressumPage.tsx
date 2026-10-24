@@ -24,15 +24,15 @@ export default function ImpressumPage() {
         <div className="prose prose-lg text-muted-foreground">
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
             {isEn
-              ? "Information according to § 5 TMG"
-              : "Angaben gemäß § 5 TMG"}
+              ? "Information according to § 5 DDG"
+              : "Angaben gemäß § 5 DDG"}
           </h2>
           <p className="font-semibold text-foreground">
             PS Professional Solutions
             <br />
             Inhaber: Pankaj Mondjal
             <br />
-            Lindenhorsterstr. 185
+            Lindenhorster Str. 185
             <br />
             44339 Dortmund
             <br />
@@ -53,13 +53,13 @@ export default function ImpressumPage() {
 
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
             {isEn
-              ? "Responsible for content according to § 55 Abs. 2 RStV"
-              : "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV"}
+              ? "Responsible for content according to § 18 (2) MStV"
+              : "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV"}
           </h2>
           <p className="font-semibold text-foreground">
             Pankaj Mondjal
             <br />
-            Lindenhorsterstr. 185
+            Lindenhorster Str. 185
             <br />
             44339 Dortmund
             <br />
@@ -71,29 +71,17 @@ export default function ImpressumPage() {
           </h2>
           <p>
             {isEn
-              ? "Pankaj Mondjal holds a Bachelor of Arts (B.A.) in Marketing Management and is the founder and managing director of PS Professional Solutions. He specializes in digital marketing, web design, and AI automation for local businesses."
-              : "Pankaj Mondjal ist Inhaber und Geschäftsführer von PS Professional Solutions. Er verfügt über einen Bachelor of Arts (B.A.) im Fach Marketing Management und ist Experte für digitales Marketing, Webdesign sowie KI-Automatisierung für lokale Unternehmen."}
+              ? "Pankaj Mondjal holds a Bachelor of Arts (B.A.) in Marketing Management and is the founder and owner of PS Professional Solutions. He specializes in digital marketing, web design, and AI automation for local businesses."
+              : "Pankaj Mondjal ist Gründer und Inhaber von PS Professional Solutions. Er verfügt über einen Bachelor of Arts (B.A.) im Fach Marketing Management und ist Experte für digitales Marketing, Webdesign sowie KI-Automatisierung für lokale Unternehmen."}
           </p>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-            {isEn ? "EU Dispute Resolution" : "EU-Streitschlichtung"}
+            {isEn ? "Consumer dispute resolution" : "Verbraucherstreitbeilegung"}
           </h2>
           <p>
             {isEn
-              ? "The European Commission provides a platform for online dispute resolution (OS): "
-              : "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: "}
-            <a
-              href="https://ec.europa.eu/consumers/odr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              https://ec.europa.eu/consumers/odr/
-            </a>
-            .<br />
-            {isEn
-              ? "You can find our email address in the imprint above."
-              : "Unsere E-Mail-Adresse finden Sie oben im Impressum."}
+              ? "We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+              : "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."}
           </p>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
@@ -101,8 +89,8 @@ export default function ImpressumPage() {
           </h2>
           <p>
             {isEn
-              ? "As a service provider we are responsible for our own content on these pages according to § 7 para.1 TMG under general laws. According to §§ 8 to 10 TMG we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity."
-              : "Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen."}
+              ? "As a service provider we are responsible for our own content on these pages according to § 7 (1) DDG under general laws. According to §§ 8 to 10 DDG we are not obligated as a service provider to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity."
+              : "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen."}
           </p>
 
           <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { openConsentSettings } from "@/lib/consent";
 import { submitForm } from "@/lib/submitForm";
 import { Mail, Phone, Clock, ShieldCheck, Lock, Star } from "lucide-react";
 import { Button } from "./ui/button";
@@ -421,6 +422,19 @@ export const Footer = () => {
             >
               {t("footer", "privacy")}
             </Link>
+            <Link
+              to="/agb"
+              className="font-semibold text-white/80 hover:text-primary transition-colors underline-offset-4 hover:underline"
+            >
+              AGB
+            </Link>
+            <button
+              type="button"
+              onClick={openConsentSettings}
+              className="font-semibold text-white/80 hover:text-primary transition-colors underline-offset-4 hover:underline"
+            >
+              Cookie-Einstellungen
+            </button>
             <a
               href="https://wa.me/4915207595260"
               target="_blank"

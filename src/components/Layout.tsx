@@ -5,6 +5,7 @@ import { MobileStickyCTA } from "./MobileStickyCTA";
 import { ScrollToTopButton } from "./ScrollToTopButton";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { CookieBanner } from "./CookieBanner";
 import { AiChatWidget } from "./AiChatWidget";
 
 export const Layout = () => {
@@ -31,6 +32,7 @@ export const Layout = () => {
       <Footer />
       <QuickContactWidget />
       <MobileStickyCTA />
+      <CookieBanner />
       <ScrollToTopButton />
       <AiChatWidget />
     </div>

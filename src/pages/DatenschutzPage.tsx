@@ -1,14 +1,177 @@
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/components/LanguageContext";
+import { openConsentSettings } from "@/lib/consent";
+
+// Datenschutzerklärung. Deutsch ist maßgeblich; Englisch steht daneben, die übrigen
+// Sprachen kommen aus den Übersetzungs-Wörterbüchern (src/lib/i18n/dict).
+// Bei neuen Diensten oder geänderten Speicherfristen bitte hier ergänzen.
+type Text = [de: string, en: string];
+type Section = { title: Text; blocks: (Text | { list: Text[] } | { sub: Text })[] };
+
+const STAND: Text = ["Stand: Oktober 2026", "Last updated: October 2026"];
+
+const SECTIONS: Section[] = [
+  {
+    title: ["1. Verantwortlicher", "1. Controller"],
+    blocks: [
+      [
+        "Verantwortlich für die Datenverarbeitung auf dieser Website ist: PS Professional Solutions, Inhaber Pankaj Mondjal, Lindenhorster Str. 185, 44339 Dortmund, Deutschland. Telefon: +49 152 0759 5260, E-Mail: info@ps-professional-solutions.de",
+        "The controller responsible for data processing on this website is: PS Professional Solutions, owner Pankaj Mondjal, Lindenhorster Str. 185, 44339 Dortmund, Germany. Phone: +49 152 0759 5260, email: info@ps-professional-solutions.de",
+      ],
+      [
+        "Ein Datenschutzbeauftragter ist nicht bestellt, da wir hierzu gesetzlich nicht verpflichtet sind. Bei Fragen zum Datenschutz wenden Sie sich bitte an die oben genannte E-Mail-Adresse.",
+        "We have not appointed a data protection officer as we are not legally required to do so. Please send any data protection questions to the email address above.",
+      ],
+    ],
+  },
+  {
+    title: ["2. Überblick", "2. Overview"],
+    blocks: [
+      [
+        "Wir verarbeiten personenbezogene Daten nur, soweit dies für den Betrieb dieser Website, die Beantwortung Ihrer Anfragen und die Erbringung unserer Leistungen erforderlich ist oder Sie eingewilligt haben. Wir setzen keine Analyse- oder Werbe-Tracker ein und verkaufen keine Daten.",
+        "We only process personal data where this is necessary to operate this website, answer your enquiries and provide our services, or where you have given consent. We do not use analytics or advertising trackers and do not sell any data.",
+      ],
+      [
+        "Rechtsgrundlagen sind insbesondere Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), lit. b (Vertrag und vorvertragliche Maßnahmen), lit. c (rechtliche Pflichten) und lit. f (berechtigte Interessen, z. B. ein sicherer und funktionierender Webauftritt). Für das Speichern von Informationen auf Ihrem Endgerät gilt § 25 TDDDG.",
+        "The legal bases are in particular Art. 6(1)(a) GDPR (consent), (b) (contract and pre-contractual measures), (c) (legal obligations) and (f) (legitimate interests, e.g. a secure and functioning website). Storing information on your device is governed by Section 25 TDDDG.",
+      ],
+    ],
+  },
+  {
+    title: ["3. Hosting und Bereitstellung der Website", "3. Hosting and delivery of the website"],
+    blocks: [
+      [
+        "Diese Website wird über Cloudflare Pages bereitgestellt (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Beim Aufruf verarbeitet Cloudflare technisch notwendige Verbindungsdaten wie IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browser und Betriebssystem, um die Seite auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.",
+        "This website is delivered via Cloudflare Pages (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). When you visit, Cloudflare processes technically necessary connection data such as IP address, date and time, page requested, browser and operating system in order to deliver the site and protect it against attacks. The legal basis is Art. 6(1)(f) GDPR.",
+      ],
+      [
+        "Mit Cloudflare besteht ein Auftragsverarbeitungsvertrag. Cloudflare ist unter dem EU-US Data Privacy Framework zertifiziert; ergänzend gelten EU-Standardvertragsklauseln. Die Datenbank mit Ihren Formular-, Termin- und Chat-Daten (Cloudflare D1) wird in der Europäischen Union gespeichert.",
+        "A data processing agreement is in place with Cloudflare. Cloudflare is certified under the EU-US Data Privacy Framework; EU Standard Contractual Clauses apply in addition. The database containing your form, booking and chat data (Cloudflare D1) is stored in the European Union.",
+      ],
+      [
+        "Zur Anzeige „Jetzt auch für Unternehmen in …“ ermittelt Cloudflare aus der Verbindung Ihre ungefähre Stadt. Diese Angabe wird nur angezeigt und nicht gespeichert; es werden dafür keine Daten an weitere Dienste übermittelt.",
+        "For the notice “Now also for businesses in …”, Cloudflare derives your approximate city from the connection. This is only displayed and not stored; no data is passed to any other service for this.",
+      ],
+    ],
+  },
+  {
+    title: ["4. Speicherungen in Ihrem Browser und Einwilligung", "4. Browser storage and consent"],
+    blocks: [
+      [
+        "Wir setzen keine Werbe- oder Tracking-Cookies. Im lokalen Speicher Ihres Browsers (localStorage) legen wir nur ab, was für die gewünschte Funktion nötig ist: Ihre Sprachauswahl, Ihre Datenschutz-Einstellung und – nur im Admin-Bereich – die Anmeldung. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
+        "We do not use advertising or tracking cookies. In your browser's local storage (localStorage) we only keep what is required for the function you request: your language selection, your privacy settings and – only in the admin area – the login. The legal basis is Section 25(2) No. 2 TDDDG.",
+      ],
+      [
+        "Externe Medien (YouTube, Instagram) laden wir erst, wenn Sie im Einwilligungs-Banner zustimmen oder ein einzelnes Video aktiv laden (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft über „Cookie-Einstellungen“ im Seitenfuß widerrufen.",
+        "We only load external media (YouTube, Instagram) once you agree in the consent banner or actively load an individual video (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can withdraw your consent at any time with effect for the future via “Cookie settings” in the footer.",
+      ],
+    ],
+  },
+  {
+    title: ["5. Kontaktaufnahme", "5. Contacting us"],
+    blocks: [
+      [
+        "Wenn Sie uns per E-Mail, Telefon oder WhatsApp kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b bzw. f DSGVO). Die WhatsApp-Knöpfe sind einfache Links; erst wenn Sie darauf klicken, öffnet sich WhatsApp (WhatsApp Ireland Ltd.) und es gelten dessen Datenschutzbestimmungen.",
+        "If you contact us by email, phone or WhatsApp, we process your details to handle your request (Art. 6(1)(b) or (f) GDPR). The WhatsApp buttons are simple links; WhatsApp (WhatsApp Ireland Ltd.) only opens when you click them, and its privacy policy then applies.",
+      ],
+    ],
+  },
+  {
+    title: ["6. Formulare: E-Book, Newsletter und Bewerbung", "6. Forms: e-book, newsletter and applications"],
+    blocks: [
+      [
+        "Die Angaben aus unseren Formularen (z. B. Name, E-Mail, Telefon, Nachricht, bei Bewerbungen auch die gewünschte Stelle) speichern wir in unserer Datenbank, um Ihre Anfrage zu bearbeiten (Art. 6 Abs. 1 lit. b DSGVO; bei Bewerbungen zusätzlich § 26 BDSG). Bei der Newsletter-Anmeldung verarbeiten wir Ihre E-Mail-Adresse auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO); Sie können sich jederzeit formlos abmelden.",
+        "We store the information from our forms (e.g. name, email, phone, message and, for applications, the desired position) in our database in order to handle your request (Art. 6(1)(b) GDPR; for applications also Section 26 BDSG). For the newsletter we process your email address on the basis of your consent (Art. 6(1)(a) GDPR); you can unsubscribe at any time without giving reasons.",
+      ],
+      [
+        "Speicherdauer: Anfragen werden nach 12 Monaten, Bewerbungen nach 6 Monaten automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen oder ein Vertrag zustande kommt.",
+        "Retention: enquiries are deleted automatically after 12 months and applications after 6 months, unless statutory retention obligations apply or a contract is concluded.",
+      ],
+    ],
+  },
+  {
+    title: ["7. Online-Terminbuchung", "7. Online appointment booking"],
+    blocks: [
+      [
+        "Für die Buchung eines Termins verarbeiten wir Name, E-Mail-Adresse, optional Telefonnummer und Nachricht sowie den gewählten Termin (Art. 6 Abs. 1 lit. b DSGVO). Die Daten werden 12 Monate nach dem Termin automatisch gelöscht. Sofern eingerichtet, versenden wir Bestätigungs- und Benachrichtigungs-E-Mails über den Dienst Resend (Resend, Inc., USA) als Auftragsverarbeiter auf Grundlage von EU-Standardvertragsklauseln.",
+        "To book an appointment we process your name, email address, optionally your phone number and message, and the selected time (Art. 6(1)(b) GDPR). The data is deleted automatically 12 months after the appointment. Where configured, we send confirmation and notification emails via the service Resend (Resend, Inc., USA) as a processor on the basis of EU Standard Contractual Clauses.",
+      ],
+    ],
+  },
+  {
+    title: ["8. KI-Live-Chat", "8. AI live chat"],
+    blocks: [
+      [
+        "Unser Chat-Assistent beantwortet Fragen mithilfe künstlicher Intelligenz. Die Antworten werden automatisch erstellt und können Fehler enthalten. Ihre Nachrichten und der Gesprächsverlauf werden zur Erzeugung der Antworten an Anthropic PBC (548 Market St, San Francisco, CA 94104, USA) übermittelt. Grundlage für die Übermittlung in die USA sind EU-Standardvertragsklauseln. Nach Angaben von Anthropic werden über die Schnittstelle übermittelte Daten nicht zum Training von KI-Modellen verwendet.",
+        "Our chat assistant answers questions using artificial intelligence. Answers are generated automatically and may contain errors. Your messages and the conversation history are sent to Anthropic PBC (548 Market St, San Francisco, CA 94104, USA) to generate the answers. The transfer to the USA is based on EU Standard Contractual Clauses. According to Anthropic, data sent via its API is not used to train AI models.",
+      ],
+      [
+        "Wir speichern die Gesprächsverläufe in unserer Datenbank, um Anfragen nachvollziehen und den Service verbessern zu können (Art. 6 Abs. 1 lit. f DSGVO), und löschen sie automatisch nach 6 Monaten. Bitte geben Sie im Chat keine sensiblen Daten (z. B. Gesundheitsdaten oder Zahlungsinformationen) ein. Die Nutzung des Chats ist freiwillig.",
+        "We store the conversations in our database so that we can follow up on enquiries and improve our service (Art. 6(1)(f) GDPR) and delete them automatically after 6 months. Please do not enter sensitive data (e.g. health or payment information) in the chat. Using the chat is voluntary.",
+      ],
+    ],
+  },
+  {
+    title: ["9. Externe Medien: YouTube und Instagram", "9. External media: YouTube and Instagram"],
+    blocks: [
+      [
+        "Auf einigen Seiten binden wir Videos von YouTube (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) im erweiterten Datenschutzmodus (youtube-nocookie.com) sowie einen Instagram-Beitrag (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland) ein. Diese Inhalte werden erst nach Ihrer Einwilligung geladen. Dann werden unter anderem Ihre IP-Adresse und Informationen zu Ihrem Gerät an den jeweiligen Anbieter übermittelt, auch in die USA. Google und Meta sind unter dem EU-US Data Privacy Framework zertifiziert.",
+        "On some pages we embed videos from YouTube (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland) in privacy-enhanced mode (youtube-nocookie.com) and an Instagram post (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Ireland). These are only loaded after you consent. Your IP address and information about your device are then transmitted to the respective provider, including to the USA. Google and Meta are certified under the EU-US Data Privacy Framework.",
+      ],
+      [
+        "Links zu unseren Profilen bei Instagram, TikTok und YouTube sind einfache Verlinkungen. Daten werden erst übertragen, wenn Sie auf den Link klicken und die Seite des Anbieters öffnen.",
+        "Links to our profiles on Instagram, TikTok and YouTube are plain links. Data is only transmitted once you click the link and open the provider's page.",
+      ],
+    ],
+  },
+  {
+    title: ["10. Ihre Rechte", "10. Your rights"],
+    blocks: [
+      ["Sie haben jederzeit das Recht auf:", "You have the right at any time to:"],
+      {
+        list: [
+          ["Auskunft über Ihre bei uns gespeicherten Daten (Art. 15 DSGVO)", "access to your data stored by us (Art. 15 GDPR)"],
+          ["Berichtigung unrichtiger Daten (Art. 16 DSGVO)", "rectification of inaccurate data (Art. 16 GDPR)"],
+          ["Löschung Ihrer Daten (Art. 17 DSGVO)", "erasure of your data (Art. 17 GDPR)"],
+          ["Einschränkung der Verarbeitung (Art. 18 DSGVO)", "restriction of processing (Art. 18 GDPR)"],
+          ["Datenübertragbarkeit (Art. 20 DSGVO)", "data portability (Art. 20 GDPR)"],
+          [
+            "Widerspruch gegen Verarbeitungen auf Grundlage berechtigter Interessen (Art. 21 DSGVO)",
+            "object to processing based on legitimate interests (Art. 21 GDPR)",
+          ],
+          [
+            "Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)",
+            "withdraw consent you have given with effect for the future (Art. 7(3) GDPR)",
+          ],
+        ],
+      },
+      [
+        "Außerdem können Sie sich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel bei der für uns zuständigen Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestr. 2–4, 40213 Düsseldorf.",
+        "You can also lodge a complaint with a data protection supervisory authority, for example the authority responsible for us: Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestr. 2–4, 40213 Düsseldorf, Germany.",
+      ],
+    ],
+  },
+  {
+    title: ["11. Datensicherheit", "11. Data security"],
+    blocks: [
+      [
+        "Diese Website nutzt eine SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://“ und dem Schloss-Symbol in der Adresszeile. Der Admin-Bereich ist durch ein Passwort geschützt.",
+        "This website uses SSL/TLS encryption. You can recognise an encrypted connection by “https://” and the padlock symbol in the address bar. The admin area is password-protected.",
+      ],
+    ],
+  },
+];
 
 export default function DatenschutzPage() {
   const { language } = useLanguage();
   const isEn = language === "en";
+  const tx = (t: Text) => (isEn ? t[1] : t[0]);
+
   return (
     <div className="w-full bg-white py-20">
       <SEO
         title="Datenschutzerklärung | PS Professional Solutions"
-        description="Datenschutzerklärung von PS Professional Solutions – DSGVO-konforme Datenschutzhinweise."
+        description="Datenschutzerklärung von PS Professional Solutions: welche Daten wir verarbeiten, wofür und wie lange – inklusive Hosting, KI-Chat, Terminbuchung und Ihrer Rechte."
       />
       <div className="container mx-auto px-4 max-w-3xl">
         <h1 className="text-4xl font-bold mb-8 text-primary">
@@ -21,213 +184,37 @@ export default function DatenschutzPage() {
               : "Diese Übersetzung dient nur zur Information. Rechtlich verbindlich ist ausschließlich die deutsche Fassung."}
           </p>
         )}
-        <div className="prose prose-lg text-muted-foreground space-y-6">
-          {/* 1. Datenschutz auf einen Blick */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn
-                ? "1. Privacy at a glance"
-                : "1. Datenschutz auf einen Blick"}
-            </h2>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "General notes" : "Allgemeine Hinweise"}
-            </h3>
-            <p>
-              {isEn
-                ? "The following notes provide a simple overview of what happens to your personal data when you visit this website. Personal data is any data with which you can be personally identified."
-                : "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung."}
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn
-                ? "Data collection on this website"
-                : "Datenerfassung auf dieser Website"}
-            </h3>
-            <p>
-              {isEn
-                ? "Data collection on this website is carried out by the website operator. You can find their contact details in the 'Responsible body' section."
-                : 'Die Datenerfassung auf dieser Website erfolgt durch den Betreiber der Website. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.'}
-            </p>
-            <p>
-              {isEn
-                ? "Your data is collected partly by you providing it to us (e.g. in a contact form)."
-                : "Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben."}
-            </p>
-          </div>
-
-          {/* 2. Allgemeine Hinweise und Pflichtinformationen */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn
-                ? "2. General notes and mandatory information"
-                : "2. Allgemeine Hinweise und Pflichtinformationen"}
-            </h2>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "Data protection" : "Datenschutz"}
-            </h3>
-            <p>
-              {isEn
-                ? "The operators of this site take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations and this privacy policy."
-                : "Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung."}
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn
-                ? "Responsible body"
-                : "Hinweis zur verantwortlichen Stelle"}
-            </h3>
-            <p>
-              {isEn
-                ? "The responsible body for data processing on this website is:"
-                : "Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:"}
-            </p>
-            <p className="mt-2 font-medium">
-              PS Professional Solutions
-              <br />
-              Pankaj Mondjal
-              <br />
-              Lindenhorster Str. 185
-              <br />
-              44339 Dortmund
-              <br />
-              {isEn ? "Phone: +49 152 0759 5260" : "Telefon: +49 152 0759 5260"}
-              <br />
-              E-Mail: info@ps-professional-solutions.de
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "Storage period" : "Speicherdauer"}
-            </h3>
-            <p>
-              {isEn
-                ? "Unless a more specific storage period has been specified within this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies."
-                : "Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löscherersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben."}
-            </p>
-          </div>
-
-          {/* 3. Datenerfassung auf dieser Website */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn
-                ? "3. Data collection on this website"
-                : "3. Datenerfassung auf dieser Website"}
-            </h2>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "Cookies" : "Cookies"}
-            </h3>
-            <p>
-              {isEn
-                ? "Our website uses so-called 'cookies'. Cookies are small text files and do no harm to your device. They are either temporarily stored for the duration of a session (session cookies) or permanently (permanent cookies) on your device. Session cookies are automatically deleted after your visit. Permanent cookies remain stored on your device until you delete them or automatic deletion occurs via your web browser."
-                : 'Unsere Internetseiten verwenden so genannte „Cookies". Cookies sind kleine Textdateien und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.'}
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "Server log files" : "Server-Log-Dateien"}
-            </h3>
-            <p>
-              {isEn
-                ? "The provider of this website collects and stores automatically information in so-called server log files, which your browser automatically transmits to us. These are: browser type and version, operating system used, referrer URL, hostname of the accessing computer, time of server request, IP address. This data is not merged with other data sources. The collection of this data is based on Art. 6 para. 1 lit. f GDPR."
-                : "Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind: Browsertyp und Browserversion, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage, IP-Adresse. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO."}
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn ? "Contact form" : "Kontaktformular"}
-            </h3>
-            <p>
-              {isEn
-                ? "If you send us inquiries via the contact form, your details from the inquiry form including the contact data you provide there will be stored by us for the purpose of processing the inquiry and in case of follow-up questions. We do not pass on this data without your consent. The processing of this data is based on Art. 6 para. 1 lit. b GDPR."
-                : "Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist."}
-            </p>
-            <h3 className="text-lg font-bold mt-4 mb-2 text-secondary">
-              {isEn
-                ? "Inquiry by email, phone or fax"
-                : "Anfrage per E-Mail, Telefon oder Telefax"}
-            </h3>
-            <p>
-              {isEn
-                ? "If you contact us by email, phone or fax, your inquiry including all resulting personal data (name, inquiry) will be stored and processed by us for the purpose of processing your request. We do not pass on this data without your consent."
-                : "Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter."}
-            </p>
-          </div>
-
-          {/* 4. Soziale Medien */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn ? "4. Social media" : "4. Soziale Medien"}
-            </h2>
-            <p>
-              {isEn
-                ? "Links to social networks (Instagram, TikTok, YouTube) are integrated on our pages. These are merely implemented as links to the services. After clicking on the embedded text/image link, you will be redirected to the respective provider's page. Only after the redirection will user information be transmitted to the respective provider."
-                : "Auf unseren Seiten sind Verlinkungen zu sozialen Netzwerken (Instagram, TikTok, YouTube) integriert. Diese sind lediglich als Link zu den Diensten ausgeführt. Nach dem Anklicken des eingebundenen Text-/Bildlinks werden Sie auf die Seite des jeweiligen Anbieters weitergeleitet. Erst nach der Weiterleitung werden Nutzerinformationen an den jeweiligen Anbieter übertragen."}
-            </p>
-          </div>
-
-          {/* 5. Analyse-Tools und Werbung */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn
-                ? "5. Analysis tools and advertising"
-                : "5. Analyse-Tools und Werbung"}
-            </h2>
-            <p>
-              {isEn
-                ? "This website does not use third-party analysis tools or advertising services."
-                : "Diese Website nutzt keine Analyse-Tools oder Werbedienste von Drittanbietern."}
-            </p>
-          </div>
-
-          {/* 6. Ihre Rechte */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn ? "6. Your rights" : "6. Ihre Rechte"}
-            </h2>
-            <p>
-              {isEn
-                ? "You have the right at any time to:"
-                : "Sie haben jederzeit das Recht:"}
-            </p>
-            <ul className="list-disc pl-6 mt-2 space-y-2">
-              <li>
-                {isEn
-                  ? "Request information about your personal data processed by us (Art. 15 GDPR)"
-                  : "gemäß Art. 15 DSGVO Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen"}
-              </li>
-              <li>
-                {isEn
-                  ? "Request the immediate correction of incorrect or completion of your personal data stored by us (Art. 16 GDPR)"
-                  : "gemäß Art. 16 DSGVO unverzüglich die Berichtigung unrichtiger oder Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen"}
-              </li>
-              <li>
-                {isEn
-                  ? "Request the deletion of your personal data stored by us (Art. 17 GDPR)"
-                  : "gemäß Art. 17 DSGVO die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen"}
-              </li>
-              <li>
-                {isEn
-                  ? "Request the restriction of processing of your personal data (Art. 18 GDPR)"
-                  : "gemäß Art. 18 DSGVO die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen"}
-              </li>
-              <li>
-                {isEn
-                  ? "Receive your personal data in a structured, common and machine-readable format (Art. 20 GDPR)"
-                  : "gemäß Art. 20 DSGVO Ihre personenbezogenen Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten"}
-              </li>
-              <li>
-                {isEn
-                  ? "Revoke your consent at any time (Art. 7 para. 3 GDPR)"
-                  : "gemäß Art. 7 Abs. 3 DSGVO Ihre einmal erteilte Einwilligung jederzeit gegenüber uns zu widerrufen"}
-              </li>
-            </ul>
-          </div>
-
-          {/* 7. Widerspruch gegen Werbe-E-Mails */}
-          <div>
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-secondary">
-              {isEn
-                ? "7. Objection to advertising emails"
-                : "7. Widerspruch gegen Werbe-E-Mails"}
-            </h2>
-            <p>
-              {isEn
-                ? "The use of contact data published within the scope of the imprint obligation to send advertising and information materials not expressly requested is hereby objected to. The operators of the pages expressly reserve the right to take legal action in the event of the unsolicited sending of advertising information, such as spam emails."
-                : "Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor."}
-            </p>
-          </div>
+        <div className="text-muted-foreground space-y-4 leading-relaxed">
+          {SECTIONS.map((section) => (
+            <section key={section.title[0]}>
+              <h2 className="text-2xl font-bold mt-10 mb-4 text-secondary">{tx(section.title)}</h2>
+              <div className="space-y-4">
+                {section.blocks.map((block, i) =>
+                  Array.isArray(block) ? (
+                    <p key={i}>{tx(block)}</p>
+                  ) : "list" in block ? (
+                    <ul key={i} className="list-disc pl-6 space-y-1">
+                      {block.list.map((item) => (
+                        <li key={item[0]}>{tx(item)}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <h3 key={i} className="text-lg font-bold text-secondary">
+                      {tx(block.sub)}
+                    </h3>
+                  ),
+                )}
+              </div>
+            </section>
+          ))}
+          <button
+            type="button"
+            onClick={openConsentSettings}
+            className="mt-6 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white hover:bg-primary/90"
+          >
+            {isEn ? "Open cookie settings" : "Cookie-Einstellungen öffnen"}
+          </button>
+          <p className="pt-6 text-sm">{tx(STAND)}</p>
         </div>
       </div>
     </div>

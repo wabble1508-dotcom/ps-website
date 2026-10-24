@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ExternalEmbed } from "@/components/ExternalEmbed";
 import { FadeIn } from "@/components/FadeIn";
 import { useContactForm } from "@/components/ContactFormDialog";
 import { HelpCircle } from "lucide-react";
@@ -358,13 +359,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
               >
                 <div className="relative h-48 overflow-hidden">
                   {industry.video ? (
-                    <iframe
-                      className="absolute inset-0 w-full h-full"
-                      src={industry.video}
-                      title={industry.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
+                    <ExternalEmbed src={industry.video} title={industry.title} className="absolute inset-0 w-full h-full" allowFullScreen />
                   ) : (
                     <>
                       <img
@@ -421,13 +416,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
             </p>
             <div className="rounded-2xl overflow-hidden shadow-2xl bg-black border-4 border-primary">
               <div className="aspect-video relative flex items-center justify-center">
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src={data.videoTestimonial.url}
-                  title="Kundenstimme"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <ExternalEmbed src={data.videoTestimonial.url} title="Kundenstimme" className="absolute inset-0 w-full h-full" allowFullScreen />
               </div>
             </div>
           </div>

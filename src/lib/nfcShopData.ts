@@ -203,7 +203,7 @@ export const cardProducts: NfcProduct[] = [
       "Alle individuell programmiert auf Ihre Wunsch-Links",
       "Gratis Premium-Versand mit Sendungsverfolgung",
       "Robuster NTAG215 High-Speed Chip",
-      "100% DSGVO-konform & sicher",
+      "Datenschutzfreundlich & sicher",
       "Einmalzahlung ohne Folgekosten",
     ],
     featuresEn: [

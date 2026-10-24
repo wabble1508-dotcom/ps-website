@@ -1,48 +1,88 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { onConsentOpen, saveConsent, useConsent } from "@/lib/consent";
 
+// Einwilligungs-Banner: „Alle akzeptieren“ und „Nur notwendige“ sind gleichwertig,
+// externe Medien werden erst nach Zustimmung geladen.
 export const CookieBanner = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const { decided, media } = useConsent();
+  const [open, setOpen] = useState(false);
+  const [details, setDetails] = useState(false);
+  const [mediaChoice, setMediaChoice] = useState(media);
 
-  useEffect(() => {
-    const hasConsented = localStorage.getItem("cookieConsent");
-    if (!hasConsented) {
-      setIsVisible(true);
-    }
-  }, []);
+  useEffect(() => setOpen(!decided), [decided]);
+  useEffect(
+    () =>
+      onConsentOpen(() => {
+        setMediaChoice(media);
+        setDetails(true);
+        setOpen(true);
+      }),
+    [media],
+  );
 
-  const acceptAll = () => {
-    localStorage.setItem("cookieConsent", "all");
-    setIsVisible(false);
+  if (!open) return null;
+
+  const choose = (value: boolean) => {
+    saveConsent(value);
+    setOpen(false);
+    setDetails(false);
   };
-
-  const acceptNecessary = () => {
-    localStorage.setItem("cookieConsent", "necessary");
-    setIsVisible(false);
-  };
-
-  if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0f222d] text-white p-4 shadow-2xl border-t border-white/10">
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-white/80 max-w-4xl">
-          Wir verwenden Cookies, um unsere Website für Sie optimal zu gestalten
-          und unsere Dienste zu verbessern. In unseren Datenschutzbestimmungen
-          erfahren Sie mehr darüber.
+    <div
+      role="dialog"
+      aria-label="Datenschutz-Einstellungen"
+      className="fixed inset-x-0 bottom-0 z-[80] p-3 sm:p-4"
+    >
+      <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0f222d] p-5 text-white shadow-2xl">
+        <p className="font-semibold mb-2">Ihre Privatsphäre</p>
+        <p className="text-sm text-white/80">
+          Wir verwenden nur technisch notwendige Speicherungen (z. B. Ihre Sprachauswahl). Mit Ihrer Zustimmung
+          laden wir zusätzlich externe Medien wie YouTube-Videos und Instagram-Beiträge. Dabei werden Daten
+          (z. B. Ihre IP-Adresse) an Google bzw. Meta übermittelt, auch in die USA. Sie können Ihre Auswahl
+          jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern. Mehr in der{" "}
+          <Link to="/datenschutz" className="underline underline-offset-2" onClick={() => setOpen(false)}>
+            Datenschutzerklärung
+          </Link>
+          .
         </p>
-        <div className="flex items-center gap-3 shrink-0">
-          <Button
-            variant="outline"
-            className="bg-transparent border-white/20 text-white hover:bg-white/10 hover:text-white"
-            onClick={acceptNecessary}
-          >
+
+        {details && (
+          <div className="mt-4 space-y-3 rounded-xl bg-white/5 p-4 text-sm">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="font-medium">Notwendig</p>
+                <p className="text-white/70">Sprachauswahl und diese Einstellung. Immer aktiv.</p>
+              </div>
+              <Switch checked disabled aria-label="Notwendig" />
+            </div>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="font-medium">Externe Medien</p>
+                <p className="text-white/70">YouTube-Videos (Google Ireland Ltd.) und Instagram-Beiträge (Meta Platforms Ireland Ltd.).</p>
+              </div>
+              <Switch checked={mediaChoice} onCheckedChange={setMediaChoice} aria-label="Externe Medien" />
+            </div>
+          </div>
+        )}
+
+        <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+          {details ? (
+            <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(mediaChoice)}>
+              Auswahl speichern
+            </Button>
+          ) : (
+            <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white" onClick={() => setDetails(true)}>
+              Einstellungen
+            </Button>
+          )}
+          <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(false)}>
             Nur notwendige
           </Button>
-          <Button
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
-            onClick={acceptAll}
-          >
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => choose(true)}>
             Alle akzeptieren
           </Button>
         </div>

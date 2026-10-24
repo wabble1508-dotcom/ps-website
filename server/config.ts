@@ -18,3 +18,12 @@ export const COMPANY = {
   name: "PS Professional Solutions",
   email: "info@ps-professional-solutions.de",
 };
+
+// Wie lange Daten gespeichert bleiben (DSGVO: nicht länger als nötig). Danach werden sie
+// automatisch gelöscht. Angaben in Monaten.
+export const RETENTION = {
+  chats: 6, // Chat-Verläufe
+  leads: 12, // Formular-Anfragen (E-Book, Newsletter)
+  applications: 6, // Bewerbungen
+  bookings: 12, // Termine, gerechnet ab dem Termin
+};

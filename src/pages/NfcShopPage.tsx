@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { saveConsent, useConsent } from "@/lib/consent";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
@@ -33,8 +34,11 @@ export default function NfcShopPage() {
   >("google");
 
   const igRef = useRef<HTMLQuoteElement>(null);
+  const { media } = useConsent();
 
   useEffect(() => {
+    // Instagram erst nach Einwilligung laden (externe Medien)
+    if (!media) return;
     // Instagram embed script needs to (re)process the blockquote after mount
     const tryProcess = () => {
       const w = window as unknown as {
@@ -68,7 +72,7 @@ export default function NfcShopPage() {
       setTimeout(tryProcess, 100);
     };
     document.body.appendChild(script);
-  }, []);
+  }, [media]);
 
   const benefits = [
     {
@@ -205,6 +209,21 @@ export default function NfcShopPage() {
             </p>
           </div>
           <div className="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/20 bg-black">
+            {!media && (
+              <div className="flex aspect-[9/14] flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-6 text-center text-white">
+                <button
+                  type="button"
+                  onClick={() => saveConsent(true)}
+                  className="rounded-full bg-white/25 px-5 py-2 font-semibold backdrop-blur transition hover:bg-white/35"
+                >
+                  Instagram-Video laden
+                </button>
+                <p className="max-w-xs text-xs text-white/85">
+                  Mit Klick stimmen Sie zu, dass Daten an Instagram (Meta) übermittelt werden.
+                </p>
+              </div>
+            )}
+            {media && (
             <blockquote
               ref={igRef}
               className="instagram-media"
@@ -221,6 +240,7 @@ export default function NfcShopPage() {
                 width: "100%",
               }}
             ></blockquote>
+            )}
           </div>
         </FadeIn>
       </section>

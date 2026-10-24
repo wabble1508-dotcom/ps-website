@@ -1,4 +1,4 @@
-import { ShieldCheck, Award, Lock, CheckCircle, Star } from "lucide-react";
+import { ShieldCheck, Award, Lock, CheckCircle, BadgeEuro } from "lucide-react";
 import { useLanguage } from "./LanguageContext";
 
 const pick = (lang: string, obj: { de: string; en: string; tr: string }) =>
@@ -11,9 +11,9 @@ export const TrustSeals = () => {
     {
       icon: ShieldCheck,
       text: pick(language, {
-        de: "100% DSGVO Konform",
-        en: "100% GDPR Compliant",
-        tr: "100% GDPR Uyumlu",
+        de: "Datenschutz nach DSGVO",
+        en: "Privacy under GDPR",
+        tr: "GDPR'a uygun veri koruma",
       }),
     },
     {
@@ -27,17 +27,17 @@ export const TrustSeals = () => {
     {
       icon: Award,
       text: pick(language, {
-        de: "Zertifizierte Qualität 2025",
-        en: "Certified Quality 2025",
-        tr: "Sertifikalı Kalite 2025",
+        de: "Persönlicher Ansprechpartner",
+        en: "Personal contact person",
+        tr: "Kişisel muhatap",
       }),
     },
     {
-      icon: Star,
+      icon: BadgeEuro,
       text: pick(language, {
-        de: "5.0 Google Bewertung",
-        en: "5.0 Google Rating",
-        tr: "5.0 Google Derecelendirme",
+        de: "Transparente Festpreise",
+        en: "Transparent fixed prices",
+        tr: "Şeffaf sabit fiyatlar",
       }),
     },
     {

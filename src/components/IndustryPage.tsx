@@ -1,4 +1,5 @@
 import React from "react";
+import { ExternalEmbed } from "@/components/ExternalEmbed";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useContactForm } from "@/components/ContactFormDialog";
@@ -113,13 +114,7 @@ export const IndustryPage = ({ data }: { data: IndustryPageProps }) => {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl bg-card border-4 border-primary">
               <div className="aspect-video bg-black relative flex items-center justify-center">
-                <iframe
-                  className="absolute inset-0 w-full h-full"
-                  src={data.videoTestimonial.url}
-                  title={data.videoTestimonial.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <ExternalEmbed src={data.videoTestimonial.url} title={data.videoTestimonial.title} className="absolute inset-0 w-full h-full" allowFullScreen />
               </div>
             </div>
           </div>

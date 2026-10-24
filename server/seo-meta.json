@@ -3,7 +3,7 @@
     "title": "Webdesign & professionelle Webseiten | KI-Automatisierung aus einer Hand | PS Professional Solutions",
     "description": "Professionelle Webseiten & Webdesign von PS Professional Solutions. Wir programmieren SEO-optimierte Websites mit KI-Automatisierung, KI-Live-Chat und Terminbuchung – alles aus einer Hand. Jetzt Website-Check sichern!",
     "robots": "index, follow",
-    "image": "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/7b0c0d72-8ebc-4422-ad74-f9dbd2f547ec.png",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
     "schemas": [
       "[{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Wie kann ich mein Unternehmen automatisieren und Zeit sparen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch den Einsatz von KI-Telefonassistenten, automatisierten Terminbuchungen und einem zentralen CRM-System. Diese Tools übernehmen wiederkehrende Aufgaben wie Anrufannahme, Terminbestätigungen und Lead-Management. So gewinnen Sie wöchentlich wertvolle Stunden zurück und können sich auf Ihr Kerngeschäft konzentrieren.\"}},{\"@type\":\"Question\",\"name\":\"Was kostet ein KI-Telefonassistent für kleine Unternehmen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Die Kosten für einen KI-Telefonassistenten sind deutlich geringer als für eine Vollzeitkraft am Empfang und amortisieren sich meist schon im ersten Monat. Das System fängt verpasste Anrufe auf, verwandelt diese in zahlende Kunden und verhindert so teure Umsatzverluste durch Nichterreichbarkeit.\"}},{\"@type\":\"Question\",\"name\":\"Wie bekomme ich mehr Kunden über Google und meine Webseite?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Durch lokales SEO (Suchmaschinenoptimierung) und einen perfekt gepflegten Google Business Eintrag. Wenn Ihre Webseite für Smartphones optimiert ist und klare Handlungsaufforderungen (Call-to-Action) bietet, konvertieren Besucher viel schneller zu echten Anfragen und messbarem Umsatz.\"}},{\"@type\":\"Question\",\"name\":\"Welche Vorteile bietet ein CRM System für Handwerker und Praxen?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Ein CRM (Customer Relationship Management) bündelt alle Kundenanfragen aus E-Mails, Telefonaten und Social Media an einem zentralen Ort. Es ermöglicht automatische Follow-Ups, SMS-Terminerinnerungen (gegen No-Shows) und automatisierte Bewertungsanfragen nach dem Termin.\"}}]},{\"@context\":\"https://schema.org\",\"@type\":\"ProfessionalService\",\"@id\":\"https://ps-professional-solutions.de/#business\",\"name\":\"PS Professional Solutions\",\"description\":\"Webdesign Agentur Dortmund — Professionell programmierte Webseiten, KI Automatisierung, KI Telefonassistent und KI Live-Chat.\",\"url\":\"https://ps-professional-solutions.de\",\"logo\":\"https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png\",\"image\":\"https://ps-professional-solutions.de/og-image.jpg\",\"telephone\":\"+4915207595260\",\"email\":\"info@ps-professional-solutions.de\",\"founder\":{\"@type\":\"Person\",\"name\":\"Pankaj Mondjal\"},\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Lindenhorster Str. 185\",\"postalCode\":\"44339\",\"addressLocality\":\"Dortmund\",\"addressRegion\":\"NRW\",\"addressCountry\":\"DE\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":51.5381,\"longitude\":7.4378},\"areaServed\":[{\"@type\":\"City\",\"name\":\"Dortmund\"},{\"@type\":\"Country\",\"name\":\"Deutschland\"}],\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"09:00\",\"closes\":\"18:00\"}],\"priceRange\":\"€€\",\"sameAs\":[\"https://www.instagram.com/ps_professional_solutions/\",\"https://www.tiktok.com/@psprofessional.solutions\",\"https://www.youtube.com/@psprofessionalsolutions\"]}]"
     ]
@@ -221,7 +221,14 @@
   },
   "/datenschutz": {
     "title": "Datenschutzerklärung | PS Professional Solutions",
-    "description": "Datenschutzerklärung von PS Professional Solutions – DSGVO-konforme Datenschutzhinweise.",
+    "description": "Datenschutzerklärung von PS Professional Solutions: welche Daten wir verarbeiten, wofür und wie lange – inklusive Hosting, KI-Chat, Terminbuchung und Ihrer Rechte.",
+    "robots": "index, follow",
+    "image": "https://ps-professional-solutions.de/og-image.jpg",
+    "schemas": []
+  },
+  "/agb": {
+    "title": "AGB | PS Professional Solutions",
+    "description": "Allgemeine Geschäftsbedingungen von PS Professional Solutions für Webdesign, Hosting, Wartung und KI-Automatisierung für Geschäftskunden.",
     "robots": "index, follow",
     "image": "https://ps-professional-solutions.de/og-image.jpg",
     "schemas": []

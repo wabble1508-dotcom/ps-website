@@ -29,7 +29,7 @@ export const pricingDe = {
   trustMonthlyDesc: "Keine lange Bindung — volle Flexibilität.",
   trustNoHidden: "Keine versteckten Kosten",
   trustNoHiddenDesc: "Transparente Preise — was Sie sehen, zahlen Sie.",
-  trustSsl: "SSL & DSGVO-konform",
+  trustSsl: "SSL & Datenschutz nach DSGVO",
   trustSslDesc: "Sicherheit & Datenschutz inklusive.",
   trustSupport: "Persönlicher Support",
   trustSupportDesc: "Direkter Ansprechpartner — kein Callcenter.",

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ExternalEmbed } from "@/components/ExternalEmbed";
 import { FadeIn } from "@/components/FadeIn";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
@@ -173,7 +174,7 @@ const Index = () => {
     : [];
 
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
+    fetch("/api/geo")
       .then((res) => res.json())
       .then((data) => {
         if (data.city) {
@@ -205,19 +206,13 @@ const Index = () => {
               )
         }
         keywords="Webdesign, professionelle Webseiten, Website erstellen lassen, Homepage programmieren, SEO-optimierte Website, KI-Automatisierung, KI Live-Chat, Terminbuchung Automation, Webdesign Agentur, maßgeschneiderte Website"
-        ogImage="/media/vibe.filesafe.space/1778931020193405557/attachments/7b0c0d72-8ebc-4422-ad74-f9dbd2f547ec.png"
         faqs={faqs}
       />
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-[#153a48] to-[#1e9fae] py-20 lg:py-32">
         {/* Cinematic background video (YouTube xycMn76O0M0) with robust mobile autoplay parameters */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/xycMn76O0M0?autoplay=1&mute=1&muted=1&controls=0&loop=1&playlist=xycMn76O0M0&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=https://ps-professional-solutions.de"
-            title="Cinematic Background Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300vw] sm:w-[177.78vh] h-[100vh] min-w-full min-h-full border-0 object-cover pointer-events-none"
-          />
+          <ExternalEmbed src="https://www.youtube-nocookie.com/embed/xycMn76O0M0?autoplay=1&mute=1&muted=1&controls=0&loop=1&playlist=xycMn76O0M0&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=https://ps-professional-solutions.de" title="Cinematic Background Video" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300vw] sm:w-[177.78vh] h-[100vh] min-w-full min-h-full border-0 object-cover pointer-events-none" background />
         </div>
         {/* Cinematic gradient overlay — video stays visible but text stays readable */}
         <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/65 to-secondary/90 pointer-events-none" />

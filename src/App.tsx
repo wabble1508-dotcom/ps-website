@@ -20,6 +20,7 @@ import { ContactFormProvider } from "./components/ContactFormDialog";
 import { VielenDankPage } from "./pages/VielenDankPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
+import AgbPage from "./pages/AgbPage";
 import BlogPage from "./pages/BlogPage";
 import { LanguageProvider } from "./components/LanguageContext";
 import { LoadingScreen } from "./components/LoadingScreen";
@@ -102,6 +103,7 @@ const App = () => (
                 <Route path="/schneiderei" element={<SchneidereiPage />} />
                 <Route path="/info" element={<ImpressumPage />} />
                 <Route path="/datenschutz" element={<DatenschutzPage />} />
+                <Route path="/agb" element={<AgbPage />} />
                 <Route
                   path="/analyse-bestaetigungen"
                   element={<VielenDankPage />}

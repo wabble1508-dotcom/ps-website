@@ -12,6 +12,7 @@ export const useSearchData = () => {
     { to: "/ki-live-chat", label: t("nav", "liveChat") },
     { to: "/google-business-optimierung", label: t("nav", "googleSeo") },
     { to: "/webseiten", label: t("nav", "websites") },
+    { to: "/app-entwicklung", label: t("nav", "appDev") },
     {
       to: "/all-in-one-dashboard",
       label:

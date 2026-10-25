@@ -8,121 +8,93 @@ type Row = {
   labelDe: string;
   labelEn: string;
   labelTr: string;
-  values: (boolean | "bonus")[]; // one per package
+  values: (boolean | "bonus" | string)[]; // one per package
 };
 
 const rows: Row[] = [
   {
-    labelDe: "Moderne, responsive Website",
-    labelEn: "Modern, responsive website",
-    labelTr: "Modern, responsive web sitesi",
-    values: [true, true, false],
+    labelDe: "Professionell programmierte Website",
+    labelEn: "Professionally coded website",
+    labelTr: "Profesyonelce kodlanmış web sitesi",
+    values: [true, true, true],
   },
   {
-    labelDe: "Smartphone & Tablet optimiert",
-    labelEn: "Smartphone & tablet optimized",
-    labelTr: "Akıllı telefon & tablet optimize",
-    values: [true, true, false],
+    labelDe: "Für Smartphone & Tablet optimiert",
+    labelEn: "Optimised for smartphone & tablet",
+    labelTr: "Akıllı telefon ve tablete uygun",
+    values: [true, true, true],
   },
   {
-    labelDe: "Google Maps Integration",
-    labelEn: "Google Maps integration",
-    labelTr: "Google Maps entegrasyonu",
-    values: [true, true, false],
+    labelDe: "Hosting, SSL & Updates",
+    labelEn: "Hosting, SSL & updates",
+    labelTr: "Hosting, SSL ve güncellemeler",
+    values: [true, true, true],
   },
   {
-    labelDe: "Kontaktformular / Anfragen",
-    labelEn: "Contact form / inquiries",
-    labelTr: "İletişim formu / Talepler",
-    values: [true, true, false],
+    labelDe: "Google-Unternehmensprofil einrichten",
+    labelEn: "Google Business Profile setup",
+    labelTr: "Google İşletme Profili kurulumu",
+    values: [true, true, true],
   },
   {
-    labelDe: "SSL-Zertifikat",
-    labelEn: "SSL certificate",
-    labelTr: "SSL sertifikası",
-    values: ["bonus", "bonus", "bonus"],
+    labelDe: "Anzahl Seiten",
+    labelEn: "Number of pages",
+    labelTr: "Sayfa sayısı",
+    values: ["bis 4", "bis 8", "bis 8"],
   },
   {
-    labelDe: "Hosting inklusive",
-    labelEn: "Hosting included",
-    labelTr: "Hosting dahil",
-    values: ["bonus", true, false],
+    labelDe: "Individuelles Design",
+    labelEn: "Custom design",
+    labelTr: "Özel tasarım",
+    values: [false, true, true],
   },
   {
-    labelDe: "Termine & Anfragen aufs Handy",
-    labelEn: "Appointments to your phone",
-    labelTr: "Randevular ve talepler telefonunuza",
-    values: [false, true, false],
+    labelDe: "Lokales SEO für Google",
+    labelEn: "Local SEO for Google",
+    labelTr: "Google için yerel SEO",
+    values: [false, true, true],
   },
   {
-    labelDe: "SMS-Erinnerungen (No-Show-Schutz)",
-    labelEn: "SMS reminders (no-show protection)",
-    labelTr: "SMS hatırlatmaları (gelmeyen koruması)",
-    values: [false, true, false],
+    labelDe: "KI-Live-Chat",
+    labelEn: "AI live chat",
+    labelTr: "AI canlı sohbet",
+    values: [false, true, true],
   },
   {
-    labelDe: "Google-Bewertungen automatisch sammeln",
-    labelEn: "Automatic Google review collection",
-    labelTr: "Otomatik Google değerlendirme toplama",
-    values: [false, "bonus", false],
+    labelDe: "Online-Terminbuchung",
+    labelEn: "Online booking",
+    labelTr: "Online randevu",
+    values: [false, true, true],
   },
   {
-    labelDe: "KI-Telefonassistent & Live-Chat",
-    labelEn: "AI phone assistant & live chat",
-    labelTr: "Yapay zeka telefon asistanı ve canlı sohbet",
-    values: [false, "bonus", false],
+    labelDe: "Admin-Bereich für Anfragen & Termine",
+    labelEn: "Admin area for enquiries & bookings",
+    labelTr: "Talepler ve randevular için yönetim paneli",
+    values: [false, true, true],
   },
   {
-    labelDe: "Zentrales CRM",
-    labelEn: "Central CRM",
-    labelTr: "Merkezi CRM",
-    values: [false, true, false],
+    labelDe: "KI-Telefonassistent 24/7",
+    labelEn: "24/7 AI phone assistant",
+    labelTr: "7/24 AI telefon asistanı",
+    values: [false, false, true],
   },
   {
-    labelDe: "Sicherheits-Backups",
-    labelEn: "Security backups",
-    labelTr: "Güvenlik yedeklemeleri",
-    values: [false, "bonus", true],
-  },
-  {
-    labelDe: "Software-Updates im Hintergrund",
-    labelEn: "Background software updates",
-    labelTr: "Arka planda yazılım güncellemeleri",
-    values: [false, "bonus", true],
-  },
-  {
-    labelDe: "Schutz vor Hackern & Malware",
-    labelEn: "Hacker & malware protection",
-    labelTr: "Hacker ve kötü amaçlı yazılım koruması",
-    values: [false, "bonus", true],
-  },
-  {
-    labelDe: "Laufende Wartung & Updates",
-    labelEn: "Ongoing maintenance & updates",
-    labelTr: "Sürekli bakım ve güncellemeler",
-    values: [false, "bonus", false],
-  },
-  {
-    labelDe: "Kleine Textänderungen auf Anfrage",
-    labelEn: "Small text changes on request",
-    labelTr: "İstek üzerine küçük metin değişiklikleri",
-    values: [false, "bonus", "bonus"],
-  },
-  {
-    labelDe: "Persönlicher Ansprechpartner",
-    labelEn: "Personal contact",
-    labelTr: "Kişisel iletişim kişisi",
-    values: [false, "bonus", false],
+    labelDe: "Änderungen pro Monat",
+    labelEn: "Changes per month",
+    labelTr: "Aylık değişiklik",
+    values: ["1 kleine", "30 Min.", "60 Min."],
   },
   {
     labelDe: "Monatlich kündbar",
-    labelEn: "Monthly cancellable",
+    labelEn: "Cancellable monthly",
     labelTr: "Aylık iptal edilebilir",
     values: [true, true, true],
   },
 ];
 
-const Cell = ({ val }: { val: boolean | "bonus" }) => {
+const Cell = ({ val }: { val: boolean | "bonus" | string }) => {
+  if (typeof val === "string" && val !== "bonus")
+    return <span className="text-xs font-semibold text-foreground">{val}</span>;
   if (val === "bonus")
     return (
       <span className="inline-flex items-center justify-center">
@@ -175,11 +147,7 @@ export const PricingComparisonTable = () => {
                           : "text-foreground"
                       }`}
                     >
-                      {language === "en"
-                        ? pkg.nameEn
-                        : language === "tr"
-                          ? pkg.nameTr
-                          : pkg.nameDe}
+                      {language === "en" ? pkg.name.en : language === "tr" ? pkg.name.tr : pkg.name.de}
                     </th>
                   ))}
                 </tr>
@@ -221,10 +189,6 @@ export const PricingComparisonTable = () => {
             <span className="inline-flex items-center gap-1.5">
               <Check className="w-3.5 h-3.5 text-primary" />
               {t.legendIncluded}
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <Gift className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-              {t.legendBonus}
             </span>
             <span className="inline-flex items-center gap-1.5">
               <Minus className="w-3.5 h-3.5 text-muted-foreground/30" />

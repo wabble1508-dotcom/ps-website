@@ -21,6 +21,7 @@ import { VielenDankPage } from "./pages/VielenDankPage";
 import ImpressumPage from "./pages/ImpressumPage";
 import DatenschutzPage from "./pages/DatenschutzPage";
 import AgbPage from "./pages/AgbPage";
+import AppEntwicklungPage from "./pages/AppEntwicklungPage";
 import BlogPage from "./pages/BlogPage";
 import { LanguageProvider } from "./components/LanguageContext";
 import { LoadingScreen } from "./components/LoadingScreen";
@@ -76,6 +77,7 @@ const App = () => (
                   element={<GoogleBusinessPage />}
                 />
                 <Route path="/webseiten" element={<WebseitenPage />} />
+                <Route path="/app-entwicklung" element={<AppEntwicklungPage />} />
                 <Route path="/ki-live-chat" element={<KiLiveChatPage />} />
                 <Route path="/magazin" element={<BlogPage />} />
                 <Route path="/ueber-uns" element={<UeberUnsPage />} />

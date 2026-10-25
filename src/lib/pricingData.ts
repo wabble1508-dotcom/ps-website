@@ -1,277 +1,177 @@
-import { Star, Zap, Crown } from "lucide-react";
+import { Star, Zap, Rocket, Smartphone, Building2, Wrench } from "lucide-react";
 
-export type Feature = {
-  text: string;
-  bonus?: boolean;
-};
+// Preise und Pakete der Preisseite. Texte auf Deutsch, Englisch und Türkisch;
+// die übrigen Sprachen kommen aus den Übersetzungs-Wörterbüchern (src/lib/i18n/dict).
+// Kleinunternehmer nach § 19 UStG: alle Preise sind Endpreise ohne Umsatzsteuer.
+
+export type L = { de: string; en: string; tr: string };
+
+export type Feature = { text: L; highlight?: boolean };
 
 export type Pkg = {
   id: string;
-  billingType: "monthly-setup" | "monthly";
-  nameDe: string;
-  nameEn: string;
-  nameTr: string;
-  tagDe: string;
-  tagEn: string;
-  tagTr: string;
-  originalSetupPriceDe?: string;
-  originalSetupPriceEn?: string;
-  setupPriceDe?: string;
-  setupPriceEn?: string;
-  originalPriceDe?: string;
-  originalPriceEn?: string;
-  priceDe: string;
-  priceEn: string;
-  priceSubDe: string;
-  priceSubEn: string;
-  priceSubTr: string;
-  dailyPriceDe?: string;
-  dailyPriceEn?: string;
-  dailyPriceTr?: string;
-  setupPeriodDe?: string;
-  setupPeriodEn?: string;
-  setupPeriodTr?: string;
-  badgeDe: string;
-  badgeEn: string;
-  badgeTr: string;
-  saveDe: string;
-  saveEn: string;
-  saveTr: string;
-  urgencyDe?: string;
-  urgencyEn?: string;
-  urgencyTr?: string;
-  descDe: string;
-  descEn: string;
-  descTr: string;
   icon: typeof Star;
-  featuresDe: Feature[];
-  featuresEn: Feature[];
-  featuresTr: Feature[];
-  popular: boolean;
-  limited?: boolean;
+  name: L;
+  tag: L;
+  desc: L;
+  /** Einrichtung „ab …“ (0 = keine Einrichtungsgebühr) */
+  setupFrom: number;
+  /** Monatsbeitrag „ab …“ */
+  monthlyFrom: number;
+  extra?: L;
+  features: Feature[];
+  popular?: boolean;
+};
+
+export type Offer = {
+  id: string;
+  icon: typeof Star;
+  name: L;
+  price: L;
+  desc: L;
+  points: L[];
+  cta: L;
 };
 
 export const packages: Pkg[] = [
   {
-    id: "starter",
-    billingType: "monthly-setup",
-    nameDe: "Essential",
-    nameEn: "Essential",
-    nameTr: "Essential",
-    tagDe: "Ihre digitale Basis",
-    tagEn: "Your Digital Foundation",
-    tagTr: "Dijital temeliniz",
-    originalSetupPriceDe: "3.980 €",
-    originalSetupPriceEn: "€3,980",
-    setupPriceDe: "1.990€",
-    setupPriceEn: "€1,990",
-    originalPriceDe: "250 €",
-    originalPriceEn: "€250",
-    priceDe: "99€",
-    priceEn: "€99",
-    priceSubDe: "PRO MONAT",
-    priceSubEn: "PER MONTH",
-    priceSubTr: "AYLIK",
-    dailyPriceDe: "nur 3,30 €/Tag",
-    dailyPriceEn: "only €3.30/day",
-    dailyPriceTr: "sadece 3,30 €/gün",
-    setupPeriodDe: "(EINMALIG)",
-    setupPeriodEn: "(ONE-TIME)",
-    setupPeriodTr: "(TEK SEFERLİK)",
-    badgeDe: "−50% Ersteinrichtung",
-    badgeEn: "−50% Setup",
-    badgeTr: "−50% Kurulum",
-    saveDe: "Sie sparen 1.990 €",
-    saveEn: "You save €1,990",
-    saveTr: "1.990 € tasarruf edersiniz",
-    urgencyDe: "Beliebter Einstieg",
-    urgencyEn: "Popular Entry",
-    urgencyTr: "Popüler başlangıç",
-    descDe:
-      "Ihre Investition in eine professionelle digitale Präsenz, die rund um die Uhr für Sie arbeitet.",
-    descEn:
-      "Your investment in a professional digital presence that works for you 24/7.",
-    descTr:
-      "Günün her saati sizin için çalışan profesyonel bir dijital varlığa yatırımınız.",
+    id: "start",
     icon: Star,
-    featuresDe: [
-      { text: "Moderne, responsive Website" },
-      { text: "Optimiert für Smartphone & Tablet" },
-      { text: "Google Maps Integration" },
-      { text: "Kontaktformular mit E-Mail-Weiterleitung" },
-      { text: "SSL-Zertifikat inklusive", bonus: true },
-      { text: "Hosting inklusive", bonus: true },
-      { text: "30 Tage Einarbeitungs-Support", bonus: true },
-      { text: "Monatlich kündbar" },
+    name: { de: "Start", en: "Start", tr: "Start" },
+    tag: {
+      de: "Für Friseure, Cafés & kleine Betriebe",
+      en: "For salons, cafés & small businesses",
+      tr: "Kuaförler, kafeler ve küçük işletmeler için",
+    },
+    desc: {
+      de: "Ihre eigene, professionell programmierte Website – ohne Einrichtungskosten und monatlich kündbar.",
+      en: "Your own professionally coded website – no setup fee and cancellable monthly.",
+      tr: "Profesyonelce kodlanmış kendi web siteniz – kurulum ücreti yok, aylık iptal edilebilir.",
+    },
+    setupFrom: 0,
+    monthlyFrom: 49,
+    features: [
+      { text: { de: "Onepager oder bis zu 4 Seiten", en: "One-pager or up to 4 pages", tr: "Tek sayfa veya 4 sayfaya kadar" } },
+      { text: { de: "Programmiert & für Smartphone optimiert", en: "Hand-coded & optimised for smartphones", tr: "Kodlanmış ve akıllı telefona uygun" } },
+      { text: { de: "Google Maps, Anruf- & WhatsApp-Knopf", en: "Google Maps, call & WhatsApp button", tr: "Google Maps, arama ve WhatsApp butonu" } },
+      { text: { de: "Google-Unternehmensprofil einrichten", en: "Google Business Profile setup", tr: "Google İşletme Profili kurulumu" } },
+      { text: { de: "Hosting, SSL & Updates inklusive", en: "Hosting, SSL & updates included", tr: "Hosting, SSL ve güncellemeler dahil" } },
+      { text: { de: "1 kleine Änderung pro Monat", en: "1 small change per month", tr: "Ayda 1 küçük değişiklik" } },
     ],
-    featuresEn: [
-      { text: "Modern, responsive website" },
-      { text: "Optimized for smartphone & tablet" },
-      { text: "Google Maps integration" },
-      { text: "Contact form with email forwarding" },
-      { text: "SSL certificate included", bonus: true },
-      { text: "Hosting included", bonus: true },
-      { text: "30 days onboarding support", bonus: true },
-      { text: "Monthly cancellable" },
-    ],
-    featuresTr: [
-      { text: "Modern, responsive web sitesi" },
-      { text: "Akıllı telefon & tablet için optimize" },
-      { text: "Google Maps entegrasyonu" },
-      { text: "E-posta yönlendirmeli iletişim formu" },
-      { text: "SSL sertifikası dahil", bonus: true },
-      { text: "Hosting dahil", bonus: true },
-      { text: "30 gün onboarding desteği", bonus: true },
-      { text: "Aylık iptal edilebilir" },
-    ],
-    popular: false,
-    limited: false,
   },
   {
-    id: "volle-bude",
-    billingType: "monthly-setup",
-    nameDe: "Elite",
-    nameEn: "Elite",
-    nameTr: "Elite",
-    tagDe: "Empfehlung der Experten",
-    tagEn: "Experts' Choice",
-    tagTr: "Uzmanların tercihi",
-    originalSetupPriceDe: "4.980 €",
-    originalSetupPriceEn: "€4,980",
-    setupPriceDe: "2.490€",
-    setupPriceEn: "€2,490",
-    priceDe: "149€",
-    priceEn: "€149",
-    priceSubDe: "PRO MONAT",
-    priceSubEn: "PER MONTH",
-    priceSubTr: "AYLIK",
-    dailyPriceDe: "nur 4,97 €/Tag",
-    dailyPriceEn: "only €4.97/day",
-    dailyPriceTr: "sadece 4,97 €/gün",
-    setupPeriodDe: "(EINMALIG)",
-    setupPeriodEn: "(ONE-TIME)",
-    setupPeriodTr: "(TEK SEFERLİK)",
-    badgeDe: "−50% Ersteinrichtung",
-    badgeEn: "−50% Setup",
-    badgeTr: "−50% Kurulum",
-    saveDe: "Sie sparen 2.490 €",
-    saveEn: "You save €2,490",
-    saveTr: "2.490 € tasarruf edersiniz",
-    urgencyDe: "⚡ Nur noch 3 Plätze diesen Monat",
-    urgencyEn: "⚡ Only 3 spots left this month",
-    urgencyTr: "⚡ Bu ay yalnızca 3 yer kaldı",
-    descDe:
-      "Ihre Investition in die komplette Kunden-Maschine — Website, Automatisierung & Wartung aus einer Hand.",
-    descEn:
-      "Your investment in the complete customer machine — website, automation & maintenance from one source.",
-    descTr:
-      "Tam müşteri makinesine yatırımınız — web sitesi, otomasyon ve bakım tek elden.",
+    id: "business",
     icon: Zap,
-    featuresDe: [
-      { text: "Alles aus Essential", bonus: true },
-      {
-        text: "Premium Care Wartung inklusive (Wert: 150€/Monat)",
-        bonus: true,
-      },
-      { text: "Termine & Anfragen direkt aufs Handy" },
-      { text: "SMS-Erinnerungen gegen No-Shows" },
-      { text: "Google-Bewertungen automatisch sammeln", bonus: true },
-      { text: "KI-Telefonassistent & Live-Chat", bonus: true },
-      { text: "Persönlicher Ansprechpartner", bonus: true },
-      { text: "Laufende Updates & Backups inklusive", bonus: true },
-      { text: "Monatlich kündbar" },
-    ],
-    featuresEn: [
-      { text: "Everything from Essential", bonus: true },
-      {
-        text: "Premium Care maintenance included (Value: €150/mo)",
-        bonus: true,
-      },
-      { text: "Appointments & inquiries to your phone" },
-      { text: "SMS reminders against no-shows" },
-      { text: "Automatic Google review collection", bonus: true },
-      { text: "AI phone assistant & live chat", bonus: true },
-      { text: "Personal contact", bonus: true },
-      { text: "Ongoing updates & backups included", bonus: true },
-      { text: "Monthly cancellable" },
-    ],
-    featuresTr: [
-      { text: "Essential'deki her şey", bonus: true },
-      {
-        text: "Premium Care bakım dahil (Değer: 150€/ay)",
-        bonus: true,
-      },
-      { text: "Randevular ve talepler doğrudan telefonunuza" },
-      { text: "Gelmeyenlere karşı SMS hatırlatmaları" },
-      { text: "Otomatik Google değerlendirme toplama", bonus: true },
-      { text: "Yapay zeka telefon asistanı ve canlı sohbet", bonus: true },
-      { text: "Kişisel iletişim kişisi", bonus: true },
-      { text: "Sürekli güncellemeler ve yedekler dahil", bonus: true },
-      { text: "Aylık iptal edilebilir" },
-    ],
+    name: { de: "Business", en: "Business", tr: "Business" },
+    tag: {
+      de: "Mehr Anfragen, weniger Telefon",
+      en: "More enquiries, fewer calls",
+      tr: "Daha çok talep, daha az telefon",
+    },
+    desc: {
+      de: "Individuelle Website mit KI-Live-Chat und Online-Terminbuchung, die rund um die Uhr für Sie arbeitet.",
+      en: "A custom website with AI live chat and online booking that works for you around the clock.",
+      tr: "Sizin için 7/24 çalışan, AI canlı sohbet ve online randevu sistemli özel web sitesi.",
+    },
+    setupFrom: 990,
+    monthlyFrom: 129,
     popular: true,
-    limited: true,
+    features: [
+      { text: { de: "Alles aus Start", en: "Everything in Start", tr: "Start'taki her şey" } },
+      { text: { de: "Individuelles Design, bis zu 8 Seiten", en: "Custom design, up to 8 pages", tr: "Özel tasarım, 8 sayfaya kadar" } },
+      { text: { de: "KI-Live-Chat für Ihre Kundenfragen", en: "AI live chat for customer questions", tr: "Müşteri soruları için AI canlı sohbet" }, highlight: true },
+      { text: { de: "Online-Terminbuchung mit Bestätigung", en: "Online booking with confirmation", tr: "Onaylı online randevu" }, highlight: true },
+      { text: { de: "Lokales SEO für Google", en: "Local SEO for Google", tr: "Google için yerel SEO" } },
+      { text: { de: "Admin-Bereich für Anfragen & Termine", en: "Admin area for enquiries & bookings", tr: "Talepler ve randevular için yönetim paneli" } },
+      { text: { de: "30 Min. Änderungen pro Monat", en: "30 min of changes per month", tr: "Ayda 30 dk değişiklik" } },
+    ],
+  },
+  {
+    id: "business-telefon",
+    icon: Rocket,
+    name: { de: "Business + KI-Telefon", en: "Business + AI Phone", tr: "Business + AI Telefon" },
+    tag: {
+      de: "Kein Anruf geht mehr verloren",
+      en: "Never miss a call again",
+      tr: "Hiçbir arama kaçmasın",
+    },
+    desc: {
+      de: "Ihr KI-Telefonassistent nimmt Anrufe an, beantwortet Fragen und vereinbart Termine – auch nach Feierabend.",
+      en: "Your AI phone assistant answers calls, handles questions and books appointments – even after hours.",
+      tr: "AI telefon asistanınız aramaları yanıtlar, soruları cevaplar ve randevu ayarlar – mesai sonrasında bile.",
+    },
+    setupFrom: 1490,
+    monthlyFrom: 249,
+    extra: {
+      de: "inkl. 300 Telefonminuten, danach 0,15 €/Min.",
+      en: "incl. 300 call minutes, then €0.15/min",
+      tr: "300 dakika dahil, sonrası 0,15 €/dk",
+    },
+    features: [
+      { text: { de: "Alles aus Business", en: "Everything in Business", tr: "Business'taki her şey" } },
+      { text: { de: "KI-Telefonassistent rund um die Uhr", en: "24/7 AI phone assistant", tr: "7/24 AI telefon asistanı" }, highlight: true },
+      { text: { de: "Termine direkt am Telefon buchen", en: "Book appointments right on the phone", tr: "Randevuları doğrudan telefonda alma" }, highlight: true },
+      { text: { de: "Zusammenfassung jedes Anrufs", en: "Summary of every call", tr: "Her aramanın özeti" } },
+      { text: { de: "60 Min. Änderungen pro Monat", en: "60 min of changes per month", tr: "Ayda 60 dk değişiklik" } },
+      { text: { de: "Bevorzugter Support", en: "Priority support", tr: "Öncelikli destek" } },
+    ],
+  },
+];
+
+export const offers: Offer[] = [
+  {
+    id: "app",
+    icon: Smartphone,
+    name: { de: "App-Entwicklung", en: "App development", tr: "Uygulama geliştirme" },
+    price: { de: "Individuelles Angebot", en: "Individual quote", tr: "Bireysel teklif" },
+    desc: {
+      de: "Web-Apps und mobile Apps nach Maß – von der Idee bis zum Livegang. Projekte ab 4.900 €.",
+      en: "Custom web and mobile apps – from idea to launch. Projects from €4,900.",
+      tr: "Size özel web ve mobil uygulamalar – fikirden yayına. Projeler 4.900 €'dan başlar.",
+    },
+    points: [
+      { de: "Web-Apps & Kundenportale", en: "Web apps & customer portals", tr: "Web uygulamaları ve müşteri portalları" },
+      { de: "Buchungs-, Bestell- & Bonus-Apps", en: "Booking, ordering & loyalty apps", tr: "Randevu, sipariş ve sadakat uygulamaları" },
+      { de: "Interne Tools für Ihr Team", en: "Internal tools for your team", tr: "Ekibiniz için dahili araçlar" },
+    ],
+    cta: { de: "Projekt anfragen", en: "Request a project", tr: "Proje talep et" },
+  },
+  {
+    id: "unternehmen",
+    icon: Building2,
+    name: { de: "Unternehmen & Individuell", en: "Enterprise & custom", tr: "Kurumsal ve özel" },
+    price: { de: "Auf Anfrage", en: "On request", tr: "Talep üzerine" },
+    desc: {
+      de: "Automatisierung Ihrer Abläufe, Schnittstellen zu CRM, Kasse oder Warenwirtschaft und mehrere Standorte.",
+      en: "Automation of your processes, integrations with CRM, POS or ERP, and multiple locations.",
+      tr: "Süreçlerinizin otomasyonu, CRM, kasa veya ERP entegrasyonları ve birden fazla şube.",
+    },
+    points: [
+      { de: "KI- & Digital-Check (490 €, wird angerechnet)", en: "AI & digital check (€490, credited)", tr: "AI ve dijital kontrol (490 €, mahsup edilir)" },
+      { de: "Individuelle KI-Automatisierung", en: "Custom AI automation", tr: "Özel AI otomasyonu" },
+      { de: "Persönlicher Ansprechpartner", en: "Personal contact person", tr: "Kişisel muhatap" },
+    ],
+    cta: { de: "Beratung vereinbaren", en: "Book a consultation", tr: "Danışmanlık ayarla" },
   },
   {
     id: "wartung",
-    billingType: "monthly",
-    nameDe: "Premium Care",
-    nameEn: "Premium Care",
-    nameTr: "Premium Care",
-    tagDe: "Für bestehende Websites",
-    tagEn: "For existing websites",
-    tagTr: "Mevcut web siteleri için",
-    originalPriceDe: "390 €",
-    originalPriceEn: "€390",
-    priceDe: "150€",
-    priceEn: "€150",
-    priceSubDe: "PRO MONAT",
-    priceSubEn: "PER MONTH",
-    priceSubTr: "AYLIK",
-    dailyPriceDe: "nur 5,00 €/Tag",
-    dailyPriceEn: "only €5.00/day",
-    dailyPriceTr: "sadece 5,00 €/gün",
-    badgeDe: "−62%",
-    badgeEn: "−62%",
-    badgeTr: "−62%",
-    saveDe: "Sie sparen 2.880 €/Jahr",
-    saveEn: "You save €2,880/year",
-    saveTr: "Yılda 2.880 € tasarruf edersiniz",
-    urgencyDe: "Tipp: Elite bietet mehr für weniger",
-    urgencyEn: "Tip: Elite offers more for less",
-    urgencyTr: "İpucu: Elite daha fazlasını daha ucuza sunar",
-    descDe:
-      "Ihre Investition in Sicherheit & Ruhe — wir pflegen Ihre bestehende Website professionell. Nur für bestehende Websites ohne Automatisierung. Bei Elite bereits inklusive — nicht zusätzlich nötig.",
-    descEn:
-      "Your investment in security & peace of mind — we professionally maintain your existing website. Only for existing websites without automation. Already included in Elite — not required additionally.",
-    descTr:
-      "Güvenlik ve huzura yatırımınız — mevcut web sitenizi profesyonelce bakımını yapıyoruz. Yalnızca otomasyonsuz mevcut web siteleri için. Elite'te zaten dahil — ek olarak gerekmez.",
-    icon: Crown,
-    featuresDe: [
-      { text: "Sicherheitskopien (Backups)" },
-      { text: "Software-Updates im Hintergrund" },
-      { text: "Schutz vor Hackern & Malware" },
-      { text: "Kleine Textänderungen auf Anfrage", bonus: true },
-      { text: "SSL-Zertifikat inklusive", bonus: true },
-      { text: "Monatlich kündbar" },
+    icon: Wrench,
+    name: { de: "Wartung für bestehende Websites", en: "Maintenance for existing websites", tr: "Mevcut siteler için bakım" },
+    price: { de: "ab 39 € / Monat", en: "from €39 / month", tr: "aylık 39 €'dan" },
+    desc: {
+      de: "Sie haben schon eine Website? Wir halten sie sicher, aktuell und erreichbar.",
+      en: "Already have a website? We keep it secure, up to date and online.",
+      tr: "Zaten bir web siteniz mi var? Güvenli, güncel ve erişilebilir tutuyoruz.",
+    },
+    points: [
+      { de: "Updates, Backups & Überwachung", en: "Updates, backups & monitoring", tr: "Güncellemeler, yedekler ve izleme" },
+      { de: "Mit Änderungs-Kontingent ab 79 €", en: "With change allowance from €79", tr: "Değişiklik kotasıyla 79 €'dan" },
+      { de: "Monatlich kündbar", en: "Cancellable monthly", tr: "Aylık iptal edilebilir" },
     ],
-    featuresEn: [
-      { text: "Security backups" },
-      { text: "Background software updates" },
-      { text: "Protection against hackers & malware" },
-      { text: "Small text changes on request", bonus: true },
-      { text: "SSL certificate included", bonus: true },
-      { text: "Monthly cancellable" },
-    ],
-    featuresTr: [
-      { text: "Güvenlik yedeklemeleri (Backups)" },
-      { text: "Arka planda yazılım güncellemeleri" },
-      { text: "Hacker ve kötü amaçlı yazılımlara karşı koruma" },
-      { text: "İstek üzerine küçük metin değişiklikleri", bonus: true },
-      { text: "SSL sertifikası dahil", bonus: true },
-      { text: "Aylık iptal edilebilir" },
-    ],
-    popular: false,
-    limited: false,
+    cta: { de: "Anfragen", en: "Enquire", tr: "Talep et" },
   },
 ];
+
+/** Euro-Betrag im Format der Sprache, z. B. 1.490 € bzw. €1,490 */
+export const formatEuro = (value: number, language: string) =>
+  language === "en" ? `€${value.toLocaleString("en-GB")}` : `${value.toLocaleString("de-DE")} €`;

@@ -9,6 +9,7 @@ export const en = {
     terminAutomation: "Booking Automation",
     googleSeo: "Google SEO",
     websites: "Websites",
+    appDev: "App Development",
     handwerker: "Craftsmen",
     beauty: "Beauty",
     gesundheitswesen: "Healthcare",

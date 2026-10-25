@@ -1,6 +1,6 @@
 import { Sparkles } from "lucide-react";
 import { useLanguage } from "@/components/LanguageContext";
-import { packages, type Pkg } from "@/lib/pricingData";
+import { formatEuro, packages, type Pkg } from "@/lib/pricingData";
 import { getPricingT } from "@/lib/translations/pages/pricingIndex";
 
 export const PricingQuickNav = () => {
@@ -25,11 +25,7 @@ export const PricingQuickNav = () => {
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400" />
               )}
               <span className="whitespace-nowrap">
-                {language === "en"
-                  ? pkg.nameEn
-                  : language === "tr"
-                    ? pkg.nameTr
-                    : pkg.nameDe}
+                {language === "en" ? pkg.name.en : language === "tr" ? pkg.name.tr : pkg.name.de}
               </span>
               <span
                 className={`text-[10px] sm:text-xs font-extrabold px-1.5 sm:px-2 py-0.5 rounded-full transition-colors duration-300 whitespace-nowrap ${
@@ -38,9 +34,7 @@ export const PricingQuickNav = () => {
                     : "bg-primary/10 text-primary group-hover:bg-white/20 group-hover:text-white"
                 }`}
               >
-                {pkg.billingType === "monthly-setup"
-                  ? `${t.fromPrefix} ${pkg.priceDe}/mo`
-                  : `${pkg.priceDe}/mo`}
+                {`${t.fromPrefix} ${formatEuro(pkg.monthlyFrom, language)}${language === "de" ? "/Monat" : language === "tr" ? "/ay" : "/mo"}`}
               </span>
             </a>
           ))}

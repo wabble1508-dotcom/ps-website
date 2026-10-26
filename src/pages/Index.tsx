@@ -21,6 +21,7 @@ import {
 import { ChatHighlightSection } from "@/components/ChatHighlightSection";
 import { FounderSection } from "@/components/FounderSection";
 import { QuizSection } from "@/components/QuizSection";
+import { CrmPartnerSection } from "@/components/CrmPartnerSection";
 
 const AnimatedCounter = ({ value }: { value: string }) => {
   const [count, setCount] = useState(0);
@@ -306,6 +307,8 @@ const Index = () => {
       <FounderSection />
 
       <LogoSliderSection />
+
+      <CrmPartnerSection />
 
       <ReferencesSection />
 

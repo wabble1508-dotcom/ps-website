@@ -1,4 +1,5 @@
 import { FeaturePage } from "@/components/FeaturePage";
+import { CrmPartnerSection } from "@/components/CrmPartnerSection";
 import { useLanguage } from "@/components/LanguageContext";
 import {
   LayoutDashboard,
@@ -29,5 +30,10 @@ export default function DashboardPage() {
     einsatzIcons: ["wrench", "flower", "users", "dumbbell"],
   });
 
-  return <FeaturePage data={data} />;
+  return (
+    <>
+      <FeaturePage data={data} />
+      <CrmPartnerSection />
+    </>
+  );
 }

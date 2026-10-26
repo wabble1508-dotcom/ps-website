@@ -86,3 +86,15 @@ All colors MUST be HSL.
     top: 0px !important;
   }
 }
+
+/* Partner-Logo (Une Solutions): Farben wandern fließend durch das ganze Spektrum */
+@keyframes partner-hue {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+.partner-hue {
+  animation: partner-hue 8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-hue { animation: none; }
+}

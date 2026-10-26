@@ -9,6 +9,7 @@ export const tr = {
     terminAutomation: "Randevu Otomasyonu",
     googleSeo: "Google SEO",
     websites: "Web Siteleri",
+    apps: "Uygulamalar ve Platformlar",
     appDev: "Uygulama Geliştirme",
     handwerker: "Zanaatkârlar",
     beauty: "Güzellik",

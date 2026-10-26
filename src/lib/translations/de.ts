@@ -9,6 +9,7 @@ export const de = {
     terminAutomation: "Termin Automation",
     googleSeo: "Google SEO",
     websites: "Websites",
+    apps: "Apps & Plattformen",
     appDev: "App-Entwicklung",
     handwerker: "Handwerker",
     beauty: "Beauty",

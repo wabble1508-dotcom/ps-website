@@ -261,6 +261,14 @@ export const Footer = () => {
                   Textil, Mode & Merch
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/app-entwicklung"
+                  className="hover:text-primary transition-colors"
+                >
+                  Apps & Plattformen (SkyJoin, WebsiteNova)
+                </Link>
+              </li>
             </ul>
           </div>
 

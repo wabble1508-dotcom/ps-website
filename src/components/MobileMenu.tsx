@@ -70,6 +70,7 @@ export const MobileMenu = () => {
     { to: "/festivals", label: t("nav", "festivals") || "Festivals & Events" },
     { to: "/vereine", label: t("nav", "vereine") || "Vereine & Verbände" },
     { to: "/textil", label: t("nav", "textil") || "Textil & Merch" },
+    { to: "/app-entwicklung", label: t("nav", "apps") },
   ];
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -136,7 +136,22 @@ const PRICE = {
   },
 };
 
+// Kunden-Projekte, die auf der App-Seite als Referenz gezeigt werden
+const REFERENCES: { name: string; logo: string; text: L }[] = [
+  {
+    name: "SkyJoin",
+    logo: "/media/kunden/skyjoin.jpg",
+    text: { de: "Mobile App", en: "Mobile app", tr: "Mobil uygulama" },
+  },
+  {
+    name: "WebsiteNova",
+    logo: "/media/kunden/websitenova.jpg",
+    text: { de: "SaaS-Plattform", en: "SaaS platform", tr: "SaaS platformu" },
+  },
+];
+
 const SECTION_TITLES = {
+  references: { de: "Apps & Plattformen, die wir entwickelt haben", en: "Apps & platforms we have built", tr: "Geliştirdiğimiz uygulamalar ve platformlar" },
   services: { de: "Was wir für Sie entwickeln", en: "What we build for you", tr: "Sizin için neler geliştiriyoruz" },
   steps: { de: "So läuft Ihr App-Projekt ab", en: "How your app project works", tr: "Uygulama projeniz nasıl ilerler" },
   final: {
@@ -185,6 +200,23 @@ export default function AppEntwicklungPage() {
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-foreground">{pick(title)}</h3>
                 <p className="text-sm text-muted-foreground">{pick(text)}</p>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-16 md:pb-24">
+        <div className="container mx-auto max-w-4xl px-4">
+          <h2 className="mb-10 text-center text-3xl font-bold text-foreground md:text-4xl">{pick(SECTION_TITLES.references)}</h2>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {REFERENCES.map((ref) => (
+              <FadeIn key={ref.name} className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+                <img src={ref.logo} alt={ref.name} className="aspect-[1000/560] w-full object-cover" loading="lazy" />
+                <div className="p-4 text-center">
+                  <p className="font-bold text-foreground">{ref.name}</p>
+                  <p className="text-sm text-muted-foreground">{pick(ref.text)}</p>
+                </div>
               </FadeIn>
             ))}
           </div>

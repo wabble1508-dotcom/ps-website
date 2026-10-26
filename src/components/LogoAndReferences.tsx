@@ -69,6 +69,14 @@ const logos = [
     alt: "Friseur Salon Haifa",
   },
   {
+    src: "/media/kunden/skyjoin.jpg",
+    alt: "SkyJoin App",
+  },
+  {
+    src: "/media/kunden/websitenova.jpg",
+    alt: "WebsiteNova",
+  },
+  {
     src: "/media/vibe.filesafe.space/1778931020193405557/attachments/285a343c-7317-4c26-9fa3-fb7c908c1cb3.jpg",
     alt: "Madani Automobil",
   },

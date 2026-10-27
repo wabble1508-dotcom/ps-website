@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { logoName } from "@/components/LogoAndReferences";
 import { useLanguage } from "@/components/LanguageContext";
 
 export const AnimatedCounter = ({ value }: { value: string }) => {
@@ -104,7 +105,7 @@ export const IndustryPartnerSlider = ({
             <img
               key={idx}
               src={logo}
-              alt="Partner Logo"
+              alt={logoName(logo)}
               className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl shadow-sm"
             />
           ))}
@@ -117,7 +118,7 @@ export const IndustryPartnerSlider = ({
             <img
               key={idx}
               src={logo}
-              alt="Partner Logo"
+              alt={logoName(logo)}
               className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl shadow-sm"
             />
           ))}

@@ -42,6 +42,8 @@ import TextilPage from "./pages/TextilPage";
 import GastronomiePage from "./pages/GastronomiePage";
 import BildungPage from "./pages/BildungPage";
 import SchneidereiPage from "./pages/SchneidereiPage";
+import { SeoLandingPage } from "./components/SeoLandingPage";
+import { LANDING_PAGES } from "./lib/landingPages";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +80,10 @@ const App = () => (
                 />
                 <Route path="/webseiten" element={<WebseitenPage />} />
                 <Route path="/app-entwicklung" element={<AppEntwicklungPage />} />
+                <Route path="/guenstige-website" element={<SeoLandingPage data={LANDING_PAGES["/guenstige-website"]} />} />
+                <Route path="/kostenlose-website" element={<SeoLandingPage data={LANDING_PAGES["/kostenlose-website"]} />} />
+                <Route path="/webdesign-dortmund" element={<SeoLandingPage data={LANDING_PAGES["/webdesign-dortmund"]} />} />
+                <Route path="/software-entwicklung" element={<SeoLandingPage data={LANDING_PAGES["/software-entwicklung"]} />} />
                 <Route path="/ki-live-chat" element={<KiLiveChatPage />} />
                 <Route path="/magazin" element={<BlogPage />} />
                 <Route path="/ueber-uns" element={<UeberUnsPage />} />

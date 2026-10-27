@@ -1,4 +1,15 @@
+import { useLocation } from "react-router-dom";
 import { SEOHead } from "./SEOHead";
+import { useLanguage } from "./LanguageContext";
+import { SEO_DE } from "@/lib/seoOverrides";
+
+// Monatliches Angebot „ab … €“ für die strukturierten Daten
+const monthlyOffer = (name: string, price: number, path: string) => ({
+  "@type": "Offer",
+  url: `https://ps-professional-solutions.de${path}`,
+  itemOffered: { "@type": "Service", name },
+  priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "EUR", unitText: "Monat" },
+});
 
 // Firmendaten für Google (Name, Adresse, Telefon müssen überall gleich sein)
 export const LOCAL_BUSINESS = {
@@ -7,7 +18,7 @@ export const LOCAL_BUSINESS = {
   "@id": "https://ps-professional-solutions.de/#business",
   name: "PS Professional Solutions",
   description:
-    "Webdesign Agentur Dortmund — Professionell programmierte Webseiten, KI Automatisierung, KI Telefonassistent und KI Live-Chat.",
+    "Webdesign, App- und Software-Entwicklung aus Dortmund: programmierte Websites ab 49 € im Monat ohne Einrichtungskosten, Apps, individuelle Software, KI-Live-Chat und KI-Telefonassistent.",
   url: "https://ps-professional-solutions.de",
   logo: "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png",
   image: "https://ps-professional-solutions.de/og-image.jpg",
@@ -32,12 +43,28 @@ export const LOCAL_BUSINESS = {
       closes: "18:00",
     },
   ],
-  priceRange: "€€",
+  priceRange: "ab 49 €",
   sameAs: [
     "https://www.instagram.com/ps_professional_solutions/",
     "https://www.tiktok.com/@psprofessional.solutions",
     "https://www.youtube.com/@psprofessionalsolutions",
   ],
+  knowsAbout: ["Webdesign", "Website-Erstellung", "App-Entwicklung", "Software-Entwicklung", "Suchmaschinenoptimierung", "KI-Automatisierung"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Leistungen",
+    itemListElement: [
+      monthlyOffer("Website Start (0 € Einrichtung)", 49, "/guenstige-website"),
+      monthlyOffer("Website Business mit KI-Chat und Terminbuchung", 129, "/preise"),
+      monthlyOffer("Website mit KI-Telefonassistent", 249, "/preise"),
+      {
+        "@type": "Offer",
+        url: "https://ps-professional-solutions.de/app-entwicklung",
+        itemOffered: { "@type": "Service", name: "App- und Software-Entwicklung" },
+        priceSpecification: { "@type": "PriceSpecification", minPrice: 4900, priceCurrency: "EUR" },
+      },
+    ],
+  },
 };
 
 interface SEOProps {
@@ -63,6 +90,13 @@ export const SEO = ({
   localBusiness,
   schemaJson,
 }: SEOProps) => {
+  const { language } = useLanguage();
+  const { pathname } = useLocation();
+  const override = language === "de" ? SEO_DE[pathname] : undefined;
+  if (override) {
+    title = override.title;
+    description = override.description;
+  }
   const schemas: Array<Record<string, unknown>> = [];
 
   if (schemaJson) {

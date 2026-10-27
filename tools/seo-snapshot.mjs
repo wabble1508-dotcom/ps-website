@@ -26,12 +26,48 @@ const meta = {};
 for (const path of routes) {
   await page.goto(`http://127.0.0.1:${PORT}${path}`);
   await page.waitForTimeout(3500);
+  // einmal durchscrollen, damit nachgeladene Abschnitte im Inhalt landen
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += 700) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 80));
+    }
+  });
+  await page.waitForTimeout(800);
   meta[path] = await page.evaluate(() => ({
     title: document.title,
     description: document.querySelector('meta[name="description"]')?.getAttribute("content") || "",
     robots: document.querySelector('meta[name="robots"]')?.getAttribute("content") || "index, follow",
     image: document.querySelector('meta[property="og:image"]')?.getAttribute("content") || "",
     schemas: [...document.querySelectorAll('script[type="application/ld+json"]')].map((s) => s.textContent),
+    // Seiteninhalt als schlichtes HTML für Suchmaschinen und KI-Crawler ohne JavaScript
+    content: (() => {
+      const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      const clean = (t) => (t || "").replace(/\s+/g, " ").trim();
+      const main = document.querySelector("main");
+      if (!main) return "";
+      main.querySelectorAll("details").forEach((d) => (d.open = true));
+      const out = [];
+      const seen = new Set();
+      main.querySelectorAll("h1, h2, h3, p, li, summary, th, td, a[href^='/']").forEach((el) => {
+        if (el.closest("[aria-hidden='true'], [data-no-translate], form, button")) return;
+        const tag = el.tagName.toLowerCase();
+        // Texte in Listen/Überschriften nicht doppelt aufnehmen
+        if (tag !== "a" && el.parentElement?.closest("p, li, h1, h2, h3, summary, th, td")) return;
+        const text = clean(el.innerText);
+        if (!text || text.length < 2) return;
+        const key = tag + text;
+        if (seen.has(key)) return;
+        seen.add(key);
+        if (tag === "a") {
+          if (el.closest("p, li, h1, h2, h3, summary, th, td")) return;
+          out.push(`<a href="${el.getAttribute("href")}">${esc(text)}</a>`);
+        } else if (tag === "summary") out.push(`<h3>${esc(text)}</h3>`);
+        else if (tag === "th" || tag === "td") out.push(`<p>${esc(text)}</p>`);
+        else out.push(`<${tag}>${esc(text)}</${tag}>`);
+      });
+      return out.join("").slice(0, 20000);
+    })(),
   }));
   console.log(path, "→", meta[path].title);
 }
@@ -44,7 +80,7 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = Object.entries(meta)
   .filter(([, m]) => !m.robots.includes("noindex"))
   .map(([p]) => {
-    const prio = p === "/" ? "1.0" : ["/webseiten", "/preise"].includes(p) ? "0.9" : "0.7";
+    const prio = p === "/" ? "1.0" : ["/webseiten", "/preise", "/guenstige-website", "/kostenlose-website", "/webdesign-dortmund", "/app-entwicklung", "/software-entwicklung"].includes(p) ? "0.9" : "0.7";
     return `  <url>\n    <loc>${DOMAIN}${p}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${prio}</priority>\n  </url>`;
   });
 writeFileSync(

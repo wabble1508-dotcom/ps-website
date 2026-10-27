@@ -185,6 +185,9 @@ const logos = [
   },
 ];
 
+// Name des Kunden zu einem Logo (für Bildbeschreibungen in anderen Logo-Laufbändern)
+export const logoName = (src: string) => logos.find((l) => l.src === src)?.alt || "Kundenlogo";
+
 export const LogoSliderSection = () => {
   const { t } = useLanguage();
 

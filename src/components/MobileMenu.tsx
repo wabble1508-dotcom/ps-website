@@ -34,6 +34,7 @@ export const MobileMenu = () => {
     { to: "/google-business-optimierung", label: t("nav", "googleSeo") },
     { to: "/webseiten", label: t("nav", "websites") },
     { to: "/app-entwicklung", label: t("nav", "appDev") },
+    { to: "/software-entwicklung", label: t("nav", "softwareDev") },
     {
       to: "/all-in-one-dashboard",
       label: t("nav", "crm") || "All-in-One CRM",

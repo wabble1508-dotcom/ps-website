@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { FadeIn } from "@/components/FadeIn";
-import { Monitor } from "lucide-react";
+import { Monitor, Code2 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageContext";
 
 const services = [
@@ -111,6 +112,30 @@ const services = [
   },
 ];
 
+// App- und Software-Entwicklung: eigene Zeile direkt unter dem Hauptprodukt
+const devServices = [
+  {
+    image: "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Mobile_phone/3D/mobile_phone_3d.png",
+    link: "/app-entwicklung",
+    titles: { de: "App-Entwicklung", en: "App development", tr: "Uygulama geliştirme" },
+    descs: {
+      de: "Web-Apps, iOS- und Android-Apps, Kundenportale und Bonus-Apps – vom Prototyp bis zum App Store.",
+      en: "Web apps, iOS and Android apps, customer portals and loyalty apps – from prototype to app store.",
+      tr: "Web uygulamaları, iOS ve Android uygulamaları, müşteri portalları ve sadakat uygulamaları – prototipten mağazaya.",
+    },
+  },
+  {
+    image: "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Gear/3D/gear_3d.png",
+    link: "/software-entwicklung",
+    titles: { de: "Software-Entwicklung", en: "Software development", tr: "Yazılım geliştirme" },
+    descs: {
+      de: "Individuelle Software, interne Tools, Schnittstellen und KI-Automatisierung, die genau zu Ihren Abläufen passt.",
+      en: "Custom software, internal tools, integrations and AI automation that fit your processes exactly.",
+      tr: "Süreçlerinize tam uyan özel yazılım, dahili araçlar, entegrasyonlar ve AI otomasyonu.",
+    },
+  },
+];
+
 const pick = (lang: string, obj: { de: string; en: string; tr: string }) =>
   (obj as Record<string, string>)[lang] || obj.de;
 
@@ -131,6 +156,12 @@ export const ServicesSection = () => {
       de: "Mehr erfahren",
       en: "Learn more",
       tr: "Daha fazla bilgi",
+    }),
+    devTitle: pick(language, { de: "Apps & Software nach Maß", en: "Custom apps & software", tr: "Size özel uygulamalar ve yazılım" }),
+    priceBadge: pick(language, {
+      de: "Website ab 49 €/Monat · 0 € Einrichtung",
+      en: "Website from €49/month · €0 setup",
+      tr: "Web sitesi aylık 49 €'dan · 0 € kurulum",
     }),
     tags: [
       pick(language, { de: "Responsiv", en: "Responsive", tr: "Responsive" }),
@@ -155,10 +186,8 @@ export const ServicesSection = () => {
         </div>
 
         {/* Main product — Webdesign — large featured card */}
-        <Card
-          className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl relative overflow-hidden mb-8 cursor-pointer group hover:shadow-2xl transition-shadow"
-          onClick={() => (window.location.href = mainService.link)}
-        >
+        <Link to={mainService.link} className="block mb-8">
+        <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl relative overflow-hidden cursor-pointer group hover:shadow-2xl transition-shadow">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-500"></div>
           <div className="grid gap-8 md:grid-cols-2 items-center relative z-10">
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -173,9 +202,12 @@ export const ServicesSection = () => {
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
                 {pick(language, mainService.titles)}
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-6">
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4">
                 {pick(language, mainService.descs)}
               </p>
+              <span className="mb-6 inline-block rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white">
+                {labels.priceBadge}
+              </span>
               <span className="inline-flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-3 transition-all">
                 {labels.learnMore} →
               </span>
@@ -195,15 +227,44 @@ export const ServicesSection = () => {
             </div>
           </div>
         </Card>
+        </Link>
+
+        {/* App- & Software-Entwicklung */}
+        <div className="mb-8 grid gap-8 md:grid-cols-2">
+          {devServices.map((service) => (
+            <Link key={service.link} to={service.link} className="group block">
+              <Card className="flex h-full flex-col items-center gap-6 rounded-3xl border-none bg-card p-8 text-center shadow-xl transition-shadow hover:shadow-2xl sm:flex-row sm:text-left">
+                <div className="relative shrink-0">
+                  <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl transition-colors duration-500 group-hover:bg-primary/40"></div>
+                  <img
+                    src={service.image}
+                    alt={pick(language, service.titles)}
+                    className="relative h-24 w-24 object-contain drop-shadow-xl transition-all duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div>
+                  <span className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                    <Code2 className="h-3.5 w-3.5" /> {labels.devTitle}
+                  </span>
+                  <h3 className="mb-2 text-xl font-bold transition-colors group-hover:text-primary">
+                    {pick(language, service.titles)}
+                  </h3>
+                  <p className="mb-3 text-sm leading-relaxed text-muted-foreground">{pick(language, service.descs)}</p>
+                  <span className="text-sm font-bold text-primary">{labels.learnMore} →</span>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
 
         {/* Secondary KI features — 4 cards */}
         <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl mb-8">
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
             {secondaryServices.map((service, i) => (
-              <div
+              <Link
                 key={i}
+                to={service.link}
                 className="flex flex-col items-center text-center group cursor-pointer"
-                onClick={() => (window.location.href = service.link)}
               >
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500"></div>
@@ -219,7 +280,7 @@ export const ServicesSection = () => {
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   {pick(language, service.descs)}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </Card>
@@ -228,10 +289,10 @@ export const ServicesSection = () => {
         <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl max-w-5xl mx-auto w-full">
           <div className="grid gap-10 md:grid-cols-2">
             {tertiaryServices.map((service, i) => (
-              <div
+              <Link
                 key={i}
+                to={service.link}
                 className="flex flex-col items-center text-center group cursor-pointer"
-                onClick={() => (window.location.href = service.link)}
               >
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500"></div>
@@ -247,7 +308,7 @@ export const ServicesSection = () => {
                 <p className="text-muted-foreground leading-relaxed text-sm">
                   {pick(language, service.descs)}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </Card>

@@ -4,7 +4,7 @@ import SEO_META from "../server/seo-meta.json";
 // Gibt jeder Unterseite schon im ersten HTML ihren Titel, ihre Beschreibung und ihr
 // Vorschaubild mit. Google, WhatsApp, Facebook & Co. sehen so die richtigen Angaben,
 // auch ohne JavaScript auszuführen. Die Daten erzeugt tools/seo-snapshot.mjs.
-type Meta = { title: string; description: string; robots: string; image: string; schemas: string[] };
+type Meta = { title: string; description: string; robots: string; image: string; schemas: string[]; content?: string };
 const META = SEO_META as Record<string, Meta>;
 const DOMAIN = "https://ps-professional-solutions.de";
 const DEFAULT_IMAGE = `${DOMAIN}/og-image.jpg`;
@@ -72,6 +72,12 @@ export const onRequest = async ({ request, next }: Ctx & { next: () => Promise<R
     .on("head", {
       element(el) {
         el.append(headFor(path, meta), { html: true });
+      },
+    })
+    // Seitentext für Crawler ohne JavaScript (z. B. KI-Suchmaschinen); Browser mit JavaScript zeigen ihn nicht
+    .on("body", {
+      element(el) {
+        if (meta.content) el.prepend(`<noscript>${meta.content}</noscript>`, { html: true });
       },
     })
     .transform(res);

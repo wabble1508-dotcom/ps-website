@@ -22,7 +22,7 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - `functions/_middleware.ts` setzt Titel, Beschreibung, Canonical, Open-Graph-Tags und JSON-LD pro Seite ins HTML (für Google und Link-Vorschauen), Daten aus `server/seo-meta.json`.
 - Nach Änderungen an Seitentiteln/-beschreibungen oder neuen Routen: `npm run build && node tools/seo-snapshot.mjs "$(npm root -g)/playwright"` – aktualisiert `server/seo-meta.json` und `public/sitemap.xml`.
 - Unbekannte Adressen liefern Status 404, `/admin` ist noindex.
-- Vorschaubild für geteilte Links: `public/og-image.jpg` (1200×630).
+- Vorschaubilder für geteilte Links: je Seite `public/og/<seite>.jpg` (1200×630), erzeugt mit `node tools/og-images.mjs "$(npm root -g)/playwright"` (Texte/Symbole dort pflegen, danach Snapshot neu erzeugen). Fallback `public/og-image.jpg`.
 - Deutsche Google-Titel/-Beschreibungen aller Seiten zentral in `src/lib/seoOverrides.ts` (keine Ranking-Garantien, „kostenlos“ nur ehrlich als 0 € Einrichtung).
 - SEO-Landingpages (günstige/kostenlose Website, Webdesign Dortmund, Software-Entwicklung): Inhalte in `src/lib/landingPages.ts`, Vorlage `src/components/SeoLandingPage.tsx`.
 - Für KI-Suchmaschinen: Seitentext steht als `<noscript>` im HTML (vom Snapshot erzeugt) und `public/llms.txt` fasst Firma, Preise und Seiten zusammen – bei Preisänderungen mitpflegen.

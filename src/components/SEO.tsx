@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { SEOHead } from "./SEOHead";
 import { useLanguage } from "./LanguageContext";
 import { SEO_DE } from "@/lib/seoOverrides";
+import OG_PAGES from "@/lib/ogImages.json";
 
 // Monatliches Angebot „ab … €“ für die strukturierten Daten
 const monthlyOffer = (name: string, price: number, path: string) => ({
@@ -96,6 +97,10 @@ export const SEO = ({
   if (override) {
     title = override.title;
     description = override.description;
+  }
+  // eigenes Vorschaubild je Seite (erzeugt von tools/og-images.mjs)
+  if (OG_PAGES.includes(pathname)) {
+    ogImage = `/og/${pathname === "/" ? "startseite" : pathname.slice(1)}.jpg`;
   }
   const schemas: Array<Record<string, unknown>> = [];
 

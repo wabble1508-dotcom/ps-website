@@ -23,6 +23,9 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Nach Änderungen an Seitentiteln/-beschreibungen oder neuen Routen: `npm run build && node tools/seo-snapshot.mjs "$(npm root -g)/playwright"` – aktualisiert `server/seo-meta.json` und `public/sitemap.xml`.
 - Unbekannte Adressen liefern Status 404, `/admin` ist noindex.
 - Vorschaubild für geteilte Links: `public/og-image.jpg` (1200×630).
+- Deutsche Google-Titel/-Beschreibungen aller Seiten zentral in `src/lib/seoOverrides.ts` (keine Ranking-Garantien, „kostenlos“ nur ehrlich als 0 € Einrichtung).
+- SEO-Landingpages (günstige/kostenlose Website, Webdesign Dortmund, Software-Entwicklung): Inhalte in `src/lib/landingPages.ts`, Vorlage `src/components/SeoLandingPage.tsx`.
+- Für KI-Suchmaschinen: Seitentext steht als `<noscript>` im HTML (vom Snapshot erzeugt) und `public/llms.txt` fasst Firma, Preise und Seiten zusammen – bei Preisänderungen mitpflegen.
 
 ## Übersetzungen
 - Viele Seiten haben Texte nur auf Deutsch/Englisch/Türkisch im Code. Fehlende Übersetzungen ergänzt `src/lib/i18n/overlay.ts` zur Laufzeit aus `src/lib/i18n/dict/<sprache>.json` (Schlüssel = exakt angezeigter deutscher bzw. englischer Text).

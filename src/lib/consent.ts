@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// Einwilligung für externe Medien (YouTube, Instagram). Notwendige Speicherungen
+// Einwilligung für externe Medien (YouTube, Instagram, TikTok). Notwendige Speicherungen
 // (Sprache, diese Auswahl) brauchen keine Einwilligung.
 const KEY = "ps_consent";
 const EVENT = "ps-consent-change";

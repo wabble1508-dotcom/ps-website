@@ -9,6 +9,8 @@ export type Env = {
   NOTIFY_EMAIL?: string;
   MAIL_FROM?: string;
   ANTHROPIC_BASE_URL?: string;
+  /** Instagram-Zugangsschlüssel (Instagram API mit Instagram-Login), wird automatisch verlängert */
+  INSTAGRAM_TOKEN?: string;
 };
 
 export type Ctx = { request: Request; env: Env };

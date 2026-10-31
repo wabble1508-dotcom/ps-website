@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CookieBanner } from "./CookieBanner";
 import { AiChatWidget } from "./AiChatWidget";
+import { SocialFeedSection } from "./SocialFeedSection";
 
 export const Layout = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ export const Layout = () => {
           </motion.div>
         </AnimatePresence>
       </main>
+      <SocialFeedSection />
       <Footer />
       <QuickContactWidget />
       <MobileStickyCTA />

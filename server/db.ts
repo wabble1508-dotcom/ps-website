@@ -36,6 +36,7 @@ export const db = async (env: Env) => {
       env.DB.prepare(
         "CREATE TABLE IF NOT EXISTS chats (id TEXT PRIMARY KEY, page TEXT, messages TEXT, created_at TEXT, updated_at TEXT)",
       ),
+      env.DB.prepare("CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT, updated_at TEXT)"),
     ]);
     ready = true;
   }

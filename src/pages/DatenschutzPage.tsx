@@ -62,8 +62,8 @@ const SECTIONS: Section[] = [
         "We do not use advertising or tracking cookies. In your browser's local storage (localStorage) we only keep what is required for the function you request: your language selection, your privacy settings and – only in the admin area – the login. The legal basis is Section 25(2) No. 2 TDDDG.",
       ],
       [
-        "Externe Medien (YouTube, Instagram) laden wir erst, wenn Sie im Einwilligungs-Banner zustimmen oder ein einzelnes Video aktiv laden (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft über „Cookie-Einstellungen“ im Seitenfuß widerrufen.",
-        "We only load external media (YouTube, Instagram) once you agree in the consent banner or actively load an individual video (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can withdraw your consent at any time with effect for the future via “Cookie settings” in the footer.",
+        "Externe Medien (YouTube, Instagram, TikTok) laden wir erst, wenn Sie im Einwilligungs-Banner zustimmen oder ein einzelnes Video aktiv laden (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft über „Cookie-Einstellungen“ im Seitenfuß widerrufen.",
+        "We only load external media (YouTube, Instagram, TikTok) once you agree in the consent banner or actively load an individual video (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can withdraw your consent at any time with effect for the future via “Cookie settings” in the footer.",
       ],
     ],
   },
@@ -112,11 +112,19 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    title: ["9. Externe Medien: YouTube und Instagram", "9. External media: YouTube and Instagram"],
+    title: ["9. Externe Medien: YouTube, Instagram und TikTok", "9. External media: YouTube, Instagram and TikTok"],
     blocks: [
       [
         "Auf einigen Seiten binden wir Videos von YouTube (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) im erweiterten Datenschutzmodus (youtube-nocookie.com) sowie einen Instagram-Beitrag (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland) ein. Diese Inhalte werden erst nach Ihrer Einwilligung geladen. Dann werden unter anderem Ihre IP-Adresse und Informationen zu Ihrem Gerät an den jeweiligen Anbieter übermittelt, auch in die USA. Google und Meta sind unter dem EU-US Data Privacy Framework zertifiziert.",
         "On some pages we embed videos from YouTube (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland) in privacy-enhanced mode (youtube-nocookie.com) and an Instagram post (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Ireland). These are only loaded after you consent. Your IP address and information about your device are then transmitted to the respective provider, including to the USA. Google and Meta are certified under the EU-US Data Privacy Framework.",
+      ],
+      [
+        "Unser TikTok-Profil mit unseren neuesten Videos binden wir über TikTok ein (TikTok Technology Limited, 10 Earlsfort Terrace, Dublin, D02 T380, Irland). Es wird erst nach Ihrer Einwilligung geladen. Dann werden unter anderem Ihre IP-Adresse und Informationen zu Ihrem Gerät an TikTok übermittelt. TikTok kann Daten auch in Länder außerhalb der EU übertragen, etwa auf Grundlage von EU-Standardvertragsklauseln.",
+        "We embed our TikTok profile with our latest videos via TikTok (TikTok Technology Limited, 10 Earlsfort Terrace, Dublin, D02 T380, Ireland). It is only loaded after you consent. Your IP address and information about your device are then transmitted to TikTok. TikTok may also transfer data to countries outside the EU, for example on the basis of EU standard contractual clauses.",
+      ],
+      [
+        "Unsere neuesten Instagram-Beiträge zeigen wir über die offizielle Instagram-Schnittstelle an. Dabei ruft unser Server die Beiträge ab und liefert die Bilder selbst aus – beim Ansehen werden keine Daten von Ihnen an Meta übermittelt. Erst wenn Sie einen Beitrag anklicken, öffnet sich Instagram.",
+        "We display our latest Instagram posts via the official Instagram interface. Our server retrieves the posts and delivers the images itself – no data about you is transmitted to Meta while viewing. Instagram only opens when you click on a post.",
       ],
       [
         "Links zu unseren Profilen bei Instagram, TikTok und YouTube sind einfache Verlinkungen. Daten werden erst übertragen, wenn Sie auf den Link klicken und die Seite des Anbieters öffnen.",

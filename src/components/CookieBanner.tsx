@@ -41,8 +41,8 @@ export const CookieBanner = () => {
         <p className="font-semibold mb-2">Ihre Privatsphäre</p>
         <p className="text-sm text-white/80">
           Wir verwenden nur technisch notwendige Speicherungen (z. B. Ihre Sprachauswahl). Mit Ihrer Zustimmung
-          laden wir zusätzlich externe Medien wie YouTube-Videos und Instagram-Beiträge. Dabei werden Daten
-          (z. B. Ihre IP-Adresse) an Google bzw. Meta übermittelt, auch in die USA. Sie können Ihre Auswahl
+          laden wir zusätzlich externe Medien wie YouTube-Videos, Instagram-Beiträge und unser TikTok-Profil. Dabei
+          werden Daten (z. B. Ihre IP-Adresse) an Google, Meta bzw. TikTok übermittelt, auch in Länder außerhalb der EU. Sie können Ihre Auswahl
           jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern. Mehr in der{" "}
           <Link to="/datenschutz" className="underline underline-offset-2" onClick={() => setOpen(false)}>
             Datenschutzerklärung
@@ -62,7 +62,7 @@ export const CookieBanner = () => {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="font-medium">Externe Medien</p>
-                <p className="text-white/70">YouTube-Videos (Google Ireland Ltd.) und Instagram-Beiträge (Meta Platforms Ireland Ltd.).</p>
+                <p className="text-white/70">YouTube-Videos (Google Ireland Ltd.), Instagram-Beiträge (Meta Platforms Ireland Ltd.) und TikTok-Videos (TikTok Technology Limited).</p>
               </div>
               <Switch checked={mediaChoice} onCheckedChange={setMediaChoice} aria-label="Externe Medien" />
             </div>

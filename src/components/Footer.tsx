@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { openConsentSettings } from "@/lib/consent";
 import { submitForm } from "@/lib/submitForm";
-import { Mail, Phone, Clock, ShieldCheck, Lock, Star } from "lucide-react";
+import { Mail, Phone, Clock, ShieldCheck, Lock, MapPin } from "lucide-react";
 import { Button } from "./ui/button";
 import { useLanguage } from "./LanguageContext";
 import { useState } from "react";
@@ -407,9 +407,9 @@ export const Footer = () => {
                 </span>
               </div>
               <div className="flex flex-col items-center gap-1 opacity-80 hover:opacity-100 transition-opacity">
-                <Star className="h-8 w-8 text-primary" />
+                <MapPin className="h-8 w-8 text-primary" />
                 <span className="text-[10px] font-bold uppercase tracking-wider">
-                  Top Rated
+                  Made in Dortmund
                 </span>
               </div>
             </div>

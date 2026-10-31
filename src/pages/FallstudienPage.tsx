@@ -208,22 +208,7 @@ const FallstudienPage = () => {
                       className="w-48 h-48 object-contain mx-auto mb-12 relative z-10 drop-shadow-2xl bg-white/10 rounded-full p-4 border border-white/20"
                     />
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
-                      {study.metrics.map((metric, mIndex) => (
-                        <div
-                          key={mIndex}
-                          className="text-center bg-white/10 p-4 rounded-2xl backdrop-blur-sm border border-white/10"
-                        >
-                          <metric.icon className="h-8 w-8 text-primary mx-auto mb-3" />
-                          <div className="text-3xl font-bold text-white mb-1">
-                            {metric.value}
-                          </div>
-                          <div className="text-xs text-white/80 font-medium uppercase tracking-wider">
-                            {metric.label}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    {/* Kennzahlen (study.metrics) ausgeblendet, bis die Zahlen belegt sind */}
                   </div>
                 </div>
               </Card>

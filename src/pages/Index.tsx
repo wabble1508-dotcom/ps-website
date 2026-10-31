@@ -10,7 +10,7 @@ import { RoiCalculator } from "@/components/RoiCalculator";
 import { useLanguage } from "@/components/LanguageContext";
 import { translations } from "@/lib/translations";
 import { LeadMagnetSection } from "@/components/LeadMagnetSection";
-import { WallOfLove } from "@/components/WallOfLove";
+import { PromiseSection } from "@/components/PromiseSection";
 import { TrustSeals } from "@/components/TrustSeals";
 import { ReferralBonusSection } from "@/components/ReferralBonusSection";
 import { ServicesSection } from "@/components/ServicesSection";
@@ -140,35 +140,56 @@ const Index = () => {
       ? (deHome.industryItems as { title: string; description: string }[])
       : [];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const statItemsRaw = t("home", "statItems") as any;
-  const statItems: {
-    value: string;
-    label: string;
-    description: string;
-  }[] = Array.isArray(statItemsRaw)
-    ? statItemsRaw
-    : Array.isArray(deHome.statItems)
-      ? (deHome.statItems as {
-          value: string;
-          label: string;
-          description: string;
-        }[])
-      : [];
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const stat5Raw = t("home", "stat5Item") as any;
-  const deStat5 = deHome.stat5Item as {
-    value: string;
-    label: string;
-    description: string;
+  // Kennzahlen: nur überprüfbare Fakten (keine unbelegten Prozentangaben)
+  const pickL = (t: { de: string; en: string; tr: string }) =>
+    language === "en" ? t.en : language === "tr" ? t.tr : t.de;
+  const statItems = [
+    {
+      value: "49",
+      label: pickL({ de: "€ im Monat", en: "€ a month", tr: "€ aylık" }),
+      description: pickL({
+        de: "Professionelle Website ab 49 € – monatlich kündbar.",
+        en: "Professional website from €49 – cancellable monthly.",
+        tr: "49 €'dan profesyonel web sitesi – aylık iptal edilebilir.",
+      }),
+    },
+    {
+      value: "0",
+      label: pickL({ de: "€ Einrichtung", en: "€ setup", tr: "€ kurulum" }),
+      description: pickL({
+        de: "Keine Startkosten beim Start-Paket.",
+        en: "No upfront cost with the Start package.",
+        tr: "Start paketinde başlangıç maliyeti yok.",
+      }),
+    },
+    {
+      value: "24",
+      label: pickL({ de: "Std. Antwortzeit", en: "hrs reply time", tr: "saat yanıt süresi" }),
+      description: pickL({
+        de: "Werktags melden wir uns innerhalb von 24 Stunden.",
+        en: "On working days we reply within 24 hours.",
+        tr: "İş günlerinde 24 saat içinde yanıt veririz.",
+      }),
+    },
+    {
+      value: "13",
+      label: pickL({ de: "Sprachen", en: "languages", tr: "dil" }),
+      description: pickL({
+        de: "Diese Website gibt es in 13 Sprachen – Ihre auf Wunsch auch.",
+        en: "This website is available in 13 languages – yours can be too.",
+        tr: "Bu site 13 dilde – isterseniz sizinki de.",
+      }),
+    },
+  ];
+  const stat5Item = {
+    value: "1",
+    label: pickL({ de: "fester Ansprechpartner", en: "fixed contact person", tr: "sabit muhatap" }),
+    description: pickL({
+      de: "Ich begleite Sie von der Idee bis zum fertigen Produkt.",
+      en: "I'll accompany you from the idea to the finished product.",
+      tr: "Fikirden bitmiş ürüne kadar size eşlik ediyorum.",
+    }),
   };
-  const stat5Item: { value: string; label: string; description: string } =
-    stat5Raw && typeof stat5Raw === "object" && !Array.isArray(stat5Raw)
-      ? stat5Raw
-      : deStat5 && typeof deStat5 === "object"
-        ? deStat5
-        : { value: "100", label: "", description: "" };
 
   const industries = Array.isArray(industryItems)
     ? industryItems
@@ -361,9 +382,6 @@ const Index = () => {
                 Google
               </div>
               <div className="mt-4 flex items-center gap-4">
-                <span className="text-4xl md:text-5xl font-bold text-yellow-500">
-                  5.0
-                </span>
                 <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
@@ -439,7 +457,7 @@ const Index = () => {
       </section>
 
       {/* Video Testimonials */}
-      <WallOfLove />
+      <PromiseSection />
 
       {/* 250€ Weiterempfehlungs-Bonus */}
       <ReferralBonusSection />

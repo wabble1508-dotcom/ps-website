@@ -107,3 +107,32 @@ All colors MUST be HSL.
 @media (prefers-reduced-motion: reduce) {
   [style*="float"] { animation: none !important; }
 }
+
+/* Keynote-Stil (Startseite): schwebende Lichtflecken und Verlaufs-Schrift */
+@keyframes keynote-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6%, 8%) scale(1.1); }
+  66% { transform: translate(-6%, 4%) scale(0.95); }
+}
+.keynote-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.55;
+  animation: keynote-drift 18s ease-in-out infinite;
+}
+@keyframes keynote-hue {
+  from { background-position: 0% 50%; }
+  to { background-position: 200% 50%; }
+}
+.keynote-gradient-text {
+  background-image: linear-gradient(90deg, #7ee3ee, #7c4dff, #ff4d8d, #ffb547, #7ee3ee);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: keynote-hue 8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .keynote-blob, .keynote-gradient-text { animation: none; }
+}

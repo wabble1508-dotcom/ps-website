@@ -1,6 +1,5 @@
-import { Card } from "@/components/ui/card";
 import { FadeIn } from "@/components/FadeIn";
-import { Monitor, Code2 } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -139,25 +138,57 @@ const devServices = [
 const pick = (lang: string, obj: { de: string; en: string; tr: string }) =>
   (obj as Record<string, string>)[lang] || obj.de;
 
+type Service = (typeof services)[number];
+
+// Kachel im Bento-Raster: dunkel, mit Lichtschein beim Überfahren
+const Tile = ({
+  service,
+  language,
+  className = "",
+  big = false,
+  children,
+}: {
+  service: Service;
+  language: string;
+  className?: string;
+  big?: boolean;
+  children?: React.ReactNode;
+}) => (
+  <Link
+    to={service.link}
+    className={`group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/25 md:p-8 ${className}`}
+  >
+    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#7c4dff]/0 blur-3xl transition-colors duration-700 group-hover:bg-[#7c4dff]/30" />
+    <img
+      src={service.image}
+      alt={pick(language, service.titles)}
+      loading="lazy"
+      className={`relative mb-6 object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 ${big ? "h-28 w-28 md:h-40 md:w-40" : "h-16 w-16"}`}
+    />
+    <h3 className={`relative font-semibold tracking-tight text-white ${big ? "text-3xl md:text-5xl" : "text-xl"}`}>
+      {pick(language, service.titles)}
+    </h3>
+    <p className={`relative mt-3 text-white/60 ${big ? "max-w-md text-base md:text-lg" : "text-sm"}`}>
+      {pick(language, service.descs)}
+    </p>
+    {children}
+    <ArrowUpRight className="absolute right-6 top-6 h-5 w-5 text-white/30 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
+  </Link>
+);
+
 export const ServicesSection = () => {
   const { language } = useLanguage();
-
-  const mainService = services[0];
-  const secondaryServices = services.slice(1, 5);
-  const tertiaryServices = services.slice(5);
+  const [web, ...rest] = services;
+  const ki = rest.slice(0, 4);
+  const more = rest.slice(4);
 
   const labels = {
-    coreProduct: pick(language, {
-      de: "Unser Hauptprodukt",
-      en: "Our Core Product",
-      tr: "Ana Ürünümüz",
+    kicker: pick(language, { de: "Leistungen", en: "Services", tr: "Hizmetler" }),
+    title: pick(language, {
+      de: "Alles, was Ihr Business online braucht.",
+      en: "Everything your business needs online.",
+      tr: "İşletmenizin online ihtiyacı olan her şey.",
     }),
-    learnMore: pick(language, {
-      de: "Mehr erfahren",
-      en: "Learn more",
-      tr: "Daha fazla bilgi",
-    }),
-    devTitle: pick(language, { de: "Apps & Software nach Maß", en: "Custom apps & software", tr: "Size özel uygulamalar ve yazılım" }),
     priceBadge: pick(language, {
       de: "Website ab 49 €/Monat · 0 € Einrichtung",
       en: "Website from €49/month · €0 setup",
@@ -165,154 +196,52 @@ export const ServicesSection = () => {
     }),
     tags: [
       pick(language, { de: "Responsiv", en: "Responsive", tr: "Responsive" }),
-      pick(language, {
-        de: "SEO-optimiert",
-        en: "SEO-Optimized",
-        tr: "SEO-Optimize",
-      }),
+      pick(language, { de: "SEO-optimiert", en: "SEO-Optimized", tr: "SEO-Optimize" }),
       pick(language, { de: "Blitzschnell", en: "Fast", tr: "Şimşek Hızında" }),
-      pick(language, { de: "Modern", en: "Modern", tr: "Modern" }),
     ],
   };
 
   return (
-    <section className="bg-muted/30 py-20 overflow-hidden">
-      <FadeIn className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-bold text-primary">
-            <Monitor className="h-4 w-4" />
-            {labels.coreProduct}
-          </span>
-        </div>
+    <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+      <div className="container mx-auto max-w-6xl px-4">
+        <FadeIn className="mb-14 text-center">
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{labels.kicker}</span>
+          <h2 className="mx-auto mt-3 max-w-3xl bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
+            {labels.title}
+          </h2>
+        </FadeIn>
 
-        {/* Main product — Webdesign — large featured card */}
-        <Link to={mainService.link} className="block mb-8">
-        <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl relative overflow-hidden cursor-pointer group hover:shadow-2xl transition-shadow">
-          <div className="absolute -right-10 -top-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-500"></div>
-          <div className="grid gap-8 md:grid-cols-2 items-center relative z-10">
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <div className="relative mb-6">
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500"></div>
-                <img
-                  src={mainService.image}
-                  alt={pick(language, mainService.titles)}
-                  className="relative h-28 w-28 md:h-36 md:w-36 object-contain drop-shadow-xl group-hover:scale-110 transition-all duration-500"
-                />
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
-                {pick(language, mainService.titles)}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4">
-                {pick(language, mainService.descs)}
-              </p>
-              <span className="mb-6 inline-block rounded-full bg-primary px-4 py-1.5 text-sm font-bold text-white">
-                {labels.priceBadge}
-              </span>
-              <span className="inline-flex items-center gap-2 text-primary font-bold text-sm group-hover:gap-3 transition-all">
-                {labels.learnMore} →
-              </span>
-            </div>
-            <div className="flex justify-center">
-              <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
+        <div className="grid gap-4 md:grid-cols-6">
+          {/* Hauptprodukt Webdesign: große Kachel */}
+          <FadeIn className="md:col-span-4 md:row-span-2">
+            <Tile service={web} language={language} big className="h-full min-h-[420px] justify-end">
+              <div className="relative mt-6 flex flex-wrap gap-2">
+                <span className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black">{labels.priceBadge}</span>
                 {labels.tags.map((tag) => (
-                  <div
-                    key={tag}
-                    className="flex items-center justify-center gap-2 rounded-xl bg-primary/5 border border-primary/10 px-3 py-3 text-sm font-semibold text-foreground"
-                  >
-                    <span className="h-2 w-2 rounded-full bg-primary"></span>
+                  <span key={tag} className="rounded-full border border-white/15 px-3 py-1.5 text-sm text-white/70">
                     {tag}
-                  </div>
+                  </span>
                 ))}
               </div>
-            </div>
-          </div>
-        </Card>
-        </Link>
-
-        {/* App- & Software-Entwicklung */}
-        <div className="mb-8 grid gap-8 md:grid-cols-2">
+            </Tile>
+          </FadeIn>
           {devServices.map((service) => (
-            <Link key={service.link} to={service.link} className="group block">
-              <Card className="flex h-full flex-col items-center gap-6 rounded-3xl border-none bg-card p-8 text-center shadow-xl transition-shadow hover:shadow-2xl sm:flex-row sm:text-left">
-                <div className="relative shrink-0">
-                  <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl transition-colors duration-500 group-hover:bg-primary/40"></div>
-                  <img
-                    src={service.image}
-                    alt={pick(language, service.titles)}
-                    className="relative h-24 w-24 object-contain drop-shadow-xl transition-all duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div>
-                  <span className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-                    <Code2 className="h-3.5 w-3.5" /> {labels.devTitle}
-                  </span>
-                  <h3 className="mb-2 text-xl font-bold transition-colors group-hover:text-primary">
-                    {pick(language, service.titles)}
-                  </h3>
-                  <p className="mb-3 text-sm leading-relaxed text-muted-foreground">{pick(language, service.descs)}</p>
-                  <span className="text-sm font-bold text-primary">{labels.learnMore} →</span>
-                </div>
-              </Card>
-            </Link>
+            <FadeIn key={service.link} className="md:col-span-2">
+              <Tile service={service} language={language} className="h-full" />
+            </FadeIn>
+          ))}
+          {ki.map((service) => (
+            <FadeIn key={service.link} className="md:col-span-3 lg:col-span-3 xl:col-span-3">
+              <Tile service={service} language={language} className="h-full" />
+            </FadeIn>
+          ))}
+          {more.map((service) => (
+            <FadeIn key={service.link} className="md:col-span-3">
+              <Tile service={service} language={language} className="h-full" />
+            </FadeIn>
           ))}
         </div>
-
-        {/* Secondary KI features — 4 cards */}
-        <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl mb-8">
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-            {secondaryServices.map((service, i) => (
-              <Link
-                key={i}
-                to={service.link}
-                className="flex flex-col items-center text-center group cursor-pointer"
-              >
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500"></div>
-                  <img
-                    src={service.image}
-                    alt={pick(language, service.titles)}
-                    className="relative h-24 w-24 md:h-28 md:w-28 object-contain drop-shadow-xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500"
-                  />
-                </div>
-                <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">
-                  {pick(language, service.titles)}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {pick(language, service.descs)}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </Card>
-
-        {/* Tertiary features — CRM & Design/Druck */}
-        <Card className="p-8 md:p-12 border-none shadow-xl bg-card rounded-3xl max-w-5xl mx-auto w-full">
-          <div className="grid gap-10 md:grid-cols-2">
-            {tertiaryServices.map((service, i) => (
-              <Link
-                key={i}
-                to={service.link}
-                className="flex flex-col items-center text-center group cursor-pointer"
-              >
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500"></div>
-                  <img
-                    src={service.image}
-                    alt={pick(language, service.titles)}
-                    className="relative h-24 w-24 md:h-28 md:w-28 object-contain drop-shadow-xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500"
-                  />
-                </div>
-                <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors">
-                  {pick(language, service.titles)}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {pick(language, service.descs)}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </Card>
-      </FadeIn>
+      </div>
     </section>
   );
 };

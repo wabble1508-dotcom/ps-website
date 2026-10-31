@@ -43,12 +43,12 @@ const UI = {
 };
 
 const BrowserFrame = ({ children, url }: { children: React.ReactNode; url: string }) => (
-  <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-xl transition-shadow duration-300 group-hover:shadow-2xl">
-    <div className="flex items-center gap-2 border-b border-border bg-muted/60 px-4 py-2.5">
+  <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#121214] shadow-[0_30px_80px_-30px_rgba(124,77,255,0.5)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/30">
+    <div className="flex items-center gap-2 border-b border-white/10 bg-[#1c1c1f] px-4 py-2.5">
       <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-      <span className="ml-3 truncate rounded-md bg-background px-3 py-0.5 text-xs text-muted-foreground">{url}</span>
+      <span className="ml-3 truncate rounded-md bg-white/10 px-3 py-0.5 text-xs text-white/60">{url}</span>
     </div>
     {children}
   </div>
@@ -60,12 +60,12 @@ export const PortfolioSection = () => {
   const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
 
   return (
-    <section id="portfolio" className="scroll-mt-24 py-20 md:py-24">
+    <section id="portfolio" className="scroll-mt-24 bg-black pb-24 pt-8 text-white md:pb-32">
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-12 text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary">{pick(UI.kicker)}</span>
-          <h2 className="mt-2 text-3xl font-bold text-foreground md:text-5xl">{pick(UI.title)}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">{pick(UI.subtitle)}</p>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{pick(UI.kicker)}</span>
+          <h2 className="mt-3 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">{pick(UI.title)}</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">{pick(UI.subtitle)}</p>
         </FadeIn>
         <div className="grid gap-10 md:grid-cols-2">
           {PROJECTS.map((p) => (
@@ -83,17 +83,17 @@ export const PortfolioSection = () => {
                 </BrowserFrame>
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary">{p.name}</h3>
-                    <p className="text-sm text-muted-foreground">{pick(p.type)}</p>
+                    <h3 className="text-xl font-semibold text-white group-hover:text-[#7ee3ee]">{p.name}</h3>
+                    <p className="text-sm text-white/55">{pick(p.type)}</p>
                     <div className="mt-2 flex flex-wrap gap-1.5" data-no-translate>
                       {p.tags.map((tag) => (
-                        <span key={tag} className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
+                        <span key={tag} className="rounded-full border border-white/15 px-2.5 py-0.5 text-xs font-medium text-white/70">
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm font-bold text-primary">
+                  <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-[#7ee3ee]">
                     {pick(UI.visit)} <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
@@ -105,16 +105,16 @@ export const PortfolioSection = () => {
           <button
             type="button"
             onClick={() => openForm("contact", "Portfolio")}
-            className="group flex w-full flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-primary/40 p-8 text-center transition-colors hover:border-primary hover:bg-primary/5 sm:flex-row sm:text-left"
+            className="group flex w-full flex-col items-center gap-3 rounded-3xl border border-dashed border-white/20 p-8 text-center transition-colors hover:border-white/40 hover:bg-white/[0.04] sm:flex-row sm:text-left"
           >
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-transform group-hover:scale-110">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-transform group-hover:scale-110">
               <Plus className="h-7 w-7" />
             </span>
             <span className="flex-1">
-              <span className="block text-lg font-bold text-foreground">{pick(UI.nextTitle)}</span>
-              <span className="block text-sm text-muted-foreground">{pick(UI.nextText)}</span>
+              <span className="block text-lg font-semibold text-white">{pick(UI.nextTitle)}</span>
+              <span className="block text-sm text-white/55">{pick(UI.nextText)}</span>
             </span>
-            <span className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white">{pick(UI.nextBtn)}</span>
+            <span className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black">{pick(UI.nextBtn)}</span>
           </button>
         </FadeIn>
       </div>

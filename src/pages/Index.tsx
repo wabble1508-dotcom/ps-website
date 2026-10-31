@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ExternalEmbed } from "@/components/ExternalEmbed";
 import { FadeIn } from "@/components/FadeIn";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin } from "lucide-react";
+
 import { useEffect, useState, useRef } from "react";
 import { useContactForm } from "@/components/ContactFormDialog";
 import { SEO } from "@/components/SEO";
@@ -12,6 +11,7 @@ import { translations } from "@/lib/translations";
 import { LeadMagnetSection } from "@/components/LeadMagnetSection";
 import { PromiseSection } from "@/components/PromiseSection";
 import { TrustSeals } from "@/components/TrustSeals";
+import { HeroKeynote } from "@/components/HeroKeynote";
 import { ReferralBonusSection } from "@/components/ReferralBonusSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import {
@@ -233,60 +233,23 @@ const Index = () => {
         faqs={faqs}
       />
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-secondary via-[#153a48] to-[#1e9fae] py-20 lg:py-32">
-        {/* Cinematic background video (YouTube xycMn76O0M0) with robust mobile autoplay parameters */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <ExternalEmbed src="https://www.youtube-nocookie.com/embed/xycMn76O0M0?autoplay=1&mute=1&muted=1&controls=0&loop=1&playlist=xycMn76O0M0&playsinline=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&enablejsapi=1&origin=https://ps-professional-solutions.de" title="Cinematic Background Video" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300vw] sm:w-[177.78vh] h-[100vh] min-w-full min-h-full border-0 object-cover pointer-events-none" background />
-        </div>
-        {/* Cinematic gradient overlay — video stays visible but text stays readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/65 to-secondary/90 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/55 via-transparent to-secondary/55 pointer-events-none" />
+      <HeroKeynote
+        title={heroTitle}
+        subtitle={t("home", "heroSubtitle")}
+        ctaLabel={t("home", "heroBtn")}
+        onCta={() => openForm("contact", "Startseite - Hero")}
+        projectsLabel={pick("Projekte ansehen", "View projects")}
+        eyebrow={pick("Webdesign · Apps · Software – Dortmund", "Web design · Apps · Software – Dortmund")}
+        priceNote={pick("Website ab 49 €/Monat · 0 € Einrichtung · monatlich kündbar", "Website from €49/month · €0 setup · cancellable monthly")}
+        cityNote={
+          city
+            ? language === "tr"
+              ? `Artık ${city}'deki işletmeler için uygun`
+              : pick(`Jetzt auch für Unternehmen in ${city}`, `Now available for businesses in ${city}`)
+            : undefined
+        }
+      />
 
-        <FadeIn
-          className="container relative z-10 mx-auto px-4 text-center"
-          direction="up"
-        >
-          <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            {heroTitle}
-          </h1>
-          {city && (
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-md animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span>
-                {language === "tr"
-                  ? `Artık ${city}'deki işletmeler için uygun`
-                  : pick(
-                      `Jetzt auch für Unternehmen in ${city}`,
-                      `Now available for businesses in ${city}`,
-                    )}
-              </span>
-            </div>
-          )}
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90 sm:text-xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-            {t("home", "heroSubtitle")}
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-            <Button
-              size="lg"
-              className="h-auto min-h-[3.5rem] py-3 rounded-full px-4 sm:px-8 text-base sm:text-lg font-semibold shadow-xl hover:scale-105 transition-transform duration-300 w-full sm:w-auto whitespace-normal"
-              onClick={() => openForm("contact", "Startseite - Hero")}
-            >
-              {t("home", "heroBtn")}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-auto min-h-[3.5rem] py-3 rounded-full px-4 sm:px-8 text-base sm:text-lg font-semibold w-full sm:w-auto whitespace-normal border-white/40 bg-white/5 text-white backdrop-blur hover:bg-white/15 hover:text-white"
-              asChild
-            >
-              <a href="#portfolio">{pick("Projekte ansehen", "View projects")}</a>
-            </Button>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* Trust Seals */}
-      <TrustSeals />
 
       {/* Services Section */}
       <ServicesSection />
@@ -294,18 +257,21 @@ const Index = () => {
       {/* Portfolio: gebaute Websites */}
       <PortfolioSection />
 
+      {/* Trust Seals */}
+      <TrustSeals />
+
       <ChatHighlightSection />
 
       {/* Stats Section */}
-      <section className="py-20 text-center">
+      <section className="relative overflow-hidden bg-black py-24 text-center text-white md:py-32">
         <FadeIn className="container mx-auto px-4">
-          <h2 className="mb-4 text-3xl font-bold text-primary">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">
             {t("home", "whyTitle")}
           </h2>
-          <h3 className="mb-8 text-2xl font-semibold">
+          <h3 className="mb-8 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
             {t("home", "whySubtitle")}
           </h3>
-          <p className="mx-auto mb-16 max-w-3xl text-lg text-muted-foreground">
+          <p className="mx-auto mb-16 max-w-3xl text-lg text-white/60">
             {t("home", "whyDesc")}
           </p>
 
@@ -313,25 +279,25 @@ const Index = () => {
             {statItems.map((stat, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl hover:bg-muted/50 transition-colors duration-300"
+                className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:bg-white/[0.06]"
               >
-                <div className="mb-2 text-4xl font-bold text-primary md:text-5xl lg:text-7xl group-hover:scale-110 transition-transform duration-300">
+                <div className="keynote-gradient-text mb-2 text-6xl font-semibold tracking-tighter lg:text-8xl">
                   <AnimatedCounter value={stat.value} />
                 </div>
-                <div className="text-lg font-medium">{stat.label}</div>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <div className="text-lg font-medium text-white">{stat.label}</div>
+                <p className="mt-2 text-sm text-white/55">
                   {stat.description}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mt-20 flex flex-col items-center justify-center p-8 rounded-3xl hover:bg-muted/30 transition-colors duration-300 inline-flex mx-auto">
-            <div className="mb-2 text-5xl font-bold text-primary md:text-6xl lg:text-8xl hover:scale-110 transition-transform duration-300 cursor-default">
+          <div className="mx-auto mt-16 inline-flex flex-col items-center justify-center p-8">
+            <div className="keynote-gradient-text mb-2 text-7xl font-semibold tracking-tighter lg:text-9xl">
               <AnimatedCounter value={stat5Item.value} />
             </div>
-            <div className="text-xl font-medium">{stat5Item.label}</div>
-            <p className="mt-2 text-muted-foreground">
+            <div className="text-xl font-medium text-white">{stat5Item.label}</div>
+            <p className="mt-2 text-white/55">
               {stat5Item.description}
             </p>
           </div>

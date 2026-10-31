@@ -1,10 +1,26 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useContactForm } from "@/components/ContactFormDialog";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/FadeIn";
 import { useLanguage } from "@/components/LanguageContext";
-import { ArrowLeft, ArrowRight, Lightbulb } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lightbulb, Mail } from "lucide-react";
 
 const WHATSAPP_NUMBER = "4915207595260";
+
+// Branche → passende Branchenseite
+const INDUSTRY_PAGES: Record<string, string> = {
+  handwerk: "/handwerker",
+  kfz: "/kfz-zulassung",
+  festivals: "/festivals",
+  vereine: "/vereine",
+  textil: "/textil",
+  beauty: "/beautysalon",
+  gesundheit: "/gesundheitswesen",
+  gastro: "/gastronomie",
+  bildung: "/bildung",
+  schneiderei: "/schneiderei",
+};
 
 const pick = (lang: string, obj: { de: string; en: string; tr: string }) =>
   (obj as Record<string, string>)[lang] || obj.de;
@@ -22,6 +38,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }: { className?: string }) => (
 
 export const QuizSection = () => {
   const { language } = useLanguage();
+  const { openForm } = useContactForm();
 
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -100,6 +117,33 @@ export const QuizSection = () => {
           emoji: "🩺",
         },
         {
+          id: "gastro",
+          label: pick(language, {
+            de: "Gastronomie & Cafés",
+            en: "Restaurants & Cafés",
+            tr: "Restoran & Kafeler",
+          }),
+          emoji: "🍽️",
+        },
+        {
+          id: "bildung",
+          label: pick(language, {
+            de: "Bildung & Nachhilfe",
+            en: "Education & Tutoring",
+            tr: "Eğitim & Özel ders",
+          }),
+          emoji: "🎓",
+        },
+        {
+          id: "schneiderei",
+          label: pick(language, {
+            de: "Schneiderei & Atelier",
+            en: "Tailoring & Studio",
+            tr: "Terzi & Atölye",
+          }),
+          emoji: "🧵",
+        },
+        {
           id: "andere",
           label: pick(language, {
             de: "Sonstige Dienstleistungen",
@@ -153,6 +197,15 @@ export const QuizSection = () => {
             tr: "Eski veya görünmez web sitesi",
           }),
           emoji: "🖥️",
+        },
+        {
+          id: "app",
+          label: pick(language, {
+            de: "Ich brauche eine eigene App oder Software",
+            en: "I need my own app or software",
+            tr: "Kendi uygulamama veya yazılımıma ihtiyacım var",
+          }),
+          emoji: "📱",
         },
       ],
     },
@@ -212,8 +265,25 @@ export const QuizSection = () => {
     const industry = answers[1];
     const problem = answers[2];
 
+    if (problem === "app") {
+      return {
+        link: "/app-entwicklung",
+        title: pick(language, {
+          de: "App- & Software-Entwicklung nach Maß",
+          en: "Custom app & software development",
+          tr: "Size özel uygulama ve yazılım geliştirme",
+        }),
+        desc: pick(language, {
+          de: "Wir entwickeln Ihre eigene Web-App, mobile App oder Software – vom klickbaren Prototyp bis zum Livegang, genau passend zu Ihren Abläufen.",
+          en: "We develop your own web app, mobile app or software – from a clickable prototype to launch, tailored to your processes.",
+          tr: "Kendi web uygulamanızı, mobil uygulamanızı veya yazılımınızı geliştiriyoruz – tıklanabilir prototipten yayına, süreçlerinize tam uygun.",
+        }),
+      };
+    }
+
     if (industry === "kfz") {
       return {
+        link: "/kfz-zulassung",
         title: pick(language, {
           de: "KFZ Kennzeichen-Konfigurator & Behörden-Direktlink Automation",
           en: "KFZ Plate Configurator & Direct Authority Link Automation",
@@ -229,6 +299,7 @@ export const QuizSection = () => {
 
     if (problem === "telefon" || problem === "termine") {
       return {
+        link: problem === "telefon" ? "/ki-telefon-assistent" : "/intelligente-termin-automation",
         title: pick(language, {
           de: "KI-Telefon-Assistent & Termin-Automation",
           en: "AI Telephone Assistant & Booking",
@@ -243,6 +314,7 @@ export const QuizSection = () => {
     }
     if (problem === "website" || answers[3] === "image") {
       return {
+        link: "/guenstige-website",
         title: pick(language, {
           de: "High-Conversion Webdesign & SEO",
           en: "High-Conversion Webdesign & SEO",
@@ -256,6 +328,7 @@ export const QuizSection = () => {
       };
     }
     return {
+      link: "/ki-live-chat",
       title: pick(language, {
         de: "KI Live-Chat & Leadgenerierung",
         en: "AI Live Chat & Lead Generation",
@@ -341,9 +414,9 @@ export const QuizSection = () => {
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">
             {pick(language, {
-              de: "Beantworten Sie 3 kurze Fragen und erhalten Sie Ihre maßgeschneiderte Automatisierungs-Strategie – direkt via WhatsApp.",
-              en: "Answer 3 quick questions and get your tailored automation strategy — sent directly via WhatsApp.",
-              tr: "3 kısa soruyu cevaplayın ve size özel otomasyon stratejinizi alın — doğrudan WhatsApp üzerinden.",
+              de: "Beantworten Sie 3 kurze Fragen – wir zeigen Ihnen sofort die passende Lösung und bringen Sie direkt zur richtigen Seite.",
+              en: "Answer 3 quick questions – we'll instantly show you the right solution and take you straight to the right page.",
+              tr: "3 kısa soruyu cevaplayın – size hemen doğru çözümü gösterip doğrudan ilgili sayfaya götürelim.",
             })}
           </p>
         </FadeIn>
@@ -388,6 +461,34 @@ export const QuizSection = () => {
                     {getRecommendation().desc}
                   </p>
                 </div>
+                <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+                  <Button size="lg" className="rounded-full" asChild>
+                    <Link to={getRecommendation().link}>
+                      {pick(language, {
+                        de: "Lösung ansehen",
+                        en: "View solution",
+                        tr: "Çözümü gör",
+                      })}
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  {INDUSTRY_PAGES[answers[1]] && (
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="rounded-full border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                      asChild
+                    >
+                      <Link to={INDUSTRY_PAGES[answers[1]]}>
+                        {pick(language, {
+                          de: "Lösungen für Ihre Branche",
+                          en: "Solutions for your industry",
+                          tr: "Sektörünüz için çözümler",
+                        })}
+                      </Link>
+                    </Button>
+                  )}
+                </div>
                 <p className="text-white/90 font-medium mb-8">
                   {pick(language, {
                     de: "Lassen Sie uns besprechen, wie wir dies nahtlos in Ihren Betrieb integrieren.",
@@ -406,6 +507,18 @@ export const QuizSection = () => {
                       de: "Via WhatsApp senden",
                       en: "Send via WhatsApp",
                       tr: "WhatsApp ile gönder",
+                    })}
+                  </Button>
+                  <Button
+                    size="lg"
+                    className="h-auto min-h-[3.5rem] py-3 px-4 sm:px-8 text-base sm:text-lg font-semibold w-full sm:w-auto whitespace-normal bg-white text-secondary hover:bg-white/90 flex items-center justify-center gap-2"
+                    onClick={() => openForm("contact", `Quiz: ${getRecommendation().title}`)}
+                  >
+                    <Mail className="h-5 w-5" />
+                    {pick(language, {
+                      de: "Per E-Mail anfragen",
+                      en: "Enquire by email",
+                      tr: "E-posta ile talep et",
                     })}
                   </Button>
                   <Button

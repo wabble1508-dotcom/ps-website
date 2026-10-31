@@ -4,6 +4,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/components/LanguageContext";
 import { useContactForm } from "@/components/ContactFormDialog";
+import { WebsiteNovaSection } from "@/components/WebsiteNovaSection";
 
 // Leistungsseite App-Entwicklung. Texte auf Deutsch, Englisch und Türkisch;
 // die übrigen Sprachen kommen aus den Übersetzungs-Wörterbüchern (src/lib/i18n/dict).
@@ -222,6 +223,8 @@ export default function AppEntwicklungPage() {
           </div>
         </div>
       </section>
+
+      <WebsiteNovaSection />
 
       <section className="bg-muted/30 py-16 md:py-24">
         <div className="container mx-auto max-w-5xl px-4">

@@ -98,3 +98,12 @@ All colors MUST be HSL.
 @media (prefers-reduced-motion: reduce) {
   .partner-hue { animation: none; }
 }
+
+/* Sanftes Schweben (z. B. Benachrichtigungen im WebsiteNova-Bereich) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [style*="float"] { animation: none !important; }
+}

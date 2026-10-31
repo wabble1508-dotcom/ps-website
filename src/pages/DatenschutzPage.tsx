@@ -77,11 +77,15 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    title: ["6. Formulare: E-Book, Newsletter und Bewerbung", "6. Forms: e-book, newsletter and applications"],
+    title: ["6. Formulare: Kontakt, E-Book, Newsletter und Bewerbung", "6. Forms: contact, e-book, newsletter and applications"],
     blocks: [
       [
         "Die Angaben aus unseren Formularen (z. B. Name, E-Mail, Telefon, Nachricht, bei Bewerbungen auch die gewünschte Stelle) speichern wir in unserer Datenbank, um Ihre Anfrage zu bearbeiten (Art. 6 Abs. 1 lit. b DSGVO; bei Bewerbungen zusätzlich § 26 BDSG). Bei der Newsletter-Anmeldung verarbeiten wir Ihre E-Mail-Adresse auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO); Sie können sich jederzeit formlos abmelden.",
         "We store the information from our forms (e.g. name, email, phone, message and, for applications, the desired position) in our database in order to handle your request (Art. 6(1)(b) GDPR; for applications also Section 26 BDSG). For the newsletter we process your email address on the basis of your consent (Art. 6(1)(a) GDPR); you can unsubscribe at any time without giving reasons.",
+      ],
+      [
+        "Nach dem Absenden des Kontaktformulars erhalten Sie automatisch eine Bestätigung mit Informationen zu Ihrem Anliegen an die angegebene E-Mail-Adresse. Den Versand übernimmt – sofern eingerichtet – der Dienst Resend (Resend, Inc., USA) als Auftragsverarbeiter auf Grundlage von EU-Standardvertragsklauseln. Um Missbrauch zu verhindern, versenden wir höchstens drei solcher Bestätigungen pro E-Mail-Adresse und Tag.",
+        "After you submit the contact form, you automatically receive a confirmation with information about your request at the email address you provided. Where configured, emails are sent via the service Resend (Resend, Inc., USA) as a processor on the basis of EU Standard Contractual Clauses. To prevent misuse, we send at most three such confirmations per email address per day.",
       ],
       [
         "Speicherdauer: Anfragen werden nach 12 Monaten, Bewerbungen nach 6 Monaten automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen oder ein Vertrag zustande kommt.",

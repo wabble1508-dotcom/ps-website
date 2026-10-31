@@ -22,6 +22,8 @@ import { ChatHighlightSection } from "@/components/ChatHighlightSection";
 import { FounderSection } from "@/components/FounderSection";
 import { QuizSection } from "@/components/QuizSection";
 import { CrmPartnerSection } from "@/components/CrmPartnerSection";
+import { WebsiteNovaSection } from "@/components/WebsiteNovaSection";
+import { PortfolioSection } from "@/components/PortfolioSection";
 
 const AnimatedCounter = ({ value }: { value: string }) => {
   const [count, setCount] = useState(0);
@@ -250,6 +252,14 @@ const Index = () => {
             >
               {t("home", "heroBtn")}
             </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-auto min-h-[3.5rem] py-3 rounded-full px-4 sm:px-8 text-base sm:text-lg font-semibold w-full sm:w-auto whitespace-normal border-white/40 bg-white/5 text-white backdrop-blur hover:bg-white/15 hover:text-white"
+              asChild
+            >
+              <a href="#portfolio">{pick("Projekte ansehen", "View projects")}</a>
+            </Button>
           </div>
         </FadeIn>
       </section>
@@ -259,6 +269,9 @@ const Index = () => {
 
       {/* Services Section */}
       <ServicesSection />
+
+      {/* Portfolio: gebaute Websites */}
+      <PortfolioSection />
 
       <ChatHighlightSection />
 
@@ -309,6 +322,8 @@ const Index = () => {
       <LogoSliderSection />
 
       <CrmPartnerSection />
+
+      <WebsiteNovaSection />
 
       <ReferencesSection />
 

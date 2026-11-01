@@ -131,8 +131,8 @@ const SECTIONS: Section[] = [
         "We display our latest Instagram posts via the official Instagram interface. Our server retrieves the posts and delivers the images itself – no data about you is transmitted to Meta while viewing. Instagram only opens when you click on a post.",
       ],
       [
-        "Links zu unseren Profilen bei Instagram, TikTok und YouTube sind einfache Verlinkungen. Daten werden erst übertragen, wenn Sie auf den Link klicken und die Seite des Anbieters öffnen.",
-        "Links to our profiles on Instagram, TikTok and YouTube are plain links. Data is only transmitted once you click the link and open the provider's page.",
+        "Links zu unseren Profilen bei Instagram, TikTok, YouTube, LinkedIn und Facebook sind einfache Verlinkungen. Daten werden erst übertragen, wenn Sie auf den Link klicken und die Seite des Anbieters öffnen.",
+        "Links to our profiles on Instagram, TikTok, YouTube, LinkedIn and Facebook are plain links. Data is only transmitted once you click the link and open the provider's page.",
       ],
     ],
   },

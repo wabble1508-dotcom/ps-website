@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { SEOHead } from "./SEOHead";
 import { useLanguage } from "./LanguageContext";
 import { SEO_DE } from "@/lib/seoOverrides";
+import { activeSocialLinks } from "../../server/socialLinks";
 import OG_PAGES from "@/lib/ogImages.json";
 
 // Monatliches Angebot „ab … €“ für die strukturierten Daten
@@ -45,11 +46,7 @@ export const LOCAL_BUSINESS = {
     },
   ],
   priceRange: "ab 49 €",
-  sameAs: [
-    "https://www.instagram.com/ps_professional_solutions/",
-    "https://www.tiktok.com/@psprofessional.solutions",
-    "https://www.youtube.com/@psprofessionalsolutions",
-  ],
+  sameAs: activeSocialLinks().map((s) => s.url),
   knowsAbout: ["Webdesign", "Website-Erstellung", "App-Entwicklung", "Software-Entwicklung", "Suchmaschinenoptimierung", "KI-Automatisierung"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",

@@ -29,12 +29,12 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
   const second = comma > 0 ? title.slice(comma + 1).trim() : "";
 
   return (
-    <section className="relative isolate overflow-hidden bg-black pb-10 pt-20 text-white md:pt-28">
+    <section className="relative isolate overflow-hidden bg-background pb-10 pt-20 text-white md:pt-28">
       {/* Lichtverläufe */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="keynote-blob left-[-10%] top-[-10%] h-[520px] w-[520px] bg-[#1e9fae]" />
-        <div className="keynote-blob right-[-12%] top-[5%] h-[560px] w-[560px] bg-[#7c4dff] [animation-delay:-6s]" />
-        <div className="keynote-blob bottom-[-20%] left-[25%] h-[600px] w-[600px] bg-[#ff4d8d] opacity-40 [animation-delay:-12s]" />
+        <div className="keynote-blob right-[-12%] top-[5%] h-[560px] w-[560px] bg-[#1d4ed8] [animation-delay:-6s]" />
+        <div className="keynote-blob bottom-[-20%] left-[25%] h-[600px] w-[600px] bg-[#0e7490] opacity-40 [animation-delay:-12s]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       </div>
 
@@ -66,12 +66,12 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
             <button
               type="button"
               onClick={onCta}
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-semibold text-black transition hover:scale-[1.03] hover:bg-white/90"
+              className="group inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-[0_10px_40px_-10px_rgba(30,159,174,0.8)] transition hover:-translate-y-0.5 hover:bg-primary/90"
             >
               {ctaLabel}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
-            <a href="#portfolio" className="group inline-flex items-center gap-1 text-base font-semibold text-[#7ee3ee] hover:underline">
+            <a href="#portfolio" className="group inline-flex items-center gap-1 rounded-xl border border-white/20 px-6 py-3.5 text-base font-semibold text-white transition hover:border-white/40 hover:bg-white/5">
               {projectsLabel}
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
@@ -82,8 +82,8 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
         {/* Geräte-Vorschau */}
         <div ref={ref} className="relative mx-auto mt-16 max-w-5xl [perspective:1400px]">
           <motion.div style={{ rotateX, scale }} className="origin-bottom">
-            <div className="rounded-[1.4rem] border border-white/15 bg-gradient-to-b from-[#2a2a2e] to-[#121214] p-2 shadow-[0_40px_120px_-20px_rgba(124,77,255,0.45)] md:p-3">
-              <div className="overflow-hidden rounded-xl bg-black">
+            <div className="rounded-[1.4rem] border border-white/15 bg-gradient-to-b from-[#2a2a2e] to-[#121214] p-2 shadow-[0_40px_120px_-20px_rgba(30,159,174,0.45)] md:p-3">
+              <div className="overflow-hidden rounded-xl bg-background">
                 <div className="flex items-center gap-1.5 border-b border-white/10 bg-[#1c1c1f] px-3 py-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />

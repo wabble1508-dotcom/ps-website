@@ -1,27 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/FadeIn";
-import { Card, CardContent } from "@/components/ui/card";
 
 import { useEffect, useState, useRef } from "react";
 import { useContactForm } from "@/components/ContactFormDialog";
 import { SEO } from "@/components/SEO";
-import { RoiCalculator } from "@/components/RoiCalculator";
 import { useLanguage } from "@/components/LanguageContext";
 import { translations } from "@/lib/translations";
-import { LeadMagnetSection } from "@/components/LeadMagnetSection";
 import { PromiseSection } from "@/components/PromiseSection";
-import { TrustSeals } from "@/components/TrustSeals";
 import { HeroKeynote } from "@/components/HeroKeynote";
-import { ReferralBonusSection } from "@/components/ReferralBonusSection";
 import { ServicesSection } from "@/components/ServicesSection";
-import {
-  LogoSliderSection,
-  ReferencesSection,
-} from "@/components/LogoAndReferences";
-import { ChatHighlightSection } from "@/components/ChatHighlightSection";
+import { LogoSliderSection } from "@/components/LogoAndReferences";
 import { FounderSection } from "@/components/FounderSection";
 import { QuizSection } from "@/components/QuizSection";
-import { CrmPartnerSection } from "@/components/CrmPartnerSection";
 import { WebsiteNovaSection } from "@/components/WebsiteNovaSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
 
@@ -75,42 +65,6 @@ const AnimatedCounter = ({ value }: { value: string }) => {
   return <span ref={ref}>{count}</span>;
 };
 
-const industryMedia = [
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/4d0a0e7d-3e36-4239-b90d-3c52d1c72a30.png",
-  },
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/d2954749-7bd7-45e0-828b-1e2482d8b79b.png",
-  },
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/19a5d2a4-7892-4b4d-a9c8-bd1da3e22eaa.jpg",
-  },
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/attachments/99f38e0d-ce8b-4958-b3c9-7f6452069919.png",
-  },
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/attachments/cbfcce06-b294-4a66-a5c9-ed86dcce69a5.png",
-  },
-  {
-    image:
-      "/media/vibe.filesafe.space/1778931020193405557/attachments/26ab2136-d794-47ac-bc6d-879c27dc36e8.png",
-  },
-];
-
-const industryRoutes = [
-  "/handwerker",
-  "/beautysalon",
-  "/gesundheitswesen",
-  "/festivals",
-  "/vereine",
-  "/textil",
-];
-
 const Index = () => {
   const { openForm } = useContactForm();
   const { t, language } = useLanguage();
@@ -130,15 +84,6 @@ const Index = () => {
       ? (deHome.faqItems as { question: string; answer: string }[])
       : [];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const industryItemsRaw = t("home", "industryItems") as any;
-  const industryItems: { title: string; description: string }[] = Array.isArray(
-    industryItemsRaw,
-  )
-    ? industryItemsRaw
-    : Array.isArray(deHome.industryItems)
-      ? (deHome.industryItems as { title: string; description: string }[])
-      : [];
 
   // Kennzahlen: nur überprüfbare Fakten (keine unbelegten Prozentangaben)
   const pickL = (t: { de: string; en: string; tr: string }) =>
@@ -191,11 +136,6 @@ const Index = () => {
     }),
   };
 
-  const industries = Array.isArray(industryItems)
-    ? industryItems
-        .slice(0, 6)
-        .map((item, i) => ({ ...item, ...industryMedia[i] }))
-    : [];
 
   useEffect(() => {
     fetch("/api/geo")
@@ -257,13 +197,10 @@ const Index = () => {
       {/* Portfolio: gebaute Websites */}
       <PortfolioSection />
 
-      {/* Trust Seals */}
-      <TrustSeals />
 
-      <ChatHighlightSection />
 
       {/* Stats Section */}
-      <section className="relative overflow-hidden bg-black py-24 text-center text-white md:py-32">
+      <section className="relative overflow-hidden bg-background py-20 text-center text-white md:py-24">
         <FadeIn className="container mx-auto px-4">
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">
             {t("home", "whyTitle")}
@@ -271,35 +208,23 @@ const Index = () => {
           <h3 className="mb-8 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
             {t("home", "whySubtitle")}
           </h3>
-          <p className="mx-auto mb-16 max-w-3xl text-lg text-white/60">
+          <p className="mx-auto mb-12 max-w-3xl text-lg text-white/60">
             {t("home", "whyDesc")}
           </p>
 
-          <div className="grid gap-8 md:grid-cols-4">
-            {statItems.map((stat, i) => (
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {[...statItems, stat5Item].map((stat, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:bg-white/[0.06]"
+                className={`flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:bg-white/[0.06] ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
               >
-                <div className="keynote-gradient-text mb-2 text-6xl font-semibold tracking-tighter lg:text-8xl">
+                <div className="keynote-gradient-text mb-1 text-5xl font-semibold tracking-tighter lg:text-6xl">
                   <AnimatedCounter value={stat.value} />
                 </div>
-                <div className="text-lg font-medium text-white">{stat.label}</div>
-                <p className="mt-2 text-sm text-white/55">
-                  {stat.description}
-                </p>
+                <div className="font-medium text-white">{stat.label}</div>
+                <p className="mt-1 text-xs text-white/55">{stat.description}</p>
               </div>
             ))}
-          </div>
-
-          <div className="mx-auto mt-16 inline-flex flex-col items-center justify-center p-8">
-            <div className="keynote-gradient-text mb-2 text-7xl font-semibold tracking-tighter lg:text-9xl">
-              <AnimatedCounter value={stat5Item.value} />
-            </div>
-            <div className="text-xl font-medium text-white">{stat5Item.label}</div>
-            <p className="mt-2 text-white/55">
-              {stat5Item.description}
-            </p>
           </div>
         </FadeIn>
       </section>
@@ -308,128 +233,17 @@ const Index = () => {
 
       <LogoSliderSection />
 
-      <CrmPartnerSection />
 
       <WebsiteNovaSection />
 
-      <ReferencesSection />
 
       <QuizSection />
 
-      {/* ROI Calculator Section */}
-      <RoiCalculator />
 
-      {/* Reviews Automation Section */}
-      <section className="py-16 md:py-20 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid items-center gap-8 md:gap-12 md:grid-cols-2">
-            <FadeIn direction="left">
-              <h2 className="mb-4 text-2xl font-bold text-primary md:text-4xl">
-                {t("home", "reviewsTitle")}
-              </h2>
-              <p className="mb-6 md:mb-8 text-base md:text-lg text-muted-foreground">
-                {t("home", "reviewsDesc")}
-              </p>
-              <Button
-                size="lg"
-                className="h-auto min-h-[3.5rem] py-3 px-4 md:px-8 text-base md:text-lg font-semibold shadow-xl w-full sm:w-auto whitespace-normal text-center hover:scale-105 transition-transform duration-300"
-                onClick={() =>
-                  openForm("contact", "Startseite - Automatisierung")
-                }
-              >
-                {t("home", "reviewsBtn")}
-              </Button>
-            </FadeIn>
-            <FadeIn
-              className="flex flex-col items-center justify-center mt-8 md:mt-0 p-8 rounded-3xl bg-muted/20 hover:bg-muted/40 transition-colors duration-500 hover:shadow-xl"
-              direction="right"
-            >
-              <div className="flex items-center gap-2 text-5xl md:text-6xl font-bold text-primary">
-                Google
-              </div>
-              <div className="mt-4 flex items-center gap-4">
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <svg
-                      key={star}
-                      className="h-6 w-6 md:h-8 md:w-8 text-yellow-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="bg-muted/30 py-20">
-        <div className="container mx-auto px-4">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              {t("home", "indTitle")}
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              {t("home", "indDesc")}
-            </p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {industries.map((industry, i) => (
-              <Card
-                key={i}
-                className="overflow-hidden border-none shadow-lg group hover:-translate-y-2 transition-transform duration-500 flex flex-col"
-              >
-                <div className="relative aspect-video overflow-hidden bg-muted shrink-0">
-                  <img
-                    src={industry.image}
-                    alt={industry.title}
-                    className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-                </div>
-                <CardContent
-                  className="p-6 text-center bg-card group-hover:bg-primary/5 transition-colors duration-500 cursor-pointer flex-1 flex flex-col justify-center"
-                  onClick={() => {
-                    window.location.href = industryRoutes[i] || "/";
-                  }}
-                >
-                  <h3 className="mb-2 text-xl font-bold group-hover:text-primary transition-colors">
-                    {industry.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {industry.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <p className="mb-6 font-semibold">{t("home", "indFooterDesc")}</p>
-            <Button
-              size="lg"
-              className="h-auto min-h-[3.5rem] py-3 px-4 sm:px-8 text-base sm:text-lg font-semibold shadow-xl w-full sm:w-auto whitespace-normal"
-              onClick={() =>
-                openForm("contact", "Startseite - Branchen Footer")
-              }
-            >
-              {t("home", "indBtn")}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Testimonials */}
+      {/* Zusagen statt erfundener Bewertungen */}
       <PromiseSection />
 
-      {/* 250€ Weiterempfehlungs-Bonus */}
-      <ReferralBonusSection />
 
-      {/* E-Book Lead Magnet & Before/After Slider */}
-      <LeadMagnetSection />
 
       {/* FAQ Section */}
       <section id="faqs" className="py-20 bg-background">

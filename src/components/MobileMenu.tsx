@@ -81,7 +81,7 @@ export const MobileMenu = () => {
   };
 
   return (
-    <div className="lg:hidden border-t bg-background h-[calc(100vh-5.5rem)] overflow-y-auto animate-in slide-in-from-top duration-300">
+    <div className="xl:hidden border-t bg-background h-[calc(100vh-5.5rem)] overflow-y-auto animate-in slide-in-from-top duration-300">
       <div className="flex flex-col gap-2 py-3 px-3 pb-24">
         {/* Social row — compact */}
         <div className="flex items-center gap-2">

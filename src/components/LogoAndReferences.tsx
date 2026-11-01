@@ -164,7 +164,7 @@ const logos = [
   },
   // Neue Kundenlogos (Lilyum Cosmetics, PureSkin Bochum, Burek Bar, Änderungsatelier Eving, Münster Nähstube)
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/b0d176a1-eb5e-4139-953f-f6ebd8af6d1a.png",
+    src: "/media/kunden/lilyum-cosmetics.jpg",
     alt: "Lilyum Cosmetics Parfum",
   },
   {
@@ -208,7 +208,7 @@ export const LogoSliderSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className={`w-auto object-contain max-w-none rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 ${
+              className={`w-auto object-contain max-w-none rounded-xl bg-white p-2 shadow-sm hover:scale-105 transition-transform duration-300 ${
                 (logo as { customClass?: string }).customClass || "h-24 md:h-40"
               }`}
             />
@@ -224,7 +224,7 @@ export const LogoSliderSection = () => {
               key={i}
               src={logo.src}
               alt={logo.alt}
-              className={`w-auto object-contain max-w-none rounded-xl shadow-sm hover:scale-105 transition-transform duration-300 ${
+              className={`w-auto object-contain max-w-none rounded-xl bg-white p-2 shadow-sm hover:scale-105 transition-transform duration-300 ${
                 (logo as { customClass?: string }).customClass || "h-24 md:h-40"
               }`}
             />

@@ -3,6 +3,7 @@ import { db, newId } from "../../server/db";
 import { clean, isEmail, json } from "../../server/http";
 import { formatBerlin, isFreeSlot } from "../../server/slots";
 import { notifyOwner, sendMail } from "../../server/mail";
+import { activeSocialLinks } from "../../server/socialLinks";
 import { COMPANY } from "../../server/config";
 
 // Bucht einen Termin. Jeder Termin ist nur einmal buchbar (UNIQUE in der Datenbank).
@@ -47,7 +48,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
       env,
       email,
       `Ihr Termin bei ${COMPANY.name}: ${when}`,
-      `Hallo ${firstName},\n\nvielen Dank für Ihre Buchung. Ihr kostenloses Erstgespräch ist eingetragen für:\n\n${when}\n\nWir melden uns zum vereinbarten Zeitpunkt bei Ihnen. Falls Sie den Termin verschieben möchten, antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per WhatsApp: https://wa.me/4915207595260\n\nViele Grüße\n${COMPANY.name}`,
+      `Hallo ${firstName},\n\nvielen Dank für Ihre Buchung. Ihr kostenloses Erstgespräch ist eingetragen für:\n\n${when}\n\nWir melden uns zum vereinbarten Zeitpunkt bei Ihnen. Falls Sie den Termin verschieben möchten, antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per WhatsApp: https://wa.me/4915207595260\n\nViele Grüße\n${COMPANY.name}\n\nFolgen Sie uns: ${activeSocialLinks().map((l) => `${l.name} ${l.url}`).join(" · ")}`,
       COMPANY.email,
     ),
   ]);

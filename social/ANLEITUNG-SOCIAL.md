@@ -18,6 +18,15 @@ Alle Texte (Stichwörter, Begrüßungsfragen, Antworten) änderst du in **`serve
 
 ## Teil A – Instagram-Autopilot einschalten (einmalig, ca. 20 Minuten)
 
+**0. Instagram auf „professionelles Konto“ umstellen (kostenlos, 2 Minuten) – ohne das geht nichts**
+Mit einem normalen privaten Instagram-Konto erlaubt Meta keine Automatisierung (kein Posten über Make, keine Auto-Antworten).
+1. Instagram-App → Profil → ☰ → **Einstellungen und Aktivität** → **Kontotyp und Tools** → **Zu professionellem Konto wechseln**.
+2. Kategorie z. B. „Webdesigner“ oder „Softwareunternehmen“ → **Unternehmen** wählen.
+3. Am Ende **mit Facebook-Seite verbinden**: Hast du noch keine Facebook-Seite, dort direkt „Neue Facebook-Seite erstellen“ (Name: PS Professional Solutions).
+   Prüfen: facebook.com → deine Seite → Einstellungen → **Verknüpfte Konten → Instagram** zeigt dein Konto.
+
+Deine Beiträge, Follower und Nachrichten bleiben dabei alle erhalten.
+
 Voraussetzung: Der Instagram-Feed auf der Website läuft schon (`INSTAGRAM_TOKEN` ist eingetragen).
 
 **1. Nachrichten in Instagram erlauben**
@@ -41,7 +50,7 @@ Cloudflare → Workers & Pages → `ps-website` → Einstellungen → Variablen 
 |---|---|
 | `INSTAGRAM_APP_SECRET` | Meta-App → Instagram → API-Einrichtung → **„Instagram-App-Geheimschlüssel“** (anzeigen, kopieren) |
 | `INSTAGRAM_VERIFY_TOKEN` | ein beliebiges Wort, das du dir ausdenkst, z. B. `ps-webhook-2026-xyz` |
-| `MAKE_SECRET` | ein langes zufälliges Passwort (z. B. aus einem Passwort-Generator, 30+ Zeichen) |
+| `MAKE_SECRET` | genau der Wert, den Claude dir im Chat gegeben hat (steht auch im Make-Szenario „Social 1“ im Header `x-make-secret`) |
 
 Dann **Deployments → … → Retry deployment**.
 
@@ -67,76 +76,43 @@ in diesem Chat für 12 Stunden (einstellbar in `socialConfig.ts`).
 
 ---
 
-## Teil B – Make.com-Szenarien
+## Teil B – Make.com (ist eingerichtet)
 
-(Die Modulnamen in Make können je nach Version leicht anders heißen – einfach den App-Namen suchen, z. B. „Instagram for Business“.)
+Dein Make-Konto ist im **kostenlosen Tarif**: höchstens 2 aktive Szenarien und 1.000 Operationen im Monat.
+Deshalb gibt es genau zwei Szenarien, die zusammen nur ca. 100–200 Operationen im Monat brauchen.
 
-In jedem Szenario rufst du die KI deiner Website so auf (Modul **HTTP → Make a request**):
+### Szenario „Social 1 – Content-Woche planen (jeden Sonntag)“ ✅ angelegt
+Jeden Sonntag um 17 Uhr ruft Make deine Website auf. Die KI plant 7 Videos für die Woche, schreibt alle Texte
+(Instagram, Facebook, TikTok, LinkedIn, YouTube, Skript, Bildtext) und schickt dir alles per **E-Mail**.
+Eine Kopie steht im Admin-Bereich unter **Anfragen** (Formular „content-plan“).
+Kosten: 1 Operation pro Woche.
 
-- URL: `https://ps-professional-solutions.de/api/social-ai`
-- Method: `POST`
-- Headers: `x-make-secret` = dein `MAKE_SECRET`
-- Body type: `Raw`, Content type: `JSON (application/json)`
-- **Parse response: Ja**
+**Wird eingeschaltet, sobald `MAKE_SECRET` in Cloudflare eingetragen ist** (Teil A, Schritt 3).
+Für die E-Mail muss `RESEND_API_KEY` eingetragen sein (siehe ANLEITUNG.md) – sonst steht der Plan nur im Admin-Bereich.
 
-### B0 · Begrüßungsfragen aktivieren (einmal ausführen)
-Neues Szenario, nur ein HTTP-Modul mit Body:
-```json
-{ "action": "setup-icebreakers" }
-```
-„Run once“ klicken. Ab jetzt sieht jeder, der deinen Instagram-Chat zum ersten Mal öffnet, 4 fertige Fragen
-zum Antippen („Was kostet eine Website bei euch? 💻“ …) und bekommt sofort die passende Antwort.
-Nach Änderungen an `ICE_BREAKERS` in `socialConfig.ts` einfach nochmal ausführen.
+### Szenario „Social 2 – Video auf alle Kanäle“ (wird gebaut, sobald die Konten verbunden sind)
+So funktioniert es für dich:
+1. Video nach Skript aufnehmen (Hochformat 9:16, 15–60 Sekunden).
+2. In der **Dropbox-App** in den Ordner **`Social-Autopost`** hochladen – Dateiname beginnt mit der Nummer aus der E-Mail, z. B. `3.mp4`.
+   (Ohne Nummer geht auch: `Preise für Friseure.mp4` – dann schreibt die KI die Texte aus dem Dateinamen.)
+3. Make holt das Video alle paar Stunden ab und postet automatisch:
+   **Instagram-Reel** (+ erster Kommentar), **Facebook-Reel**, **YouTube Short**, **LinkedIn-Video** auf deiner Unternehmensseite.
+4. Das Video wird danach in den Unterordner `Social-Autopost/gepostet` verschoben.
 
-### B1 · Content-Woche automatisch (jeden Sonntag)
-Du bekommst jeden Sonntag eine fertige Liste mit 7 Beiträgen inkl. Video-Skript und allen Texten.
+Warum Dropbox und nicht Google Drive? Instagram kann Videos nicht direkt aus Google Drive laden – aus Dropbox schon.
 
-1. **Schedule**: jeden Sonntag 18:00
-2. **HTTP** → Body: `{ "action": "plan", "days": 7 }`
-3. **Iterator** über `data.posts`
-4. **HTTP** → Body:
-   ```json
-   { "action": "captions", "topic": "{{3.topic}}", "details": "{{3.details}}", "format": "{{3.format}}" }
-   ```
-5. **Google Sheets → Add a Row** in die Tabelle **„Redaktionsplan“** mit den Spalten:
-   `Datum | Uhrzeit | Format | Thema | Video-Skript | Bildtext | Instagram | Facebook | TikTok | LinkedIn | YouTube-Titel | YouTube-Beschreibung | Erster Kommentar | Video-Link | Status`
-   Status = `Video fehlt`. Datum = `{{addDays(now; 3.day)}}`.
-6. Optional **E-Mail**: „Deine Content-Woche ist fertig“ mit Link zur Tabelle.
+**TikTok** kann der kostenlose Make-Tarif nicht posten (TikTok gibt die Schnittstelle nur an große Partner).
+Tipp: In der TikTok-App unter „Hochladen“ das gleiche Video nehmen und den TikTok-Text aus der Sonntags-E-Mail einfügen (30 Sekunden).
 
-Du nimmst die Videos nach dem Skript auf, lädst sie in Google Drive hoch, trägst den Link in **Video-Link**
-ein und setzt Status auf **`bereit`**.
+**Konten verbinden (einmalig):** Den Link aus dem Chat öffnen und nacheinander Facebook/Instagram, YouTube, LinkedIn und Dropbox anmelden.
+Bei Facebook unbedingt **deine Seite und dein Instagram-Konto anhaken** und alle Rechte erlauben.
 
-### B2 · Ein Video → alle Kanäle (läuft alle 15 Minuten)
-1. **Google Sheets → Search Rows**: Status = `bereit` UND Datum/Uhrzeit ≤ jetzt
-2. **Google Drive → Get a Share Link** (bzw. Datei öffentlich freigeben) für das Video – Instagram, TikTok und YouTube brauchen eine öffentliche Adresse.
-3. **Router** mit 5 Wegen:
-   - **Instagram for Business → Create a Reel Post** – Video-URL, Caption = Spalte *Instagram*.
-     Danach **Instagram for Business → Create a Comment** mit *Erster Kommentar*.
-   - **Facebook Pages → Upload a Video** – Beschreibung = *Facebook*.
-   - **LinkedIn → Create a Company Video/Image Post** (deine Unternehmensseite) – Text = *LinkedIn*.
-   - **YouTube → Upload a Video** – Titel = *YouTube-Titel*, Beschreibung = *YouTube-Beschreibung*, Kategorie „People & Blogs“, Sichtbarkeit „Öffentlich“. Hochformat-Video unter 60 Sekunden wird automatisch ein Short.
-   - **TikTok**: Die direkte TikTok-Schnittstelle ist für kleine Konten kaum zu bekommen. Am einfachsten über einen Planungsdienst, den Make unterstützt (z. B. **Metricool** oder **Buffer**) – dort einmal TikTok verbinden, in Make das Modul „Create post“ nutzen, Text = *TikTok*. Alternative ohne Zusatzdienst: Make schickt dir Video + TikTok-Text per E-Mail/Telegram, du postest in 20 Sekunden selbst.
-4. **Google Sheets → Update a Row**: Status = `gepostet`.
+### Begrüßungsfragen im Instagram-Chat
+Werden automatisch eingeschaltet, sobald Teil A fertig ist (einmaliger Aufruf von `{"action":"setup-icebreakers"}` – erledigt Claude).
 
-Tipp: Bei jedem Weg im Router einen **Filter** setzen, falls ein Beitrag nicht überall hin soll (z. B. Spalte „Kanäle“ enthält `linkedin`).
-
-### B3 · Website-Neuigkeit → LinkedIn + Facebook (über GitHub)
-Make ist schon mit GitHub verbunden – das nutzen wir:
-1. **GitHub → Watch Commits** im Repository `wabble1508-dotcom/ps-website`, Branch `main`
-2. **Filter**: Commit-Nachricht enthält `#social`
-3. **HTTP** → Body: `{ "action": "captions", "topic": "{{1.message}}", "link": "https://ps-professional-solutions.de" }`
-4. **LinkedIn → Create a Company Text Post** (Text = `linkedin`) und **Facebook Pages → Create a Post** (Text = `facebook`)
-
-Wenn z. B. eine neue Branchen-Seite online geht, schreibst du in die Commit-Nachricht
-„Neue Seite für Physiotherapeuten #social“ – der Rest passiert automatisch.
-
-### B4 · Wochenreport (jeden Montag)
-1. **Schedule** Montag 8:00
-2. **Instagram for Business → List Media** (letzte 7 Tage) → **Get Media Insights** (Reichweite, Likes, Kommentare, Speicherungen)
-3. **Google Sheets → Add a Row** in Tabelle „Statistik“
-4. **E-Mail** an dich mit den 3 besten Beiträgen – davon dann mehr machen.
-
----
+### Für später (wenn du auf einen bezahlten Make-Tarif wechselst)
+- Website-Neuigkeit → LinkedIn + Facebook: GitHub „Watch Commits“, Filter `#social`, dann `{"action":"captions","topic":"{{commit-nachricht}}"}` und posten.
+- Wochenreport: Instagram „Get post insights“ → E-Mail an dich mit den besten Beiträgen.
 
 ## Teil C – Begrüßungsnachrichten in den Apps (ohne Technik, 10 Minuten)
 
@@ -170,9 +146,9 @@ Auf der Website sind die WhatsApp-Knöpfe schon überall mit vorgeschriebener Na
 ---
 
 ## Was du jetzt noch machen musst – Checkliste
-- [ ] Teil A, Schritte 1–6 (Instagram-Autopilot)
-- [ ] B0 einmal ausführen (Begrüßungsfragen)
-- [ ] Google-Tabelle „Redaktionsplan“ anlegen, B1 + B2 in Make bauen
-- [ ] In Make verbinden: Instagram for Business, Facebook Pages, LinkedIn, YouTube, Google Sheets, Google Drive (+ Metricool/Buffer für TikTok)
+- [ ] Teil A, Schritt 0: Instagram auf professionelles Konto + mit Facebook-Seite verbinden
+- [ ] Teil A, Schritte 1–6 (Meta-App, Webhook, Secrets in Cloudflare)
+- [ ] Dropbox-App installieren (kostenlos) und Konten über den Make-Link verbinden
+- [ ] Claude Bescheid geben → Szenario 2 wird gebaut, alles wird eingeschaltet
 - [ ] Teil C in der Meta Business Suite eintragen
 - [x] Datenschutzerklärung ergänzt (Abschnitt 8 und 9) – bitte einmal durchlesen

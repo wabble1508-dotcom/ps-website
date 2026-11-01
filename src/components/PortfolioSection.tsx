@@ -48,7 +48,7 @@ const BrowserFrame = ({ children, url }: { children: React.ReactNode; url: strin
       <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-      <span className="ml-3 truncate rounded-md bg-white/10 px-3 py-0.5 text-xs text-white/60">{url}</span>
+      <span className="ml-3 truncate rounded-md bg-white/10 px-3 py-0.5 text-xs text-white/75">{url}</span>
     </div>
     {children}
   </div>
@@ -60,12 +60,12 @@ export const PortfolioSection = () => {
   const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
 
   return (
-    <section id="portfolio" className="scroll-mt-24 bg-background pb-24 pt-8 text-white md:pb-32">
+    <section id="portfolio" className="dark scroll-mt-24 bg-background pb-24 pt-8 text-white md:pb-32">
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-12 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{pick(UI.kicker)}</span>
           <h2 className="mt-3 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">{pick(UI.title)}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">{pick(UI.subtitle)}</p>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/75">{pick(UI.subtitle)}</p>
         </FadeIn>
         <div className="grid gap-10 md:grid-cols-2">
           {PROJECTS.map((p) => (
@@ -84,7 +84,7 @@ export const PortfolioSection = () => {
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-xl font-semibold text-white group-hover:text-[#7ee3ee]">{p.name}</h3>
-                    <p className="text-sm text-white/55">{pick(p.type)}</p>
+                    <p className="text-sm text-white/75">{pick(p.type)}</p>
                     <div className="mt-2 flex flex-wrap gap-1.5" data-no-translate>
                       {p.tags.map((tag) => (
                         <span key={tag} className="rounded-full border border-white/15 px-2.5 py-0.5 text-xs font-medium text-white/70">
@@ -112,7 +112,7 @@ export const PortfolioSection = () => {
             </span>
             <span className="flex-1">
               <span className="block text-lg font-semibold text-white">{pick(UI.nextTitle)}</span>
-              <span className="block text-sm text-white/55">{pick(UI.nextText)}</span>
+              <span className="block text-sm text-white/75">{pick(UI.nextText)}</span>
             </span>
             <span className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black">{pick(UI.nextBtn)}</span>
           </button>

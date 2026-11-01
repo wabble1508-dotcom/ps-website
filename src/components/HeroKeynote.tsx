@@ -29,7 +29,7 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
   const second = comma > 0 ? title.slice(comma + 1).trim() : "";
 
   return (
-    <section className="relative isolate overflow-hidden bg-background pb-10 pt-20 text-white md:pt-28">
+    <section className="dark relative isolate overflow-hidden bg-background pb-10 pt-20 text-white md:pt-28">
       {/* Lichtverläufe */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="keynote-blob left-[-10%] top-[-10%] h-[520px] w-[520px] bg-[#1e9fae]" />
@@ -61,7 +61,7 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
               <MapPin className="h-4 w-4 text-[#7ee3ee]" /> {cityNote}
             </div>
           )}
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/65 md:text-xl">{subtitle}</p>
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/80 md:text-xl">{subtitle}</p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <button
               type="button"
@@ -76,7 +76,7 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>
-          <p className="mt-6 text-sm text-white/45">{priceNote}</p>
+          <p className="mt-6 text-sm text-white/70">{priceNote}</p>
         </motion.div>
 
         {/* Geräte-Vorschau */}
@@ -88,7 +88,7 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
                   <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
                   <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-                  <span className="ml-3 rounded-md bg-white/10 px-3 py-0.5 text-[11px] text-white/60">matou-kfz-express.de</span>
+                  <span className="ml-3 rounded-md bg-white/10 px-3 py-0.5 text-[11px] text-white/75">matou-kfz-express.de</span>
                 </div>
                 <img
                   src="/media/portfolio/matou.jpg"

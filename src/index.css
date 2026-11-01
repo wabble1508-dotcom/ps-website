@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 200 50% 15%;
 
-    --primary: 183 75% 36%;
+    --primary: 183 78% 29%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 209 51% 21%;
@@ -49,14 +49,14 @@ All colors MUST be HSL.
     --popover: 205 25% 8%;
     --popover-foreground: 200 20% 96%;
 
-    --primary: 183 75% 40%;
+    --primary: 183 78% 30%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 205 30% 8%;
     --secondary-foreground: 200 20% 96%;
 
     --muted: 205 20% 11%;
-    --muted-foreground: 200 10% 68%;
+    --muted-foreground: 200 12% 78%;
 
     --accent: 186 70% 45%;
     --accent-foreground: 0 0% 100%;
@@ -64,7 +64,7 @@ All colors MUST be HSL.
     --destructive: 0 62.8% 45%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 205 20% 15%;
+    --border: 205 18% 20%;
     --input: 205 20% 17%;
     --ring: 186 70% 45%;
   }
@@ -162,6 +162,9 @@ All colors MUST be HSL.
   .dark :is(.text-slate-800, .text-slate-900, .text-gray-800, .text-gray-900, .text-black):not(:is(a, button, span).bg-white):not(:is(a, button, span).bg-white *) {
     color: hsl(var(--foreground));
   }
+  /* Türkis als Schriftfarbe auf dunklem Grund heller, Warnfarbe besser lesbar */
+  .dark .text-primary { color: hsl(183 65% 62%); }
+  .dark .text-destructive { color: hsl(0 85% 72%); }
   /* Logo in Kopf- und Fußzeile weiß */
   .dark header img[alt$="Logo"] { filter: brightness(0) invert(1); }
 }

@@ -200,7 +200,7 @@ const Index = () => {
 
 
       {/* Stats Section */}
-      <section className="relative overflow-hidden bg-background py-20 text-center text-white md:py-24">
+      <section className="dark relative overflow-hidden bg-background py-20 text-center text-white md:py-24">
         <FadeIn className="container mx-auto px-4">
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">
             {t("home", "whyTitle")}
@@ -208,7 +208,7 @@ const Index = () => {
           <h3 className="mb-8 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
             {t("home", "whySubtitle")}
           </h3>
-          <p className="mx-auto mb-12 max-w-3xl text-lg text-white/60">
+          <p className="mx-auto mb-12 max-w-3xl text-lg text-white/75">
             {t("home", "whyDesc")}
           </p>
 
@@ -222,7 +222,7 @@ const Index = () => {
                   <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="font-medium text-white">{stat.label}</div>
-                <p className="mt-1 text-xs text-white/55">{stat.description}</p>
+                <p className="mt-1 text-xs text-white/75">{stat.description}</p>
               </div>
             ))}
           </div>

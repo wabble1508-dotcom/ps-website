@@ -395,7 +395,7 @@ export const QuizSection = () => {
   const totalSteps = questions.length;
 
   return (
-    <section className="bg-secondary py-20 text-white overflow-hidden">
+    <section className="dark bg-secondary py-20 text-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-5xl">
         <FadeIn className="text-center mb-10">
           <div className="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-bold text-primary mb-4 border border-primary/30">
@@ -593,7 +593,7 @@ export const QuizSection = () => {
                 </div>
 
                 {step === totalSteps && (
-                  <p className="text-center text-white/50 text-sm mt-6 flex items-center justify-center gap-1.5">
+                  <p className="text-center text-white/70 text-sm mt-6 flex items-center justify-center gap-1.5">
                     <ArrowRight className="w-4 h-4" />
                     {pick(language, {
                       de: "Letzter Schritt – Ergebnis anzeigen",

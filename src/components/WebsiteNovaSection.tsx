@@ -76,7 +76,7 @@ export const WebsiteNovaSection = () => {
   const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
 
   return (
-    <section className="relative overflow-hidden bg-[#13111f] py-20 text-white md:py-24">
+    <section className="dark relative overflow-hidden bg-[#13111f] py-20 text-white md:py-24">
       <div className="pointer-events-none absolute -right-32 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-[#6d3df5]/40 blur-[120px]" />
       <div className="container relative mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-[1.25fr_1fr]">
         <FadeIn>
@@ -90,7 +90,7 @@ export const WebsiteNovaSection = () => {
               <div key={title.de} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
                 <Icon className="mb-2 h-5 w-5 text-[#b49cff]" />
                 <p className="font-semibold">{pick(title)}</p>
-                <p className="mt-1 text-sm text-white/65">{pick(text)}</p>
+                <p className="mt-1 text-sm text-white/80">{pick(text)}</p>
               </div>
             ))}
           </div>
@@ -112,7 +112,7 @@ export const WebsiteNovaSection = () => {
               {pick(UI.more)} <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
-          <p className="mt-4 text-sm text-white/55">{pick(UI.price)}</p>
+          <p className="mt-4 text-sm text-white/75">{pick(UI.price)}</p>
         </FadeIn>
 
         {/* Handy-Vorschau mit Benachrichtigungen */}

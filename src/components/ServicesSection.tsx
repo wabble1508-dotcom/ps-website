@@ -168,7 +168,7 @@ const Tile = ({
     <h3 className={`relative font-semibold tracking-tight text-white ${big ? "text-3xl md:text-5xl" : "text-xl"}`}>
       {pick(language, service.titles)}
     </h3>
-    <p className={`relative mt-3 text-white/60 ${big ? "max-w-md text-base md:text-lg" : "text-sm"}`}>
+    <p className={`relative mt-3 text-white/75 ${big ? "max-w-md text-base md:text-lg" : "text-sm"}`}>
       {pick(language, service.descs)}
     </p>
     {children}
@@ -202,7 +202,7 @@ export const ServicesSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-background py-20 text-white md:py-28">
+    <section className="dark relative overflow-hidden bg-background py-20 text-white md:py-28">
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-14 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{labels.kicker}</span>

@@ -10,7 +10,7 @@ Antworten auf DMs und Kommentare – läuft automatisch.
 | Begrüßungsfragen beim Öffnen des Chats | Instagram (einmal eingerichtet) | 0 € |
 | Ideen + Texte für alle Kanäle | deine Website (`/api/social-ai`), aufgerufen von Make | KI-Kosten |
 | Posten auf Instagram, Facebook, LinkedIn, YouTube, TikTok | Make.com | Make-Tarif |
-| Begrüßung in WhatsApp / Facebook-Messenger | Einstellungen in den Apps (Teil C) | 0 € |
+| Begrüßung im Facebook-Messenger | Meta Business Suite (Teil C) | 0 € |
 
 Alle Texte (Stichwörter, Begrüßungsfragen, Antworten) änderst du in **`server/socialConfig.ts`**.
 
@@ -140,21 +140,17 @@ Wenn z. B. eine neue Branchen-Seite online geht, schreibst du in die Commit-Nach
 
 ## Teil C – Begrüßungsnachrichten in den Apps (ohne Technik, 10 Minuten)
 
-### WhatsApp Business (App → Einstellungen → Unternehmenstools)
-**Begrüßungsnachricht** (an alle, die zum ersten Mal schreiben):
-> Hallo 👋 schön, dass du dich meldest! Hier ist PS Professional Solutions – Websites, Apps & KI für Unternehmen.
-> Damit ich dir schnell helfen kann: Worum geht es? 1️⃣ Website 2️⃣ App/Software 3️⃣ KI-Chat/Telefon 4️⃣ Etwas anderes
-> Preise: ps-professional-solutions.de/preise
-
-**Abwesenheitsnachricht** (außerhalb Mo–Fr 9–18 Uhr):
-> Danke für deine Nachricht! 🌙 Ich bin gerade nicht am Handy und melde mich am nächsten Werktag. Schreib mir gern schon dein Anliegen – dann bin ich vorbereitet. Fragen sofort beantwortet: ps-professional-solutions.de (KI-Chat unten rechts).
-
-**Schnellantworten** (Tippen von „/“ im Chat): `/preise`, `/termin`, `/beispiele` mit den Texten aus `socialConfig.ts`.
+### WhatsApp
+Ohne WhatsApp Business gibt es keine automatische Begrüßung. Das ist aber kein Problem: Über die
+**Links mit vorgeschriebener Nachricht** (unten) weißt du sofort, worum es geht – der Kunde muss nur noch „Senden“ drücken.
+Wenn du später doch automatisch begrüßen willst: Die kostenlose App „WhatsApp Business“ kann das mit derselben Nummer.
 
 ### Facebook-Seite (Meta Business Suite → Posteingang → Automatisierungen)
-- **Sofortantwort** einschalten – Text wie die WhatsApp-Begrüßung.
+- **Sofortantwort** einschalten:
+  > Hallo 👋 schön, dass du dich meldest! Hier ist PS Professional Solutions – Websites, Apps & KI für Unternehmen. Worum geht es? 1️⃣ Website 2️⃣ App/Software 3️⃣ KI-Chat/Telefon 4️⃣ Etwas anderes. Preise: ps-professional-solutions.de/preise
 - **Häufig gestellte Fragen**: dieselben 4 Fragen wie bei Instagram (`ICE_BREAKERS` in `socialConfig.ts`) mit den Antworten von dort.
-- **Abwesenheitsnachricht**: wie oben.
+- **Abwesenheitsnachricht** (außerhalb Mo–Fr 9–18 Uhr):
+  > Danke für deine Nachricht! 🌙 Ich melde mich am nächsten Werktag. Schreib mir gern schon dein Anliegen. Sofort-Antworten gibt's im KI-Chat auf ps-professional-solutions.de
 
 ### Links mit fertig vorgeschriebener Nachricht (für Bio, Story-Links, Flyer, QR-Codes)
 Wer darauf tippt, hat die Nachricht schon im Eingabefeld – nur noch „Senden“ drücken:
@@ -178,5 +174,5 @@ Auf der Website sind die WhatsApp-Knöpfe schon überall mit vorgeschriebener Na
 - [ ] B0 einmal ausführen (Begrüßungsfragen)
 - [ ] Google-Tabelle „Redaktionsplan“ anlegen, B1 + B2 in Make bauen
 - [ ] In Make verbinden: Instagram for Business, Facebook Pages, LinkedIn, YouTube, Google Sheets, Google Drive (+ Metricool/Buffer für TikTok)
-- [ ] Teil C in WhatsApp Business und Meta Business Suite eintragen
-- [ ] Datenschutzerklärung ergänzen: Instagram-Nachrichten werden zur Beantwortung an Anthropic (USA) übermittelt
+- [ ] Teil C in der Meta Business Suite eintragen
+- [x] Datenschutzerklärung ergänzt (Abschnitt 8 und 9) – bitte einmal durchlesen

@@ -22,6 +22,7 @@ const cleanup = async (env: Env) => {
     env.DB.prepare("DELETE FROM leads WHERE form = 'bewerbung' AND created_at < ?").bind(monthsAgo(RETENTION.applications)),
     env.DB.prepare("DELETE FROM bookings WHERE slot < ?").bind(monthsAgo(RETENTION.bookings)),
     env.DB.prepare("DELETE FROM social_events WHERE created_at < ?").bind(monthsAgo(1)),
+    env.DB.prepare("DELETE FROM settings WHERE key LIKE 'ig_pause_%' AND updated_at < ?").bind(monthsAgo(1)),
   ]);
 };
 

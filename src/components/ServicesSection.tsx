@@ -158,7 +158,7 @@ const Tile = ({
     to={service.link}
     className={`group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/25 md:p-8 ${className}`}
   >
-    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#7c4dff]/0 blur-3xl transition-colors duration-700 group-hover:bg-[#7c4dff]/30" />
+    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/0 blur-3xl transition-colors duration-700 group-hover:bg-primary/30" />
     <img
       src={service.image}
       alt={pick(language, service.titles)}
@@ -202,7 +202,7 @@ export const ServicesSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+    <section className="relative overflow-hidden bg-background py-20 text-white md:py-28">
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-14 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{labels.kicker}</span>

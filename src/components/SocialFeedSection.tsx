@@ -5,10 +5,10 @@ import { FadeIn } from "@/components/FadeIn";
 import { useLanguage } from "@/components/LanguageContext";
 import { saveConsent, useConsent } from "@/lib/consent";
 import { pickPosts, SOCIAL_HIDDEN } from "@/lib/socialTopics";
+import { activeSocialLinks, PINNED_POST } from "../../server/socialLinks";
 
 // Neueste Instagram-Beiträge (passend zur Seite) und das TikTok-Profil mit den neuesten Videos.
 // Instagram-Bilder kommen über die eigene Domain (/api/social-image), TikTok erst nach Einwilligung.
-const INSTAGRAM_URL = "https://www.instagram.com/ps_professional_solutions/";
 const TIKTOK_USER = "psprofessional.solutions";
 const TIKTOK_URL = `https://www.tiktok.com/@${TIKTOK_USER}`;
 
@@ -17,19 +17,21 @@ type L = { de: string; en: string; tr: string };
 
 const UI = {
   kicker: { de: "Social Media", en: "Social media", tr: "Sosyal medya" },
-  title: { de: "Neu auf Instagram & TikTok", en: "New on Instagram & TikTok", tr: "Instagram ve TikTok'ta yeni" },
+  title: { de: "Folgen Sie uns", en: "Follow us", tr: "Bizi takip edin" },
   subtitle: {
     de: "Aktuelle Projekte, Tipps und Einblicke hinter die Kulissen – direkt aus unseren Kanälen.",
     en: "Current projects, tips and behind-the-scenes insights – straight from our channels.",
     tr: "Güncel projeler, ipuçları ve perde arkası – doğrudan kanallarımızdan.",
   },
-  followInstagram: { de: "Auf Instagram folgen", en: "Follow on Instagram", tr: "Instagram'da takip et" },
-  followTiktok: { de: "Auf TikTok folgen", en: "Follow on TikTok", tr: "TikTok'ta takip et" },
-  instagramEmpty: {
-    de: "Unsere neuesten Beiträge finden Sie auf Instagram.",
-    en: "You'll find our latest posts on Instagram.",
-    tr: "En yeni gönderilerimizi Instagram'da bulabilirsiniz.",
+
+  pinnedTitle: { de: "Unser angepinntes Video", en: "Our pinned video", tr: "Sabitlenmiş videomuz" },
+  pinnedLoad: { de: "Video laden", en: "Load video", tr: "Videoyu yükle" },
+  pinnedNotice: {
+    de: "Das Video wird von Instagram geladen. Mit Klick stimmen Sie zu, dass Daten an Meta übermittelt werden.",
+    en: "The video is loaded from Instagram. By clicking you agree that data will be transmitted to Meta.",
+    tr: "Video Instagram'dan yüklenir. Tıklayarak verilerin Meta'ya aktarılmasını kabul etmiş olursunuz.",
   },
+  pinnedOpen: { de: "Direkt auf Instagram ansehen", en: "Watch directly on Instagram", tr: "Doğrudan Instagram'da izle" },
   tiktokLoad: { de: "TikTok-Videos laden", en: "Load TikTok videos", tr: "TikTok videolarını yükle" },
   tiktokNotice: {
     de: "Unsere neuesten Videos werden von TikTok geladen. Mit Klick stimmen Sie zu, dass Daten an TikTok übermittelt werden.",
@@ -73,6 +75,40 @@ const TikTokProfile = ({ pick }: { pick: (t: L) => string }) => {
       <p className="max-w-xs text-xs text-white/70">{pick(UI.tiktokNotice)}</p>
       <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#7ee3ee] hover:underline">
         @{TIKTOK_USER}
+      </a>
+    </div>
+  );
+};
+
+const PinnedInstagram = ({ pick }: { pick: (t: L) => string }) => {
+  const { media } = useConsent();
+  if (media) {
+    return (
+      <div className="mx-auto max-w-[420px] overflow-hidden rounded-2xl border border-border bg-white">
+        <iframe
+          src={`${PINNED_POST}embed/captioned/`}
+          title="Angepinntes Instagram-Video"
+          className="h-[620px] w-full"
+          loading="lazy"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-6 text-center text-white">
+      <Instagram className="h-10 w-10" />
+      <p className="text-lg font-bold">{pick(UI.pinnedTitle)}</p>
+      <button
+        type="button"
+        onClick={() => saveConsent(true)}
+        className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black transition hover:scale-105"
+      >
+        <Play className="h-4 w-4" fill="currentColor" /> {pick(UI.pinnedLoad)}
+      </button>
+      <p className="max-w-sm text-xs text-white/85">{pick(UI.pinnedNotice)}</p>
+      <a href={PINNED_POST} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold underline">
+        {pick(UI.pinnedOpen)}
       </a>
     </div>
   );
@@ -139,37 +175,23 @@ export const SocialFeedSection = () => {
                 ))}
               </div>
             ) : (
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-2xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-6 text-center text-white"
-              >
-                <Instagram className="h-12 w-12" />
-                <p className="font-semibold">{pick(UI.instagramEmpty)}</p>
-                <p className="text-sm text-white/85">@ps_professional_solutions</p>
-              </a>
+              <PinnedInstagram pick={pick} />
             )}
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] px-5 py-2.5 text-sm font-bold text-white"
-              >
-                <Instagram className="h-4 w-4" /> {pick(UI.followInstagram)}
-              </a>
-              <a
-                href={TIKTOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 text-sm font-bold text-white"
-              >
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
-                  <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 1 1-2.59-2.59c.27 0 .53.04.77.12V9.77a5.7 5.7 0 1 0 4.91 5.63V9.08a7.34 7.34 0 0 0 4.3 1.38V7.37a4.28 4.28 0 0 1-3.24-1.55z" />
-                </svg>
-                {pick(UI.followTiktok)}
-              </a>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {activeSocialLinks().map((link) => (
+                <a
+                  key={link.id}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition hover:-translate-y-0.5 hover:border-primary"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill={link.color === "#000000" ? "currentColor" : link.color} aria-hidden="true">
+                    <path fillRule="evenodd" clipRule="evenodd" d={link.path} />
+                  </svg>
+                  {link.name}
+                </a>
+              ))}
             </div>
           </div>
           <TikTokProfile pick={pick} />

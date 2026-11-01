@@ -106,7 +106,7 @@ export const IndustryPartnerSlider = ({
               key={idx}
               src={logo}
               alt={logoName(logo)}
-              className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl shadow-sm"
+              className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl bg-white p-2 shadow-sm"
             />
           ))}
         </div>
@@ -119,7 +119,7 @@ export const IndustryPartnerSlider = ({
               key={idx}
               src={logo}
               alt={logoName(logo)}
-              className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl shadow-sm"
+              className="h-24 md:h-40 w-auto object-contain max-w-none rounded-xl bg-white p-2 shadow-sm"
             />
           ))}
         </div>

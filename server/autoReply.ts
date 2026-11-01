@@ -2,6 +2,8 @@
 // Texte auf Deutsch, Englisch und Türkisch (alle anderen Sprachen bekommen Englisch).
 // Hier können Texte, Links und nächste Schritte je Anliegen angepasst werden.
 
+import { activeSocialLinks } from "./socialLinks";
+
 const SITE = "https://ps-professional-solutions.de";
 const WHATSAPP = "https://wa.me/4915207595260";
 
@@ -164,6 +166,7 @@ const UI = {
   },
   whatsapp: { de: "Oder schreiben Sie uns per WhatsApp:", en: "Or message us on WhatsApp:", tr: "Ya da bize WhatsApp'tan yazın:" },
   regards: { de: "Viele Grüße\nPankaj Mondjal\nPS Professional Solutions", en: "Best regards\nPankaj Mondjal\nPS Professional Solutions", tr: "Saygılarımızla\nPankaj Mondjal\nPS Professional Solutions" },
+  follow: { de: "Folgen Sie uns", en: "Follow us", tr: "Bizi takip edin" },
   footer: {
     de: "Diese E-Mail wurde automatisch versendet, weil Sie das Kontaktformular auf ps-professional-solutions.de ausgefüllt haben. Sie können einfach auf diese E-Mail antworten.",
     en: "This email was sent automatically because you filled in the contact form on ps-professional-solutions.de. You can simply reply to this email.",
@@ -196,6 +199,8 @@ export const autoReply = (topicId: string, language: string, name: string) => {
     "",
     t(UI.regards),
     "",
+    `${t(UI.follow)}: ${activeSocialLinks().map((l) => `${l.name} ${l.url}`).join(" · ")}`,
+    "",
     "—",
     t(UI.footer),
   ].join("\n");
@@ -218,6 +223,10 @@ export const autoReply = (topicId: string, language: string, name: string) => {
 <p style="margin:0 0 20px">${button(bookLink, t(UI.book), "#1e9fae")}${button(link, t(topic.linkLabel), "#143642")}</p>
 <p style="margin:0 0 20px">${esc(t(UI.whatsapp))} <a href="${WHATSAPP}" style="color:#1e9fae;font-weight:700">WhatsApp</a></p>
 <p style="margin:0;white-space:pre-line">${esc(t(UI.regards))}</p>
+<p style="margin:24px 0 6px;font-size:13px;color:#5b7480">${esc(t(UI.follow))}</p>
+<p style="margin:0">${activeSocialLinks()
+    .map((l) => `<a href="${l.url}" style="display:inline-block;margin-right:8px;text-decoration:none"><img src="${SITE}/media/social/${l.id}.png" width="32" height="32" alt="${l.name}" style="display:block;border:0;border-radius:50%"></a>`)
+    .join("")}</p>
 </td></tr>
 <tr><td style="padding:16px 32px;background:#f4f8f9;font-size:12px;color:#5b7480;line-height:1.5">${esc(t(UI.footer))}<br>PS Professional Solutions · Lindenhorster Str. 185 · 44339 Dortmund · <a href="${SITE}" style="color:#5b7480">ps-professional-solutions.de</a></td></tr>
 </table></td></tr></table></body></html>`;

@@ -43,7 +43,7 @@ const UI = {
 };
 
 const BrowserFrame = ({ children, url }: { children: React.ReactNode; url: string }) => (
-  <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#121214] shadow-[0_30px_80px_-30px_rgba(124,77,255,0.5)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/30">
+  <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#121214] shadow-[0_30px_80px_-30px_rgba(30,159,174,0.45)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/30">
     <div className="flex items-center gap-2 border-b border-white/10 bg-[#1c1c1f] px-4 py-2.5">
       <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
@@ -60,7 +60,7 @@ export const PortfolioSection = () => {
   const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
 
   return (
-    <section id="portfolio" className="scroll-mt-24 bg-black pb-24 pt-8 text-white md:pb-32">
+    <section id="portfolio" className="scroll-mt-24 bg-background pb-24 pt-8 text-white md:pb-32">
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-12 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{pick(UI.kicker)}</span>

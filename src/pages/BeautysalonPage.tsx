@@ -4,7 +4,7 @@ import { useLanguage } from "@/components/LanguageContext";
 
 // Logos der Partner-Salons (in allen Sprachen gleich)
 const PARTNER_LOGOS = [
-  "/media/vibe.filesafe.space/1778931020193405557/attachments/b0d176a1-eb5e-4139-953f-f6ebd8af6d1a.png", // Lilyum Cosmetics
+  "/media/kunden/lilyum-cosmetics.jpg", // Lilyum Cosmetics
   "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.png", // PureSkin Bochum
   "/media/vibe.filesafe.space/1778931020193405557/attachments/5ec2ed97-535c-4ec2-8c6b-c5b459c2f643.jpg",
   "/media/vibe.filesafe.space/1778931020193405557/attachments/1581d816-62fb-42c0-934a-b764b6c059a5.png",

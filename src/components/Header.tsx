@@ -146,7 +146,7 @@ export const Header = () => {
               variant="ghost"
               size="sm"
               onClick={() => setSearchOpen(true)}
-              className="hidden lg:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
+              className="hidden xl:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
             >
               <Search className="h-3.5 w-3.5" />
               {language === "de" ? "SUCHEN" : "SEARCH"}
@@ -157,7 +157,7 @@ export const Header = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="hidden lg:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
+                  className="hidden xl:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
                 >
                   <Globe className="h-3.5 w-3.5" />
                   {language.toUpperCase()}
@@ -209,7 +209,7 @@ export const Header = () => {
               variant="ghost"
               size="sm"
               onClick={toggleDarkMode}
-              className="hidden lg:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
+              className="hidden xl:flex items-center gap-2 text-xs font-bold tracking-widest text-foreground hover:text-primary-foreground hover:bg-primary transition-all border border-border/40 hover:border-primary/20 rounded-full px-3 h-8"
               aria-label="Toggle dark mode"
             >
               {isDarkMode ? (
@@ -222,12 +222,12 @@ export const Header = () => {
 
           {/* Trennlinie zwischen Tools (Logo, Suche, Sprache, Dark Mode) und Hauptnavigation */}
           <div
-            className="hidden lg:block h-6 w-px bg-border/60 mx-1 shrink-0"
+            className="hidden xl:block h-6 w-px bg-border/60 mx-1 shrink-0"
             aria-hidden="true"
           />
 
           {/* Tablet compact nav — visible between md and lg */}
-          <nav className="hidden md:flex lg:hidden items-center gap-1.5 ml-auto mr-2">
+          <nav className="hidden">
             <Link
               to="/webseiten"
               className="px-2.5 py-1.5 text-xs font-extrabold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full transition-all flex items-center gap-1.5 shadow-md"
@@ -323,7 +323,7 @@ export const Header = () => {
             </DropdownMenu>
           </nav>
 
-          <nav className="hidden lg:flex items-center gap-1.5 lg:gap-2 ml-4">
+          <nav className="hidden xl:flex items-center gap-1.5 xl:gap-2 ml-4">
             <Link
               to="/webseiten"
               className="px-4 py-2 text-sm font-extrabold text-primary-foreground bg-primary hover:bg-primary/90 rounded-full transition-all shadow-md shadow-primary/30 hover:scale-105 flex items-center gap-1.5"
@@ -512,7 +512,7 @@ export const Header = () => {
             </Button>
           </nav>
 
-          <div className="flex items-center gap-1 lg:hidden">
+          <div className="flex items-center gap-1 xl:hidden">
             <button
               className="p-1.5 text-foreground hover:text-primary-foreground hover:bg-primary rounded-full transition-colors"
               onClick={() => setSearchOpen(true)}
@@ -528,9 +528,9 @@ export const Header = () => {
               <WhatsAppIconSmall />
               <span className="hidden xs:inline sm:inline">WhatsApp</span>
             </button>
-            {/* Hamburger only on small phones — tablets use the inline compact nav */}
+            {/* Hamburger-Menü auf Handy und Tablet, volle Navigation erst ab Laptop-Breite */}
             <button
-              className="p-1.5 text-foreground hover:text-primary-foreground hover:bg-primary rounded-full transition-colors md:hidden"
+              className="p-1.5 text-foreground hover:text-primary-foreground hover:bg-primary rounded-full transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Menü"
             >

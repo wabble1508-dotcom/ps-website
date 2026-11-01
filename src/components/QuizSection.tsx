@@ -396,7 +396,7 @@ export const QuizSection = () => {
 
   return (
     <section className="bg-secondary py-20 text-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-3xl">
+      <div className="container mx-auto px-4 max-w-5xl">
         <FadeIn className="text-center mb-10">
           <div className="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-bold text-primary mb-4 border border-primary/30">
             {pick(language, {
@@ -575,14 +575,14 @@ export const QuizSection = () => {
                   {questions[step - 1].title}
                 </h3>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
                   {questions[step - 1].options.map((option) => (
                     <button
                       key={option.id}
                       onClick={() => handleSelect(option.id)}
-                      className="flex flex-col items-center justify-center p-6 border-2 border-white/15 hover:border-primary bg-white/5 hover:bg-primary/10 rounded-2xl transition-all duration-300 group text-center gap-4 text-white"
+                      className="flex flex-col items-center justify-center p-4 border border-white/15 hover:border-primary bg-white/5 hover:bg-primary/10 rounded-2xl transition-all duration-300 group text-center gap-2 text-sm text-white"
                     >
-                      <span className="text-4xl transition-transform group-hover:scale-125 duration-300">
+                      <span className="text-3xl transition-transform group-hover:scale-125 duration-300">
                         {option.emoji}
                       </span>
                       <span className="font-semibold text-white group-hover:text-primary transition-colors">

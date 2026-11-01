@@ -26,6 +26,7 @@
 | `RESEND_API_KEY` | optional | E-Mails bei neuen Anfragen/Terminen + Bestätigung an Kunden (resend.com) |
 | `NOTIFY_EMAIL` | optional | wohin die Benachrichtigungen gehen (Standard: info@ps-professional-solutions.de) |
 | `INSTAGRAM_TOKEN` | optional | zeigt automatisch die neuesten Instagram-Beiträge auf der Website (siehe unten) |
+| `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET` | optional | Instagram-Autopilot und Make.com – siehe `social/ANLEITUNG-SOCIAL.md` |
 | `MAIL_FROM` | optional | Absender, z. B. `PS Professional Solutions <termine@ps-professional-solutions.de>` (Domain vorher in Resend bestätigen) |
 
 Nach Änderungen an Bindings oder Variablen: **Deployments → … → Retry deployment**.
@@ -49,3 +50,7 @@ Der Schlüssel wird danach jede Woche automatisch verlängert. Nur wenn du das I
 ## Arbeitszeiten für Termine ändern
 Datei `server/config.ts` → `hours`. Standard: Mo–Do 9–18 Uhr, Fr 9–16 Uhr, 30-Minuten-Termine, mindestens 12 Stunden im Voraus.
 
+
+## Social-Media-Autopilot
+KI-Antworten auf Instagram-DMs und -Kommentare, Begrüßungsfragen im Chat und automatisches Posten über Make.com:
+komplette Anleitung in **`social/ANLEITUNG-SOCIAL.md`**. Texte und Stichwörter ändern: `server/socialConfig.ts`.

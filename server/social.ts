@@ -31,7 +31,7 @@ const setSetting = async (env: Env, key: string, value: string) =>
     .run();
 
 // Aktuellen Schlüssel holen; ein neu eingetragenes Secret hat Vorrang vor dem gespeicherten
-const getToken = async (env: Env) => {
+export const getToken = async (env: Env) => {
   if (!env.INSTAGRAM_TOKEN) return null;
   const stored = await getSetting(env, "instagram_token");
   const source = await getSetting(env, "instagram_token_source");

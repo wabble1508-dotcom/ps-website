@@ -14,8 +14,10 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
   - `/api/chat` – KI-Livechat (Claude Haiku 5.5), Anweisungen in `server/prompt.ts`
   - `/api/forms`, `/api/slots`, `/api/book`, `/api/admin`
   - `/api/social` + `/api/social-image` – neueste Instagram-Beiträge (offizielle API, Schlüssel wird in D1-Tabelle `settings` automatisch verlängert, Bilder über eigene Domain). Anzeige: `SocialFeedSection` im Layout vor dem Footer, Zuordnung zu Seiten per Stichwort in `src/lib/socialTopics.ts`; TikTok-Profil-Einbettung erst nach Einwilligung.
+  - `/api/instagram-webhook` – Instagram-Autopilot (`server/instagramBot.ts`): KI beantwortet DMs, Kommentar-Stichwörter → automatische DM, Begrüßungsfragen (Ice Breakers); pausiert 12 h, wenn der Inhaber selbst antwortet. Texte in `server/socialConfig.ts`, Verläufe in `chats` (id `ig_<nutzer>`).
+  - `/api/social-ai` – KI-Texter für Make.com (Header `x-make-secret`): `captions`, `plan`, `setup-icebreakers`. Make-Szenarien und Einrichtung: `social/ANLEITUNG-SOCIAL.md`.
 - Datenbank: Cloudflare D1, Binding `DB` (Datenbank `ps-website-db`, EU).
-- Secrets in Cloudflare: `ADMIN_PASSWORD`, `ANTHROPIC_API_KEY`, optional `RESEND_API_KEY`, `NOTIFY_EMAIL`, `MAIL_FROM`, `INSTAGRAM_TOKEN`.
+- Secrets in Cloudflare: `ADMIN_PASSWORD`, `ANTHROPIC_API_KEY`, optional `RESEND_API_KEY`, `NOTIFY_EMAIL`, `MAIL_FROM`, `INSTAGRAM_TOKEN`, `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET`.
 - Live: https://ps-professional-solutions.de (Pages-Projekt `ps-website`, ps-website-dv6.pages.dev). Domain bei Strato registriert, DNS bei Cloudflare.
 - Details für den Inhaber: `ANLEITUNG.md`.
 

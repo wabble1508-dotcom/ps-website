@@ -103,7 +103,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    title: ["8. KI-Live-Chat", "8. AI live chat"],
+    title: ["8. KI-Live-Chat und KI-Antworten auf Instagram", "8. AI live chat and AI replies on Instagram"],
     blocks: [
       [
         "Unser Chat-Assistent beantwortet Fragen mithilfe künstlicher Intelligenz. Die Antworten werden automatisch erstellt und können Fehler enthalten. Ihre Nachrichten und der Gesprächsverlauf werden zur Erzeugung der Antworten an Anthropic PBC (548 Market St, San Francisco, CA 94104, USA) übermittelt. Grundlage für die Übermittlung in die USA sind EU-Standardvertragsklauseln. Nach Angaben von Anthropic werden über die Schnittstelle übermittelte Daten nicht zum Training von KI-Modellen verwendet.",
@@ -113,10 +113,18 @@ const SECTIONS: Section[] = [
         "Wir speichern die Gesprächsverläufe in unserer Datenbank, um Anfragen nachvollziehen und den Service verbessern zu können (Art. 6 Abs. 1 lit. f DSGVO), und löschen sie automatisch nach 6 Monaten. Bitte geben Sie im Chat keine sensiblen Daten (z. B. Gesundheitsdaten oder Zahlungsinformationen) ein. Die Nutzung des Chats ist freiwillig.",
         "We store the conversations in our database so that we can follow up on enquiries and improve our service (Art. 6(1)(f) GDPR) and delete them automatically after 6 months. Please do not enter sensitive data (e.g. health or payment information) in the chat. Using the chat is voluntary.",
       ],
+      [
+        "Wenn Sie uns auf Instagram eine Direktnachricht schreiben, eine der vorgeschlagenen Fragen im Chat antippen oder einen unserer Beiträge kommentieren, verarbeiten wir Ihren Instagram-Nutzernamen, Ihre Instagram-Nutzerkennung und den Inhalt Ihrer Nachricht bzw. Ihres Kommentars. Nachrichten und Kommentare beantworten wir teilweise automatisch mithilfe künstlicher Intelligenz. Dazu werden der Inhalt und der bisherige Gesprächsverlauf an Anthropic PBC (siehe oben) übermittelt; enthält ein Kommentar ein bestimmtes Stichwort (z. B. „Website“), senden wir Ihnen automatisch eine Direktnachricht mit Informationen. Die automatischen Antworten können Fehler enthalten – Sie können jederzeit um eine persönliche Antwort bitten.",
+        "If you send us a direct message on Instagram, tap one of the suggested questions in the chat or comment on one of our posts, we process your Instagram username, your Instagram user ID and the content of your message or comment. We answer some messages and comments automatically using artificial intelligence. For this purpose, the content and the previous conversation are sent to Anthropic PBC (see above); if a comment contains a certain keyword (e.g. “website”), we automatically send you a direct message with information. Automatic answers may contain errors – you can ask for a personal reply at any time.",
+      ],
+      [
+        "Rechtsgrundlage ist die Bearbeitung Ihrer Anfrage bzw. die Anbahnung eines Vertrags (Art. 6 Abs. 1 lit. b DSGVO) sowie unser berechtigtes Interesse, Anfragen schnell zu beantworten (Art. 6 Abs. 1 lit. f DSGVO). Die Gesprächsverläufe speichern wir in unserer Datenbank und löschen sie automatisch nach 6 Monaten. Über neue Anfragen werden wir per E-Mail benachrichtigt. Für die Verarbeitung auf Instagram selbst ist Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland, verantwortlich; es gilt die Datenschutzrichtlinie von Instagram.",
+        "The legal basis is the handling of your enquiry or steps prior to entering into a contract (Art. 6(1)(b) GDPR) and our legitimate interest in answering enquiries quickly (Art. 6(1)(f) GDPR). We store the conversations in our database and delete them automatically after 6 months. We are notified of new enquiries by email. Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Ireland, is responsible for the processing on Instagram itself; Instagram's privacy policy applies.",
+      ],
     ],
   },
   {
-    title: ["9. Externe Medien: YouTube, Instagram und TikTok", "9. External media: YouTube, Instagram and TikTok"],
+    title: ["9. Externe Medien und Social-Media-Profile", "9. External media and social media profiles"],
     blocks: [
       [
         "Auf einigen Seiten binden wir Videos von YouTube (Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland) im erweiterten Datenschutzmodus (youtube-nocookie.com) sowie einen Instagram-Beitrag (Meta Platforms Ireland Ltd., Merrion Road, Dublin 4, Irland) ein. Diese Inhalte werden erst nach Ihrer Einwilligung geladen. Dann werden unter anderem Ihre IP-Adresse und Informationen zu Ihrem Gerät an den jeweiligen Anbieter übermittelt, auch in die USA. Google und Meta sind unter dem EU-US Data Privacy Framework zertifiziert.",
@@ -133,6 +141,10 @@ const SECTIONS: Section[] = [
       [
         "Links zu unseren Profilen bei Instagram, TikTok, YouTube, LinkedIn und Facebook sind einfache Verlinkungen. Daten werden erst übertragen, wenn Sie auf den Link klicken und die Seite des Anbieters öffnen.",
         "Links to our profiles on Instagram, TikTok, YouTube, LinkedIn and Facebook are plain links. Data is only transmitted once you click the link and open the provider's page.",
+      ],
+      [
+        "Wir betreiben Unternehmensprofile bei Instagram und Facebook (Meta Platforms Ireland Ltd.), TikTok (TikTok Technology Limited), YouTube (Google Ireland Ltd.) und LinkedIn (LinkedIn Ireland Unlimited Company, Wilton Plaza, Dublin 2, Irland). Wenn Sie diese Profile besuchen oder mit uns interagieren, verarbeitet der jeweilige Anbieter Ihre Daten nach seinen eigenen Datenschutzbestimmungen. Die Anbieter stellen uns anonymisierte Statistiken über die Nutzung unserer Profile bereit; für diese Statistiken sind wir teilweise gemeinsam mit dem Anbieter verantwortlich (Art. 26 DSGVO). Rechtsgrundlage ist unser berechtigtes Interesse an der Darstellung unseres Unternehmens (Art. 6 Abs. 1 lit. f DSGVO). Ihre Rechte können Sie bei uns und beim jeweiligen Anbieter geltend machen.",
+        "We operate company profiles on Instagram and Facebook (Meta Platforms Ireland Ltd.), TikTok (TikTok Technology Limited), YouTube (Google Ireland Ltd.) and LinkedIn (LinkedIn Ireland Unlimited Company, Wilton Plaza, Dublin 2, Ireland). When you visit these profiles or interact with us, the respective provider processes your data in accordance with its own privacy policy. The providers give us anonymised statistics about the use of our profiles; we are partly jointly responsible with the provider for these statistics (Art. 26 GDPR). The legal basis is our legitimate interest in presenting our company (Art. 6(1)(f) GDPR). You can exercise your rights both with us and with the respective provider.",
       ],
     ],
   },

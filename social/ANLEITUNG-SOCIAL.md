@@ -87,22 +87,22 @@ Kosten: 1 Operation pro Woche.
 **Wird eingeschaltet, sobald `MAKE_SECRET` in Cloudflare eingetragen ist** (Teil A, Schritt 3).
 Für die E-Mail muss `RESEND_API_KEY` eingetragen sein (siehe ANLEITUNG.md) – sonst steht der Plan nur im Admin-Bereich.
 
-### Szenario „Social 2 – Video auf alle Kanäle“ (wird gebaut, sobald die Konten verbunden sind)
+### Szenario „Social 2 – Neues Instagram-Reel auf Facebook, YouTube & LinkedIn“ ✅ aktiv
 So funktioniert es für dich:
-1. Video nach Skript aufnehmen (Hochformat 9:16, 15–60 Sekunden).
-2. In der **Dropbox-App** in den Ordner **`Social-Autopost`** hochladen – Dateiname beginnt mit der Nummer aus der E-Mail, z. B. `3.mp4`.
-   (Ohne Nummer geht auch: `Preise für Friseure.mp4` – dann schreibt die KI die Texte aus dem Dateinamen.)
-3. Make holt das Video alle paar Stunden ab und postet automatisch:
-   **Instagram-Reel** (+ erster Kommentar), **Facebook-Reel**, **YouTube Short**, **LinkedIn-Video** auf deiner Unternehmensseite.
-4. Das Video wird danach in den Unterordner `Social-Autopost/gepostet` verschoben.
+1. Video nach Skript aufnehmen und wie gewohnt **als Reel in der Instagram-App posten** – Text aus der Sonntags-E-Mail einfügen.
+2. Make prüft alle 3 Stunden, ob es ein neues Reel gibt, und postet es automatisch:
+   - **Facebook-Seite** „PS Professional Solutions“ als Reel
+   - **YouTube** als Short (eigener Titel + Beschreibung von der KI)
+   - **LinkedIn-Unternehmensseite** „PS - Professional Solutions“ als Video (eigener, seriöser Text)
+3. Fotos und Karussells werden nicht verteilt – nur Videos/Reels.
 
-Warum Dropbox und nicht Google Drive? Instagram kann Videos nicht direkt aus Google Drive laden – aus Dropbox schon.
+Wichtig: In der Instagram-App beim Posten **„Auf Facebook teilen“ ausschalten**, sonst erscheint das Reel auf Facebook doppelt.
+Wenn eine Plattform mal einen Fehler meldet, laufen die anderen trotzdem weiter.
 
-**TikTok** kann der kostenlose Make-Tarif nicht posten (TikTok gibt die Schnittstelle nur an große Partner).
-Tipp: In der TikTok-App unter „Hochladen“ das gleiche Video nehmen und den TikTok-Text aus der Sonntags-E-Mail einfügen (30 Sekunden).
+TikTok kann der kostenlose Make-Tarif nicht – dort das Video in der TikTok-App hochladen und den TikTok-Text aus der E-Mail nehmen.
 
-**Konten verbinden (einmalig):** Den Link aus dem Chat öffnen und nacheinander Facebook/Instagram, YouTube, LinkedIn und Dropbox anmelden.
-Bei Facebook unbedingt **deine Seite und dein Instagram-Konto anhaken** und alle Rechte erlauben.
+Das ältere Szenario „Instagram-Kommentare mit Claude beantworten“ ist ausgeschaltet (Make kostenlos = max. 2 aktive Szenarien).
+Kommentare beantwortet die Website, sobald Teil A erledigt ist.
 
 ### Begrüßungsfragen im Instagram-Chat
 Werden automatisch eingeschaltet, sobald Teil A fertig ist (einmaliger Aufruf von `{"action":"setup-icebreakers"}` – erledigt Claude).

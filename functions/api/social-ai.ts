@@ -197,6 +197,14 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
           const post = (await loadPlan(env))?.posts.find((p) => p.nr === nr);
           if (post) return json({ ...post.captions, topic: post.topic, nr: post.nr });
         }
+        // Instagram-Text eines schon geposteten Reels → passende Texte aus der Content-Woche, sonst neu schreiben
+        const caption = str(body.caption, 2200);
+        if (caption) {
+          const norm = (t: string) => t.replace(/\s+/g, " ").trim().slice(0, 80).toLowerCase();
+          const post = (await loadPlan(env))?.posts.find((p) => norm(String(p.captions.instagram || "")) === norm(caption));
+          if (post) return json({ ...post.captions, topic: post.topic, nr: post.nr });
+          return json(await captionsFor(env, caption.slice(0, 500), "Das Video ist schon auf Instagram mit diesem Text gepostet. Schreibe passende Texte für die anderen Kanäle."));
+        }
         const topic = str(body.topic, 500) || file.replace(/\.[a-z0-9]+$/i, "").replace(/^\s*\d+\s*[-_.]?\s*/, "").replace(/[_-]+/g, " ").trim();
         if (!topic) return json({ error: "topic fehlt" }, 400);
         return json(await captionsFor(env, topic, str(body.details), str(body.format, 40), str(body.link, 300)));

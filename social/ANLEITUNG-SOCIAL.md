@@ -43,21 +43,18 @@ Prüfe, dass diese Berechtigungen dabei sind (sonst unter *Berechtigungen* hinzu
 Danach beim Konto **„Token generieren“** neu klicken (der neue Schlüssel enthält die neuen Rechte) und in
 Cloudflare den Wert von `INSTAGRAM_TOKEN` damit ersetzen.
 
-**3. Drei neue Secrets in Cloudflare**
-Cloudflare → Workers & Pages → `ps-website` → Einstellungen → Variablen und Secrets → Hinzufügen (Typ „Secret“):
+**3. Schlüssel im Admin-Bereich eintragen (kein Cloudflare nötig)**
+ps-professional-solutions.de/admin → anmelden → Reiter **„Social-Media“**:
+- **Instagram-Zugangsschlüssel**: den Token aus Schritt 2 einfügen → Speichern
+- **Instagram-App-Geheimschlüssel**: Meta-App → Instagram → API-Einrichtung → „Instagram-App-Geheimschlüssel“ → Anzeigen → kopieren → einfügen → Speichern
+- **Webhook-Prüfwort** und **Make.com-Schlüssel** sind schon eingetragen (✅).
 
-| Name | Wert |
-|---|---|
-| `INSTAGRAM_APP_SECRET` | Meta-App → Instagram → API-Einrichtung → **„Instagram-App-Geheimschlüssel“** (anzeigen, kopieren) |
-| `INSTAGRAM_VERIFY_TOKEN` | ein beliebiges Wort, das du dir ausdenkst, z. B. `ps-webhook-2026-xyz` |
-| `MAKE_SECRET` | genau der Wert, den Claude dir im Chat gegeben hat (steht auch im Make-Szenario „Social 1“ im Header `x-make-secret`) |
-
-Dann **Deployments → … → Retry deployment**.
+Die Website übernimmt die Werte nach spätestens einer Minute – kein neues Deployment nötig.
 
 **4. Webhook eintragen**
 Meta-App → Instagram → API-Einrichtung → **„Webhooks konfigurieren“**:
 - Callback-URL: `https://ps-professional-solutions.de/api/instagram-webhook`
-- Verify Token: dasselbe Wort wie `INSTAGRAM_VERIFY_TOKEN`
+- Verify Token: `ps-webhook-ca0cc51d519c`
 - **Bestätigen und speichern**, danach bei den Feldern **`messages`**, **`messaging_postbacks`** und **`comments`** auf „Abonnieren“ klicken.
 - Darunter bei deinem Konto **Webhook-Abonnement** einschalten.
 

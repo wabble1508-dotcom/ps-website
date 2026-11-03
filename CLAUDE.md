@@ -17,6 +17,7 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
   - `/api/instagram-webhook` – Instagram-Autopilot (`server/instagramBot.ts`): KI beantwortet DMs, Kommentar-Stichwörter → automatische DM, Begrüßungsfragen (Ice Breakers); pausiert 12 h, wenn der Inhaber selbst antwortet. Texte in `server/socialConfig.ts`, Verläufe in `chats` (id `ig_<nutzer>`).
   - `/api/social-ai` – KI-Texter für Make.com (Header `x-make-secret`): `captions`, `plan`, `setup-icebreakers`. Make-Szenarien und Einrichtung: `social/ANLEITUNG-SOCIAL.md`.
 - Datenbank: Cloudflare D1, Binding `DB` (Datenbank `ps-website-db`, EU).
+- Instagram-/Make-Schlüssel (`INSTAGRAM_TOKEN`, `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET`) können statt in Cloudflare auch im Admin-Reiter „Social-Media“ eingetragen werden (D1 `settings`, Schlüssel `cfg:<NAME>`, geladen von `functions/api/_middleware.ts`); Cloudflare-Secrets haben Vorrang.
 - Secrets in Cloudflare: `ADMIN_PASSWORD`, `ANTHROPIC_API_KEY`, optional `RESEND_API_KEY`, `NOTIFY_EMAIL`, `MAIL_FROM`, `INSTAGRAM_TOKEN`, `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET`.
 - Live: https://ps-professional-solutions.de (Pages-Projekt `ps-website`, ps-website-dv6.pages.dev). Domain bei Strato registriert, DNS bei Cloudflare.
 - Details für den Inhaber: `ANLEITUNG.md`.

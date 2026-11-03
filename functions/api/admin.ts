@@ -1,6 +1,7 @@
 import type { Ctx } from "../../server/env";
 import { db } from "../../server/db";
 import { isAdmin, json } from "../../server/http";
+import { CONFIG_KEYS, loadConfig, saveConfig, type ConfigKey } from "../../server/runtimeConfig";
 
 // Admin-Bereich: /api/admin?type=leads|bookings|chats  (GET = anzeigen, DELETE = löschen)
 const QUERIES = {
@@ -15,6 +16,19 @@ export const onRequest = async ({ request, env }: Ctx) => {
   if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
   const url = new URL(request.url);
   const type = url.searchParams.get("type") as Table;
+
+  // Reiter „Social-Media“: Zugangsschlüssel eintragen (Werte werden nie zurückgegeben, nur ob sie gesetzt sind)
+  if ((type as string) === "config") {
+    if (request.method === "POST") {
+      const body = await request.json<{ name?: string; value?: string }>().catch(() => ({}) as { name?: string; value?: string });
+      if (!CONFIG_KEYS.includes(body.name as ConfigKey)) return json({ error: "bad_request" }, 400);
+      await saveConfig(env, body.name as ConfigKey, String(body.value || "").trim().slice(0, 4000));
+    }
+    const fromDb = await (await db(env)).prepare("SELECT key FROM settings WHERE key LIKE 'cfg:%'").all<{ key: string }>();
+    const saved = new Set(fromDb.results.map((r) => r.key.slice(4)));
+    await loadConfig(env, true);
+    return json({ items: CONFIG_KEYS.map((name) => ({ id: name, name, set: Boolean(env[name]), inAdmin: saved.has(name) })) });
+  }
   if (!(type in QUERIES)) return json({ error: "bad_request" }, 400);
   const database = await db(env);
 

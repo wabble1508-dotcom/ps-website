@@ -6,13 +6,29 @@ import { Input } from "@/components/ui/input";
 type Lead = { id: string; form: string; fields: Record<string, string>; page: string; createdAt: string };
 type Booking = { id: string; slot: string; firstName: string; lastName: string; email: string; phone: string; note: string; createdAt: string };
 type ChatLog = { id: string; page: string; messages: { role: string; content: string }[]; createdAt: string; updatedAt: string };
-type Tab = "bookings" | "leads" | "chats";
+type ConfigItem = { id: string; name: string; set: boolean; inAdmin: boolean };
+type Tab = "bookings" | "leads" | "chats" | "config";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "bookings", label: "Termine" },
   { key: "leads", label: "Anfragen" },
   { key: "chats", label: "Chats" },
+  { key: "config", label: "Social-Media" },
 ];
+
+// Zugangsschlüssel für den Social-Media-Autopiloten (Anleitung: social/ANLEITUNG-SOCIAL.md)
+const CONFIG_HELP: Record<string, { label: string; help: string }> = {
+  INSTAGRAM_TOKEN: {
+    label: "Instagram-Zugangsschlüssel",
+    help: "developers.facebook.com → deine App → Instagram → API-Einrichtung mit Instagram-Login → bei deinem Konto „Token generieren“ → kopieren.",
+  },
+  INSTAGRAM_APP_SECRET: {
+    label: "Instagram-App-Geheimschlüssel",
+    help: "Gleiche Seite → „Instagram-App-Geheimschlüssel“ → Anzeigen → kopieren.",
+  },
+  INSTAGRAM_VERIFY_TOKEN: { label: "Webhook-Prüfwort", help: "Ist schon eingetragen. Dasselbe Wort im Meta-Portal beim Webhook als „Verify Token“ eintragen." },
+  MAKE_SECRET: { label: "Make.com-Schlüssel", help: "Ist schon eingetragen – Make.com nutzt ihn automatisch." },
+};
 const FORM_LABELS: Record<string, string> = { ebook: "E-Book", newsletter: "Newsletter", bewerbung: "Bewerbung" };
 
 const fmt = (iso: string) =>
@@ -37,6 +53,8 @@ export const AdminPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [openChat, setOpenChat] = useState<string | null>(null);
+  const [drafts, setDrafts] = useState<Record<string, string>>({});
+  const [saved, setSaved] = useState("");
 
   const api = useCallback(
     (query: string, method = "GET") =>
@@ -75,6 +93,20 @@ export const AdminPage = () => {
     if (!window.confirm("Wirklich löschen?")) return;
     await api(`type=${tab}&id=${encodeURIComponent(id)}`, "DELETE");
     load();
+  };
+
+  const saveConfig = async (name: string, value: string) => {
+    setSaved("");
+    const res = await fetch("/api/admin?type=config", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${password}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ name, value }),
+    });
+    if (res.ok) {
+      setDrafts((d) => ({ ...d, [name]: "" }));
+      setSaved(name);
+      load();
+    } else setError("Speichern hat nicht geklappt.");
   };
 
   const login = (e: React.FormEvent) => {
@@ -130,6 +162,38 @@ export const AdminPage = () => {
             {error && <p className="text-destructive mb-4">{error}</p>}
             {loading ? (
               <p className="text-muted-foreground">Lade …</p>
+            ) : tab === "config" ? (
+              <div className="flex flex-col gap-3">
+                <p className="text-sm text-muted-foreground">
+                  Hier trägst du die Schlüssel für den Instagram-Autopiloten ein. Gespeicherte Werte werden aus Sicherheitsgründen nicht wieder angezeigt.
+                </p>
+                {(items as ConfigItem[]).map((c) => (
+                  <div key={c.id} className="bg-background rounded-xl shadow p-4 flex flex-col gap-2">
+                    <p className="font-semibold">
+                      {c.set ? "✅" : "❌"} {CONFIG_HELP[c.name]?.label || c.name}
+                      <span className="text-muted-foreground font-normal text-sm"> · {c.set ? (c.inAdmin ? "eingetragen" : "in Cloudflare eingetragen") : "fehlt noch"}</span>
+                    </p>
+                    <p className="text-sm text-muted-foreground">{CONFIG_HELP[c.name]?.help}</p>
+                    <form
+                      className="flex gap-2"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        if (drafts[c.name]?.trim()) saveConfig(c.name, drafts[c.name]);
+                      }}
+                    >
+                      <Input
+                        type="password"
+                        autoComplete="off"
+                        placeholder={c.set ? "Neuen Wert einfügen, um ihn zu ersetzen" : "Hier einfügen"}
+                        value={drafts[c.name] || ""}
+                        onChange={(e) => setDrafts((d) => ({ ...d, [c.name]: e.target.value }))}
+                      />
+                      <Button type="submit">Speichern</Button>
+                    </form>
+                    {saved === c.name && <p className="text-sm text-green-700">Gespeichert ✔</p>}
+                  </div>
+                ))}
+              </div>
             ) : items.length === 0 ? (
               <p className="text-muted-foreground">Noch keine Einträge.</p>
             ) : (

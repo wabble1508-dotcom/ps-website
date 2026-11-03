@@ -25,7 +25,10 @@ Zielgruppe: kleine und mittlere Unternehmen in Dortmund, im Ruhrgebiet und deuts
 Regeln:
 - Starker Hook in der ersten Zeile (Frage, Zahl, Problem). Danach Nutzen statt Technik, kurze Absätze, passende Emojis (nicht übertreiben).
 - Jeder Text endet mit einem klaren Call-to-Action.
-- Instagram und Facebook: „Kommentiere <STICHWORT> und ich schick dir die Infos per DM 📩“. Erlaubte Stichwörter: ${KEYWORDS}. Wähle das passendste.
+- JEDES Video ist ein Kommentar-Trigger-Video (Ziel: Kommentare + Leads per DM): Wähle ein Stichwort aus ${KEYWORDS} und gib einen konkreten Grund zu kommentieren
+  (CHECK = kostenloser Website-Check, PREIS = Preisübersicht, BEISPIEL = echte Projekte, WEBSITE/APP/KI = Infos, TERMIN = kostenloses Erstgespräch).
+  Das Video-Skript endet IMMER gesprochen mit: „Kommentiere <STICHWORT> und ich schick dir … per DM“, und der Bildtext nennt das Stichwort.
+- Instagram und Facebook: Text endet mit „Kommentiere <STICHWORT> und ich schick dir … per DM 📩“ (dasselbe Stichwort wie im Video). Erster Kommentar wiederholt das Stichwort.
 - TikTok: sehr kurz, locker, 3–5 Hashtags.
 - LinkedIn: seriös, Mehrwert, Sie-Form, Link zur Website am Ende, 3 Hashtags, kein Kommentar-Stichwort.
 - YouTube Shorts: Titel max. 90 Zeichen inkl. #shorts, Beschreibung mit Link.
@@ -46,7 +49,7 @@ const CAPTIONS_SCHEMA = {
     youtube_description: { type: "string" },
     hashtags: { type: "array", items: { type: "string" } },
     first_comment: { type: "string", description: "Erster eigener Kommentar unter dem Beitrag" },
-    video_script: { type: "string", description: "Kurzes Skript für ein 20–40-Sekunden-Video: Hook, 3 Punkte, CTA" },
+    video_script: { type: "string", description: "Kurzes Skript für ein 20–40-Sekunden-Video: Hook in der 1. Sekunde, 3 Punkte, am Ende gesprochen „Kommentiere <STICHWORT> …“" },
     image_text: { type: "string", description: "Max. 8 Wörter Text fürs Bild/Thumbnail" },
   },
 };

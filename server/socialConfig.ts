@@ -38,6 +38,16 @@ export const COMMENT_KEYWORDS: { words: string[]; dm: string; publicReply: strin
     publicReply: "Schau in deine DMs 🤖📩",
   },
   {
+    words: ["check"],
+    dm: `Hey 👋 cool, dass du dabei bist! Dein kostenloser Website-Check:\n\nSchick mir hier einfach die Adresse deiner Website (oder deines Google-Profils). Ich schau sie mir persönlich an und sag dir die 3 wichtigsten Dinge, die dir gerade Kunden kosten. 🔍\n\nNoch keine Website? Dann schreib mir deine Branche – ich zeig dir, wie das bei dir aussehen könnte.`,
+    publicReply: "Check ist in deinen DMs 🔍📩",
+  },
+  {
+    words: ["beispiel", "beispiele", "referenz", "referenzen"],
+    dm: `Hey 👋 hier ein paar echte Projekte von uns:\n\n👉 ${SITE}/erfolgsgeschichten\n\nWelche Branche bist du? Dann schick ich dir das passendste Beispiel.`,
+    publicReply: "Beispiele sind unterwegs 📩",
+  },
+  {
     words: ["termin", "beratung", "gespräch", "info", "infos"],
     dm: `Hey 👋 sehr gern! Das Erstgespräch ist kostenlos.\n\nAm schnellsten per WhatsApp: ${WHATSAPP}\nOder sag mir hier kurz, worum es geht und wann du Zeit hast 🙂`,
     publicReply: "Hab dir geschrieben 📩",

@@ -182,7 +182,10 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
   if (!isMake(request, env)) return json({ error: "unauthorized" }, 401);
   let body: Record<string, unknown>;
   try {
-    body = await request.json<Record<string, unknown>>();
+    // JSON oder Formular (Make „application/x-www-form-urlencoded“ – dann muss nichts escaped werden)
+    body = (request.headers.get("content-type") || "").includes("form")
+      ? Object.fromEntries(await request.formData())
+      : await request.json<Record<string, unknown>>();
   } catch {
     return json({ error: "bad_request" }, 400);
   }

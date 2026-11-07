@@ -206,7 +206,7 @@ export const ServicesSection = () => {
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-14 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{labels.kicker}</span>
-          <h2 className="mx-auto mt-3 max-w-3xl bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
+          <h2 className="mx-auto mt-3 max-w-3xl  text-4xl font-semibold tracking-tight text-white md:text-6xl">
             {labels.title}
           </h2>
         </FadeIn>

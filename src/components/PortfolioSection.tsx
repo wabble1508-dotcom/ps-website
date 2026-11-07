@@ -64,7 +64,7 @@ export const PortfolioSection = () => {
       <div className="container mx-auto max-w-6xl px-4">
         <FadeIn className="mb-12 text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{pick(UI.kicker)}</span>
-          <h2 className="mt-3 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">{pick(UI.title)}</h2>
+          <h2 className="mt-3  text-4xl font-semibold tracking-tight text-white md:text-6xl">{pick(UI.title)}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/75">{pick(UI.subtitle)}</p>
         </FadeIn>
         <div className="grid gap-10 md:grid-cols-2">

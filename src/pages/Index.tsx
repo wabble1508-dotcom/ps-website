@@ -211,7 +211,7 @@ const Index = () => {
           <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">
             {t("home", "whyTitle")}
           </h2>
-          <h3 className="mb-8 bg-gradient-to-b from-white to-white/55 bg-clip-text text-4xl font-semibold tracking-tighter text-transparent md:text-6xl">
+          <h3 className="mb-8  text-4xl font-semibold tracking-tight text-white md:text-6xl">
             {t("home", "whySubtitle")}
           </h3>
           <p className="mx-auto mb-12 max-w-3xl text-lg text-white/75">
@@ -224,7 +224,7 @@ const Index = () => {
                 key={i}
                 className={`flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:bg-white/[0.06] ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
               >
-                <div className="keynote-gradient-text mb-1 text-5xl font-semibold tracking-tighter lg:text-6xl">
+                <div className="text-white mb-1 text-5xl font-semibold tracking-tight lg:text-6xl">
                   <AnimatedCounter value={stat.value} />
                 </div>
                 <div className="font-medium text-white">{stat.label}</div>

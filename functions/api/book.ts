@@ -5,6 +5,7 @@ import { formatBerlin, isFreeSlot } from "../../server/slots";
 import { notifyOwner, sendMail } from "../../server/mail";
 import { activeSocialLinks } from "../../server/socialLinks";
 import { COMPANY } from "../../server/config";
+import { busyIntervals, singleEventIcs } from "../../server/calendar";
 
 // Bucht einen Termin. Jeder Termin ist nur einmal buchbar (UNIQUE in der Datenbank).
 export const onRequestPost = async ({ request, env }: Ctx) => {
@@ -24,25 +25,43 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
   const database = await db(env);
   const { results } = await database.prepare("SELECT slot FROM bookings").all<{ slot: string }>();
   const requested = clean(b.slot, 40);
-  if (!isFreeSlot(requested, new Set(results.map((r) => r.slot)))) return json({ error: "taken" }, 409);
+  const t = Date.parse(requested);
+  const busy = await busyIntervals(env, t - 86400_000, t + 86400_000);
+  if (!isFreeSlot(requested, new Set(results.map((r) => r.slot)), Date.now(), busy)) return json({ error: "taken" }, 409);
   const slot = new Date(requested).toISOString();
 
+  const bookingId = newId();
   const { meta } = await database
     .prepare(
       "INSERT OR IGNORE INTO bookings (id, slot, first_name, last_name, email, phone, note, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
     )
-    .bind(newId(), slot, firstName, lastName, email, phone, note, new Date().toISOString())
+    .bind(bookingId, slot, firstName, lastName, email, phone, note, new Date().toISOString())
     .run();
   if (!meta.changes) return json({ error: "taken" }, 409);
 
   const when = formatBerlin(slot);
   const name = `${firstName} ${lastName}`.trim();
+  // Kalendereintrag als Anhang: ein Tipp darauf speichert den Termin (Apple, Google, Outlook)
+  const toBase64 = (text: string) => btoa(String.fromCharCode(...new TextEncoder().encode(text)));
+  const ownerIcs = singleEventIcs(
+    bookingId,
+    slot,
+    `Erstgespräch: ${name}`,
+    [`E-Mail: ${email}`, phone && `Telefon: ${phone}`, note && `Nachricht: ${note}`].filter(Boolean).join("\n"),
+  );
+  const customerIcs = singleEventIcs(
+    `${bookingId}-kunde`,
+    slot,
+    `Erstgespräch mit ${COMPANY.name}`,
+    `Kostenloses Erstgespräch. Fragen vorab: WhatsApp https://wa.me/4915207595260 oder ${COMPANY.email}`,
+  );
   await Promise.all([
     notifyOwner(
       env,
       `Neuer Termin: ${name} – ${when}`,
       `Termin: ${when}\nName: ${name}\nE-Mail: ${email}\nTelefon: ${phone}\nNachricht: ${note}`,
       email,
+      [{ filename: "termin.ics", content: toBase64(ownerIcs) }],
     ),
     sendMail(
       env,
@@ -50,6 +69,8 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
       `Ihr Termin bei ${COMPANY.name}: ${when}`,
       `Hallo ${firstName},\n\nvielen Dank für Ihre Buchung. Ihr kostenloses Erstgespräch ist eingetragen für:\n\n${when}\n\nWir melden uns zum vereinbarten Zeitpunkt bei Ihnen. Falls Sie den Termin verschieben möchten, antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per WhatsApp: https://wa.me/4915207595260\n\nViele Grüße\n${COMPANY.name}\n\nFolgen Sie uns: ${activeSocialLinks().map((l) => `${l.name} ${l.url}`).join(" · ")}`,
       COMPANY.email,
+      undefined,
+      [{ filename: "termin.ics", content: toBase64(customerIcs) }],
     ),
   ]);
   return json({ ok: true, slot });

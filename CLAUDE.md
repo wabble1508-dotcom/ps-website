@@ -13,6 +13,7 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Backend: Cloudflare Pages Functions (`functions/api/`), gemeinsamer Code in `server/`.
   - `/api/chat` – KI-Livechat (Claude Haiku 5.5), Anweisungen in `server/prompt.ts`
   - `/api/forms`, `/api/slots`, `/api/book`, `/api/admin`
+  - Kalender (`server/calendar.ts`): `/api/calendar?key=…` = Abo aller Buchungen (ICS, Schlüssel aus ADMIN_PASSWORD abgeleitet, Link im Admin-Reiter „Termine“); `BUSY_CALENDAR_URL` (Admin → Einstellungen, z. B. iCloud-Link) sperrt belegte Zeiten in `/api/slots` und `/api/book`; Bestätigungs-Mails mit .ics-Anhang.
   - `/api/social` + `/api/social-image` – neueste Instagram-Beiträge (offizielle API, Schlüssel wird in D1-Tabelle `settings` automatisch verlängert, Bilder über eigene Domain). Anzeige: `SocialFeedSection` im Layout vor dem Footer, Zuordnung zu Seiten per Stichwort in `src/lib/socialTopics.ts`; TikTok-Profil-Einbettung erst nach Einwilligung.
   - `/api/instagram-webhook` – Instagram-Autopilot (`server/instagramBot.ts`): KI beantwortet DMs, Kommentar-Stichwörter → automatische DM, Begrüßungsfragen (Ice Breakers); pausiert 12 h, wenn der Inhaber selbst antwortet. Texte in `server/socialConfig.ts`, Verläufe in `chats` (id `ig_<nutzer>`).
   - `/api/social-ai` – KI-Texter für Make.com (Header `x-make-secret`): `captions`, `plan`, `setup-icebreakers`. Make-Szenarien und Einrichtung: `social/ANLEITUNG-SOCIAL.md`.

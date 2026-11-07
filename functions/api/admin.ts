@@ -2,6 +2,7 @@ import type { Ctx } from "../../server/env";
 import { db } from "../../server/db";
 import { isAdmin, json } from "../../server/http";
 import { CONFIG_KEYS, loadConfig, saveConfig, type ConfigKey } from "../../server/runtimeConfig";
+import { calendarKey } from "../../server/calendar";
 
 // Admin-Bereich: /api/admin?type=leads|bookings|chats  (GET = anzeigen, DELETE = löschen)
 const QUERIES = {
@@ -28,6 +29,11 @@ export const onRequest = async ({ request, env }: Ctx) => {
     const saved = new Set(fromDb.results.map((r) => r.key.slice(4)));
     await loadConfig(env, true);
     return json({ items: CONFIG_KEYS.map((name) => ({ id: name, name, set: Boolean(env[name]), inAdmin: saved.has(name) })) });
+  }
+  // Abo-Adresse für Apple Kalender & Co.
+  if ((type as string) === "calendar") {
+    const link = `${url.host}/api/calendar?key=${await calendarKey(env)}`;
+    return json({ items: [], https: `https://${link}`, webcal: `webcal://${link}` });
   }
   if (!(type in QUERIES)) return json({ error: "bad_request" }, 400);
   const database = await db(env);

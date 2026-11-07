@@ -47,6 +47,13 @@ Der Schlüssel wird danach jede Woche automatisch verlängert. Nur wenn du das I
 
 **Welche Beiträge auf welcher Seite?** Ein Beitrag erscheint auf der passenden Seite, wenn seine Beschreibung ein Stichwort enthält – z. B. `#friseur` oder `#barber` → Beauty-Seite, `#handwerker` → Handwerker-Seite, `#app` → App-Entwicklung, `#webdesign` → Webseiten-Seiten. Gibt es weniger als drei passende Beiträge, werden die neuesten gezeigt. Die Stichwörter stehen in `src/lib/socialTopics.ts`. Neue Beiträge erscheinen nach spätestens etwa 30 Minuten.
 
+## Termine im Apple Kalender
+**Buchungen automatisch im Kalender:** Admin-Bereich (/admin) → Reiter „Termine“ → „Im Apple Kalender abonnieren“ antippen (am iPhone/Mac öffnet sich der Kalender). Danach erscheint jede neue Buchung automatisch, inkl. Telefonnummer und Nachricht. Am Mac: Kalender → Ablage → Neues Kalenderabonnement → Link einfügen → „Automatisch aktualisieren: Alle 15 Minuten“. Den Link nicht weitergeben.
+
+**Eigene Termine sperren Buchungszeiten:** iPhone: Kalender-App → „Kalender“ → (i) neben deinem Kalender → „Öffentlicher Kalender“ einschalten → „Link teilen“ → „Kopieren“. Im Admin-Bereich → Reiter „Einstellungen“ → „Apple-Kalender: belegte Zeiten sperren“ einfügen → Speichern. Alles, was in diesem Kalender steht (auch wiederkehrende Termine und ganztägige Einträge), kann danach nicht mehr gebucht werden. Hinweis: Wer den Link kennt, kann diesen Kalender lesen – ggf. einen eigenen Kalender „Belegt“ dafür anlegen.
+
+**Bestätigungs-Mails** (sobald Resend eingerichtet ist) enthalten den Termin als Kalenderdatei – du und der Kunde tippen einmal darauf und der Termin ist im Kalender.
+
 ## Arbeitszeiten für Termine ändern
 Datei `server/config.ts` → `hours`. Standard: Mo–Do 9–18 Uhr, Fr 9–16 Uhr, 30-Minuten-Termine, mindestens 12 Stunden im Voraus.
 

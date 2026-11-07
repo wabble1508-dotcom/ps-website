@@ -25,6 +25,27 @@ const loadContact = () => {
   return { firstName: "", lastName: "", email: "", phone: "", note: "" };
 };
 
+// Kalenderdatei für den gebuchten Termin (30 Minuten) – öffnet Apple, Google oder Outlook Kalender
+const calendarFile = (slotIso: string) => {
+  const stamp = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const start = Date.parse(slotIso);
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//PS Professional Solutions//Terminbuchung//DE",
+    "BEGIN:VEVENT",
+    `UID:${start}-kunde@ps-professional-solutions.de`,
+    `DTSTAMP:${stamp(Date.now())}`,
+    `DTSTART:${stamp(start)}`,
+    `DTEND:${stamp(start + 30 * 60_000)}`,
+    "SUMMARY:Erstgespräch mit PS Professional Solutions",
+    "DESCRIPTION:Kostenloses Erstgespräch. Fragen vorab: WhatsApp +49 152 0759 5260",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+};
+
 export const VielenDankPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
@@ -199,6 +220,11 @@ export const VielenDankPage = () => {
                   ? "Your appointment has been scheduled. You will shortly receive a confirmation by email with all further details."
                   : "Ihr Termin wurde eingetragen. Sie erhalten in Kürze eine Bestätigung per E-Mail mit allen weiteren Details."}
               </p>
+              <Button asChild variant="outline" className="mt-6 rounded-full">
+                <a href={calendarFile(bookedSlot)} download="termin-ps-professional-solutions.ics">
+                  {isEn ? "Add to calendar" : "Zum Kalender hinzufügen"}
+                </a>
+              </Button>
             </div>
           ) : selectedSlot ? (
             <form onSubmit={handleBook} className="max-w-md mx-auto flex flex-col gap-3">

@@ -13,7 +13,7 @@ const TABS: { key: Tab; label: string }[] = [
   { key: "bookings", label: "Termine" },
   { key: "leads", label: "Anfragen" },
   { key: "chats", label: "Chats" },
-  { key: "config", label: "Social-Media" },
+  { key: "config", label: "Einstellungen" },
 ];
 
 // Zugangsschlüssel für den Social-Media-Autopiloten (Anleitung: social/ANLEITUNG-SOCIAL.md)
@@ -28,6 +28,10 @@ const CONFIG_HELP: Record<string, { label: string; help: string }> = {
   },
   INSTAGRAM_VERIFY_TOKEN: { label: "Webhook-Prüfwort", help: "Ist schon eingetragen. Dasselbe Wort im Meta-Portal beim Webhook als „Verify Token“ eintragen." },
   MAKE_SECRET: { label: "Make.com-Schlüssel", help: "Ist schon eingetragen – Make.com nutzt ihn automatisch." },
+  BUSY_CALENDAR_URL: {
+    label: "Apple-Kalender: belegte Zeiten sperren",
+    help: "iPhone: Kalender-App → Kalender → (i) neben deinem Kalender → „Öffentlicher Kalender“ einschalten → „Link teilen“ → Kopieren und hier einfügen. Alles, was dort eingetragen ist, kann dann nicht mehr gebucht werden.",
+  },
 };
 const FORM_LABELS: Record<string, string> = { ebook: "E-Book", newsletter: "Newsletter", bewerbung: "Bewerbung" };
 
@@ -55,12 +59,23 @@ export const AdminPage = () => {
   const [openChat, setOpenChat] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState("");
+  const [calendarLink, setCalendarLink] = useState<{ https: string; webcal: string } | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const api = useCallback(
     (query: string, method = "GET") =>
       fetch(`/api/admin?${query}`, { method, headers: { Authorization: `Bearer ${password}` } }),
     [password],
   );
+
+  // Abo-Adresse für Apple Kalender (nur im Reiter „Termine“)
+  useEffect(() => {
+    if (!password || tab !== "bookings" || calendarLink) return;
+    api("type=calendar")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d?.webcal && setCalendarLink({ https: d.https, webcal: d.webcal }))
+      .catch(() => {});
+  }, [api, password, tab, calendarLink]);
 
   const load = useCallback(async () => {
     if (!password) return;
@@ -160,12 +175,37 @@ export const AdminPage = () => {
             </div>
 
             {error && <p className="text-destructive mb-4">{error}</p>}
+            {tab === "bookings" && calendarLink && (
+              <div className="mb-4 rounded-xl border border-primary/30 bg-primary/5 p-4">
+                <p className="font-semibold">📅 Termine im Apple Kalender anzeigen</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Einmal abonnieren – danach erscheint jede neue Buchung automatisch in deinem Kalender (iPhone, iPad, Mac). Den Link nicht weitergeben.
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Button asChild>
+                    <a href={calendarLink.webcal}>Im Apple Kalender abonnieren</a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      navigator.clipboard?.writeText(calendarLink.https).then(() => setCopied(true));
+                    }}
+                  >
+                    {copied ? "Kopiert ✔" : "Link kopieren (Google/Outlook)"}
+                  </Button>
+                </div>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Am Mac: Kalender → Ablage → Neues Kalenderabonnement → Link einfügen → „Automatisch aktualisieren: Alle 15 Minuten“.
+                  Belegte Zeiten aus deinem Kalender sperren: Reiter „Einstellungen“.
+                </p>
+              </div>
+            )}
             {loading ? (
               <p className="text-muted-foreground">Lade …</p>
             ) : tab === "config" ? (
               <div className="flex flex-col gap-3">
                 <p className="text-sm text-muted-foreground">
-                  Hier trägst du die Schlüssel für den Instagram-Autopiloten ein. Gespeicherte Werte werden aus Sicherheitsgründen nicht wieder angezeigt.
+                  Hier trägst du Zugangsschlüssel und Verknüpfungen ein (Instagram-Autopilot, Apple-Kalender). Gespeicherte Werte werden aus Sicherheitsgründen nicht wieder angezeigt.
                 </p>
                 {(items as ConfigItem[]).map((c) => (
                   <div key={c.id} className="bg-background rounded-xl shadow p-4 flex flex-col gap-2">

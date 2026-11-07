@@ -1,4 +1,5 @@
 import { BOOKING } from "./config";
+import { overlapsBusy, type Interval } from "./calendar";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -29,7 +30,7 @@ export const localDate = (utcMs: number, timeZone = BOOKING.timeZone) =>
   );
 
 // Alle freien Termine zwischen zwei Daten (inklusive), gruppiert nach Tag
-export const freeSlots = (from: string, to: string, booked: Set<string>, now = Date.now()) => {
+export const freeSlots = (from: string, to: string, booked: Set<string>, now = Date.now(), busy: Interval[] = []) => {
   const result: Record<string, { slots: string[] }> = {};
   const earliest = now + BOOKING.minNoticeHours * 3600_000;
   const latest = now + BOOKING.maxDaysAhead * 86400_000;
@@ -48,7 +49,7 @@ export const freeSlots = (from: string, to: string, booked: Set<string>, now = D
       for (let min = ah * 60 + am; min + BOOKING.slotMinutes <= bh * 60 + bm; min += BOOKING.slotMinutes) {
         const t = zonedToUtc(y, m, d, Math.floor(min / 60), min % 60, BOOKING.timeZone);
         const iso = new Date(t).toISOString();
-        if (t >= earliest && t <= latest && !booked.has(iso)) slots.push(iso);
+        if (t >= earliest && t <= latest && !booked.has(iso) && !overlapsBusy(t, busy)) slots.push(iso);
       }
     }
     if (slots.length) result[`${y}-${pad(m)}-${pad(d)}`] = { slots };
@@ -56,11 +57,11 @@ export const freeSlots = (from: string, to: string, booked: Set<string>, now = D
   return result;
 };
 
-export const isFreeSlot = (iso: string, booked: Set<string>, now = Date.now()) => {
+export const isFreeSlot = (iso: string, booked: Set<string>, now = Date.now(), busy: Interval[] = []) => {
   const t = Date.parse(iso);
   if (Number.isNaN(t)) return false;
   const day = localDate(t);
-  return (freeSlots(day, day, booked, now)[day]?.slots || []).includes(new Date(t).toISOString());
+  return (freeSlots(day, day, booked, now, busy)[day]?.slots || []).includes(new Date(t).toISOString());
 };
 
 export const formatBerlin = (iso: string) =>

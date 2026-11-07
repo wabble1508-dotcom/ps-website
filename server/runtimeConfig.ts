@@ -4,7 +4,13 @@ import { db } from "./db";
 // Zugangsschlüssel, die statt in Cloudflare auch im Admin-Bereich (Reiter „Social-Media“) eingetragen
 // werden können. Gespeichert in der D1-Tabelle `settings` unter `cfg:<NAME>`.
 // Ein in Cloudflare eingetragenes Secret hat immer Vorrang.
-export const CONFIG_KEYS = ["INSTAGRAM_TOKEN", "INSTAGRAM_APP_SECRET", "INSTAGRAM_VERIFY_TOKEN", "MAKE_SECRET"] as const;
+export const CONFIG_KEYS = [
+  "INSTAGRAM_TOKEN",
+  "INSTAGRAM_APP_SECRET",
+  "INSTAGRAM_VERIFY_TOKEN",
+  "MAKE_SECRET",
+  "BUSY_CALENDAR_URL",
+] as const;
 export type ConfigKey = (typeof CONFIG_KEYS)[number];
 
 let cache: { at: number; values: Partial<Record<ConfigKey, string>> } | null = null;

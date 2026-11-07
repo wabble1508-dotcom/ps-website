@@ -11,6 +11,8 @@ export type Env = {
   ANTHROPIC_BASE_URL?: string;
   /** Instagram-Zugangsschlüssel (Instagram API mit Instagram-Login), wird automatisch verlängert */
   INSTAGRAM_TOKEN?: string;
+  /** Privater Link eines freigegebenen Kalenders (z. B. iCloud), dessen Termine Buchungszeiten blockieren */
+  BUSY_CALENDAR_URL?: string;
   /** „Instagram-App-Geheimschlüssel“ aus dem Meta-Entwicklerportal – prüft, dass Webhooks echt von Instagram kommen */
   INSTAGRAM_APP_SECRET?: string;
   /** Selbst ausgedachtes Wort, das du im Meta-Portal beim Webhook als „Verify Token“ einträgst */

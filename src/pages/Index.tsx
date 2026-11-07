@@ -14,6 +14,8 @@ import { FounderSection } from "@/components/FounderSection";
 import { QuizSection } from "@/components/QuizSection";
 import { WebsiteNovaSection } from "@/components/WebsiteNovaSection";
 import { PortfolioSection } from "@/components/PortfolioSection";
+import { ContactSection } from "@/components/ContactSection";
+import { CtaRow } from "@/components/CtaRow";
 
 const AnimatedCounter = ({ value }: { value: string }) => {
   const [count, setCount] = useState(0);
@@ -176,7 +178,8 @@ const Index = () => {
       <HeroKeynote
         title={heroTitle}
         subtitle={t("home", "heroSubtitle")}
-        ctaLabel={t("home", "heroBtn")}
+        ctaLabel={language === "tr" ? "Teklif iste" : pick("Angebot anfragen", "Request a quote")}
+        bookLabel={language === "tr" ? "Randevu al" : pick("Termin buchen", "Book an appointment")}
         onCta={() => openForm("contact", "Startseite - Hero")}
         projectsLabel={pick("Projekte ansehen", "View projects")}
         eyebrow={pick("Webdesign · Apps · Software – Dortmund", "Web design · Apps · Software – Dortmund")}
@@ -193,6 +196,9 @@ const Index = () => {
 
       {/* Services Section */}
       <ServicesSection />
+      <div className="dark bg-background pb-20">
+        <CtaRow source="Startseite – Leistungen" />
+      </div>
 
       {/* Portfolio: gebaute Websites */}
       <PortfolioSection />
@@ -228,6 +234,9 @@ const Index = () => {
           </div>
         </FadeIn>
       </section>
+      <div className="dark bg-background pb-20">
+        <CtaRow source="Startseite – Kennzahlen" />
+      </div>
 
       <FounderSection />
 
@@ -244,6 +253,9 @@ const Index = () => {
       <PromiseSection />
 
 
+
+      {/* Kontakt direkt auf der Seite */}
+      <ContactSection />
 
       {/* FAQ Section */}
       <section id="faqs" className="py-20 bg-background">

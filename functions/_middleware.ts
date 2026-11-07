@@ -9,6 +9,20 @@ const META = SEO_META as Record<string, Meta>;
 const DOMAIN = "https://ps-professional-solutions.de";
 const DEFAULT_IMAGE = `${DOMAIN}/og-image.jpg`;
 
+// Kontaktwege und Anfrageformular für Besucher und Programme ohne JavaScript
+// (das Formular schickt an /api/forms und leitet danach zur Terminbuchung weiter)
+const CONTACT_HTML = `<h2>Kontakt</h2>
+<p><a href="#kontakt">Angebot anfragen</a> · <a href="/analyse-bestaetigungen">Termin buchen</a></p>
+<p>Telefon: <a href="tel:+4915207595260">+49 152 0759 5260</a> · E-Mail: <a href="mailto:info@ps-professional-solutions.de">info@ps-professional-solutions.de</a> · <a href="https://wa.me/4915207595260">WhatsApp</a></p>
+<form id="kontakt" method="post" action="/api/forms">
+<input type="hidden" name="form" value="kontakt">
+<label>Name <input name="first_name" required autocomplete="name"></label>
+<label>E-Mail <input name="email" type="email" required autocomplete="email"></label>
+<label>Telefon <input name="phone" type="tel" autocomplete="tel"></label>
+<label>Anliegen <select name="topic"><option value="website">Website</option><option value="app">App-Entwicklung</option><option value="software">Software-Entwicklung</option><option value="chat">KI-Live-Chat</option><option value="telefon">KI-Telefonassistent</option><option value="sonstiges">Sonstiges</option></select></label>
+<button type="submit">Angebot anfragen</button>
+</form>`;
+
 const esc = (v: string) =>
   v.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -77,7 +91,7 @@ export const onRequest = async ({ request, next }: Ctx & { next: () => Promise<R
     // Seitentext für Crawler ohne JavaScript (z. B. KI-Suchmaschinen); Browser mit JavaScript zeigen ihn nicht
     .on("body", {
       element(el) {
-        if (meta.content) el.prepend(`<noscript>${meta.content}</noscript>`, { html: true });
+        if (meta.content) el.prepend(`<noscript>${meta.content}${CONTACT_HTML}</noscript>`, { html: true });
       },
     })
     .transform(res);

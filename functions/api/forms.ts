@@ -15,8 +15,16 @@ const FORMS: Record<string, { title: string; required: string[] }> = {
 
 export const onRequestPost = async ({ request, env }: Ctx) => {
   let body: { form?: string; page?: string; language?: string; fields?: Record<string, unknown>; website?: string };
+  // Einfaches HTML-Formular (ohne JavaScript): danach zur Terminbuchung weiterleiten
+  const isHtmlForm = (request.headers.get("content-type") || "").includes("application/x-www-form-urlencoded");
   try {
-    body = await request.json();
+    if (isHtmlForm) {
+      const data = Object.fromEntries((await request.formData()).entries()) as Record<string, string>;
+      const { form, website, ...fields } = data;
+      body = { form, website, fields, page: new URL(request.headers.get("referer") || "/", request.url).pathname, language: "de" };
+    } else {
+      body = await request.json();
+    }
   } catch {
     return json({ error: "bad_request" }, 400);
   }
@@ -61,5 +69,6 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
       await sendMail(env, fields.email, mail.subject, mail.text, COMPANY.email, mail.html);
     }
   }
+  if (isHtmlForm) return Response.redirect(new URL("/analyse-bestaetigungen", request.url).toString(), 303);
   return json({ ok: true });
 };

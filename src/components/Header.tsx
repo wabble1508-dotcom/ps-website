@@ -11,6 +11,7 @@ import {
   Moon,
   Nfc,
   Monitor,
+  Phone,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useContactForm } from "./ContactFormDialog";
@@ -520,6 +521,13 @@ export const Header = () => {
             >
               <Search className="h-5 w-5" />
             </button>
+            <a
+              href="tel:+4915207595260"
+              className="p-1.5 text-foreground hover:text-primary-foreground hover:bg-primary rounded-full transition-colors"
+              aria-label="Anrufen"
+            >
+              <Phone className="h-5 w-5" />
+            </a>
             <button
               className="flex items-center gap-1 rounded-full bg-[#25D366] hover:bg-[#1ebe5b] text-white px-2 py-1.5 text-[11px] font-bold shadow-md transition-all hover:scale-105 shrink-0"
               onClick={() => openForm("contact", "Header Button Mobile")}

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronRight, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowRight, CalendarCheck, ChevronRight, MapPin, Phone } from "lucide-react";
 
 // Kopfbereich der Startseite im Keynote-Stil: schwarzer Hintergrund mit Lichtverläufen,
 // große Überschrift mit Farbverlauf und Geräte-Vorschau, die sich beim Scrollen aufrichtet.
@@ -10,12 +11,13 @@ type Props = {
   ctaLabel: string;
   onCta: () => void;
   projectsLabel: string;
+  bookLabel: string;
   eyebrow: string;
   priceNote: string;
   cityNote?: string;
 };
 
-export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, eyebrow, priceNote, cityNote }: Props) => {
+export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, bookLabel, eyebrow, priceNote, cityNote }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
@@ -71,12 +73,24 @@ export const HeroKeynote = ({ title, subtitle, ctaLabel, onCta, projectsLabel, e
               {ctaLabel}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
-            <a href="#portfolio" className="group inline-flex items-center gap-1 rounded-xl border border-white/20 px-6 py-3.5 text-base font-semibold text-white transition hover:border-white/40 hover:bg-white/5">
+            <Link
+              to="/analyse-bestaetigungen"
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/25 px-6 py-3.5 text-base font-semibold text-white transition hover:border-white/50 hover:bg-white/5"
+            >
+              <CalendarCheck className="h-4 w-4 text-[#7ee3ee]" />
+              {bookLabel}
+            </Link>
+          </div>
+          <p className="mt-6 text-sm text-white/70">{priceNote}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+            <a href="tel:+4915207595260" className="inline-flex items-center gap-1.5 font-semibold text-white/85 hover:text-white">
+              <Phone className="h-4 w-4 text-[#7ee3ee]" /> +49 152 0759 5260
+            </a>
+            <a href="#portfolio" className="group inline-flex items-center gap-1 font-semibold text-[#7ee3ee] hover:underline">
               {projectsLabel}
               <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>
-          <p className="mt-6 text-sm text-white/70">{priceNote}</p>
         </motion.div>
 
         {/* Geräte-Vorschau */}

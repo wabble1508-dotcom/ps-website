@@ -4,7 +4,7 @@
 // Gilt nur für die deutsche Fassung; die anderen Sprachen behalten ihre Texte aus den Seiten.
 export const SEO_DE: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "Website erstellen lassen ab 49 €/Monat | Webdesign, Apps & Software",
+    title: "PS Professional Solutions | Webdesign Dortmund ab 49 €/Monat",
     description:
       "Webdesign, App- und Software-Entwicklung aus Dortmund: programmierte Websites ab 49 €/Monat ohne Einrichtungskosten, KI-Chat, Terminbuchung und Apps nach Maß.",
   },

@@ -93,40 +93,39 @@ const UI = {
     tr: "Talebiniz bize ulaştı. Sonraki adımları içeren bir onay e-postanız yolda.",
   },
   book: { de: "Gleich einen Termin wählen", en: "Pick an appointment now", tr: "Hemen randevu seç" },
-  close: { de: "Schließen", en: "Close", tr: "Kapat" },
 };
 
 const inputClass =
   "w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/20";
 
-export const ContactFormProvider = ({ children }: { children: React.ReactNode }) => {
+const openWhatsApp = (message: string) =>
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+
+const whatsappMessage = (src?: string) =>
+  src && src.includes("NFC")
+    ? `Hallo Pankaj, ich möchte gerne NFC Google Business Karten bestellen (${src}). Bitte senden Sie mir die Details zur einfachen Abwicklung.`
+    : `Hallo Pankaj, ich interessiere mich für Ihre Leistungen${src ? ` (über: ${src})` : ""}.`;
+
+/**
+ * Anfrageformular – im Pop-up (mit Nachrichtenfeld) und direkt auf Seiten (kompakt: 4 Felder).
+ * Sendet an /api/forms; der Kunde bekommt eine passende Bestätigungs-Mail (server/autoReply.ts).
+ */
+export const ContactForm = ({
+  source = "",
+  initialTopic,
+  compact = false,
+  onNavigate,
+}: {
+  source?: string;
+  initialTopic?: string;
+  compact?: boolean;
+  onNavigate?: () => void;
+}) => {
   const { language } = useLanguage();
   const { pathname } = useLocation();
   const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
-
-  const [open, setOpen] = useState(false);
-  const [source, setSource] = useState("");
-  const [topic, setTopic] = useState("website");
+  const [topic, setTopic] = useState(initialTopic || guessTopic(source, pathname));
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
-
-  const whatsappMessage = (src?: string) =>
-    src && src.includes("NFC")
-      ? `Hallo Pankaj, ich möchte gerne NFC Google Business Karten bestellen (${src}). Bitte senden Sie mir die Details zur einfachen Abwicklung.`
-      : `Hallo Pankaj, ich interessiere mich für Ihre Leistungen${src ? ` (über: ${src})` : ""}.`;
-
-  const openWhatsApp = (message: string) =>
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-
-  const openForm = (type: FormType = "contact", src?: string) => {
-    if (type === "lead-magnet") {
-      openWhatsApp("Hallo Pankaj, ich habe Interesse an der kostenlosen Checkliste von PS Professional Solutions.");
-      return;
-    }
-    setSource(src || "");
-    setTopic(guessTopic(src || "", pathname));
-    setStatus("idle");
-    setOpen(true);
-  };
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -146,7 +145,7 @@ export const ContactFormProvider = ({ children }: { children: React.ReactNode })
             email: data.get("email"),
             phone: data.get("phone"),
             topic,
-            message: data.get("message"),
+            message: data.get("message") || "",
             ...(source ? { source } : {}),
           },
         }),
@@ -157,96 +156,121 @@ export const ContactFormProvider = ({ children }: { children: React.ReactNode })
     }
   };
 
+  if (status === "done") {
+    return (
+      <div className="py-6 text-center">
+        <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-green-600" />
+        <p className="mb-2 text-2xl font-semibold text-foreground">{pick(UI.thanks)}</p>
+        <p className="mb-6 text-muted-foreground">{pick(UI.thanksText)}</p>
+        <Button className="rounded-full" asChild onClick={onNavigate}>
+          <Link to="/analyse-bestaetigungen">{pick(UI.book)}</Link>
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="space-y-4">
+      {/* Spam-Falle: für Menschen unsichtbar */}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+      <div>
+        <p className="mb-2 text-sm font-semibold text-foreground">{pick(UI.topic)}</p>
+        <div className="flex flex-wrap gap-2">
+          {TOPICS.map((t) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setTopic(t.id)}
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                topic === t.id ? "border-primary bg-primary text-white" : "border-border bg-background text-foreground hover:border-primary"
+              }`}
+            >
+              {pick(t.label)}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className={`grid gap-3 ${compact ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
+        <label className="block text-sm font-medium text-foreground">
+          {pick(UI.name)} *
+          <input name="name" required maxLength={80} autoComplete="name" className={`${inputClass} mt-1`} />
+        </label>
+        <label className="block text-sm font-medium text-foreground">
+          {pick(UI.email)} *
+          <input name="email" type="email" required maxLength={120} autoComplete="email" className={`${inputClass} mt-1`} />
+        </label>
+        {compact && (
+          <label className="block text-sm font-medium text-foreground">
+            {pick(UI.phone)}
+            <input name="phone" type="tel" maxLength={40} autoComplete="tel" className={`${inputClass} mt-1`} />
+          </label>
+        )}
+      </div>
+      {!compact && (
+        <>
+          <label className="block text-sm font-medium text-foreground">
+            {pick(UI.phone)}
+            <input name="phone" type="tel" maxLength={40} autoComplete="tel" className={`${inputClass} mt-1`} />
+          </label>
+          <label className="block text-sm font-medium text-foreground">
+            {pick(UI.message)}
+            <textarea name="message" rows={4} maxLength={2000} placeholder={pick(UI.messagePh)} className={`${inputClass} mt-1`} />
+          </label>
+        </>
+      )}
+      <p className="text-xs text-muted-foreground">
+        {pick(UI.privacy)}{" "}
+        <Link to="/datenschutz" className="underline" onClick={onNavigate}>
+          {pick(UI.privacyLink)}
+        </Link>
+        .
+      </p>
+      {status === "error" && <p className="text-sm font-medium text-red-500">{pick(UI.error)}</p>}
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <Button type="submit" className="flex-1 rounded-full" disabled={status === "sending"}>
+          {status === "sending" ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <Send className="mr-1 h-4 w-4" />}
+          {pick(UI.send)}
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className="rounded-full border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10 dark:text-[#4ade80]"
+          onClick={() => openWhatsApp(whatsappMessage(source))}
+        >
+          {pick(UI.whatsapp)}
+        </Button>
+      </div>
+    </form>
+  );
+};
+
+export const ContactFormProvider = ({ children }: { children: React.ReactNode }) => {
+  const { language } = useLanguage();
+  const pick = (t: L) => (language === "en" ? t.en : language === "tr" ? t.tr : t.de);
+  const [open, setOpen] = useState(false);
+  const [source, setSource] = useState("");
+  const [round, setRound] = useState(0);
+
+  const openForm = (type: FormType = "contact", src?: string) => {
+    if (type === "lead-magnet") {
+      openWhatsApp("Hallo Pankaj, ich habe Interesse an der kostenlosen Checkliste von PS Professional Solutions.");
+      return;
+    }
+    setSource(src || "");
+    setRound((r) => r + 1);
+    setOpen(true);
+  };
+
   return (
     <ContactFormContext.Provider value={{ openForm }}>
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-h-[92vh] overflow-y-auto sm:max-w-lg">
-          {status === "done" ? (
-            <div className="py-6 text-center">
-              <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-green-600" />
-              <DialogTitle className="mb-2 text-2xl">{pick(UI.thanks)}</DialogTitle>
-              <DialogDescription className="mb-6">{pick(UI.thanksText)}</DialogDescription>
-              <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-                <Button className="rounded-full" asChild onClick={() => setOpen(false)}>
-                  <Link to="/analyse-bestaetigungen">{pick(UI.book)}</Link>
-                </Button>
-                <Button variant="outline" className="rounded-full" onClick={() => setOpen(false)}>
-                  {pick(UI.close)}
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl">{pick(UI.title)}</DialogTitle>
-                <DialogDescription>{pick(UI.desc)}</DialogDescription>
-              </DialogHeader>
-              <form onSubmit={submit} className="space-y-4">
-                {/* Spam-Falle: für Menschen unsichtbar */}
-                <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-                <div>
-                  <p className="mb-2 text-sm font-semibold text-foreground">{pick(UI.topic)}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {TOPICS.map((t) => (
-                      <button
-                        key={t.id}
-                        type="button"
-                        onClick={() => setTopic(t.id)}
-                        className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
-                          topic === t.id
-                            ? "border-primary bg-primary text-white"
-                            : "border-border bg-background text-foreground hover:border-primary"
-                        }`}
-                      >
-                        {pick(t.label)}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    {pick(UI.name)} *
-                    <input name="name" required maxLength={80} autoComplete="name" className={`${inputClass} mt-1`} />
-                  </label>
-                  <label className="block text-sm font-medium text-foreground">
-                    {pick(UI.email)} *
-                    <input name="email" type="email" required maxLength={120} autoComplete="email" className={`${inputClass} mt-1`} />
-                  </label>
-                </div>
-                <label className="block text-sm font-medium text-foreground">
-                  {pick(UI.phone)}
-                  <input name="phone" type="tel" maxLength={40} autoComplete="tel" className={`${inputClass} mt-1`} />
-                </label>
-                <label className="block text-sm font-medium text-foreground">
-                  {pick(UI.message)}
-                  <textarea name="message" rows={4} maxLength={2000} placeholder={pick(UI.messagePh)} className={`${inputClass} mt-1`} />
-                </label>
-                <p className="text-xs text-muted-foreground">
-                  {pick(UI.privacy)}{" "}
-                  <Link to="/datenschutz" className="underline" onClick={() => setOpen(false)}>
-                    {pick(UI.privacyLink)}
-                  </Link>
-                  .
-                </p>
-                {status === "error" && <p className="text-sm font-medium text-red-600">{pick(UI.error)}</p>}
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <Button type="submit" className="flex-1 rounded-full" disabled={status === "sending"}>
-                    {status === "sending" ? <Loader2 className="mr-1 h-4 w-4 animate-spin" /> : <Send className="mr-1 h-4 w-4" />}
-                    {pick(UI.send)}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="rounded-full border-[#25D366] text-[#128C7E] hover:bg-[#25D366]/10"
-                    onClick={() => openWhatsApp(whatsappMessage(source))}
-                  >
-                    {pick(UI.whatsapp)}
-                  </Button>
-                </div>
-              </form>
-            </>
-          )}
+          <DialogHeader>
+            <DialogTitle className="text-2xl">{pick(UI.title)}</DialogTitle>
+            <DialogDescription>{pick(UI.desc)}</DialogDescription>
+          </DialogHeader>
+          <ContactForm key={round} source={source} onNavigate={() => setOpen(false)} />
         </DialogContent>
       </Dialog>
     </ContactFormContext.Provider>

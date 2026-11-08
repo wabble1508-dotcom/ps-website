@@ -49,6 +49,13 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     `Erstgespräch: ${name}`,
     [`E-Mail: ${email}`, phone && `Telefon: ${phone}`, note && `Nachricht: ${note}`].filter(Boolean).join("\n"),
   );
+  const stamp = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const googleLink = `https://calendar.google.com/calendar/render?${new URLSearchParams({
+    action: "TEMPLATE",
+    text: `Erstgespräch mit ${COMPANY.name}`,
+    dates: `${stamp(Date.parse(slot))}/${stamp(Date.parse(slot) + 30 * 60_000)}`,
+    details: "Kostenloses Erstgespräch. Fragen vorab: WhatsApp https://wa.me/4915207595260",
+  })}`;
   const customerIcs = singleEventIcs(
     `${bookingId}-kunde`,
     slot,
@@ -67,7 +74,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
       env,
       email,
       `Ihr Termin bei ${COMPANY.name}: ${when}`,
-      `Hallo ${firstName},\n\nvielen Dank für Ihre Buchung. Ihr kostenloses Erstgespräch ist eingetragen für:\n\n${when}\n\nWir melden uns zum vereinbarten Zeitpunkt bei Ihnen. Falls Sie den Termin verschieben möchten, antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per WhatsApp: https://wa.me/4915207595260\n\nViele Grüße\n${COMPANY.name}\n\nFolgen Sie uns: ${activeSocialLinks().map((l) => `${l.name} ${l.url}`).join(" · ")}`,
+      `Hallo ${firstName},\n\nvielen Dank für Ihre Buchung. Ihr kostenloses Erstgespräch ist eingetragen für:\n\n${when}\n\nDen Termin finden Sie als Kalenderdatei im Anhang (Apple/Outlook) – oder speichern Sie ihn im Google Kalender: ${googleLink}\n\nWir melden uns zum vereinbarten Zeitpunkt bei Ihnen. Falls Sie den Termin verschieben möchten, antworten Sie einfach auf diese E-Mail oder schreiben Sie uns per WhatsApp: https://wa.me/4915207595260\n\nViele Grüße\n${COMPANY.name}\n\nFolgen Sie uns: ${activeSocialLinks().map((l) => `${l.name} ${l.url}`).join(" · ")}`,
       COMPANY.email,
       undefined,
       [{ filename: "termin.ics", content: toBase64(customerIcs) }],

@@ -1660,5 +1660,7 @@
  "E-Mail schreiben": "Escribir un correo",
  "Angebot anfragen": "Solicitar presupuesto",
  "Termin": "Cita",
- "Zum Kalender hinzufügen": "Añadir al calendario"
+ "Zum Kalender hinzufügen": "Añadir al calendario",
+ "Google Kalender": "Google Calendar",
+ "Apple / Outlook Kalender": "Calendario Apple / Outlook"
 }

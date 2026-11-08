@@ -25,7 +25,20 @@ const loadContact = () => {
   return { firstName: "", lastName: "", email: "", phone: "", note: "" };
 };
 
-// Kalenderdatei für den gebuchten Termin (30 Minuten) – öffnet Apple, Google oder Outlook Kalender
+// Link, der den Termin direkt im Google Kalender anlegt (für Android-Handys ohne .ics-Unterstützung)
+const googleCalendarLink = (slotIso: string) => {
+  const stamp = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  const start = Date.parse(slotIso);
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: "Erstgespräch mit PS Professional Solutions",
+    dates: `${stamp(start)}/${stamp(start + 30 * 60_000)}`,
+    details: "Kostenloses Erstgespräch. Fragen vorab: WhatsApp +49 152 0759 5260",
+  });
+  return `https://calendar.google.com/calendar/render?${params}`;
+};
+
+// Kalenderdatei für den gebuchten Termin (30 Minuten) – öffnet Apple oder Outlook Kalender
 const calendarFile = (slotIso: string) => {
   const stamp = (ms: number) => new Date(ms).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   const start = Date.parse(slotIso);
@@ -220,11 +233,18 @@ export const VielenDankPage = () => {
                   ? "Your appointment has been scheduled. You will shortly receive a confirmation by email with all further details."
                   : "Ihr Termin wurde eingetragen. Sie erhalten in Kürze eine Bestätigung per E-Mail mit allen weiteren Details."}
               </p>
-              <Button asChild variant="outline" className="mt-6 rounded-full">
-                <a href={calendarFile(bookedSlot)} download="termin-ps-professional-solutions.ics">
-                  {isEn ? "Add to calendar" : "Zum Kalender hinzufügen"}
-                </a>
-              </Button>
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button asChild variant="outline" className="rounded-full">
+                  <a href={googleCalendarLink(bookedSlot)} target="_blank" rel="noopener noreferrer">
+                    Google {isEn ? "Calendar" : "Kalender"}
+                  </a>
+                </Button>
+                <Button asChild variant="outline" className="rounded-full">
+                  <a href={calendarFile(bookedSlot)} download="termin-ps-professional-solutions.ics">
+                    {isEn ? "Apple / Outlook calendar" : "Apple / Outlook Kalender"}
+                  </a>
+                </Button>
+              </div>
             </div>
           ) : selectedSlot ? (
             <form onSubmit={handleBook} className="max-w-md mx-auto flex flex-col gap-3">

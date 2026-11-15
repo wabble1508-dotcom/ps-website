@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 200 50% 15%;
 
-    --primary: 183 78% 29%;
+    --primary: 183 80% 25%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 209 51% 21%;
@@ -164,6 +164,7 @@ All colors MUST be HSL.
   }
   /* Türkis als Schriftfarbe auf dunklem Grund heller, Warnfarbe besser lesbar */
   .dark .text-primary { color: hsl(183 65% 62%); }
+  .dark :is([class~="text-primary/70"], [class~="text-primary/80"], [class~="text-primary/90"]) { color: hsl(183 65% 66%); }
   .dark .text-destructive { color: hsl(0 85% 72%); }
   /* Logo in Kopf- und Fußzeile weiß */
   .dark header img[alt$="Logo"] { filter: brightness(0) invert(1); }

@@ -26,7 +26,7 @@ export default function UeberUnsPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 to-slate-300 py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 to-slate-300 dark:from-[#0f1d24] dark:to-[#0a1318] py-20 lg:py-32">
         <FadeIn
           className="container mx-auto px-4 max-w-4xl text-center"
           direction="down"

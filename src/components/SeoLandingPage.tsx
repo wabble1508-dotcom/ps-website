@@ -228,7 +228,7 @@ export const SeoLandingPage = ({ data }: { data: LandingData }) => {
         </div>
       </section>
 
-      <section className="bg-secondary py-16 text-center text-white">
+      <section className="dark bg-secondary py-16 text-center text-white">
         <FadeIn className="container mx-auto max-w-2xl px-4">
           <h2 className="mb-3 text-3xl font-bold">{pick(data.final.title)}</h2>
           <p className="mb-6 text-white/80">{pick(data.final.text)}</p>

@@ -128,7 +128,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 to-slate-300 py-20 lg:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-slate-100 to-slate-300 dark:from-[#0f1d24] dark:to-[#0a1318] py-20 lg:py-32">
         <FadeIn className="container mx-auto px-4 max-w-6xl" direction="down">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="w-full md:w-1/3 flex justify-center text-primary group">
@@ -160,7 +160,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
       </section>
 
       {/* Problem */}
-      <section className="bg-slate-900 py-20">
+      <section className="dark bg-slate-900 py-20">
         <FadeIn className="container mx-auto px-4 max-w-5xl" direction="left">
           <div className="flex flex-col md:flex-row items-center gap-12 bg-white/5 rounded-3xl p-8 md:p-12 border border-white/10 hover:bg-white/10 transition-colors duration-500">
             <div className="w-full md:w-1/2">

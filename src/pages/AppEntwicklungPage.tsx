@@ -265,7 +265,7 @@ export default function AppEntwicklungPage() {
         </FadeIn>
       </section>
 
-      <section className="bg-secondary py-16 text-center text-white">
+      <section className="dark bg-secondary py-16 text-center text-white">
         <FadeIn className="container mx-auto max-w-2xl px-4">
           <h2 className="mb-6 text-3xl font-bold">{pick(SECTION_TITLES.final)}</h2>
           <Button size="lg" variant="secondary" className="rounded-full" onClick={enquire}>

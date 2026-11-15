@@ -21,7 +21,7 @@ export const ExternalEmbed = ({ src, title, className, allow = ALLOW, allowFullS
   }
   if (background) return null;
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-secondary to-[#1e9fae] p-4 text-center text-white">
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-secondary to-[#0e5f68] p-4 text-center text-white">
       <button
         type="button"
         onClick={(e) => {

@@ -60,7 +60,7 @@ export default function ProzessPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-secondary py-24 text-center relative overflow-hidden">
+      <section className="dark bg-secondary py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/media/vibe.filesafe.space/1778931020193405557/assets/cd64b89b-6d75-4307-b596-a997ff8dec3f.jpg')] opacity-5 bg-cover bg-center"></div>
         <FadeIn className="container relative z-10 mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">

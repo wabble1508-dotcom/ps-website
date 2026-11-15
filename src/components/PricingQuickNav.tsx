@@ -30,7 +30,7 @@ export const PricingQuickNav = () => {
               <span
                 className={`text-[10px] sm:text-xs font-extrabold px-1.5 sm:px-2 py-0.5 rounded-full transition-colors duration-300 whitespace-nowrap ${
                   pkg.popular
-                    ? "bg-white/20 text-white"
+                    ? "bg-black/25 text-white"
                     : "bg-primary/10 text-primary group-hover:bg-white/20 group-hover:text-white"
                 }`}
               >

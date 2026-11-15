@@ -115,7 +115,7 @@ const IntegrationenPage = () => {
         </div>
       </section>
 
-      <section className="bg-secondary py-20 text-white text-center">
+      <section className="dark bg-secondary py-20 text-white text-center">
         <FadeIn className="container mx-auto px-4" direction="up">
           <h2 className="mb-6 text-3xl font-bold md:text-5xl">
             {isEn ? "Missing an integration?" : "Ihre Integration fehlt?"}

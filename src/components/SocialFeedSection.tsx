@@ -96,7 +96,7 @@ const PinnedInstagram = ({ pick }: { pick: (t: L) => string }) => {
     );
   }
   return (
-    <div className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-6 text-center text-white">
+    <div className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-[#5b2a86] via-[#a1286a] to-[#c13584] p-6 text-center text-white">
       <Instagram className="h-10 w-10" />
       <p className="text-lg font-bold">{pick(UI.pinnedTitle)}</p>
       <button

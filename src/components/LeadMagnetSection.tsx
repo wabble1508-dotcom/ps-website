@@ -60,7 +60,7 @@ export function LeadMagnetSection() {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-muted/30 overflow-hidden relative border-t border-border">
+    <section className="py-24 bg-gradient-to-b from-white to-muted/30 dark:from-background dark:to-muted/30 overflow-hidden relative border-t border-border">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">

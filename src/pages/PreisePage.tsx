@@ -54,7 +54,7 @@ export default function PreisePage() {
       />
 
       {/* Hero */}
-      <section className="bg-secondary py-20 md:py-24 text-center text-white relative overflow-hidden">
+      <section className="dark bg-secondary py-20 md:py-24 text-center text-white relative overflow-hidden">
         <FadeIn className="container relative z-10 mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">{t.heroTitle}</h1>
           <p className="text-xl text-white/80 max-w-2xl mx-auto mb-8">

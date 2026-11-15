@@ -210,11 +210,11 @@ export default function NfcShopPage() {
           </div>
           <div className="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/20 bg-black">
             {!media && (
-              <div className="flex aspect-[9/14] flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] p-6 text-center text-white">
+              <div className="flex aspect-[9/14] flex-col items-center justify-center gap-3 bg-gradient-to-br from-[#5b2a86] via-[#a1286a] to-[#c13584] p-6 text-center text-white">
                 <button
                   type="button"
                   onClick={() => saveConsent(true)}
-                  className="rounded-full bg-white/25 px-5 py-2 font-semibold backdrop-blur transition hover:bg-white/35"
+                  className="rounded-full bg-black/30 px-5 py-2 font-semibold backdrop-blur transition hover:bg-white/35"
                 >
                   Instagram-Video laden
                 </button>

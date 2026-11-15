@@ -125,7 +125,7 @@ export const IndustryPage = ({ data }: { data: IndustryPageProps }) => {
       {data.showMatouShowcase && <MatouShowcaseSection />}
 
       {/* Pain Points Section */}
-      <section className="bg-secondary py-16 text-white">
+      <section className="dark bg-secondary py-16 text-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid gap-8 md:grid-cols-3 text-center">
             {data.painPoints.map((point, i) => (
@@ -198,7 +198,7 @@ export const IndustryPage = ({ data }: { data: IndustryPageProps }) => {
       </section>
 
       {/* Checkmarks Section */}
-      <section className="bg-secondary py-16 text-white md:py-24">
+      <section className="dark bg-secondary py-16 text-white md:py-24">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>

@@ -78,7 +78,7 @@ export const FounderSection = () => {
             direction="right"
             className="text-center md:text-left mt-12 md:mt-0"
           >
-            <div className="inline-block rounded-full bg-white/10 px-5 py-2 text-sm font-bold text-primary mb-6 backdrop-blur-md border border-white/20">
+            <div className="inline-block rounded-full bg-white/10 px-5 py-2 text-sm font-bold text-[#7ee3ee] mb-6 backdrop-blur-md border border-white/20">
               {badge}
             </div>
             <h2 className="mb-6 text-3xl font-bold md:text-5xl leading-tight">

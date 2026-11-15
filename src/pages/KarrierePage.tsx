@@ -162,7 +162,7 @@ export default function KarrierePage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid items-center gap-10 md:gap-12 md:grid-cols-2">
             <FadeIn direction="right" className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-primary mb-6 backdrop-blur-md border border-white/20">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-bold text-[#7ee3ee] mb-6 backdrop-blur-md border border-white/20">
                 {isEn ? "Referral Bonus" : "Weiterempfehlungs-Bonus"}
               </div>
               <h2 className="mb-6 text-3xl font-bold md:text-5xl leading-tight">

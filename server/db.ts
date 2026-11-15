@@ -22,6 +22,7 @@ const cleanup = async (env: Env) => {
     env.DB.prepare("DELETE FROM leads WHERE form = 'bewerbung' AND created_at < ?").bind(monthsAgo(RETENTION.applications)),
     env.DB.prepare("DELETE FROM bookings WHERE slot < ?").bind(monthsAgo(RETENTION.bookings)),
     env.DB.prepare("DELETE FROM social_events WHERE created_at < ?").bind(monthsAgo(1)),
+    env.DB.prepare("DELETE FROM social_log WHERE created_at < ?").bind(monthsAgo(6)),
     env.DB.prepare("DELETE FROM settings WHERE key LIKE 'ig_pause_%' AND updated_at < ?").bind(monthsAgo(1)),
   ]);
 };
@@ -41,6 +42,8 @@ export const db = async (env: Env) => {
       env.DB.prepare("CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT, updated_at TEXT)"),
       // Bereits verarbeitete Instagram-Ereignisse (gegen doppelte Antworten bei Wiederholungen)
       env.DB.prepare("CREATE TABLE IF NOT EXISTS social_events (id TEXT PRIMARY KEY, created_at TEXT)"),
+      // Protokoll der automatischen Posts (Make meldet jeden Erfolg: instagram/facebook/youtube/linkedin)
+      env.DB.prepare("CREATE TABLE IF NOT EXISTS social_log (id TEXT PRIMARY KEY, platform TEXT, info TEXT, created_at TEXT)"),
     ]);
     ready = true;
   }

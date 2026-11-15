@@ -230,6 +230,16 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
         if (!topic) return json({ error: "topic fehlt" }, 400);
         return json(await captionsFor(env, topic, str(body.details), str(body.format, 40), str(body.link, 300)));
       }
+      case "log": {
+        // Make meldet: Reel erkannt (instagram) bzw. erfolgreich gepostet (facebook/youtube/linkedin)
+        const platform = str(body.platform, 20).toLowerCase();
+        if (!["instagram", "facebook", "youtube", "linkedin"].includes(platform)) return json({ error: "platform" }, 400);
+        await (await db(env))
+          .prepare("INSERT INTO social_log (id, platform, info, created_at) VALUES (?, ?, ?, ?)")
+          .bind(newId(), platform, str(body.info, 500), new Date().toISOString())
+          .run();
+        return json({ ok: true });
+      }
       case "week": {
         const days = Math.min(Math.max(Number(body.days) || 7, 1), 14);
         const posts = await planWeek(env, days, str(body.focus, 500));

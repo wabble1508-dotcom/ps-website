@@ -181,6 +181,21 @@ ${focus ? `Schwerpunkt: ${focus}` : ""}`,
   return posts;
 };
 
+// Wöchentlicher Zeitplan (GitHub Actions, .github/workflows/content-woche.yml) – ohne Schlüssel,
+// plant aber nur, wenn der letzte Plan älter als 6 Tage ist. Mehrfaches Aufrufen schadet also nicht.
+export const onRequestGet = async ({ request, env }: Ctx) => {
+  if (new URL(request.url).searchParams.get("action") !== "week-cron") return json({ error: "bad_request" }, 400);
+  const last = await loadPlan(env);
+  if (last && Date.now() - Date.parse(last.created) < 6 * 86400_000) return json({ ok: true, skipped: "Plan ist noch aktuell", created: last.created });
+  try {
+    const posts = await planWeek(env, 7, "");
+    return json({ ok: true, count: posts.length });
+  } catch (err) {
+    console.error("week-cron", err);
+    return json({ error: "server" }, 500);
+  }
+};
+
 export const onRequestPost = async ({ request, env }: Ctx) => {
   if (!isMake(request, env)) return json({ error: "unauthorized" }, 401);
   let body: Record<string, unknown>;

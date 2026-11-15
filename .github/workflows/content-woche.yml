@@ -1,0 +1,12 @@
+# Jeden Sonntag gegen 17 Uhr: KI plant die Content-Woche (Ergebnis per E-Mail + im Admin-Bereich unter „Anfragen“).
+# Die Website plant nur, wenn der letzte Plan älter als 6 Tage ist – zweimal laufen schadet nicht.
+name: Content-Woche planen
+on:
+  schedule:
+    - cron: "7 16 * * 0"
+  workflow_dispatch:
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -sS --fail-with-body --max-time 280 "https://ps-professional-solutions.de/api/social-ai?action=week-cron"

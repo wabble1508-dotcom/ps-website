@@ -1,0 +1,12 @@
+# Täglich 20:13 Uhr (Winterzeit): Sind alle neuen Instagram-Reels auch auf Facebook, YouTube und LinkedIn?
+# Fehlt etwas, schickt die Website eine E-Mail und dieser Lauf wird rot (GitHub meldet das zusätzlich per E-Mail).
+name: Social-Autopilot prüfen
+on:
+  schedule:
+    - cron: "13 19 * * *"
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -sS --fail-with-body --max-time 60 "https://ps-professional-solutions.de/api/social-ai?action=health-cron"

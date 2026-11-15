@@ -183,7 +183,38 @@ ${focus ? `Schwerpunkt: ${focus}` : ""}`,
 
 // Wöchentlicher Zeitplan (GitHub Actions, .github/workflows/content-woche.yml) – ohne Schlüssel,
 // plant aber nur, wenn der letzte Plan älter als 6 Tage ist. Mehrfaches Aufrufen schadet also nicht.
+// Tägliche Kontrolle (GitHub Actions, .github/workflows/social-kontrolle.yml): Ist jedes Reel der letzten
+// 48 Stunden auf Facebook, YouTube und LinkedIn angekommen? Wenn nicht: E-Mail an den Inhaber + Status 500,
+// damit der GitHub-Lauf rot wird. Gibt nur Zahlen/Plattformnamen zurück, keine Inhalte.
+const healthCheck = async (env: Env) => {
+  const since = new Date(Date.now() - 48 * 3600_000).toISOString();
+  const { results } = await (await db(env))
+    .prepare("SELECT platform, info, created_at FROM social_log WHERE created_at > ? ORDER BY created_at")
+    .bind(since)
+    .all<{ platform: string; info: string; created_at: string }>();
+  const reelOf = (info: string) => info.match(/instagram\.com\/reel\/[\w-]+/)?.[0] || "";
+  const reels = [...new Set(results.filter((r) => r.platform === "instagram").map((r) => reelOf(r.info)).filter(Boolean))];
+  const problems: string[] = [];
+  for (const reel of reels) {
+    // Reels, die gerade erst erkannt wurden, haben noch etwas Zeit
+    const seen = results.find((r) => r.platform === "instagram" && reelOf(r.info) === reel)!;
+    if (Date.now() - Date.parse(seen.created_at) < 30 * 60_000) continue;
+    for (const platform of ["facebook", "youtube", "linkedin"]) {
+      const ok = results.some((r) => r.platform === platform && reelOf(r.info) === reel && !r.info.startsWith("FEHLER"));
+      if (!ok) problems.push(`${platform}: ${reel}`);
+    }
+  }
+  return { reels: reels.length, problems };
+};
+
 export const onRequestGet = async ({ request, env }: Ctx) => {
+  if (new URL(request.url).searchParams.get("action") === "health-cron") {
+    const { reels, problems } = await healthCheck(env);
+    if (problems.length) {
+      await notifyOwner(env, `Social-Autopilot: ${problems.length} Post(s) fehlen`, `Diese Reels sind nicht überall angekommen:\n\n${problems.join("\n")}\n\nClaude kann das beheben – einfach im Chat „prüf mal Social“ schreiben.`);
+    }
+    return json({ ok: problems.length === 0, reels, missing: problems.map((p) => p.split(":")[0]) }, problems.length ? 500 : 200);
+  }
   if (new URL(request.url).searchParams.get("action") !== "week-cron") return json({ error: "bad_request" }, 400);
   const last = await loadPlan(env);
   if (last && Date.now() - Date.parse(last.created) < 6 * 86400_000) return json({ ok: true, skipped: "Plan ist noch aktuell", created: last.created });
@@ -238,6 +269,10 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
           .prepare("INSERT INTO social_log (id, platform, info, created_at) VALUES (?, ?, ?, ?)")
           .bind(newId(), platform, str(body.info, 500), new Date().toISOString())
           .run();
+        // Sofort-Alarm per E-Mail, wenn eine Plattform nicht posten konnte
+        if (str(body.info, 20).startsWith("FEHLER")) {
+          await notifyOwner(env, `Social-Autopilot: ${platform} hat nicht gepostet`, `Make meldet einen Fehler beim Posten auf ${platform}:\n\n${str(body.info, 500)}\n\nDie anderen Kanäle laufen trotzdem weiter. Claude kann das beheben – einfach im Chat „prüf mal Social“ schreiben.`);
+        }
         return json({ ok: true });
       }
       case "week": {

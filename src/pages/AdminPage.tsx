@@ -2,17 +2,19 @@ import { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ProspectsTab } from "@/components/admin/ProspectsTab";
 
 type Lead = { id: string; form: string; fields: Record<string, string>; page: string; createdAt: string };
 type Booking = { id: string; slot: string; firstName: string; lastName: string; email: string; phone: string; note: string; createdAt: string };
 type ChatLog = { id: string; page: string; messages: { role: string; content: string }[]; createdAt: string; updatedAt: string };
 type ConfigItem = { id: string; name: string; set: boolean; inAdmin: boolean };
-type Tab = "bookings" | "leads" | "chats" | "config";
+type Tab = "bookings" | "leads" | "chats" | "akquise" | "config";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "bookings", label: "Termine" },
   { key: "leads", label: "Anfragen" },
   { key: "chats", label: "Chats" },
+  { key: "akquise", label: "Akquise" },
   { key: "config", label: "Einstellungen" },
 ];
 
@@ -78,7 +80,7 @@ export const AdminPage = () => {
   }, [api, password, tab, calendarLink]);
 
   const load = useCallback(async () => {
-    if (!password) return;
+    if (!password || tab === "akquise") return;
     setLoading(true);
     setError("");
     try {
@@ -200,7 +202,9 @@ export const AdminPage = () => {
                 </p>
               </div>
             )}
-            {loading ? (
+            {tab === "akquise" ? (
+              <ProspectsTab password={password} />
+            ) : loading ? (
               <p className="text-muted-foreground">Lade …</p>
             ) : tab === "config" ? (
               <div className="flex flex-col gap-3">

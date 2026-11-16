@@ -89,8 +89,8 @@ out tags 300;`;
   if (!data) throw new Error("OpenStreetMap ist gerade überlastet – bitte in einer Minute nochmal auf „Suchen“ tippen");
   const database = await ensureTable(env);
   const now = new Date().toISOString();
-  let added = 0;
   let found = 0;
+  const statements = [];
   for (const el of data.elements || []) {
     const t = el.tags || {};
     const website = first(t, ["website", "contact:website", "url"]);
@@ -100,25 +100,19 @@ out tags 300;`;
       .filter((x) => x.trim())
       .join(", ");
     const instagram = first(t, ["contact:instagram", "instagram"]).replace(/^https?:\/\/(www\.)?instagram\.com\//, "").replace(/[/@]/g, "");
-    const r = await database
-      .prepare(
-        "INSERT OR IGNORE INTO prospects (id, name, category, city, address, phone, email, website, instagram, status, note, messages, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'neu', '', '', ?, ?)",
-      )
-      .bind(
-        `osm-${el.type}-${el.id}`,
-        t.name,
-        category,
-        place,
-        address,
-        first(t, ["contact:mobile", "phone", "contact:phone"]),
-        first(t, ["email", "contact:email"]),
-        website,
-        instagram,
-        now,
-        now,
-      )
-      .run();
-    if ((r.meta.changes ?? 0) > 0) added++;
+    statements.push(
+      database
+        .prepare(
+          "INSERT OR IGNORE INTO prospects (id, name, category, city, address, phone, email, website, instagram, status, note, messages, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'neu', '', '', ?, ?)",
+        )
+        .bind(`osm-${el.type}-${el.id}`, t.name, category, place, address, first(t, ["contact:mobile", "phone", "contact:phone"]), first(t, ["email", "contact:email"]), website, instagram, now, now),
+    );
+  }
+  // In einem Rutsch speichern (schnell, bleibt unter Cloudflares Zeitgrenze)
+  let added = 0;
+  for (let i = 0; i < statements.length; i += 50) {
+    const res = await database.batch(statements.slice(i, i + 50));
+    added += res.reduce((n, r) => n + (r.meta.changes ?? 0), 0);
   }
   return { found, added };
 };

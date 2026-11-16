@@ -1,7 +1,8 @@
 import type { Ctx } from "../../server/env";
 import { isAdmin, json } from "../../server/http";
 import { SYSTEM_PROMPT } from "../../server/prompt";
-import { CATEGORIES, deleteProspect, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
+import { notifyOwner } from "../../server/mail";
+import { CATEGORIES, dailyRun, deleteProspect, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
 import { crmEnabled } from "../../server/crm";
 
 // Akquise im Admin-Bereich (Reiter „Akquise“) – nur mit Admin-Passwort.
@@ -12,6 +13,16 @@ import { crmEnabled } from "../../server/crm";
 // POST {action:"contacted", id, channel, text} → als angeschrieben markieren + Text in den CRM-Verlauf
 // DELETE ?id=…
 export const onRequest = async ({ request, env }: Ctx) => {
+  // Tagesliste per Zeitplan (ohne Passwort, intern auf 1× pro 20 h begrenzt, gibt nur Zahlen zurück)
+  if (request.method === "GET" && new URL(request.url).searchParams.get("action") === "daily-cron") {
+    try {
+      const r = await dailyRun(env, SYSTEM_PROMPT, (subject, text) => notifyOwner(env, subject, text));
+      return json("skipped" in r ? { ok: true, skipped: true } : { ok: true, ready: r.ready, searched: r.searched.length });
+    } catch (err) {
+      console.error("daily-cron", err);
+      return json({ error: "server" }, 500);
+    }
+  }
   if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
   try {
     if (request.method === "GET") {

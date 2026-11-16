@@ -239,3 +239,71 @@ export const markContacted = async (env: Env, id: string, channel: string, text:
   const label = { whatsapp: "WhatsApp", instagram: "Instagram-DM", email: "E-Mail" }[channel] || channel;
   return syncProspect(env, id, `${label} geöffnet/gesendet:\n${text.slice(0, 4000)}`);
 };
+
+// ---------------------------------------------------------------------------------------------
+// Tagesliste (läuft jeden Morgen über GitHub Actions, .github/workflows/akquise-tagesliste.yml):
+// sucht die nächste Branche/Stadt, schreibt für bis zu 10 neue Betriebe (mit Telefonnummer zuerst)
+// die Nachrichten vor und schickt dem Inhaber eine E-Mail. Verschickt selbst NICHTS an Betriebe.
+// ---------------------------------------------------------------------------------------------
+const CITIES = ["Dortmund", "Bochum", "Lünen", "Castrop-Rauxel", "Unna", "Schwerte", "Herne", "Witten", "Kamen", "Waltrop"];
+const DAILY_CATEGORIES = ["friseur", "kosmetik", "handwerk", "kfz", "physio", "restaurant", "cafe", "imbiss", "fitness", "schneiderei", "praxis", "laden"];
+const DAILY_LIMIT = 10;
+
+const getSetting = async (env: Env, key: string) =>
+  (await db(env)).prepare("SELECT value, updated_at FROM settings WHERE key = ?").bind(key).first<{ value: string; updated_at: string }>();
+const setSetting = async (env: Env, key: string, value: string) =>
+  (await db(env))
+    .prepare("INSERT INTO settings (key, value, updated_at) VALUES (?, ?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at")
+    .bind(key, value, new Date().toISOString())
+    .run();
+
+export const dailyRun = async (env: Env, systemPrompt: string, notify: (subject: string, text: string) => Promise<unknown>) => {
+  // höchstens einmal in 20 Stunden (die Adresse ist ohne Passwort aufrufbar)
+  const last = await getSetting(env, "akquise_daily_last");
+  if (last && Date.now() - Date.parse(last.updated_at) < 20 * 3600_000) return { skipped: true };
+  await setSetting(env, "akquise_daily_last", new Date().toISOString());
+
+  const database = await ensureTable(env);
+  const waiting = async () =>
+    (
+      await database
+        .prepare("SELECT * FROM prospects WHERE status = 'neu' AND (messages IS NULL OR messages = '') ORDER BY (phone = '') , created_at LIMIT ?")
+        .bind(DAILY_LIMIT)
+        .all<Prospect>()
+    ).results;
+
+  // Neue Betriebe suchen, bis genug unbearbeitete da sind (max. 3 Suchen pro Tag)
+  const searched: string[] = [];
+  let pos = Number((await getSetting(env, "akquise_daily_pos"))?.value || 0);
+  for (let i = 0; i < 3 && (await waiting()).length < DAILY_LIMIT; i++) {
+    const category = DAILY_CATEGORIES[pos % DAILY_CATEGORIES.length];
+    const city = CITIES[Math.floor(pos / DAILY_CATEGORIES.length) % CITIES.length];
+    pos++;
+    try {
+      const r = await searchProspects(env, category, city, true);
+      searched.push(`${CATEGORIES[category].label} in ${city}: ${r.added} neu`);
+    } catch (err) {
+      searched.push(`${CATEGORIES[category].label} in ${city}: Fehler (${err instanceof Error ? err.message : "?"})`);
+      break;
+    }
+  }
+  await setSetting(env, "akquise_daily_pos", String(pos));
+
+  // Nachrichten vorschreiben
+  const list = await waiting();
+  const results = await Promise.allSettled(list.map((p) => writeMessages(env, p, systemPrompt)));
+  const ready = list.filter((_, i) => results[i].status === "fulfilled");
+  results.forEach((r, i) => r.status === "rejected" && console.error("Tagesliste", list[i].name, r.reason));
+
+  if (ready.length) {
+    const lines = ready.map(
+      (p, i) =>
+        `${i + 1}. ${p.name} – ${CATEGORIES[p.category]?.label || p.category}, ${p.address || p.city}${p.phone ? `\n   📞 ${p.phone}` : "\n   (keine Nummer – kurz bei Google Maps nachsehen)"}`,
+    );
+    await notify(
+      `Deine Akquise-Tagesliste: ${ready.length} Betriebe, Nachrichten fertig`,
+      `Guten Morgen! Für heute ist alles vorbereitet:\n\n${lines.join("\n\n")}\n\nSo geht's (ca. 15 Minuten):\n1. ps-professional-solutions.de/admin → Akquise → Filter „Neu“\n2. Kurz anrufen: „Darf ich Ihnen zwei Beispiele per WhatsApp schicken?“\n3. Bei Ja: „In WhatsApp öffnen“ → Senden. Der Betrieb landet automatisch in WebsiteNova.\n\nHeute gesucht: ${searched.join(" · ") || "–"}`,
+    );
+  }
+  return { searched, ready: ready.length };
+};

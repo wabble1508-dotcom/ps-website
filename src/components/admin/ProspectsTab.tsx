@@ -191,6 +191,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
               <button className="text-left" onClick={() => setOpen(open === p.id ? null : p.id)}>
                 <p className="font-semibold">
                   {p.name} <span className={`ms-2 text-xs rounded-full px-2 py-0.5 ${st.color}`}>{st.label}</span>
+                  {p.status === "neu" && p.messages && <span className="ms-1 text-xs rounded-full px-2 py-0.5 bg-green-100 text-green-900">✉️ Nachricht fertig</span>}
                 </p>
                 <p className="text-sm text-muted-foreground">
                   {categories[p.category] || p.category} · {p.address || p.city} · {p.website ? "hat Website" : "keine Website bekannt"}

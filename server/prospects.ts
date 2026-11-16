@@ -38,6 +38,8 @@ export type Prospect = {
   status: Status;
   note: string;
   messages: string;
+  attempts: number;
+  next_call_at: string;
   created_at: string;
   updated_at: string;
 };
@@ -49,6 +51,14 @@ const ensureTable = async (env: Env) => {
       "CREATE TABLE IF NOT EXISTS prospects (id TEXT PRIMARY KEY, name TEXT, category TEXT, city TEXT, address TEXT, phone TEXT, email TEXT, website TEXT, instagram TEXT, status TEXT, note TEXT, messages TEXT, created_at TEXT, updated_at TEXT)",
     )
     .run();
+  // Spalten für den Anruf-Modus (ältere Tabellen nachrüsten)
+  for (const col of ["attempts INTEGER DEFAULT 0", "next_call_at TEXT DEFAULT ''"]) {
+    try {
+      await database.prepare(`ALTER TABLE prospects ADD COLUMN ${col}`).run();
+    } catch {
+      // Spalte existiert schon
+    }
+  }
   // Nicht mehr bearbeitete Kontakte nach 12 Monaten löschen (DSGVO: nicht länger als nötig)
   const cutoff = new Date(Date.now() - 365 * 86400_000).toISOString();
   await database.prepare("DELETE FROM prospects WHERE updated_at < ? AND status IN ('neu','kein-interesse')").bind(cutoff).run();
@@ -141,8 +151,9 @@ export const deleteProspect = async (env: Env, id: string) => {
 const MESSAGE_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["whatsapp", "instagram", "email_subject", "email_body"],
+  required: ["call_script", "whatsapp", "instagram", "email_subject", "email_body"],
   properties: {
+    call_script: { type: "string", description: "Telefon-Leitfaden mit Zeilenumbrüchen" },
     whatsapp: { type: "string" },
     instagram: { type: "string" },
     email_subject: { type: "string" },
@@ -160,6 +171,12 @@ Regeln:
 - WhatsApp: max. 4 kurze Sätze, 0–1 Emoji. Instagram-DM: max. 3 Sätze, locker, 1 Emoji.
 - E-Mail: Betreff max. 7 Wörter, Text max. 120 Wörter, Gruß „Viele Grüße\\nPankaj Mondjal\\nPS Professional Solutions\\n+49 1520 7595260 · ps-professional-solutions.de“,
   letzte Zeile: „Kein Interesse? Kurze Antwort genügt, dann melde ich mich nicht wieder.“
+- Anruf-Leitfaden (call_script) für Pankaj, kurz und natürlich gesprochen, als Zeilen:
+  „Begrüßung:“ (Name, PS Professional Solutions aus Dortmund, Grund in einem Satz mit Bezug zum Betrieb) /
+  „Frage:“ eine offene Frage (z. B. wie Kunden heute Termine buchen) /
+  „Ziel:“ Erlaubnis, Infos per E-Mail oder WhatsApp zu schicken, oder 15-Minuten-Termin /
+  „Wenn ‚keine Zeit‘:“ / „Wenn ‚haben Instagram/Facebook‘:“ / „Wenn ‚zu teuer‘:“ / „Wenn ‚kein Interesse‘:“ – jeweils ein kurzer, respektvoller Satz.
+  Bei „kein Interesse“ freundlich verabschieden, nicht drängen.
 - Erfinde keine Referenzen, Zahlen oder Zusagen. Kein Markdown.`;
 
 export const writeMessages = async (env: Env, p: Prospect, systemPrompt: string) => {
@@ -295,7 +312,7 @@ export const dailyStep = async (env: Env, step: string, systemPrompt: string, no
     );
     await notify(
       `Deine Akquise-Tagesliste: ${ready.length} Betriebe, Nachrichten fertig`,
-      `Guten Morgen! Für heute ist alles vorbereitet:\n\n${lines.join("\n\n")}\n\nSo geht's (ca. 15 Minuten):\n1. ps-professional-solutions.de/admin → Akquise → Filter „Neu“ (grün markiert: „✉️ Nachricht fertig“)\n2. Kurz anrufen: „Darf ich Ihnen zwei Beispiele per WhatsApp schicken?“\n3. Bei Ja: „In WhatsApp öffnen“ → Senden. Der Betrieb landet automatisch in WebsiteNova.`,
+      `Guten Morgen! Für heute ist alles vorbereitet:\n\n${lines.join("\n\n")}\n\nSo geht's (ca. 20 Minuten):\n1. ps-professional-solutions.de/admin → Akquise → „📞 Anruf-Modus starten“\n2. Anrufen, Gesprächsleitfaden steht da\n3. Ergebnis antippen – E-Mails, WhatsApp-Text, Wiedervorlage und WebsiteNova laufen automatisch.`,
     );
     return { mailed: true, count: ready.length };
   }
@@ -319,4 +336,43 @@ export const handleFlowForStatus = async (env: Env, id: string) => {
     await stopFlows(env, p.email, STATUS_TEXT[p.status]);
   }
   return null;
+};
+
+/** Ergebnis eines Anrufs aus dem Anruf-Modus verarbeiten */
+export const callResult = async (env: Env, id: string, result: string, email?: string, note?: string) => {
+  const p = await getProspect(env, id);
+  if (!p) throw new Error("nicht gefunden");
+  const database = await ensureTable(env);
+  const now = Date.now();
+  // nächster Anrufversuch: ein Werktag (bzw. 3 Tage) später um 10 Uhr
+  const later = (days: number) => {
+    const d = new Date(now + days * 86400_000);
+    while (d.getUTCDay() === 0 || d.getUTCDay() === 6) d.setUTCDate(d.getUTCDate() + 1);
+    d.setUTCHours(8, 0, 0, 0);
+    return d.toISOString();
+  };
+  const stamp = new Date(now).toLocaleString("de-DE", { timeZone: "Europe/Berlin", dateStyle: "short", timeStyle: "short" });
+  const addNote = (text: string) => [p.note, `${stamp}: ${text}${note ? ` – ${note}` : ""}`].filter(Boolean).join("\n").slice(-3000);
+
+  if (result === "nicht-erreicht" || result === "spaeter") {
+    const attempts = (p.attempts || 0) + (result === "nicht-erreicht" ? 1 : 0);
+    await database
+      .prepare("UPDATE prospects SET attempts = ?, next_call_at = ?, note = ?, updated_at = ? WHERE id = ?")
+      .bind(attempts, later(result === "spaeter" ? 3 : 1), addNote(result === "spaeter" ? "Später nochmal anrufen" : `Nicht erreicht (Versuch ${attempts})`), new Date(now).toISOString(), id)
+      .run();
+    return { ok: true };
+  }
+  const map: Record<string, { status: Status; text: string }> = {
+    "infos-email": { status: "infos", text: "Telefonat: möchte Infos per E-Mail" },
+    "infos-whatsapp": { status: "angeschrieben", text: "Telefonat: möchte Infos per WhatsApp" },
+    termin: { status: "termin", text: "Telefonat: Termin vereinbart" },
+    "kein-interesse": { status: "kein-interesse", text: "Telefonat: kein Interesse" },
+  };
+  const m = map[result];
+  if (!m) throw new Error("unbekanntes Ergebnis");
+  if (result === "infos-email" && !(email || p.email)) throw new Error("Bitte die E-Mail-Adresse eintragen.");
+  await updateProspect(env, id, { status: m.status, note: addNote(m.text), ...(email ? { email: email.trim() } : {}) });
+  await syncProspect(env, id, `${m.text}${note ? `\nNotiz: ${note}` : ""}`);
+  const warning = await handleFlowForStatus(env, id);
+  return { ok: true, warning };
 };

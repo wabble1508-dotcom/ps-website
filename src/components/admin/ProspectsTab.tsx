@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { CallMode } from "@/components/admin/CallMode";
 
 // Reiter „Akquise“: Betriebe finden, KI-Nachricht schreiben lassen, selbst per WhatsApp/Instagram/E-Mail senden.
 type Prospect = {
@@ -17,6 +18,8 @@ type Prospect = {
   status: string;
   note: string;
   messages: string;
+  attempts?: number;
+  next_call_at?: string;
   updated_at: string;
 };
 type Messages = { whatsapp?: string; instagram?: string; email_subject?: string; email_body?: string };
@@ -53,6 +56,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
   const [open, setOpen] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, Messages>>({});
   const [crm, setCrm] = useState(false);
+  const [callMode, setCallMode] = useState(false);
 
   const call = useCallback(
     async (method: string, body?: unknown, query = "") => {
@@ -138,8 +142,28 @@ export const ProspectsTab = ({ password }: { password: string }) => {
   );
   const counts = useMemo(() => Object.fromEntries(STATUS.map((s) => [s.key, items.filter((p) => p.status === s.key).length])), [items]);
 
+  const nowIso = new Date().toISOString();
+  const toCall = items.filter((p) => p.phone && p.status === "neu" && (!p.next_call_at || p.next_call_at <= nowIso)).length;
+
+  if (callMode) {
+    return (
+      <CallMode
+        items={items}
+        categories={categories}
+        call={call}
+        onClose={() => {
+          setCallMode(false);
+          load();
+        }}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col gap-4">
+      <Button className="h-14 text-lg" onClick={() => setCallMode(true)} disabled={!toCall}>
+        📞 Anruf-Modus starten ({toCall} Betriebe bereit)
+      </Button>
       <div className="bg-background rounded-xl shadow p-4 flex flex-col gap-3">
         <p className="font-semibold">Neue Betriebe finden</p>
         <div className="flex flex-wrap gap-2 items-center">

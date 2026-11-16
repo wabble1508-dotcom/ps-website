@@ -2,7 +2,7 @@ import type { Ctx } from "../../server/env";
 import { isAdmin, json } from "../../server/http";
 import { SYSTEM_PROMPT } from "../../server/prompt";
 import { notifyOwner } from "../../server/mail";
-import { CATEGORIES, dailyStep, deleteProspect, handleFlowForStatus, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
+import { CATEGORIES, callResult, dailyStep, deleteProspect, handleFlowForStatus, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
 import { crmEnabled } from "../../server/crm";
 
 // Akquise im Admin-Bereich (Reiter „Akquise“) – nur mit Admin-Passwort.
@@ -52,6 +52,8 @@ export const onRequest = async ({ request, env }: Ctx) => {
         const warning = s(body.status) || s(body.email) ? await handleFlowForStatus(env, id) : null;
         return json({ ok: true, crm: Boolean(crm), warning });
       }
+      case "call-result":
+        return json(await callResult(env, String(body.id || ""), String(body.result || ""), s(body.email), s(body.note)));
       case "contacted": {
         const crm = await markContacted(env, String(body.id || ""), String(body.channel || ""), String(body.text || ""));
         return json({ ok: true, crm: Boolean(crm) });

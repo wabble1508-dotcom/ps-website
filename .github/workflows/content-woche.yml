@@ -10,3 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: curl -sS --fail-with-body --max-time 280 "https://ps-professional-solutions.de/api/social-ai?action=week-cron"
+      - run: curl -sS --fail-with-body --max-time 95 "https://ps-professional-solutions.de/api/prospects?action=daily-cron&step=article"

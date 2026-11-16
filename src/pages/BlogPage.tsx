@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/components/LanguageContext";
 import { SEO } from "@/components/SEO";
 import { Search, Clock, User, ArrowRight, BookOpen } from "lucide-react";
+import { LatestArticles } from "@/components/magazin/LatestArticles";
 
 export default function BlogPage() {
   const { language } = useLanguage();
@@ -188,6 +189,8 @@ export default function BlogPage() {
           </p>
         </FadeIn>
       </section>
+
+      <LatestArticles />
 
       {/* Search & Filter Section */}
       <section className="py-12 bg-white border-b border-muted">

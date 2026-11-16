@@ -23,6 +23,7 @@ import DatenschutzPage from "./pages/DatenschutzPage";
 import AgbPage from "./pages/AgbPage";
 import AppEntwicklungPage from "./pages/AppEntwicklungPage";
 import BlogPage from "./pages/BlogPage";
+import ArticlePage from "./pages/ArticlePage";
 import { LanguageProvider } from "./components/LanguageContext";
 import { LoadingScreen } from "./components/LoadingScreen";
 import UeberUnsPage from "./pages/UeberUnsPage";
@@ -86,6 +87,7 @@ const App = () => (
                 <Route path="/software-entwicklung" element={<SeoLandingPage data={LANDING_PAGES["/software-entwicklung"]} />} />
                 <Route path="/ki-live-chat" element={<KiLiveChatPage />} />
                 <Route path="/magazin" element={<BlogPage />} />
+                <Route path="/magazin/:slug" element={<ArticlePage />} />
                 <Route path="/ueber-uns" element={<UeberUnsPage />} />
                 <Route
                   path="/erfolgsgeschichten"

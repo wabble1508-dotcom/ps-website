@@ -145,6 +145,14 @@
     "schemas": [],
     "content": "<h1>Magazin &amp; Expertenwissen</h1><p>Einblicke, Strategien und Fallstudien für Ihren digitalen Erfolg.</p><h2>Im Fokus</h2><h3>Wie KI-Telefon-Assistenten das Handwerk revolutionieren</h3><p>Nie wieder Kundenanrufe verpassen, während man auf der Baustelle ist. Lesen Sie, wie automatisierte Systeme Zeit sparen und den Umsatz steigern.</p><h2>Neueste Artikel</h2><h3>Lokales SEO: So dominieren Sie Google in Ihrer Stadt</h3><p>Die besten Strategien für Google Business Profile und lokale Suchanfragen, um organisch Neukunden zu gewinnen.</p><h3>Die perfekte Termin-Automation für Beauty-Salons</h3><p>Reduzieren Sie Terminausfälle um bis zu 80% durch smarte SMS-Erinnerungen und automatisierte Buchungs-Workflows.</p><h3>KI im Gesundheitswesen: Entlastung für die Praxis-Anmeldung</h3><p>Wie digitale Assistenten und smarte Buchungssysteme den Telefon-Stress in Praxen reduzieren und Zeit für Patienten zurückgeben.</p><h3>Warum Ihre Website eine Verkaufsmaschine sein muss</h3><p>Eine digitale Visitenkarte reicht nicht mehr. Erfahren Sie, wie Sie Ihre Website in einen aktiven Lead-Generator verwandeln.</p><h3>Social Media für lokale Unternehmen: Was wirklich funktioniert</h3><p>Hören Sie auf, Zeit mit Tänzen zu verschwenden. Hier sind die 3 Content-Säulen, die wirklich Kunden in Ihr Geschäft bringen.</p><h3>Kundensupport mit KI-Chatbots automatisieren</h3><p>Wie Sie 90% der Kundenanfragen sofort beantworten, ohne zusätzliches Personal einzustellen.</p>"
   },
+  "/magazin/:slug": {
+    "title": "PS Professional Solutions – Webdesign, Apps & Software aus Dortmund",
+    "description": "",
+    "robots": "index, follow",
+    "image": "",
+    "schemas": [],
+    "content": "<p>Dieser Artikel ist nicht (mehr) verfügbar.</p><a href=\"/magazin\">Zum Magazin</a>"
+  },
   "/ueber-uns": {
     "title": "Über uns | Webdesigner & Software-Entwickler aus Dortmund",
     "description": "PS Professional Solutions aus Dortmund: Webdesign, App- und Software-Entwicklung sowie KI-Automatisierung für kleine und mittlere Unternehmen – persönlich betreut.",

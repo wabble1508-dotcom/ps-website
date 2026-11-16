@@ -3,6 +3,7 @@ import type { Env } from "./env";
 import { db } from "./db";
 import { pushToCrm, type CrmLead } from "./crm";
 import { sendDueMails, startFlow, stopFlows } from "./emailFlow";
+import { writeNextArticle } from "./articles";
 
 // Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), KI-Nachrichten schreiben,
 // Status verfolgen. Verschickt wird NICHTS automatisch – der Inhaber tippt selbst auf „Senden“.
@@ -315,6 +316,15 @@ export const dailyStep = async (env: Env, step: string, systemPrompt: string, no
     return { mailed: true, count: ready.length };
   }
   if (step === "emails") return sendDueMails(env);
+  if (step === "article") {
+    // höchstens ein neuer Entwurf pro 6 Tage
+    const last = await getSetting(env, "article_last");
+    if (last && Date.now() - Date.parse(last.updated_at) < 6 * 86400_000) return { skipped: true };
+    await setSetting(env, "article_last", new Date().toISOString());
+    const a = await writeNextArticle(env);
+    if (a) await notify(`Neuer Magazin-Artikel zur Freigabe: ${a.title}`, `Claude hat einen Ratgeber-Artikel zum Suchbegriff „${a.keyword}“ geschrieben.\n\nLesen und mit einem Tipp freigeben: ps-professional-solutions.de/admin → Heute`);
+    return { article: a?.title || null };
+  }
   throw new Error("unbekannter Schritt");
 };
 

@@ -4,6 +4,7 @@ import { db } from "./db";
 import { pushToCrm, type CrmLead } from "./crm";
 import { sendDueMails, startFlow, stopFlows } from "./emailFlow";
 import { writeNextArticle } from "./articles";
+import { sendReminders } from "./reminders";
 
 // Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), KI-Nachrichten schreiben,
 // Status verfolgen. Verschickt wird NICHTS automatisch – der Inhaber tippt selbst auf „Senden“.
@@ -315,7 +316,7 @@ export const dailyStep = async (env: Env, step: string, systemPrompt: string, no
     );
     return { mailed: true, count: ready.length };
   }
-  if (step === "emails") return sendDueMails(env);
+  if (step === "emails") return { ...(await sendDueMails(env)), ...(await sendReminders(env)) };
   if (step === "article") {
     // höchstens ein neuer Entwurf pro 6 Tage
     const last = await getSetting(env, "article_last");

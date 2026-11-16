@@ -2,7 +2,7 @@ import type { Ctx } from "../../server/env";
 import { isAdmin, json } from "../../server/http";
 import { SYSTEM_PROMPT } from "../../server/prompt";
 import { notifyOwner } from "../../server/mail";
-import { CATEGORIES, dailyRun, deleteProspect, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
+import { CATEGORIES, dailyStep, deleteProspect, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
 import { crmEnabled } from "../../server/crm";
 
 // Akquise im Admin-Bereich (Reiter „Akquise“) – nur mit Admin-Passwort.
@@ -13,14 +13,15 @@ import { crmEnabled } from "../../server/crm";
 // POST {action:"contacted", id, channel, text} → als angeschrieben markieren + Text in den CRM-Verlauf
 // DELETE ?id=…
 export const onRequest = async ({ request, env }: Ctx) => {
-  // Tagesliste per Zeitplan (ohne Passwort, intern auf 1× pro 20 h begrenzt, gibt nur Zahlen zurück)
-  if (request.method === "GET" && new URL(request.url).searchParams.get("action") === "daily-cron") {
+  // Tagesliste per Zeitplan (GitHub Actions): ?action=daily-cron&step=search|write|mail – ohne Passwort,
+  // jeder Schritt tut nur etwas, wenn es nötig ist, und gibt nur Zahlen zurück
+  const url = new URL(request.url);
+  if (request.method === "GET" && url.searchParams.get("action") === "daily-cron") {
     try {
-      const r = await dailyRun(env, SYSTEM_PROMPT, (subject, text) => notifyOwner(env, subject, text));
-      return json("skipped" in r ? { ok: true, skipped: true } : { ok: true, ready: r.ready, searched: r.searched.length });
+      return json({ ok: true, ...(await dailyStep(env, url.searchParams.get("step") || "", SYSTEM_PROMPT, (subject, text) => notifyOwner(env, subject, text))) });
     } catch (err) {
       console.error("daily-cron", err);
-      return json({ error: "server" }, 500);
+      return json({ error: err instanceof Error ? err.message : "server" }, 500);
     }
   }
   if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);

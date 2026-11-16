@@ -9,4 +9,13 @@ jobs:
   liste:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -sS --fail-with-body --max-time 600 "https://ps-professional-solutions.de/api/prospects?action=daily-cron"
+      - name: Betriebe suchen (bis zu 4 Branchen/Städte)
+        run: |
+          for i in 1 2 3 4; do
+            curl -sS --max-time 95 "https://ps-professional-solutions.de/api/prospects?action=daily-cron&step=search" || true
+            echo
+          done
+      - name: Nachrichten schreiben
+        run: curl -sS --fail-with-body --max-time 95 "https://ps-professional-solutions.de/api/prospects?action=daily-cron&step=write"
+      - name: Tagesliste per E-Mail
+        run: curl -sS --fail-with-body --max-time 60 "https://ps-professional-solutions.de/api/prospects?action=daily-cron&step=mail"

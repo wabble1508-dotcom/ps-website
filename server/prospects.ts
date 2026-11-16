@@ -69,12 +69,13 @@ area["name"="${place}"]["boundary"="administrative"]->.a;
 out tags 300;`;
   // Zwei öffentliche OpenStreetMap-Server – wenn einer überlastet ist, wird der andere gefragt
   let data: { elements?: OsmElement[] } | null = null;
-  for (const server of ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]) {
+  for (const server of ["https://overpass-api.de/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter"]) {
     try {
       const res = await fetch(server, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "ps-professional-solutions.de Akquise" },
         body: `data=${encodeURIComponent(query)}`,
+        signal: AbortSignal.timeout(35_000),
       });
       if (res.ok) {
         data = (await res.json()) as { elements?: OsmElement[] };
@@ -257,53 +258,49 @@ const setSetting = async (env: Env, key: string, value: string) =>
     .bind(key, value, new Date().toISOString())
     .run();
 
-export const dailyRun = async (env: Env, systemPrompt: string, notify: (subject: string, text: string) => Promise<unknown>) => {
-  // höchstens einmal in 20 Stunden (die Adresse ist ohne Passwort aufrufbar)
-  const last = await getSetting(env, "akquise_daily_last");
-  if (last && Date.now() - Date.parse(last.updated_at) < 20 * 3600_000) return { skipped: true };
-  await setSetting(env, "akquise_daily_last", new Date().toISOString());
+const waitingList = async (env: Env, onlyWithoutMessages: boolean) =>
+  (
+    await (await ensureTable(env))
+      .prepare(
+        `SELECT * FROM prospects WHERE status = 'neu' ${onlyWithoutMessages ? "AND (messages IS NULL OR messages = '')" : "AND messages <> ''"} ORDER BY (phone = ''), created_at LIMIT ?`,
+      )
+      .bind(DAILY_LIMIT)
+      .all<Prospect>()
+  ).results;
 
-  const database = await ensureTable(env);
-  const waiting = async () =>
-    (
-      await database
-        .prepare("SELECT * FROM prospects WHERE status = 'neu' AND (messages IS NULL OR messages = '') ORDER BY (phone = '') , created_at LIMIT ?")
-        .bind(DAILY_LIMIT)
-        .all<Prospect>()
-    ).results;
-
-  // Neue Betriebe suchen, bis genug unbearbeitete da sind (max. 3 Suchen pro Tag)
-  const searched: string[] = [];
-  let pos = Number((await getSetting(env, "akquise_daily_pos"))?.value || 0);
-  for (let i = 0; i < 3 && (await waiting()).length < DAILY_LIMIT; i++) {
+// Jeder Schritt bleibt unter Cloudflares 100-Sekunden-Grenze und ist beliebig oft aufrufbar
+// (er tut nur etwas, wenn es etwas zu tun gibt) – darum ohne Passwort sicher.
+export const dailyStep = async (env: Env, step: string, systemPrompt: string, notify: (subject: string, text: string) => Promise<unknown>) => {
+  if (step === "search") {
+    if ((await waitingList(env, true)).length + (await waitingList(env, false)).length >= DAILY_LIMIT) return { searched: 0, enough: true };
+    const pos = Number((await getSetting(env, "akquise_daily_pos"))?.value || 0);
     const category = DAILY_CATEGORIES[pos % DAILY_CATEGORIES.length];
     const city = CITIES[Math.floor(pos / DAILY_CATEGORIES.length) % CITIES.length];
-    pos++;
-    try {
-      const r = await searchProspects(env, category, city, true);
-      searched.push(`${CATEGORIES[category].label} in ${city}: ${r.added} neu`);
-    } catch (err) {
-      searched.push(`${CATEGORIES[category].label} in ${city}: Fehler (${err instanceof Error ? err.message : "?"})`);
-      break;
-    }
+    await setSetting(env, "akquise_daily_pos", String(pos + 1));
+    const r = await searchProspects(env, category, city, true);
+    return { searched: 1, label: `${CATEGORIES[category].label} in ${city}`, found: r.found, added: r.added };
   }
-  await setSetting(env, "akquise_daily_pos", String(pos));
-
-  // Nachrichten vorschreiben
-  const list = await waiting();
-  const results = await Promise.allSettled(list.map((p) => writeMessages(env, p, systemPrompt)));
-  const ready = list.filter((_, i) => results[i].status === "fulfilled");
-  results.forEach((r, i) => r.status === "rejected" && console.error("Tagesliste", list[i].name, r.reason));
-
-  if (ready.length) {
+  if (step === "write") {
+    const list = await waitingList(env, true);
+    const results = await Promise.allSettled(list.map((p) => writeMessages(env, p, systemPrompt)));
+    results.forEach((r, i) => r.status === "rejected" && console.error("Tagesliste", list[i].name, r.reason));
+    return { written: results.filter((r) => r.status === "fulfilled").length };
+  }
+  if (step === "mail") {
+    const last = await getSetting(env, "akquise_daily_last");
+    if (last && Date.now() - Date.parse(last.updated_at) < 20 * 3600_000) return { mailed: false, reason: "heute schon verschickt" };
+    const ready = await waitingList(env, false);
+    if (!ready.length) return { mailed: false, reason: "nichts vorbereitet" };
+    await setSetting(env, "akquise_daily_last", new Date().toISOString());
     const lines = ready.map(
       (p, i) =>
         `${i + 1}. ${p.name} – ${CATEGORIES[p.category]?.label || p.category}, ${p.address || p.city}${p.phone ? `\n   📞 ${p.phone}` : "\n   (keine Nummer – kurz bei Google Maps nachsehen)"}`,
     );
     await notify(
       `Deine Akquise-Tagesliste: ${ready.length} Betriebe, Nachrichten fertig`,
-      `Guten Morgen! Für heute ist alles vorbereitet:\n\n${lines.join("\n\n")}\n\nSo geht's (ca. 15 Minuten):\n1. ps-professional-solutions.de/admin → Akquise → Filter „Neu“\n2. Kurz anrufen: „Darf ich Ihnen zwei Beispiele per WhatsApp schicken?“\n3. Bei Ja: „In WhatsApp öffnen“ → Senden. Der Betrieb landet automatisch in WebsiteNova.\n\nHeute gesucht: ${searched.join(" · ") || "–"}`,
+      `Guten Morgen! Für heute ist alles vorbereitet:\n\n${lines.join("\n\n")}\n\nSo geht's (ca. 15 Minuten):\n1. ps-professional-solutions.de/admin → Akquise → Filter „Neu“ (grün markiert: „✉️ Nachricht fertig“)\n2. Kurz anrufen: „Darf ich Ihnen zwei Beispiele per WhatsApp schicken?“\n3. Bei Ja: „In WhatsApp öffnen“ → Senden. Der Betrieb landet automatisch in WebsiteNova.`,
     );
+    return { mailed: true, count: ready.length };
   }
-  return { searched, ready: ready.length };
+  throw new Error("unbekannter Schritt");
 };

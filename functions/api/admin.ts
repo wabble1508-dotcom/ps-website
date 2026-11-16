@@ -35,6 +35,12 @@ export const onRequest = async ({ request, env }: Ctx) => {
     const link = `${url.host}/api/calendar?key=${await calendarKey(env)}`;
     return json({ items: [], https: `https://${link}`, webcal: `webcal://${link}` });
   }
+  // Content-Woche (vom KI-Texter erzeugt, jeden Sonntag neu)
+  if ((type as string) === "content") {
+    const row = await (await db(env)).prepare("SELECT value FROM settings WHERE key = 'content_plan'").first<{ value: string }>();
+    const plan = row ? JSON.parse(row.value) : null;
+    return json({ items: plan?.posts || [], created: plan?.created || null });
+  }
   if (!(type in QUERIES)) return json({ error: "bad_request" }, 400);
   const database = await db(env);
 

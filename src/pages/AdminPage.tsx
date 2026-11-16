@@ -8,13 +8,18 @@ type Lead = { id: string; form: string; fields: Record<string, string>; page: st
 type Booking = { id: string; slot: string; firstName: string; lastName: string; email: string; phone: string; note: string; createdAt: string };
 type ChatLog = { id: string; page: string; messages: { role: string; content: string }[]; createdAt: string; updatedAt: string };
 type ConfigItem = { id: string; name: string; set: boolean; inAdmin: boolean };
-type Tab = "bookings" | "leads" | "chats" | "akquise" | "config";
+type PlanPost = {
+  nr: number; date: string; time: string; format: string; topic: string; details: string; hook: string;
+  captions: Record<string, string | string[]>;
+};
+type Tab = "bookings" | "leads" | "chats" | "akquise" | "content" | "config";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "bookings", label: "Termine" },
   { key: "leads", label: "Anfragen" },
   { key: "chats", label: "Chats" },
   { key: "akquise", label: "Akquise" },
+  { key: "content", label: "Content-Woche" },
   { key: "config", label: "Einstellungen" },
 ];
 
@@ -218,6 +223,53 @@ export const AdminPage = () => {
               <ProspectsTab password={password} />
             ) : loading ? (
               <p className="text-muted-foreground">Lade …</p>
+            ) : tab === "content" ? (
+              items.length === 0 ? (
+                <p className="text-muted-foreground">Noch keine Content-Woche geplant. Sie wird jeden Sonntagabend automatisch erstellt.</p>
+              ) : (
+                <div className="flex flex-col gap-3">
+                  <p className="text-sm text-muted-foreground">
+                    Dein Plan für diese Woche: Video nach dem Skript aufnehmen, mit der Nummer am Anfang des Dateinamens (z. B. „3.mp4“) in den
+                    Dropbox-Ordner „Social-Autopost“ legen – die Texte unten werden dann automatisch verwendet.
+                  </p>
+                  {(items as PlanPost[]).map((p) => (
+                    <details key={p.nr} className="bg-background rounded-xl shadow p-4">
+                      <summary className="cursor-pointer">
+                        <span className="font-semibold">
+                          {p.nr}. {p.topic}
+                        </span>
+                        <span className="text-muted-foreground text-sm"> · {p.date}, {p.time} Uhr · {p.format}</span>
+                        <p className="text-sm mt-1">🎣 {p.hook}</p>
+                      </summary>
+                      <div className="mt-3 flex flex-col gap-3 text-sm">
+                        {[
+                          ["🎬 Video-Skript", p.captions?.video_script],
+                          ["Instagram", p.captions?.instagram],
+                          ["TikTok", p.captions?.tiktok],
+                          ["Facebook", p.captions?.facebook],
+                          ["LinkedIn", p.captions?.linkedin],
+                          ["YouTube-Titel", p.captions?.youtube_title],
+                          ["YouTube-Beschreibung", p.captions?.youtube_description],
+                          ["Erster Kommentar", p.captions?.first_comment],
+                          ["Text fürs Bild", p.captions?.image_text],
+                        ]
+                          .filter(([, v]) => v)
+                          .map(([label, v]) => (
+                            <div key={label as string}>
+                              <div className="flex items-center justify-between gap-2">
+                                <p className="font-semibold">{label}</p>
+                                <Button size="sm" variant="ghost" onClick={() => navigator.clipboard?.writeText(String(v))}>
+                                  Kopieren
+                                </Button>
+                              </div>
+                              <p className="whitespace-pre-wrap text-muted-foreground">{String(v)}</p>
+                            </div>
+                          ))}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              )
             ) : tab === "config" ? (
               <div className="flex flex-col gap-3">
                 <p className="text-sm text-muted-foreground">

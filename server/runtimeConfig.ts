@@ -11,6 +11,8 @@ export const CONFIG_KEYS = [
   "MAKE_SECRET",
   "BUSY_CALENDAR_URL",
   "WEBSITENOVA_API_KEY",
+  "RESEND_API_KEY",
+  "MAIL_FROM",
 ] as const;
 export type ConfigKey = (typeof CONFIG_KEYS)[number];
 

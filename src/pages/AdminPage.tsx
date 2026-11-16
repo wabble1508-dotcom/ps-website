@@ -30,6 +30,14 @@ const CONFIG_HELP: Record<string, { label: string; help: string }> = {
   },
   INSTAGRAM_VERIFY_TOKEN: { label: "Webhook-Prüfwort", help: "Ist schon eingetragen. Dasselbe Wort im Meta-Portal beim Webhook als „Verify Token“ eintragen." },
   MAKE_SECRET: { label: "Make.com-Schlüssel", help: "Ist schon eingetragen – Make.com nutzt ihn automatisch." },
+  RESEND_API_KEY: {
+    label: "E-Mail-Versand (Resend) – WICHTIG",
+    help: "Ohne diesen Schlüssel verschickt die Website KEINE E-Mails (Bestätigungen, Benachrichtigungen, Nachfass-E-Mails). resend.com → kostenlos registrieren → Domains → „Add Domain“ ps-professional-solutions.de → „Sign in to Cloudflare“ (trägt alles automatisch ein) → API Keys → „Create API Key“ → hier einfügen.",
+  },
+  MAIL_FROM: {
+    label: "Absender-Adresse",
+    help: "Ist schon eingetragen (info@ps-professional-solutions.de). Funktioniert, sobald die Domain bei Resend bestätigt ist.",
+  },
   WEBSITENOVA_API_KEY: {
     label: "WebsiteNova (CRM) verbinden",
     help: "websitenova.de → Einstellungen → API-Schlüssel → Name „Website“ → Erstellen → Schlüssel kopieren und hier einfügen. Danach landen Akquise, Kontaktformulare, Termine und Instagram-Anfragen automatisch in deinem CRM.",

@@ -10,6 +10,7 @@ export const CONFIG_KEYS = [
   "INSTAGRAM_VERIFY_TOKEN",
   "MAKE_SECRET",
   "BUSY_CALENDAR_URL",
+  "WEBSITENOVA_API_KEY",
 ] as const;
 export type ConfigKey = (typeof CONFIG_KEYS)[number];
 

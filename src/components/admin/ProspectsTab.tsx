@@ -51,6 +51,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
   const [info, setInfo] = useState("");
   const [open, setOpen] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, Messages>>({});
+  const [crm, setCrm] = useState(false);
 
   const call = useCallback(
     async (method: string, body?: unknown, query = "") => {
@@ -71,6 +72,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
       const data = await call("GET");
       setItems(data.items || []);
       setCategories(data.categories || {});
+      setCrm(Boolean(data.crm));
     } catch (e) {
       setInfo((e as Error).message);
     }
@@ -118,9 +120,10 @@ export const ProspectsTab = ({ password }: { password: string }) => {
     setItems((list) => list.filter((p) => p.id !== id));
   };
 
-  // Nach dem Öffnen von WhatsApp/Instagram/E-Mail automatisch als „angeschrieben“ markieren
-  const sent = (p: Prospect) => {
-    if (p.status === "neu") update(p.id, { status: "angeschrieben" });
+  // Nach dem Öffnen von WhatsApp/Instagram/E-Mail: als „angeschrieben“ markieren und den Text im CRM-Verlauf ablegen
+  const sent = (p: Prospect, channel: "whatsapp" | "instagram" | "email", text: string) => {
+    if (p.status === "neu") setItems((list) => list.map((x) => (x.id === p.id ? { ...x, status: "angeschrieben" } : x)));
+    call("POST", { action: "contacted", id: p.id, channel, text }).catch((e) => setInfo((e as Error).message));
   };
 
   const shown = useMemo(
@@ -158,6 +161,11 @@ export const ProspectsTab = ({ password }: { password: string }) => {
         <p className="text-xs text-amber-800 bg-amber-50 rounded-md p-2">
           Rechtlicher Hinweis: Werbung per E-Mail, WhatsApp oder Instagram-DM an Betriebe, die nicht zugestimmt haben, kann in Deutschland abgemahnt werden (§ 7 UWG).
           Am sichersten: erst anrufen oder vorbeigehen und fragen, ob du Infos schicken darfst – dann schreiben. Ein Anruf bei Firmen ist erlaubt, wenn ein Interesse anzunehmen ist.
+        </p>
+        <p className={`text-xs rounded-md p-2 ${crm ? "bg-green-50 text-green-900" : "bg-muted text-muted-foreground"}`}>
+          {crm
+            ? "✅ Mit WebsiteNova verbunden: Wer angeschrieben wird, landet automatisch im CRM – mit gesendetem Text und jedem Statuswechsel."
+            : "WebsiteNova (CRM) ist noch nicht verbunden – Schlüssel im Reiter „Einstellungen“ eintragen."}
         </p>
         {info && <p className="text-sm">{info}</p>}
       </div>
@@ -223,7 +231,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
                       onChange={(t) => setDrafts((d) => ({ ...d, [p.id]: { ...msg, whatsapp: t } }))}
                       action={
                         p.phone ? (
-                          <a href={`https://wa.me/${waNumber(p.phone)}?text=${encodeURIComponent(msg.whatsapp)}`} target="_blank" rel="noreferrer" onClick={() => sent(p)}>
+                          <a href={`https://wa.me/${waNumber(p.phone)}?text=${encodeURIComponent(msg.whatsapp)}`} target="_blank" rel="noreferrer" onClick={() => sent(p, "whatsapp", msg.whatsapp || "")}>
                             <Button size="sm">In WhatsApp öffnen{isMobile(p.phone) ? "" : " (Festnetz?)"}</Button>
                           </a>
                         ) : (
@@ -244,7 +252,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
                               p.instagram ? `https://ig.me/m/${p.instagram}` : `https://www.instagram.com/explore/search/keyword/?q=${encodeURIComponent(p.name)}`,
                               "_blank",
                             );
-                            sent(p);
+                            sent(p, "instagram", msg.instagram || "");
                           }}
                         >
                           Text kopieren & Instagram öffnen
@@ -259,7 +267,7 @@ export const ProspectsTab = ({ password }: { password: string }) => {
                         p.email ? (
                           <a
                             href={`mailto:${p.email}?subject=${encodeURIComponent(msg.email_subject || "")}&body=${encodeURIComponent(msg.email_body || "")}`}
-                            onClick={() => sent(p)}
+                            onClick={() => sent(p, "email", `${msg.email_subject}\n\n${msg.email_body}`)}
                           >
                             <Button size="sm">E-Mail öffnen</Button>
                           </a>

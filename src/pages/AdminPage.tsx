@@ -30,6 +30,10 @@ const CONFIG_HELP: Record<string, { label: string; help: string }> = {
   },
   INSTAGRAM_VERIFY_TOKEN: { label: "Webhook-Prüfwort", help: "Ist schon eingetragen. Dasselbe Wort im Meta-Portal beim Webhook als „Verify Token“ eintragen." },
   MAKE_SECRET: { label: "Make.com-Schlüssel", help: "Ist schon eingetragen – Make.com nutzt ihn automatisch." },
+  WEBSITENOVA_API_KEY: {
+    label: "WebsiteNova (CRM) verbinden",
+    help: "websitenova.de → Einstellungen → API-Schlüssel → Name „Website“ → Erstellen → Schlüssel kopieren und hier einfügen. Danach landen Akquise, Kontaktformulare, Termine und Instagram-Anfragen automatisch in deinem CRM.",
+  },
   BUSY_CALENDAR_URL: {
     label: "Apple-Kalender: belegte Zeiten sperren",
     help: "iPhone: Kalender-App → Kalender → (i) neben deinem Kalender → „Öffentlicher Kalender“ einschalten → „Link teilen“ → Kopieren und hier einfügen. Alles, was dort eingetragen ist, kann dann nicht mehr gebucht werden.",

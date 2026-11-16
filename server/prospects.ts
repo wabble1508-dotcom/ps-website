@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { Env } from "./env";
 import { db } from "./db";
+import { pushToCrm, type CrmLead } from "./crm";
 
 // Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), KI-Nachrichten schreiben,
 // Status verfolgen. Verschickt wird NICHTS automatisch – der Inhaber tippt selbst auf „Senden“.
@@ -193,3 +194,48 @@ export const writeMessages = async (env: Env, p: Prospect, systemPrompt: string)
 
 export const getProspect = async (env: Env, id: string) =>
   (await ensureTable(env)).prepare("SELECT * FROM prospects WHERE id = ?").bind(id).first<Prospect>();
+
+// Akquise-Status → Phase in WebsiteNova
+const STAGE: Record<Status, CrmLead["stage"]> = {
+  neu: "Neu",
+  angeschrieben: "Neu",
+  antwort: "Im Gespräch",
+  termin: "Im Gespräch",
+  kunde: "Gewonnen",
+  "kein-interesse": "Verloren",
+};
+const STATUS_TEXT: Record<Status, string> = {
+  neu: "Neu",
+  angeschrieben: "Angeschrieben",
+  antwort: "Hat geantwortet",
+  termin: "Termin vereinbart",
+  kunde: "Ist Kunde geworden 🎉",
+  "kein-interesse": "Kein Interesse",
+};
+
+/** Betrieb ins CRM übertragen (erst sobald er kontaktiert wurde – unberührte Suchtreffer bleiben draußen) */
+export const syncProspect = async (env: Env, id: string, entry?: string) => {
+  const p = await getProspect(env, id);
+  if (!p || p.status === "neu") return null;
+  return pushToCrm(env, {
+    external_ref: `ps-akquise:${p.id}`,
+    company_name: p.name,
+    email: p.email || undefined,
+    phone: p.phone || undefined,
+    website: p.website || undefined,
+    industry: CATEGORIES[p.category]?.label || p.category,
+    source: "Akquise (OpenStreetMap)",
+    notes: [p.address, p.instagram && `Instagram: @${p.instagram}`, p.note].filter(Boolean).join("\n") || undefined,
+    stage: STAGE[p.status],
+    entry: entry || `Status: ${STATUS_TEXT[p.status]}`,
+  });
+};
+
+/** Nachricht wurde über WhatsApp/Instagram/E-Mail geöffnet → als „angeschrieben“ markieren und Text im CRM-Verlauf ablegen */
+export const markContacted = async (env: Env, id: string, channel: string, text: string) => {
+  const p = await getProspect(env, id);
+  if (!p) return null;
+  if (p.status === "neu") await updateProspect(env, id, { status: "angeschrieben" });
+  const label = { whatsapp: "WhatsApp", instagram: "Instagram-DM", email: "E-Mail" }[channel] || channel;
+  return syncProspect(env, id, `${label} geöffnet/gesendet:\n${text.slice(0, 4000)}`);
+};

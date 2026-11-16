@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { Env } from "./env";
 import { db, type ChatMessage } from "./db";
 import { notifyOwner } from "./mail";
+import { pushToCrm } from "./crm";
 import { SYSTEM_PROMPT } from "./prompt";
 import { getToken } from "./social";
 import { COMMENT_KEYWORDS, COMMENT_RULES, ICE_BREAKERS, INSTAGRAM_RULES, SOCIAL_BOT } from "./socialConfig";
@@ -157,6 +158,15 @@ const handleMessaging = async (env: Env, accountId: string, m: Messaging) => {
 
   if (isNew || hasContact(text)) {
     const name = await username(env, userId);
+    await pushToCrm(env, {
+      external_ref: `ps-ig:${userId}`,
+      company_name: `@${name}`,
+      contact_name: name,
+      source: "Instagram-DM",
+      stage: "Neu",
+      notes: `https://instagram.com/${name}`,
+      entry: `Instagram-Nachricht:\n${text}${reply ? `\n\nKI-Antwort:\n${reply}` : ""}`,
+    });
     await notifyOwner(
       env,
       isNew ? `Neue Instagram-Anfrage von @${name}` : `Kontaktdaten per Instagram von @${name}`,

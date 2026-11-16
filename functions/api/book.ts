@@ -6,6 +6,7 @@ import { notifyOwner, sendMail } from "../../server/mail";
 import { activeSocialLinks } from "../../server/socialLinks";
 import { COMPANY } from "../../server/config";
 import { busyIntervals, singleEventIcs } from "../../server/calendar";
+import { pushToCrm } from "../../server/crm";
 
 // Bucht einen Termin. Jeder Termin ist nur einmal buchbar (UNIQUE in der Datenbank).
 export const onRequestPost = async ({ request, env }: Ctx) => {
@@ -63,6 +64,16 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     `Kostenloses Erstgespräch. Fragen vorab: WhatsApp https://wa.me/4915207595260 oder ${COMPANY.email}`,
   );
   await Promise.all([
+    pushToCrm(env, {
+      external_ref: `ps-email:${email.toLowerCase()}`,
+      company_name: name || email,
+      contact_name: name,
+      email,
+      phone,
+      source: "Website-Terminbuchung",
+      stage: "Im Gespräch",
+      entry: `Erstgespräch gebucht für ${when}${note ? `\nNachricht: ${note}` : ""}`,
+    }),
     notifyOwner(
       env,
       `Neuer Termin: ${name} – ${when}`,

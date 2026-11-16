@@ -19,6 +19,10 @@ export type Env = {
   INSTAGRAM_VERIFY_TOKEN?: string;
   /** Geheimer Schlüssel für Make.com-Aufrufe an /api/social-ai */
   MAKE_SECRET?: string;
+  /** API-Schlüssel aus WebsiteNova (Einstellungen → API-Schlüssel) – Interessenten landen automatisch im CRM */
+  WEBSITENOVA_API_KEY?: string;
+  /** Adresse von WebsiteNova (Standard: https://websitenova.de) */
+  WEBSITENOVA_URL?: string;
 };
 
 export type Ctx = { request: Request; env: Env };

@@ -1,12 +1,13 @@
 import type { Env } from "./env";
 import { db } from "./db";
-import { notifyOwner, sendMail, MAILBOX } from "./mail";
+import { mailConfigured, notifyOwner, sendMail, MAILBOX } from "./mail";
 import { formatBerlin } from "./slots";
 import { COMPANY } from "./config";
 
 // Termin-Erinnerung (wie „Reminder“ im Video): ca. 24 Stunden vorher eine kurze E-Mail an den Kunden
 // und eine Erinnerung an Pankaj. Läuft über .github/workflows/auto-emails.yml mehrmals täglich.
 export const sendReminders = async (env: Env) => {
+  if (!mailConfigured(env)) return { reminders: 0 }; // erst erinnern, wenn E-Mails wirklich rausgehen
   const database = await db(env);
   try {
     await database.prepare("ALTER TABLE bookings ADD COLUMN reminded TEXT DEFAULT ''").run();

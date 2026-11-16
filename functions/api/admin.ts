@@ -4,6 +4,7 @@ import { isAdmin, json } from "../../server/http";
 import { CONFIG_KEYS, loadConfig, saveConfig, type ConfigKey } from "../../server/runtimeConfig";
 import { calendarKey } from "../../server/calendar";
 import { todayStatus } from "../../server/today";
+import { MAILBOX, sendMailOrThrow } from "../../server/mail";
 
 // Admin-Bereich: /api/admin?type=leads|bookings|chats  (GET = anzeigen, DELETE = löschen)
 const QUERIES = {
@@ -18,6 +19,16 @@ export const onRequest = async ({ request, env }: Ctx) => {
   if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
   const url = new URL(request.url);
   const type = url.searchParams.get("type") as Table;
+
+  // Test-E-Mail an das eigene Postfach (Knopf in den Einstellungen)
+  if ((type as string) === "mailtest") {
+    try {
+      await sendMailOrThrow(env, env.NOTIFY_EMAIL || MAILBOX, "Test: E-Mail-Versand der Website funktioniert ✅", "Diese E-Mail kommt von deiner Website. Ab jetzt gehen Bestätigungen, Benachrichtigungen, Tagesliste und Nachfass-E-Mails automatisch raus.");
+      return json({ ok: true, to: env.NOTIFY_EMAIL || MAILBOX });
+    } catch (err) {
+      return json({ ok: false, error: err instanceof Error ? err.message : String(err) });
+    }
+  }
 
   // Reiter „Heute“: Morgen-Briefing
   if ((type as string) === "today") return json(await todayStatus(env));

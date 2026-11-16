@@ -37,8 +37,12 @@ const CONFIG_HELP: Record<string, { label: string; help: string }> = {
   },
   INSTAGRAM_VERIFY_TOKEN: { label: "Webhook-Prüfwort", help: "Ist schon eingetragen. Dasselbe Wort im Meta-Portal beim Webhook als „Verify Token“ eintragen." },
   MAKE_SECRET: { label: "Make.com-Schlüssel", help: "Ist schon eingetragen – Make.com nutzt ihn automatisch." },
+  SMTP_PASSWORD: {
+    label: "E-Mail-Versand: Passwort von mondjal@ps-professional-solutions.de – WICHTIG",
+    help: "Das Passwort deines E-Mail-Postfachs bei Strato (dasselbe wie beim Anmelden im Webmail/E-Mail-Programm). Danach gehen alle E-Mails der Website direkt von mondjal@ps-professional-solutions.de raus. Mit „Test-E-Mail senden“ unten prüfen.",
+  },
   RESEND_API_KEY: {
-    label: "E-Mail-Versand (Resend) – WICHTIG",
+    label: "Alternative: E-Mail-Versand über Resend (nicht nötig, wenn das Postfach-Passwort eingetragen ist)",
     help: "Ohne diesen Schlüssel verschickt die Website KEINE E-Mails (Bestätigungen, Benachrichtigungen, Nachfass-E-Mails). resend.com → kostenlos registrieren → Domains → „Add Domain“ ps-professional-solutions.de → „Sign in to Cloudflare“ (trägt alles automatisch ein) → API Keys → „Create API Key“ → hier einfügen.",
   },
   MAIL_FROM: {
@@ -80,6 +84,7 @@ export const AdminPage = () => {
   const [openChat, setOpenChat] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState("");
+  const [mailTest, setMailTest] = useState("");
   const [calendarLink, setCalendarLink] = useState<{ https: string; webcal: string } | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -303,6 +308,23 @@ export const AdminPage = () => {
                       <Button type="submit">Speichern</Button>
                     </form>
                     {saved === c.name && <p className="text-sm text-green-700">Gespeichert ✔</p>}
+                    {c.name === "SMTP_PASSWORD" && c.set && (
+                      <div className="flex flex-col gap-1">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="self-start"
+                          onClick={async () => {
+                            setMailTest("Sende …");
+                            const r = await fetch("/api/admin?type=mailtest", { headers: { Authorization: `Bearer ${password}` } }).then((x) => x.json()).catch(() => ({ ok: false, error: "Verbindung fehlgeschlagen" }));
+                            setMailTest(r.ok ? `✅ Test-E-Mail an ${r.to} verschickt – bitte Postfach prüfen.` : `❌ ${r.error} – Passwort prüfen und neu speichern.`);
+                          }}
+                        >
+                          Test-E-Mail senden
+                        </Button>
+                        {mailTest && <p className="text-sm">{mailTest}</p>}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

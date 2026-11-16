@@ -21,6 +21,7 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - WebsiteNova-CRM-Anbindung (`server/crm.ts`): Schlüssel `WEBSITENOVA_API_KEY` (Admin → Einstellungen), POST an `https://websitenova.de/api/public/v1/leads`; Akquise (ab „angeschrieben“), Kontakt-/E-Book-Formular, Terminbuchung, neue Instagram-DMs. Fehler blockieren nie.
 - Datenbank: Cloudflare D1, Binding `DB` (Datenbank `ps-website-db`, EU).
 - Instagram-/Make-Schlüssel (`INSTAGRAM_TOKEN`, `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET`) können statt in Cloudflare auch im Admin-Reiter „Social-Media“ eingetragen werden (D1 `settings`, Schlüssel `cfg:<NAME>`, geladen von `functions/api/_middleware.ts`); Cloudflare-Secrets haben Vorrang.
+- E-Mail-Versand (`server/mail.ts`): bevorzugt SMTP über das Strato-Postfach mondjal@ps-professional-solutions.de (`server/smtp.ts`, `cloudflare:sockets`, smtp.strato.de:465; Passwort `SMTP_PASSWORD` im Admin → Einstellungen, Test-Knopf dort), sonst Resend.
 - Secrets in Cloudflare: `ADMIN_PASSWORD`, `ANTHROPIC_API_KEY`, optional `RESEND_API_KEY`, `NOTIFY_EMAIL`, `MAIL_FROM`, `INSTAGRAM_TOKEN`, `INSTAGRAM_APP_SECRET`, `INSTAGRAM_VERIFY_TOKEN`, `MAKE_SECRET`.
 - Live: https://ps-professional-solutions.de (Pages-Projekt `ps-website`, ps-website-dv6.pages.dev). Domain bei Strato registriert, DNS bei Cloudflare.
 - Details für den Inhaber: `ANLEITUNG.md`.

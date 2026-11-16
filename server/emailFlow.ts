@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { Env } from "./env";
 import { db } from "./db";
-import { sendMail } from "./mail";
+import { mailConfigured, MAILBOX, sendMail } from "./mail";
 import { pushToCrm } from "./crm";
 import { COMPANY } from "./config";
 import { SYSTEM_PROMPT } from "./prompt";
@@ -128,7 +128,7 @@ Du schreibst jetzt als Pankaj Mondjal eine persönliche E-Mail an jemanden, der 
 
 /** Fällige E-Mails verschicken (max. 15 pro Aufruf, damit es unter Cloudflares Zeitgrenze bleibt) */
 export const sendDueMails = async (env: Env) => {
-  if (!env.RESEND_API_KEY) return { sent: 0, error: "RESEND_API_KEY fehlt – E-Mails können nicht verschickt werden" };
+  if (!mailConfigured(env)) return { sent: 0, error: "Kein E-Mail-Versand eingerichtet (Postfach-Passwort im Admin eintragen)" };
   const database = await table(env);
   const now = new Date().toISOString();
   const { results } = await database
@@ -153,7 +153,7 @@ export const sendDueMails = async (env: Env) => {
         mail.subject,
         `${mail.body}\n\n—\nSie möchten keine weiteren E-Mails? Ein Klick genügt: ${link}\n${COMPANY.name} · Lindenhorster Str. 185 · 44339 Dortmund`,
         // Antworten landen direkt in Pankajs Postfach
-        "mondjal@ps-professional-solutions.de",
+        MAILBOX,
       );
       const next = flow.step + 1;
       await database

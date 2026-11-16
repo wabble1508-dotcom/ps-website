@@ -6,6 +6,11 @@ export type Env = {
   ANTHROPIC_API_KEY: string;
   ADMIN_PASSWORD: string;
   RESEND_API_KEY?: string;
+  /** Passwort des Postfachs mondjal@ps-professional-solutions.de (Strato) – E-Mails gehen dann direkt von dort raus */
+  SMTP_PASSWORD?: string;
+  SMTP_USER?: string;
+  SMTP_HOST?: string;
+  SMTP_PORT?: string;
   NOTIFY_EMAIL?: string;
   MAIL_FROM?: string;
   ANTHROPIC_BASE_URL?: string;

@@ -46,7 +46,7 @@ export const todayStatus = async (env: Env) => {
 
   // Einrichtung, die noch fehlt
   const setup: string[] = [];
-  if (!env.RESEND_API_KEY) setup.push("E-Mail-Versand (Resend) fehlt – ohne ihn gehen KEINE E-Mails raus");
+  if (!env.SMTP_PASSWORD && !env.RESEND_API_KEY) setup.push("E-Mail-Versand fehlt – bitte das Passwort von mondjal@ps-professional-solutions.de eintragen, sonst gehen KEINE E-Mails raus");
   if (!env.INSTAGRAM_TOKEN || !env.INSTAGRAM_APP_SECRET) setup.push("Instagram-Schlüssel fehlen – DM-Agent, Kommentar→DM und Begrüßungsfragen sind aus");
   if (!env.WEBSITENOVA_API_KEY) setup.push("WebsiteNova (CRM) ist nicht verbunden");
 

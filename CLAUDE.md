@@ -39,5 +39,8 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Nach Textänderungen oder neuen Seiten: `npm run build && node tools/i18n-extract.mjs "$(npm root -g)/playwright"` → `tools/i18n-todo/<sprache>.json` listet neue, unübersetzte Texte; diese übersetzen und in die jeweilige `dict/<sprache>.json` eintragen.
 - Bereiche mit `data-no-translate` (Chat-Verlauf, Admin) werden nicht angefasst. Impressum/Datenschutz zeigen in Fremdsprachen den Hinweis, dass die deutsche Fassung verbindlich ist.
 
+## KI-Kosten
+- Alle KI-Aufrufe (Chat, Instagram, Akquise, E-Mail-Strecken, Social-KI) nutzen `claude-haiku-5-5` mit `effort: "low"` – nicht auf teurere Modelle umstellen, der Inhaber zahlt per Guthaben.
+
 ## Prüfen vor dem Push
 - `npm run build` und `npx tsc -p functions/tsconfig.json`

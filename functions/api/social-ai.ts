@@ -90,11 +90,9 @@ const isMake = (req: Request, env: Env) => {
 const generate = async (env: Env, prompt: string, schema: Record<string, unknown>) => {
   const client = new Anthropic({ apiKey: (env.ANTHROPIC_API_KEY || "").trim(), baseURL: env.ANTHROPIC_BASE_URL || undefined });
   const response = await client.beta.messages.create({
-    model: "claude-opus-5-5",
-    max_tokens: 16000,
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
-    output_config: { effort: "medium", format: { type: "json_schema", schema } },
+    model: "claude-haiku-5-5",
+    max_tokens: 6000,
+    output_config: { effort: "low", format: { type: "json_schema", schema } },
     system: `${SYSTEM_PROMPT}\n${MARKETING_RULES}`,
     messages: [{ role: "user", content: prompt }],
   });

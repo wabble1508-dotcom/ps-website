@@ -182,10 +182,8 @@ Regeln:
 export const writeMessages = async (env: Env, p: Prospect, systemPrompt: string) => {
   const client = new Anthropic({ apiKey: (env.ANTHROPIC_API_KEY || "").trim(), baseURL: env.ANTHROPIC_BASE_URL || undefined });
   const response = await client.beta.messages.create({
-    model: "claude-opus-5-5",
-    max_tokens: 4000,
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
+    model: "claude-haiku-5-5",
+    max_tokens: 2500,
     output_config: { effort: "low", format: { type: "json_schema", schema: MESSAGE_SCHEMA } },
     system: `${systemPrompt}\n\n${RULES}`,
     messages: [

@@ -257,9 +257,9 @@ const START_PRICE = {
   title: { de: "Ihr Preis", en: "Your price", tr: "Fiyatınız" },
   value: { de: "ab 49 € / Monat", en: "from €49 / month", tr: "aylık 49 €'dan" },
   text: {
-    de: "0 € Einrichtung, monatlich kündbar. Mehr Funktionen wie KI-Live-Chat oder Online-Terminbuchung gibt es im Business-Paket ab 129 € im Monat.",
-    en: "€0 setup, cancellable monthly. More features such as AI live chat or online booking are available in the Business package from €129 a month.",
-    tr: "0 € kurulum, aylık iptal edilebilir. AI canlı sohbet veya online randevu gibi daha fazla özellik Business paketinde aylık 129 €'dan.",
+    de: "0 € Einrichtung, monatlich kündbar. Mehr Sichtbarkeit mit optimiertem SEO, GEO für KI-Suchen wie ChatGPT und Online-Terminbuchung gibt es im Business-Paket ab 129 € im Monat.",
+    en: "€0 setup, cancellable monthly. More visibility with optimised SEO, GEO for AI search like ChatGPT and online booking is available in the Business package from €129 a month.",
+    tr: "0 € kurulum, aylık iptal edilebilir. Optimize SEO, ChatGPT gibi AI aramaları için GEO ve online randevu ile daha fazla görünürlük Business paketinde aylık 129 €'dan.",
   },
 };
 
@@ -372,9 +372,9 @@ export const LANDING_PAGES: Record<string, LandingData> = {
       {
         q: { de: "Kann ich später mehr Funktionen dazubuchen?", en: "Can I add more features later?", tr: "Sonradan daha fazla özellik ekleyebilir miyim?" },
         a: {
-          de: "Ja, jederzeit. Sie können zum Business-Paket mit KI-Live-Chat und Online-Terminbuchung wechseln oder einen KI-Telefonassistenten dazunehmen. Auch eigene Apps und Software entwickeln wir für Sie.",
-          en: "Yes, any time. You can switch to the Business package with AI live chat and online booking or add an AI phone assistant. We also develop custom apps and software for you.",
-          tr: "Evet, istediğiniz zaman. AI canlı sohbet ve online randevulu Business paketine geçebilir veya AI telefon asistanı ekleyebilirsiniz. Size özel uygulama ve yazılım da geliştiriyoruz.",
+          de: "Ja, jederzeit. Sie können zum Business-Paket mit SEO, GEO und Online-Terminbuchung wechseln oder einen KI-Telefonassistenten dazunehmen. Auch eigene Apps und Software entwickeln wir für Sie.",
+          en: "Yes, any time. You can switch to the Business package with SEO, GEO and online booking or add an AI phone assistant. We also develop custom apps and software for you.",
+          tr: "Evet, istediğiniz zaman. SEO, GEO ve online randevulu Business paketine geçebilir veya AI telefon asistanı ekleyebilirsiniz. Size özel uygulama ve yazılım da geliştiriyoruz.",
         },
       },
       {
@@ -539,9 +539,9 @@ export const LANDING_PAGES: Record<string, LandingData> = {
       {
         q: { de: "Was passiert, wenn ich später mehr brauche?", en: "What if I need more later?", tr: "Sonradan daha fazlasına ihtiyacım olursa?" },
         a: {
-          de: "Sie können jederzeit wechseln: zum Business-Paket mit KI-Live-Chat und Online-Terminbuchung, mit KI-Telefonassistent oder zu einer individuell entwickelten App oder Software.",
-          en: "You can switch any time: to the Business package with AI live chat and online booking, add an AI phone assistant, or move to a custom-built app or software.",
-          tr: "İstediğiniz zaman geçebilirsiniz: AI canlı sohbet ve online randevulu Business paketine, AI telefon asistanına veya size özel geliştirilmiş bir uygulama ya da yazılıma.",
+          de: "Sie können jederzeit wechseln: zum Business-Paket mit SEO, GEO und Online-Terminbuchung, mit KI-Telefonassistent oder zu einer individuell entwickelten App oder Software.",
+          en: "You can switch any time: to the Business package with SEO, GEO and online booking, add an AI phone assistant, or move to a custom-built app or software.",
+          tr: "İstediğiniz zaman geçebilirsiniz: SEO, GEO ve online randevulu Business paketine, AI telefon asistanına veya size özel geliştirilmiş bir uygulama ya da yazılıma.",
         },
       },
       {
@@ -690,9 +690,9 @@ export const LANDING_PAGES: Record<string, LandingData> = {
       {
         q: { de: "Was kostet Webdesign in Dortmund bei Ihnen?", en: "How much does web design in Dortmund cost with you?", tr: "Sizde Dortmund'da web tasarım ne kadar?" },
         a: {
-          de: "Eine programmierte Website gibt es ab 49 € im Monat ohne Einrichtungsgebühr. Das Business-Paket mit KI-Live-Chat und Online-Terminbuchung startet bei 129 € im Monat. Apps und individuelle Software bieten wir ab 4.900 € an.",
-          en: "A hand-coded website is available from €49 a month with no setup fee. The Business package with AI live chat and online booking starts at €129 a month. We offer apps and custom software from €4,900.",
-          tr: "Kodlanmış bir site kurulum ücreti olmadan aylık 49 €'dan başlar. AI canlı sohbet ve online randevulu Business paketi aylık 129 €'dan başlar. Uygulama ve özel yazılımı 4.900 €'dan sunuyoruz.",
+          de: "Eine programmierte Website gibt es ab 49 € im Monat ohne Einrichtungsgebühr. Das Business-Paket mit SEO, GEO und Online-Terminbuchung startet bei 129 € im Monat. Apps und individuelle Software bieten wir ab 4.900 € an.",
+          en: "A hand-coded website is available from €49 a month with no setup fee. The Business package with SEO, GEO and online booking starts at €129 a month. We offer apps and custom software from €4,900.",
+          tr: "Kodlanmış bir site kurulum ücreti olmadan aylık 49 €'dan başlar. SEO, GEO ve online randevulu Business paketi aylık 129 €'dan başlar. Uygulama ve özel yazılımı 4.900 €'dan sunuyoruz.",
         },
       },
       {

@@ -16,7 +16,7 @@ export const SEO_DE: Record<string, { title: string; description: string }> = {
   "/preise": {
     title: "Preise: Website ab 49 €/Monat, Apps & Software | PS Professional",
     description:
-      "Transparente Preise: Website ab 49 € im Monat ohne Einrichtungsgebühr, Business-Website mit KI-Chat ab 129 €, App-Entwicklung ab 4.900 €. Monatlich kündbar.",
+      "Transparente Preise: Website ab 49 € im Monat ohne Einrichtungsgebühr, Business-Website mit SEO & GEO ab 129 €, App-Entwicklung ab 4.900 €. Monatlich kündbar.",
   },
   "/app-entwicklung": {
     title: "App-Entwicklung Dortmund | App entwickeln lassen: iOS, Android, Web",

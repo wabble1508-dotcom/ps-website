@@ -49,15 +49,21 @@ const rows: Row[] = [
     values: [false, true, true],
   },
   {
-    labelDe: "Lokales SEO für Google",
-    labelEn: "Local SEO for Google",
-    labelTr: "Google için yerel SEO",
+    labelDe: "SEO-Grundlagen für Google",
+    labelEn: "SEO basics for Google",
+    labelTr: "Google için temel SEO",
+    values: [true, true, true],
+  },
+  {
+    labelDe: "Optimiertes SEO für Google (lokal)",
+    labelEn: "Optimised local SEO for Google",
+    labelTr: "Google için optimize yerel SEO",
     values: [false, true, true],
   },
   {
-    labelDe: "KI-Live-Chat",
-    labelEn: "AI live chat",
-    labelTr: "AI canlı sohbet",
+    labelDe: "GEO: gefunden in ChatGPT, Gemini & Co.",
+    labelEn: "GEO: found in ChatGPT, Gemini & co.",
+    labelTr: "GEO: ChatGPT, Gemini vb.'de bulunma",
     values: [false, true, true],
   },
   {

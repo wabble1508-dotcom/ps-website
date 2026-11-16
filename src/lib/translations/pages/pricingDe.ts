@@ -3,7 +3,7 @@
 export const pricingDe = {
   seoTitle: "Preise & Pakete | Website ab 49 €/Monat | PS Professional Solutions",
   seoDesc:
-    "Professionell programmierte Website ab 49 €/Monat ohne Einrichtungsgebühr, monatlich kündbar. KI-Live-Chat, Online-Terminbuchung, KI-Telefonassistent und App-Entwicklung aus Dortmund.",
+    "Professionell programmierte Website ab 49 €/Monat ohne Einrichtungsgebühr, monatlich kündbar. SEO & GEO (gefunden bei Google und ChatGPT), Online-Terminbuchung, KI-Telefonassistent und App-Entwicklung aus Dortmund.",
   heroTitle: "Faire Preise für jede Unternehmensgröße",
   heroSubtitle:
     "Vom Friseur bis zum Unternehmen: Ihre Website gibt es schon ab 49 € im Monat – ohne Einrichtungsgebühr und monatlich kündbar.",
@@ -38,7 +38,11 @@ export const pricingDe = {
   faqs: [
     {
       q: "Was kostet eine Website bei Ihnen?",
-      a: "Eine professionell programmierte Website gibt es im Paket Start ab 49 € im Monat – ohne Einrichtungsgebühr. Mit individuellem Design, KI-Live-Chat und Online-Terminbuchung (Business) ab 129 € im Monat plus Einrichtung ab 990 €. Mit KI-Telefonassistent ab 249 € im Monat plus Einrichtung ab 1.490 €. Vor dem Start erhalten Sie ein verbindliches Angebot.",
+      a: "Eine professionell programmierte Website gibt es im Paket Start ab 49 € im Monat – ohne Einrichtungsgebühr. Mit individuellem Design, optimiertem SEO, GEO für KI-Suchen und Online-Terminbuchung (Business) ab 129 € im Monat plus Einrichtung ab 990 €. Mit KI-Telefonassistent ab 249 € im Monat plus Einrichtung ab 1.490 €. Vor dem Start erhalten Sie ein verbindliches Angebot.",
+    },
+    {
+      q: "Was ist GEO?",
+      a: "GEO (Generative Engine Optimization) sorgt dafür, dass KI-Suchen wie ChatGPT, Gemini oder Perplexity Ihren Betrieb kennen und empfehlen können. Dafür strukturieren wir die Inhalte Ihrer Website so, dass KI-Systeme sie gut lesen und verstehen – zusätzlich zum klassischen SEO für Google. Eine bestimmte Platzierung kann niemand garantieren.",
     },
     {
       q: "Sind die Pakete wirklich monatlich kündbar?",
@@ -62,7 +66,7 @@ export const pricingDe = {
     },
     {
       q: "Kann ich später in ein größeres Paket wechseln?",
-      a: "Ja, jederzeit. Wenn Sie zum Beispiel KI-Chat, Terminbuchung oder den KI-Telefonassistenten dazunehmen möchten, erweitern wir Ihre bestehende Website.",
+      a: "Ja, jederzeit. Wenn Sie zum Beispiel SEO & GEO, Terminbuchung oder den KI-Telefonassistenten dazunehmen möchten, erweitern wir Ihre bestehende Website.",
     },
     {
       q: "Ich habe schon eine Website – können Sie diese betreuen?",
@@ -109,7 +113,11 @@ export const pricingEn: typeof pricingDe = {
   faqs: [
     {
       q: "How much does a website cost?",
-      a: "A professionally coded website is available in the Start package from €49 a month – with no setup fee. With custom design, AI live chat and online booking (Business) from €129 a month plus setup from €990. With an AI phone assistant from €249 a month plus setup from €1,490. You receive a binding quote before we start.",
+      a: "A professionally coded website is available in the Start package from €49 a month – with no setup fee. With custom design, optimised SEO, GEO for AI search and online booking (Business) from €129 a month plus setup from €990. With an AI phone assistant from €249 a month plus setup from €1,490. You receive a binding quote before we start.",
+    },
+    {
+      q: "What is GEO?",
+      a: "GEO (Generative Engine Optimization) helps AI search tools such as ChatGPT, Gemini or Perplexity know and recommend your business. We structure your website content so AI systems can read and understand it well – in addition to classic SEO for Google. Nobody can guarantee a specific ranking.",
     },
     {
       q: "Can I really cancel monthly?",
@@ -180,7 +188,11 @@ export const pricingTr: typeof pricingDe = {
   faqs: [
     {
       q: "Bir web sitesi ne kadar?",
-      a: "Profesyonelce kodlanmış bir web sitesi Start paketinde aylık 49 €'dan başlar – kurulum ücreti yok. Özel tasarım, AI canlı sohbet ve online randevu ile (Business) aylık 129 €'dan, kurulum 990 €'dan. AI telefon asistanı ile aylık 249 €'dan, kurulum 1.490 €'dan. Başlamadan önce bağlayıcı bir teklif alırsınız.",
+      a: "Profesyonelce kodlanmış bir web sitesi Start paketinde aylık 49 €'dan başlar – kurulum ücreti yok. Özel tasarım, optimize SEO, AI aramaları için GEO ve online randevu ile (Business) aylık 129 €'dan, kurulum 990 €'dan. AI telefon asistanı ile aylık 249 €'dan, kurulum 1.490 €'dan. Başlamadan önce bağlayıcı bir teklif alırsınız.",
+    },
+    {
+      q: "GEO nedir?",
+      a: "GEO (Generative Engine Optimization), ChatGPT, Gemini veya Perplexity gibi AI aramalarının işletmenizi tanımasını ve önerebilmesini sağlar. Web sitenizin içeriğini AI sistemlerinin iyi okuyup anlayabileceği şekilde yapılandırıyoruz – Google için klasik SEO'ya ek olarak. Belirli bir sıralamayı kimse garanti edemez.",
     },
     {
       q: "Paketler gerçekten aylık iptal edilebilir mi?",

@@ -8,8 +8,8 @@ Alle Preise sind Endpreise; als Kleinunternehmer nach § 19 UStG wird keine Umsa
 
 ## Preise
 
-- Website „Start“: ab 49 € pro Monat, 0 € Einrichtung, monatlich kündbar. Onepager oder bis zu 4 Seiten, programmiert, für Smartphones optimiert, Hosting, SSL, Updates, Google-Unternehmensprofil, 1 kleine Änderung pro Monat.
-- Website „Business“: ab 129 € pro Monat, Einrichtung ab 990 €. Individuelles Design bis 8 Seiten, KI-Live-Chat, Online-Terminbuchung, lokales SEO, Admin-Bereich.
+- Website „Start“: ab 49 € pro Monat, 0 € Einrichtung, monatlich kündbar. Onepager oder bis zu 4 Seiten, programmiert, für Smartphones optimiert, Hosting, SSL, Updates, Google-Unternehmensprofil, SEO-Grundlagen, 1 kleine Änderung pro Monat.
+- Website „Business“: ab 129 € pro Monat, Einrichtung ab 990 €. Individuelles Design bis 8 Seiten, optimiertes lokales SEO, GEO (Auffindbarkeit in KI-Suchen wie ChatGPT, Gemini, Perplexity), Online-Terminbuchung, Admin-Bereich. KI-Live-Chat auf Wunsch.
 - Website „Business + KI-Telefon“: ab 249 € pro Monat, Einrichtung ab 1.490 €, inkl. 300 Telefonminuten, danach 0,15 € pro Minute.
 - App- und Software-Entwicklung: individuelles Angebot, Projekte ab 4.900 €. Wartung und Hosting ab 149 € pro Monat.
 - Wartung bestehender Websites: ab 39 € pro Monat.

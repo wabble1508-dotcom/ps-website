@@ -14,12 +14,12 @@ const capabilities = [
     dTr: "7/24 arama karşılama ve randevular.",
   },
   {
-    tDe: "KI Live-Chat",
-    tEn: "AI Live Chat",
-    tTr: "Yapay Zeka Canlı Sohbet",
-    dDe: "Qualifiziert Leads in Echtzeit.",
-    dEn: "Qualifies leads in real-time.",
-    dTr: "Potansiyel müşterileri gerçek zamanlı nitelendirir.",
+    tDe: "GEO – KI-Suche",
+    tEn: "GEO – AI search",
+    tTr: "GEO – AI arama",
+    dDe: "Gefunden in ChatGPT & Co.",
+    dEn: "Found in ChatGPT & co.",
+    dTr: "ChatGPT vb.'de bulunun.",
   },
   {
     tDe: "Termin-Automation",

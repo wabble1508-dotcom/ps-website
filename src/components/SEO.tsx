@@ -20,7 +20,7 @@ export const LOCAL_BUSINESS = {
   "@id": "https://ps-professional-solutions.de/#business",
   name: "PS Professional Solutions",
   description:
-    "Webdesign, App- und Software-Entwicklung aus Dortmund: programmierte Websites ab 49 € im Monat ohne Einrichtungskosten, Apps, individuelle Software, KI-Live-Chat und KI-Telefonassistent.",
+    "Webdesign, App- und Software-Entwicklung aus Dortmund: programmierte Websites ab 49 € im Monat ohne Einrichtungskosten, Apps, individuelle Software, SEO & GEO (gefunden bei Google und in KI-Suchen) und KI-Telefonassistent.",
   url: "https://ps-professional-solutions.de",
   logo: "https://ps-professional-solutions.de/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png",
   image: "https://ps-professional-solutions.de/og-image.jpg",

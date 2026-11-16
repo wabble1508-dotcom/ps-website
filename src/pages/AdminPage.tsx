@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProspectsTab } from "@/components/admin/ProspectsTab";
+import { TodayTab } from "@/components/admin/TodayTab";
 
 type Lead = { id: string; form: string; fields: Record<string, string>; page: string; createdAt: string };
 type Booking = { id: string; slot: string; firstName: string; lastName: string; email: string; phone: string; note: string; createdAt: string };
@@ -12,9 +13,10 @@ type PlanPost = {
   nr: number; date: string; time: string; format: string; topic: string; details: string; hook: string;
   captions: Record<string, string | string[]>;
 };
-type Tab = "bookings" | "leads" | "chats" | "akquise" | "content" | "config";
+type Tab = "heute" | "bookings" | "leads" | "chats" | "akquise" | "content" | "config";
 
 const TABS: { key: Tab; label: string }[] = [
+  { key: "heute", label: "Heute" },
   { key: "bookings", label: "Termine" },
   { key: "leads", label: "Anfragen" },
   { key: "chats", label: "Chats" },
@@ -69,7 +71,7 @@ export const AdminPage = () => {
     }
   });
   const [input, setInput] = useState("");
-  const [tab, setTab] = useState<Tab>("bookings");
+  const [tab, setTab] = useState<Tab>("heute");
   // Einträge merken, zu welchem Reiter sie gehören, damit beim Wechseln nichts Falsches angezeigt wird
   const [data, setData] = useState<{ tab: Tab; items: unknown[] }>({ tab: "bookings", items: [] });
   const items = data.tab === tab ? data.items : [];
@@ -97,7 +99,7 @@ export const AdminPage = () => {
   }, [api, password, tab, calendarLink]);
 
   const load = useCallback(async () => {
-    if (!password || tab === "akquise") return;
+    if (!password || tab === "akquise" || tab === "heute") return;
     setLoading(true);
     setError("");
     try {
@@ -219,7 +221,9 @@ export const AdminPage = () => {
                 </p>
               </div>
             )}
-            {tab === "akquise" ? (
+            {tab === "heute" ? (
+              <TodayTab password={password} goTo={(t) => setTab(t as Tab)} />
+            ) : tab === "akquise" ? (
               <ProspectsTab password={password} />
             ) : loading ? (
               <p className="text-muted-foreground">Lade …</p>

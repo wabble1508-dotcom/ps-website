@@ -1,5 +1,6 @@
 import type { Ctx } from "../server/env";
 import SEO_META from "../server/seo-meta.json";
+import { articleHtml, articleSchema, getArticle } from "../server/articles";
 
 // Gibt jeder Unterseite schon im ersten HTML ihren Titel, ihre Beschreibung und ihr
 // Vorschaubild mit. Google, WhatsApp, Facebook & Co. sehen so die richtigen Angaben,
@@ -56,7 +57,7 @@ const headFor = (path: string, m: Meta) => {
   ].join("\n    ");
 };
 
-export const onRequest = async ({ request, next }: Ctx & { next: () => Promise<Response> }) => {
+export const onRequest = async ({ request, env, next }: Ctx & { next: () => Promise<Response> }) => {
   const response = await next();
   const url = new URL(request.url);
   if (request.method !== "GET" || url.pathname.startsWith("/api/")) return response;
@@ -69,7 +70,15 @@ export const onRequest = async ({ request, next }: Ctx & { next: () => Promise<R
     return res;
   }
 
-  const meta = META[path];
+  let meta = META[path];
+  // Magazin-Artikel aus der Datenbank: Titel, Beschreibung, Artikel- und FAQ-Daten direkt im HTML
+  const articleMatch = path.match(/^\/magazin\/([a-z0-9-]{3,90})$/);
+  if (!meta && articleMatch) {
+    const a = await getArticle(env, articleMatch[1]).catch(() => null);
+    if (a && a.status === "live") {
+      meta = { title: `${a.title} | PS Professional Solutions`, description: a.description, robots: "index, follow", image: "", schemas: articleSchema(a), content: articleHtml(a) };
+    }
+  }
   // Unbekannte Adressen: Seite trotzdem zeigen (React zeigt „nicht gefunden“), aber mit Status 404
   const res = new Response(response.body, { status: meta ? response.status : 404, headers: response.headers });
   if (!meta) {

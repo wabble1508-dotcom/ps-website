@@ -4,3 +4,4 @@ Disallow: /admin
 Disallow: /api/
 
 Sitemap: https://ps-professional-solutions.de/sitemap.xml
+Sitemap: https://ps-professional-solutions.de/sitemap-magazin.xml

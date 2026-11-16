@@ -3,6 +3,7 @@ import { db } from "../../server/db";
 import { isAdmin, json } from "../../server/http";
 import { CONFIG_KEYS, loadConfig, saveConfig, type ConfigKey } from "../../server/runtimeConfig";
 import { calendarKey } from "../../server/calendar";
+import { todayStatus } from "../../server/today";
 
 // Admin-Bereich: /api/admin?type=leads|bookings|chats  (GET = anzeigen, DELETE = löschen)
 const QUERIES = {
@@ -17,6 +18,9 @@ export const onRequest = async ({ request, env }: Ctx) => {
   if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
   const url = new URL(request.url);
   const type = url.searchParams.get("type") as Table;
+
+  // Reiter „Heute“: Morgen-Briefing
+  if ((type as string) === "today") return json(await todayStatus(env));
 
   // Reiter „Social-Media“: Zugangsschlüssel eintragen (Werte werden nie zurückgegeben, nur ob sie gesetzt sind)
   if ((type as string) === "config") {

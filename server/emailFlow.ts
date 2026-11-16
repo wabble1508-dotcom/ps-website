@@ -154,7 +154,8 @@ export const sendDueMails = async (env: Env) => {
         flow.email,
         mail.subject,
         `${mail.body}\n\n—\nSie möchten keine weiteren E-Mails? Ein Klick genügt: ${link}\n${COMPANY.name} · Lindenhorster Str. 185 · 44339 Dortmund`,
-        COMPANY.email,
+        // Antworten landen direkt in Pankajs Postfach
+        "mondjal@ps-professional-solutions.de",
       );
       const next = flow.step + 1;
       await database

@@ -7,6 +7,7 @@ import { activeSocialLinks } from "../../server/socialLinks";
 import { COMPANY } from "../../server/config";
 import { busyIntervals, singleEventIcs } from "../../server/calendar";
 import { pushToCrm } from "../../server/crm";
+import { stopFlows } from "../../server/emailFlow";
 
 // Bucht einen Termin. Jeder Termin ist nur einmal buchbar (UNIQUE in der Datenbank).
 export const onRequestPost = async ({ request, env }: Ctx) => {
@@ -64,6 +65,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
     `Kostenloses Erstgespräch. Fragen vorab: WhatsApp https://wa.me/4915207595260 oder ${COMPANY.email}`,
   );
   await Promise.all([
+    stopFlows(env, email, "Termin gebucht"),
     pushToCrm(env, {
       external_ref: `ps-email:${email.toLowerCase()}`,
       company_name: name || email,

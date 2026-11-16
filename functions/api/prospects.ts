@@ -2,7 +2,7 @@ import type { Ctx } from "../../server/env";
 import { isAdmin, json } from "../../server/http";
 import { SYSTEM_PROMPT } from "../../server/prompt";
 import { notifyOwner } from "../../server/mail";
-import { CATEGORIES, dailyStep, deleteProspect, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
+import { CATEGORIES, dailyStep, deleteProspect, handleFlowForStatus, getProspect, listProspects, markContacted, searchProspects, syncProspect, updateProspect, writeMessages } from "../../server/prospects";
 import { crmEnabled } from "../../server/crm";
 
 // Akquise im Admin-Bereich (Reiter „Akquise“) – nur mit Admin-Passwort.
@@ -49,7 +49,8 @@ export const onRequest = async ({ request, env }: Ctx) => {
         await updateProspect(env, id, { status: s(body.status) as never, note: s(body.note), phone: s(body.phone), email: s(body.email), instagram: s(body.instagram) });
         // Statuswechsel sofort ins CRM (WebsiteNova); Kontaktdaten/Notizen werden beim nächsten Statuswechsel mitgenommen
         const crm = s(body.status) ? await syncProspect(env, id) : null;
-        return json({ ok: true, crm: Boolean(crm) });
+        const warning = s(body.status) || s(body.email) ? await handleFlowForStatus(env, id) : null;
+        return json({ ok: true, crm: Boolean(crm), warning });
       }
       case "contacted": {
         const crm = await markContacted(env, String(body.id || ""), String(body.channel || ""), String(body.text || ""));

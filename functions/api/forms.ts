@@ -5,6 +5,7 @@ import { notifyOwner, sendMail } from "../../server/mail";
 import { autoReply, TOPICS } from "../../server/autoReply";
 import { COMPANY } from "../../server/config";
 import { pushToCrm } from "../../server/crm";
+import { startFlow } from "../../server/emailFlow";
 
 // Nimmt alle Formulare der Website entgegen (Kontakt, E-Book, Newsletter, Bewerbung …)
 const FORMS: Record<string, { title: string; required: string[] }> = {
@@ -50,7 +51,7 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
   const topicLabel = formName === "kontakt" ? (TOPICS[fields.topic] || TOPICS.sonstiges).label.de : "";
   // Interessenten automatisch ins CRM (WebsiteNova) – Bewerbungen und Newsletter nicht
   if (formName === "kontakt" || formName === "ebook") {
-    const person = [fields.first_name, fields.last_name].filter(Boolean).join(" ");
+    const person = fields.name || [fields.first_name, fields.last_name].filter(Boolean).join(" ");
     await pushToCrm(env, {
       external_ref: `ps-email:${fields.email.toLowerCase()}`,
       company_name: fields.company || person || fields.email,
@@ -64,6 +65,15 @@ export const onRequestPost = async ({ request, env }: Ctx) => {
         .filter(([k]) => !["first_name", "last_name", "email"].includes(k))
         .map(([k, v]) => `${k}: ${v}`)
         .join("\n")}`,
+    });
+    // Automatisches Nachfassen per E-Mail (die Person hat sich selbst gemeldet)
+    await startFlow(env, {
+      kind: "anfrage",
+      email: fields.email,
+      name: person,
+      company: fields.company,
+      context: `${form.title}${topicLabel ? ` zum Thema ${topicLabel}` : ""}. ${fields.message || fields.nachricht || ""}`,
+      crmRef: `ps-email:${fields.email.toLowerCase()}`,
     });
   }
   await notifyOwner(

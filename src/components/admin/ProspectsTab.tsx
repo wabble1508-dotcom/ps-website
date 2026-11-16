@@ -24,6 +24,7 @@ type Messages = { whatsapp?: string; instagram?: string; email_subject?: string;
 const STATUS: { key: string; label: string; color: string }[] = [
   { key: "neu", label: "Neu", color: "bg-muted" },
   { key: "angeschrieben", label: "Angeschrieben", color: "bg-blue-100 text-blue-900" },
+  { key: "infos", label: "Will Infos ✉️ (Auto-E-Mails)", color: "bg-teal-100 text-teal-900" },
   { key: "antwort", label: "Antwort", color: "bg-amber-100 text-amber-900" },
   { key: "termin", label: "Termin", color: "bg-purple-100 text-purple-900" },
   { key: "kunde", label: "Kunde 🎉", color: "bg-green-100 text-green-900" },
@@ -99,7 +100,9 @@ export const ProspectsTab = ({ password }: { password: string }) => {
 
   const update = async (id: string, fields: Partial<Prospect>) => {
     setItems((list) => list.map((p) => (p.id === id ? { ...p, ...fields } : p)));
-    await call("POST", { action: "update", id, ...fields }).catch((e) => setInfo((e as Error).message));
+    const r = await call("POST", { action: "update", id, ...fields }).catch((e) => setInfo((e as Error).message));
+    if (r?.warning) setInfo(r.warning);
+    else if (fields.status === "infos") setInfo("✅ Automatische E-Mails gestartet: Infos sofort, Nachfassen nach 3 und 8 Tagen. Stoppt automatisch bei Termin oder anderem Status.");
   };
 
   const write = async (p: Prospect) => {

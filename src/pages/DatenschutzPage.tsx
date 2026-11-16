@@ -88,6 +88,10 @@ const SECTIONS: Section[] = [
         "After you submit the contact form, you automatically receive a confirmation with information about your request at the email address you provided. Where configured, emails are sent via the service Resend (Resend, Inc., USA) as a processor on the basis of EU Standard Contractual Clauses. To prevent misuse, we send at most three such confirmations per email address per day.",
       ],
       [
+        "Wenn Sie uns über das Kontaktformular anfragen oder uns um Informationen bitten, senden wir Ihnen dazu bis zu drei kurze, persönliche Folge-E-Mails (z. B. Beispiele und das Angebot eines kostenlosen Erstgesprächs). Die Texte werden mithilfe künstlicher Intelligenz (Anthropic PBC, siehe Abschnitt „KI-Live-Chat“) erstellt. Rechtsgrundlage ist Ihre Anfrage (Art. 6 Abs. 1 lit. b DSGVO). Sobald Sie einen Termin buchen oder antworten, enden die E-Mails; mit dem Link in jeder E-Mail können Sie sie jederzeit sofort abbestellen. Anfragen und Kontaktverlauf verwalten wir zusätzlich in unserem eigenen Kundenverwaltungssystem (CRM).",
+        "If you contact us via the contact form or ask us for information, we send you up to three short, personal follow-up emails (e.g. examples and the offer of a free initial consultation). The texts are created with the help of artificial intelligence (Anthropic PBC, see the section on the AI live chat). The legal basis is your request (Art. 6(1)(b) GDPR). The emails stop as soon as you book an appointment or reply; you can unsubscribe at any time using the link in each email. We also manage enquiries and contact history in our own customer management system (CRM).",
+      ],
+      [
         "Speicherdauer: Anfragen werden nach 12 Monaten, Bewerbungen nach 6 Monaten automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen oder ein Vertrag zustande kommt.",
         "Retention: enquiries are deleted automatically after 12 months and applications after 6 months, unless statutory retention obligations apply or a contract is concluded.",
       ],

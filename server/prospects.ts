@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { Env } from "./env";
 import { db } from "./db";
 import { pushToCrm, type CrmLead } from "./crm";
+import { sendDueMails, startFlow, stopFlows } from "./emailFlow";
 
 // Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), KI-Nachrichten schreiben,
 // Status verfolgen. Verschickt wird NICHTS automatisch – der Inhaber tippt selbst auf „Senden“.
@@ -21,7 +22,7 @@ export const CATEGORIES: Record<string, { label: string; filter: string[] }> = {
   laden: { label: "Einzelhandel (Läden)", filter: ['["shop"="florist"]', '["shop"="gift"]', '["shop"="kiosk"]', '["shop"="optician"]'] },
 };
 
-export const STATUSES = ["neu", "angeschrieben", "antwort", "termin", "kunde", "kein-interesse"] as const;
+export const STATUSES = ["neu", "angeschrieben", "infos", "antwort", "termin", "kunde", "kein-interesse"] as const;
 export type Status = (typeof STATUSES)[number];
 
 export type Prospect = {
@@ -194,6 +195,7 @@ export const getProspect = async (env: Env, id: string) =>
 const STAGE: Record<Status, CrmLead["stage"]> = {
   neu: "Neu",
   angeschrieben: "Neu",
+  infos: "Im Gespräch",
   antwort: "Im Gespräch",
   termin: "Im Gespräch",
   kunde: "Gewonnen",
@@ -202,6 +204,7 @@ const STAGE: Record<Status, CrmLead["stage"]> = {
 const STATUS_TEXT: Record<Status, string> = {
   neu: "Neu",
   angeschrieben: "Angeschrieben",
+  infos: "Will Infos – automatische E-Mails laufen",
   antwort: "Hat geantwortet",
   termin: "Termin vereinbart",
   kunde: "Ist Kunde geworden 🎉",
@@ -296,5 +299,24 @@ export const dailyStep = async (env: Env, step: string, systemPrompt: string, no
     );
     return { mailed: true, count: ready.length };
   }
+  if (step === "emails") return sendDueMails(env);
   throw new Error("unbekannter Schritt");
+};
+
+/** Status „Will Infos“ startet die automatischen E-Mails, jeder spätere Status beendet sie */
+export const handleFlowForStatus = async (env: Env, id: string) => {
+  const p = await getProspect(env, id);
+  if (!p?.email) return p?.status === "infos" ? "Für automatische E-Mails bitte erst die E-Mail-Adresse eintragen." : null;
+  if (p.status === "infos") {
+    await startFlow(env, {
+      kind: "akquise",
+      email: p.email,
+      company: p.name,
+      context: `${CATEGORIES[p.category]?.label || p.category} in ${p.address || p.city}. ${p.website ? `Hat eine Website: ${p.website}.` : "Keine Website gefunden."} ${p.note}`,
+      crmRef: `ps-akquise:${p.id}`,
+    });
+  } else if (["antwort", "termin", "kunde", "kein-interesse"].includes(p.status)) {
+    await stopFlows(env, p.email, STATUS_TEXT[p.status]);
+  }
+  return null;
 };

@@ -1,0 +1,11 @@
+# Automatische E-Mails (nur an Interessenten mit Zustimmung): mehrmals täglich fällige E-Mails verschicken.
+name: Automatische E-Mails
+on:
+  schedule:
+    - cron: "17 7,10,13,16 * * 1-6"
+  workflow_dispatch:
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -sS --fail-with-body --max-time 95 "https://ps-professional-solutions.de/api/prospects?action=daily-cron&step=emails"

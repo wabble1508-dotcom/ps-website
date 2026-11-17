@@ -115,7 +115,7 @@ const logBotError = async (env: Env, info: string) => {
   }
 };
 
-const hasContact =(text: string) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(text) || /(\+?\d[\d\s/-]{7,}\d)/.test(text);
+const hasContact = (text: string) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(text) || /(\+?\d[\d\s/-]{7,}\d)/.test(text);
 
 const matchKeyword = (text: string) => {
   const t = text.toLowerCase();

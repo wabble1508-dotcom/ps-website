@@ -60,7 +60,7 @@ export const ICE_BREAKERS: { question: string; payload: string; answer: string }
   {
     question: "Was kostet eine Website bei euch? 💻",
     payload: "PREISE",
-    answer: `Gute Frage! 🙂 Los geht's ab 49 €/Monat mit 0 € Einrichtung, monatlich kündbar. Mit Terminbuchung und KI-Chat ab 129 €/Monat.\n\nAlle Pakete: ${SITE}/preise\n\nWas für ein Unternehmen hast du? Dann sag ich dir, was passt.`,
+    answer: `Gute Frage! 🙂 Los geht's ab 49 €/Monat mit 0 € Einrichtung, monatlich kündbar. Mit SEO, GEO (gefunden bei ChatGPT & Co.) und Terminbuchung ab 129 €/Monat.\n\nAlle Pakete: ${SITE}/preise\n\nWas für ein Unternehmen hast du? Dann sag ich dir, was passt.`,
   },
   {
     question: "Ich will eine App oder Software 🚀",

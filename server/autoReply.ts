@@ -67,7 +67,7 @@ export const TOPICS: Record<string, Topic> = {
     },
     steps: [
       { de: "Wir melden uns innerhalb von 24 Stunden (werktags).", en: "We'll get back to you within 24 hours (on working days).", tr: "İş günlerinde 24 saat içinde size döneceğiz." },
-      { de: "Der KI-Chat ist im Business-Paket ab 129 € im Monat enthalten.", en: "The AI chat is included in the Business package from €129 a month.", tr: "AI sohbet aylık 129 €'dan başlayan Business paketine dahildir." },
+      { de: "Den KI-Chat bauen wir auf Wunsch in Ihre Website ein – Sie erhalten vorab ein verbindliches Angebot.", en: "We add the AI chat to your website on request – you receive a binding quote in advance.", tr: "AI sohbeti isteğe bağlı olarak sitenize ekliyoruz – önceden bağlayıcı bir teklif alırsınız." },
     ],
     link: "/ki-live-chat",
     linkLabel: { de: "Mehr zum KI-Live-Chat", en: "More about the AI live chat", tr: "AI canlı sohbet hakkında" },

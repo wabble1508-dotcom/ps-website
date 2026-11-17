@@ -183,7 +183,7 @@ export const autoReply = (topicId: string, language: string, name: string) => {
   const subject = t(UI.subject).replace("{topic}", t(topic.label));
   const hello = t(UI.hello).replace("{name}", name);
   const link = `${SITE}${topic.link}`;
-  const bookLink = `${SITE}/analyse-bestaetigungen`;
+  const bookLink = `${SITE}/termin`;
 
   const text = [
     hello,

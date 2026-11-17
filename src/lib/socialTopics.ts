@@ -32,7 +32,7 @@ export const SOCIAL_TOPICS: Record<string, string[]> = {
 };
 
 // Auf diesen Seiten keinen Social-Media-Bereich zeigen
-export const SOCIAL_HIDDEN = ["/info", "/datenschutz", "/agb", "/analyse-bestaetigungen"];
+export const SOCIAL_HIDDEN = ["/info", "/datenschutz", "/agb", "/analyse-bestaetigungen", "/termin"];
 
 export const pickPosts = <T extends { caption: string }>(posts: T[], path: string, count = 6): T[] => {
   const words = SOCIAL_TOPICS[path];

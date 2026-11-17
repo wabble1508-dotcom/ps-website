@@ -75,7 +75,7 @@ export default function ArticlePage() {
         <div className="mt-12 rounded-2xl bg-secondary text-white p-8 text-center">
           <p className="text-xl font-semibold">Kostenloses Erstgespräch</p>
           <p className="mt-2 text-white/80">15 Minuten, unverbindlich – wir schauen gemeinsam, was Ihr Betrieb braucht.</p>
-          <Link to="/analyse-bestaetigungen">
+          <Link to="/termin">
             <Button className="mt-4">Termin buchen</Button>
           </Link>
         </div>

@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { adminSecret } from "./adminAuth";
 import type { Env } from "./env";
 import { db } from "./db";
 import { mailConfigured, MAILBOX, sendMail } from "./mail";
@@ -27,7 +28,7 @@ const PLAN: Record<FlowKind, { day: number; goal: string }[]> = {
   ],
 };
 
-const BOOKING_URL = "https://ps-professional-solutions.de/analyse-bestaetigungen";
+const BOOKING_URL = "https://ps-professional-solutions.de/termin";
 
 type Flow = {
   id: string;
@@ -81,15 +82,17 @@ export const stopFlows = async (env: Env, email: string, reason: string) => {
 export const flowFor = async (env: Env, email: string) =>
   email ? (await table(env)).prepare("SELECT * FROM email_flows WHERE email = ? ORDER BY updated_at DESC LIMIT 1").bind(email.trim().toLowerCase()).first<Flow>() : null;
 
-// Abmelde-Link: HMAC über die Strecken-ID mit dem Admin-Passwort als Schlüssel
-const sign = async (env: Env, id: string) => {
-  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(`stop:${env.ADMIN_PASSWORD}`), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+// Abmelde-Link: HMAC über die Strecken-ID mit dem Admin-Geheimnis als Schlüssel
+const sign = async (env: Env, id: string, secret?: string) => {
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(`stop:${secret ?? (await adminSecret(env))}`), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const sig = new Uint8Array(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(id)));
   return [...sig.slice(0, 16)].map((b) => b.toString(16).padStart(2, "0")).join("");
 };
 export const stopLink = async (env: Env, id: string) =>
   `https://ps-professional-solutions.de/api/email-stop?id=${encodeURIComponent(id)}&sig=${await sign(env, id)}`;
-export const verifyStop = async (env: Env, id: string, sig: string) => sig === (await sign(env, id));
+// Ältere Links (vor einer Passwortänderung erzeugt) bleiben gültig – ein Abmelde-Link darf nie ins Leere laufen
+export const verifyStop = async (env: Env, id: string, sig: string) =>
+  sig === (await sign(env, id)) || (!!env.ADMIN_PASSWORD && sig === (await sign(env, id, env.ADMIN_PASSWORD)));
 
 const MAIL_SCHEMA = {
   type: "object",

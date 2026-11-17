@@ -114,6 +114,7 @@ const App = () => (
                 <Route path="/info" element={<ImpressumPage />} />
                 <Route path="/datenschutz" element={<DatenschutzPage />} />
                 <Route path="/agb" element={<AgbPage />} />
+                <Route path="/termin" element={<VielenDankPage neutral />} />
                 <Route
                   path="/analyse-bestaetigungen"
                   element={<VielenDankPage />}

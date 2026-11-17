@@ -13,6 +13,11 @@ export const SEO_DE: Record<string, { title: string; description: string }> = {
     description:
       "Website erstellen lassen beim Webdesigner aus Dortmund: programmiert, schnell, für Google optimiert und fürs Smartphone gemacht. Ab 49 €/Monat, 0 € Einrichtung.",
   },
+  "/termin": {
+    title: "Kostenloses Erstgespräch buchen | PS Professional Solutions",
+    description:
+      "Buchen Sie online Ihr kostenloses 30-minütiges Erstgespräch: Website, SEO & GEO, Apps oder Software – unverbindlich, mit Webdesigner aus Dortmund.",
+  },
   "/preise": {
     title: "Preise: Website ab 49 €/Monat, Apps & Software | PS Professional",
     description:

@@ -59,7 +59,9 @@ const calendarFile = (slotIso: string) => {
   return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
 };
 
-export const VielenDankPage = () => {
+// /analyse-bestaetigungen: nach dem Absenden eines Formulars („Vielen Dank …“)
+// /termin: neutrale Buchungsseite für Links aus Artikeln, E-Mails und Buttons
+export const VielenDankPage = ({ neutral = false }: { neutral?: boolean }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [slots, setSlots] = useState<Record<string, { slots: string[] }>>({});
@@ -157,29 +159,45 @@ export const VielenDankPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-20 max-w-4xl">
-      <SEO
-        noIndex
-        title={
-          isEn
-            ? "Thank you! — PS Professional Solutions"
-            : "Vielen Dank! — PS Professional Solutions"
-        }
-        description={
-          isEn
-            ? "Thank you for your request. Now choose an appointment for your free initial consultation."
-            : "Vielen Dank für Ihre Anfrage. Wählen Sie nun einen Termin für Ihr kostenloses Erstgespräch."
-        }
-      />
+      {neutral ? (
+        <SEO
+          canonical="/termin"
+          title={isEn ? "Book a free initial consultation" : "Kostenloses Erstgespräch buchen"}
+          description={
+            isEn
+              ? "Book your free 30-minute initial consultation with PS Professional Solutions online – website, SEO, apps and software from Dortmund."
+              : "Buchen Sie online Ihr kostenloses 30-minütiges Erstgespräch mit PS Professional Solutions – Website, SEO, Apps und Software aus Dortmund."
+          }
+        />
+      ) : (
+        <SEO
+          noIndex
+          title={isEn ? "Thank you! — PS Professional Solutions" : "Vielen Dank! — PS Professional Solutions"}
+          description={
+            isEn
+              ? "Thank you for your request. Now choose an appointment for your free initial consultation."
+              : "Vielen Dank für Ihre Anfrage. Wählen Sie nun einen Termin für Ihr kostenloses Erstgespräch."
+          }
+        />
+      )}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold text-primary mb-4">
-          {isEn
-            ? "Thank you for your request!"
-            : "Vielen Dank für Ihre Anfrage!"}
+          {neutral
+            ? isEn
+              ? "Book your free initial consultation"
+              : "Kostenloses Erstgespräch buchen"
+            : isEn
+              ? "Thank you for your request!"
+              : "Vielen Dank für Ihre Anfrage!"}
         </h1>
         <p className="text-xl text-muted-foreground">
-          {isEn
-            ? "Your data has been successfully submitted. Please select an appointment for your free initial consultation."
-            : "Ihre Daten wurden erfolgreich übermittelt. Bitte wählen Sie nun einen Termin für Ihr kostenloses Erstgespräch aus."}
+          {neutral
+            ? isEn
+              ? "30 minutes, free and without obligation. Simply choose a date and time that suits you."
+              : "30 Minuten, kostenlos und unverbindlich. Wählen Sie einfach einen passenden Tag und eine Uhrzeit."
+            : isEn
+              ? "Your data has been successfully submitted. Please select an appointment for your free initial consultation."
+              : "Ihre Daten wurden erfolgreich übermittelt. Bitte wählen Sie nun einen Termin für Ihr kostenloses Erstgespräch aus."}
         </p>
       </div>
 

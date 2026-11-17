@@ -97,7 +97,7 @@ Du schreibst jetzt einen Ratgeber-Artikel für das Magazin von PS Professional S
 - Keyword natürlich im Titel, in der Einleitung und in 1–2 Zwischenüberschriften. Kein Keyword-Stuffing.
 - 5–7 Abschnitte (Zwischenüberschrift + 1–3 Absätze, optional Stichpunkte), danach 4–5 FAQ.
 - Preise nur aus den Angaben oben, immer als „ab“. Keine Ranking-Garantien, keine erfundenen Zahlen, Studien oder Kunden.
-- Letzter Abschnitt: kurzer, freundlicher Hinweis auf das kostenlose Erstgespräch (Termin unter ps-professional-solutions.de/analyse-bestaetigungen).
+- Letzter Abschnitt: kurzer, freundlicher Hinweis auf das kostenlose Erstgespräch (Termin unter ps-professional-solutions.de/termin).
 - Reiner Text ohne Markdown-Zeichen.`,
     messages: [{ role: "user", content: `Suchanfrage: „${kw}“` }],
   });

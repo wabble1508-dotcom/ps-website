@@ -6,12 +6,5 @@ export const clean = (v: unknown, max = 2000) => (typeof v === "string" ? v.trim
 
 export const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
-// Admin-Zugang: Passwort aus ADMIN_PASSWORD, Vergleich in konstanter Zeit
-export const isAdmin = (req: Request, env: Env) => {
-  const expected = env.ADMIN_PASSWORD || "";
-  const given = (req.headers.get("authorization") || "").replace(/^Bearer /, "");
-  if (!expected || !given || given.length !== expected.length) return false;
-  let diff = 0;
-  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ given.charCodeAt(i);
-  return diff === 0;
-};
+// Admin-Zugang (Passwort aus Cloudflare oder im Admin-Bereich geändert): server/adminAuth.ts
+export { isAdmin } from "./adminAuth";

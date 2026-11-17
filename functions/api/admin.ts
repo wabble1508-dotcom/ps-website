@@ -3,6 +3,7 @@ import { db } from "../../server/db";
 import { isAdmin, json } from "../../server/http";
 import { CONFIG_KEYS, loadConfig, saveConfig, type ConfigKey } from "../../server/runtimeConfig";
 import { calendarKey } from "../../server/calendar";
+import { changeAdminPassword } from "../../server/adminAuth";
 import { todayStatus } from "../../server/today";
 import { MAILBOX, sendMailOrThrow } from "../../server/mail";
 
@@ -16,7 +17,7 @@ const QUERIES = {
 type Table = keyof typeof QUERIES;
 
 export const onRequest = async ({ request, env }: Ctx) => {
-  if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+  if (!(await isAdmin(request, env))) return json({ error: "unauthorized" }, 401);
   const url = new URL(request.url);
   const type = url.searchParams.get("type") as Table;
 
@@ -44,6 +45,14 @@ export const onRequest = async ({ request, env }: Ctx) => {
     const saved = new Set(fromDb.results.map((r) => r.key.slice(4)));
     await loadConfig(env, true);
     return json({ items: CONFIG_KEYS.map((name) => ({ id: name, name, set: Boolean(env[name]), inAdmin: saved.has(name) })) });
+  }
+  // Admin-Passwort ändern: aktuelles Passwort wurde oben schon geprüft (Authorization-Header)
+  if ((type as string) === "password" && request.method === "POST") {
+    const body = await request.json<{ next?: string }>().catch(() => ({}) as { next?: string });
+    const next = String(body.next || "");
+    if (next.length < 12) return json({ error: "Das neue Passwort braucht mindestens 12 Zeichen." }, 400);
+    await changeAdminPassword(env, next);
+    return json({ ok: true });
   }
   // Abo-Adresse für Apple Kalender & Co.
   if ((type as string) === "calendar") {

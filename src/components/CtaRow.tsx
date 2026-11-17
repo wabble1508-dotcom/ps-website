@@ -25,7 +25,7 @@ export const CtaRow = ({ source, className = "" }: { source: string; className?:
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
       </button>
       <Link
-        to="/analyse-bestaetigungen"
+        to="/termin"
         className="inline-flex items-center gap-2 rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:border-primary hover:bg-primary/5"
       >
         <CalendarCheck className="h-4 w-4 text-primary" />

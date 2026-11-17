@@ -84,6 +84,8 @@ export const AdminPage = () => {
   const [openChat, setOpenChat] = useState<string | null>(null);
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState("");
+  const [pwForm, setPwForm] = useState({ current: "", next: "", repeat: "" });
+  const [pwMsg, setPwMsg] = useState("");
   const [mailTest, setMailTest] = useState("");
   const [calendarLink, setCalendarLink] = useState<{ https: string; webcal: string } | null>(null);
   const [copied, setCopied] = useState(false);
@@ -284,6 +286,42 @@ export const AdminPage = () => {
                 <p className="text-sm text-muted-foreground">
                   Hier trägst du Zugangsschlüssel und Verknüpfungen ein (Instagram-Autopilot, Apple-Kalender). Gespeicherte Werte werden aus Sicherheitsgründen nicht wieder angezeigt.
                 </p>
+                <form
+                  className="bg-background rounded-xl shadow p-4 flex flex-col gap-2"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setPwMsg("");
+                    if (pwForm.next !== pwForm.repeat) return setPwMsg("Die beiden neuen Passwörter sind nicht gleich.");
+                    if (pwForm.next.length < 12) return setPwMsg("Das neue Passwort braucht mindestens 12 Zeichen.");
+                    const res = await fetch("/api/admin?type=password", {
+                      method: "POST",
+                      headers: { Authorization: `Bearer ${pwForm.current}`, "Content-Type": "application/json" },
+                      body: JSON.stringify({ next: pwForm.next }),
+                    });
+                    if (res.status === 401) return setPwMsg("Das aktuelle Passwort stimmt nicht.");
+                    const d = await res.json().catch(() => ({}));
+                    if (!res.ok) return setPwMsg(d.error || "Hat nicht geklappt.");
+                    try {
+                      sessionStorage.setItem(PW_KEY, pwForm.next);
+                    } catch {
+                      // ignorieren
+                    }
+                    setPassword(pwForm.next);
+                    setCalendarLink(null);
+                    setPwForm({ current: "", next: "", repeat: "" });
+                    setPwMsg("✅ Neues Passwort gespeichert. Das alte gilt ab sofort nicht mehr. Wichtig: Den Apple-Kalender bitte einmal neu abonnieren (Reiter „Termine“), der alte Abo-Link funktioniert nicht mehr.");
+                  }}
+                >
+                  <p className="font-semibold">🔒 Admin-Passwort ändern</p>
+                  <p className="text-sm text-muted-foreground">
+                    Mindestens 12 Zeichen. Am besten im Passwort-Manager (z. B. iCloud-Schlüsselbund) speichern und nirgends in Chats einfügen.
+                  </p>
+                  <Input type="password" autoComplete="current-password" placeholder="Aktuelles Passwort" value={pwForm.current} onChange={(e) => setPwForm((f) => ({ ...f, current: e.target.value }))} />
+                  <Input type="password" autoComplete="new-password" placeholder="Neues Passwort" value={pwForm.next} onChange={(e) => setPwForm((f) => ({ ...f, next: e.target.value }))} />
+                  <Input type="password" autoComplete="new-password" placeholder="Neues Passwort wiederholen" value={pwForm.repeat} onChange={(e) => setPwForm((f) => ({ ...f, repeat: e.target.value }))} />
+                  <Button type="submit" className="self-start">Passwort ändern</Button>
+                  {pwMsg && <p className="text-sm">{pwMsg}</p>}
+                </form>
                 {(items as ConfigItem[]).map((c) => (
                   <div key={c.id} className="bg-background rounded-xl shadow p-4 flex flex-col gap-2">
                     <p className="font-semibold">

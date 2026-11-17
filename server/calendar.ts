@@ -1,5 +1,6 @@
 import type { Env } from "./env";
 import { BOOKING, COMPANY } from "./config";
+import { adminSecret } from "./adminAuth";
 
 // Kalender-Anbindung (z. B. Apple Kalender):
 // 1. Gebuchte Termine als Kalender-Abo (ICS) – /api/calendar?key=… (Schlüssel aus ADMIN_PASSWORD abgeleitet)
@@ -72,10 +73,11 @@ export const bookingsCalendar = (bookings: Booking[]) =>
 export const singleEventIcs = (uid: string, slotIso: string, summary: string, description: string) =>
   calendar(summary, [vevent(`${uid}@ps-professional-solutions.de`, Date.parse(slotIso), summary, description)], "PUBLISH");
 
-/** Geheimer Schlüssel für die Abo-Adresse, abgeleitet aus dem Admin-Passwort */
+/** Geheimer Schlüssel für die Abo-Adresse (ändert sich, wenn im Admin ein neues Passwort gesetzt wird) */
 export const calendarKey = async (env: Env) => {
-  if (!env.ADMIN_PASSWORD) return "";
-  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(env.ADMIN_PASSWORD), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const secret = await adminSecret(env);
+  if (!secret) return "";
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
   const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode("kalender-abo"));
   return [...new Uint8Array(sig)].slice(0, 16).map((b) => b.toString(16).padStart(2, "0")).join("");
 };

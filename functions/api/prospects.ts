@@ -24,7 +24,7 @@ export const onRequest = async ({ request, env }: Ctx) => {
       return json({ error: err instanceof Error ? err.message : "server" }, 500);
     }
   }
-  if (!isAdmin(request, env)) return json({ error: "unauthorized" }, 401);
+  if (!(await isAdmin(request, env))) return json({ error: "unauthorized" }, 401);
   try {
     if (request.method === "GET") {
       return json({

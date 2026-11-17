@@ -4,12 +4,48 @@ import { Button } from "@/components/ui/button";
 // Reiter „Heute“: Morgen-Briefing wie „marketing status --today“ + Freigaben
 type Status = { stats: Record<string, number>; waiting: { text: string; tab: string }[]; setup: string[] };
 type Article = { slug: string; title: string; description: string; keyword: string; status: string; created_at: string };
+type Section = { heading: string; paragraphs?: string[]; bullets?: string[] };
+type FullArticle = Article & { intro?: string; sections?: string; faq?: string };
+
+const parse = <T,>(v: string | undefined): T[] => {
+  try {
+    return v ? (JSON.parse(v) as T[]) : [];
+  } catch {
+    return [];
+  }
+};
+
+// Entwurf direkt im Admin lesen (ohne neues Fenster – Entwürfe sind nur mit Passwort abrufbar)
+const DraftPreview = ({ article }: { article: FullArticle }) => (
+  <div className="mt-2 max-h-[70vh] overflow-y-auto rounded-lg border bg-muted/30 p-4 text-sm leading-relaxed">
+    <h3 className="text-lg font-bold">{article.title}</h3>
+    {article.intro && <p className="mt-2">{article.intro}</p>}
+    {parse<Section>(article.sections).map((sec) => (
+      <div key={sec.heading} className="mt-4">
+        <h4 className="font-semibold">{sec.heading}</h4>
+        {sec.paragraphs?.map((p) => <p key={p} className="mt-1">{p}</p>)}
+        {!!sec.bullets?.length && (
+          <ul className="mt-1 list-disc pl-5">
+            {sec.bullets.map((b) => <li key={b}>{b}</li>)}
+          </ul>
+        )}
+      </div>
+    ))}
+    {parse<{ q: string; a: string }>(article.faq).map((f) => (
+      <div key={f.q} className="mt-3">
+        <p className="font-semibold">{f.q}</p>
+        <p>{f.a}</p>
+      </div>
+    ))}
+  </div>
+);
 
 export const TodayTab = ({ password, goTo }: { password: string; goTo: (tab: string) => void }) => {
   const [status, setStatus] = useState<Status | null>(null);
   const [articles, setArticles] = useState<Article[]>([]);
   const [busy, setBusy] = useState("");
   const [info, setInfo] = useState("");
+  const [reading, setReading] = useState<Record<string, FullArticle | "loading" | "error">>({});
   const headers = { Authorization: `Bearer ${password}`, "Content-Type": "application/json" };
 
   const load = useCallback(async () => {
@@ -39,6 +75,20 @@ export const TodayTab = ({ password, goTo }: { password: string; goTo: (tab: str
       setInfo((e as Error).message);
     } finally {
       setBusy("");
+    }
+  };
+
+  const toggleRead = async (slug: string) => {
+    if (reading[slug]) {
+      setReading(({ [slug]: _, ...rest }) => rest);
+      return;
+    }
+    setReading((r) => ({ ...r, [slug]: "loading" }));
+    try {
+      const d = await fetch(`/api/articles?slug=${encodeURIComponent(slug)}`, { headers: { Authorization: `Bearer ${password}` } }).then((r) => r.json());
+      setReading((r) => ({ ...r, [slug]: d.article || "error" }));
+    } catch {
+      setReading((r) => ({ ...r, [slug]: "error" }));
     }
   };
 
@@ -114,24 +164,9 @@ export const TodayTab = ({ password, goTo }: { password: string; goTo: (tab: str
             <p className="text-sm text-muted-foreground">Suchbegriff: {a.keyword}</p>
             <p className="text-sm">{a.description}</p>
             <div className="flex flex-wrap gap-2">
-              <a href={`/api/articles?slug=${a.slug}`} target="_blank" rel="noreferrer" onClick={(e) => {
-                e.preventDefault();
-                fetch(`/api/articles?slug=${a.slug}`, { headers: { Authorization: `Bearer ${password}` } })
-                  .then((r) => r.json())
-                  .then((d) => {
-                    const w = window.open("", "_blank");
-                    if (!w || !d.article) return;
-                    const secs = JSON.parse(d.article.sections || "[]") as { heading: string; paragraphs: string[]; bullets: string[] }[];
-                    w.document.title = d.article.title;
-                    w.document.body.style.cssText = "font-family:system-ui;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.6";
-                    const h = (tag: string, text: string) => { const el = w.document.createElement(tag); el.textContent = text; w.document.body.appendChild(el); };
-                    h("h1", d.article.title);
-                    h("p", d.article.intro);
-                    secs.forEach((sec) => { h("h2", sec.heading); sec.paragraphs.forEach((p) => h("p", p)); sec.bullets.forEach((b) => h("li", b)); });
-                  });
-              }}>
-                <Button size="sm" variant="outline">Lesen</Button>
-              </a>
+              <Button size="sm" variant="outline" onClick={() => toggleRead(a.slug)}>
+                {reading[a.slug] ? "Schließen" : "Lesen"}
+              </Button>
               <Button size="sm" disabled={busy === "publish" + a.slug} onClick={() => act("publish", a.slug)}>
                 ✅ Freigeben & online stellen
               </Button>
@@ -139,6 +174,9 @@ export const TodayTab = ({ password, goTo }: { password: string; goTo: (tab: str
                 Löschen
               </Button>
             </div>
+            {reading[a.slug] === "loading" && <p className="text-sm text-muted-foreground">Lade Entwurf …</p>}
+            {reading[a.slug] === "error" && <p className="text-sm text-destructive">Entwurf konnte nicht geladen werden.</p>}
+            {typeof reading[a.slug] === "object" && <DraftPreview article={reading[a.slug] as FullArticle} />}
           </div>
         ))}
         {articles.filter((a) => a.status === "live").length > 0 && (

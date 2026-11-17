@@ -13,7 +13,7 @@ const DEFAULT_IMAGE = `${DOMAIN}/og-image.jpg`;
 // Kontaktwege und Anfrageformular für Besucher und Programme ohne JavaScript
 // (das Formular schickt an /api/forms und leitet danach zur Terminbuchung weiter)
 const CONTACT_HTML = `<h2>Kontakt</h2>
-<p><a href="#kontakt">Angebot anfragen</a> · <a href="/analyse-bestaetigungen">Termin buchen</a></p>
+<p><a href="#kontakt">Angebot anfragen</a> · <a href="/termin">Termin buchen</a></p>
 <p>Telefon: <a href="tel:+4915207595260">+49 152 0759 5260</a> · E-Mail: <a href="mailto:info@ps-professional-solutions.de">info@ps-professional-solutions.de</a> · <a href="https://wa.me/4915207595260">WhatsApp</a></p>
 <form id="kontakt" method="post" action="/api/forms">
 <input type="hidden" name="form" value="kontakt">

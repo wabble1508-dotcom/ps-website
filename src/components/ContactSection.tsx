@@ -61,7 +61,7 @@ export const ContactSection = () => {
               </a>
             ))}
             <Link
-              to="/analyse-bestaetigungen"
+              to="/termin"
               className="flex items-center gap-4 rounded-2xl bg-primary p-4 text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15">

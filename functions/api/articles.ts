@@ -6,7 +6,7 @@ import { deleteArticle, getArticle, listArticles, publishArticle, writeNextArtic
 // Mit Admin-Passwort: auch Entwürfe; POST {action:"publish"|"write"|"delete", slug?, keyword?}
 export const onRequest = async ({ request, env }: Ctx) => {
   const url = new URL(request.url);
-  const admin = isAdmin(request, env);
+  const admin = await isAdmin(request, env);
   try {
     if (request.method === "GET") {
       const slug = url.searchParams.get("slug");

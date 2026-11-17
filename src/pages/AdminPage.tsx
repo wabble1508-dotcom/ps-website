@@ -149,7 +149,7 @@ export const AdminPage = () => {
       setDrafts((d) => ({ ...d, [name]: "" }));
       setSaved(name);
       load();
-    } else setError("Speichern hat nicht geklappt.");
+    } else setError((await res.json().catch(() => ({}))).error || "Speichern hat nicht geklappt.");
   };
 
   const login = (e: React.FormEvent) => {

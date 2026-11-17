@@ -1,4 +1,3 @@
-// @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // Instagram-Autopilot: Kommentar „WEBSITE“ → private DM (comment_id) + öffentliche Antwort.

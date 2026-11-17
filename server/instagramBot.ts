@@ -31,6 +31,9 @@ export type WebhookBody = { object?: string; entry?: { id: string; messaging?: M
 const graph = async (env: Env, path: string, body?: unknown) => {
   const token = await getToken(env);
   if (!token) throw new Error("INSTAGRAM_TOKEN fehlt");
+  // Facebook-Schlüssel (EAA…) werden von graph.instagram.com immer abgelehnt – klare Meldung statt rätselhaftem 400er
+  if (/^EAA/.test(token.trim()))
+    throw new Error("Falscher Instagram-Schlüssel: eingetragen ist ein Facebook-Schlüssel (EAA…). Benötigt wird der Instagram-Schlüssel (IG…) aus „API-Einrichtung mit Instagram-Login“.");
   const res = await fetch(`${API}/${path}${path.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(token)}`, {
     method: body ? "POST" : "GET",
     headers: body ? { "Content-Type": "application/json" } : undefined,
@@ -100,7 +103,19 @@ const username = async (env: Env, userId: string) => {
   }
 };
 
-const hasContact = (text: string) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(text) || /(\+?\d[\d\s/-]{7,}\d)/.test(text);
+/** Fehler des Autopiloten in social_log merken (zählt im Admin-Reiter „Heute“ als Fehler) */
+const logBotError = async (env: Env, info: string) => {
+  try {
+    await (await db(env))
+      .prepare("INSERT INTO social_log (id, platform, info, created_at) VALUES (?, ?, ?, ?)")
+      .bind(crypto.randomUUID(), "instagram-bot", `FEHLER ${info}`.slice(0, 1000), new Date().toISOString())
+      .run();
+  } catch (err) {
+    console.error("social_log", err);
+  }
+};
+
+const hasContact =(text: string) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(text) || /(\+?\d[\d\s/-]{7,}\d)/.test(text);
 
 const matchKeyword = (text: string) => {
   const t = text.toLowerCase();
@@ -181,12 +196,34 @@ const handleComment = async (env: Env, accountId: string, c: Change["value"]) =>
 
   const keyword = matchKeyword(c.text);
   if (keyword) {
-    await sendDm(env, { comment_id: c.id }, keyword.dm);
-    await graph(env, `${c.id}/replies`, { message: keyword.publicReply });
+    const who = `@${c.from.username || c.from.id}`;
+    // Fehler nicht stumm verschlucken: im Log und per Mail an den Inhaber melden
+    const errors: string[] = [];
+    let dmSent = false;
+    try {
+      await sendDm(env, { comment_id: c.id }, keyword.dm);
+      dmSent = true;
+    } catch (err) {
+      errors.push(`DM: ${err instanceof Error ? err.message : String(err)}`);
+    }
+    // „Schau in deine DMs“ nur, wenn die DM wirklich raus ist
+    if (dmSent) {
+      try {
+        await graph(env, `${c.id}/replies`, { message: keyword.publicReply });
+      } catch (err) {
+        errors.push(`Öffentliche Antwort: ${err instanceof Error ? err.message : String(err)}`);
+      }
+    }
+    if (errors.length) {
+      console.error("Instagram-Stichwort", c.id, errors);
+      await logBotError(env, `Stichwort-Kommentar ${who} („${c.text.slice(0, 80)}“): ${errors.join(" | ")}`);
+    }
     await notifyOwner(
       env,
-      `Stichwort-Kommentar von @${c.from.username || c.from.id}`,
-      `@${c.from.username || c.from.id} hat „${c.text}“ kommentiert und automatisch eine DM bekommen.\n\nDM:\n${keyword.dm}`,
+      errors.length ? `FEHLER bei Stichwort-Kommentar von ${who}` : `Stichwort-Kommentar von ${who}`,
+      errors.length
+        ? `${who} hat „${c.text}“ kommentiert, aber die automatische Antwort hat NICHT geklappt:\n\n${errors.join("\n")}`
+        : `${who} hat „${c.text}“ kommentiert und automatisch eine DM bekommen.\n\nDM:\n${keyword.dm}`,
     );
     return;
   }

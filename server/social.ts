@@ -43,7 +43,8 @@ export const getToken = async (env: Env) => {
     await setSetting(env, "instagram_token", token);
     await setSetting(env, "instagram_token_source", env.INSTAGRAM_TOKEN.slice(-12));
   }
-  if (Date.now() - Date.parse(since) > REFRESH_AFTER_MS) {
+  // Nur Instagram-Login-Schlüssel (IG…) lassen sich so verlängern; Unified-Login-Schlüssel (EAA…) nicht
+  if (!/^EAA/.test(token.trim()) && Date.now() - Date.parse(since) > REFRESH_AFTER_MS) {
     const res = await fetch(`${API}/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(token)}`);
     if (res.ok) {
       const data = (await res.json()) as { access_token?: string };

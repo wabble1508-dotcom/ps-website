@@ -39,9 +39,6 @@ export const onRequest = async ({ request, env }: Ctx) => {
     if (request.method === "POST") {
       const body = await request.json<{ name?: string; value?: string }>().catch(() => ({}) as { name?: string; value?: string });
       if (!CONFIG_KEYS.includes(body.name as ConfigKey)) return json({ error: "bad_request" }, 400);
-      // Häufiger Fehler: Facebook-Schlüssel (EAA…) statt Instagram-Schlüssel (IG…) – funktioniert mit der Instagram-API nicht
-      if (body.name === "INSTAGRAM_TOKEN" && /^EAA/.test(String(body.value || "").trim()))
-        return json({ error: "Das ist ein Facebook-Schlüssel (beginnt mit „EAA“). Benötigt wird der Instagram-Schlüssel (beginnt mit „IG“): Meta-App → Anwendungsfälle → Instagram API → API-Einrichtung mit Instagram-Login → bei deinem Konto „Token generieren“." }, 400);
       await saveConfig(env, body.name as ConfigKey, String(body.value || "").trim().slice(0, 4000));
     }
     const fromDb = await (await db(env)).prepare("SELECT key FROM settings WHERE key LIKE 'cfg:%'").all<{ key: string }>();

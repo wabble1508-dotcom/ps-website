@@ -9,7 +9,7 @@ import { COMMENT_KEYWORDS, COMMENT_RULES, ICE_BREAKERS, INSTAGRAM_RULES, SOCIAL_
 
 // Instagram-Autopilot: beantwortet DMs mit KI, schickt bei Kommentar-Stichwörtern automatisch
 // eine DM und antwortet auf Begrüßungsfragen (Ice Breakers). Läuft über die offizielle
-// Instagram-API (Instagram-Login) mit demselben Schlüssel wie der Instagram-Feed der Website.
+// Instagram-API (Instagram-Login oder Unified Login) mit demselben Schlüssel wie der Instagram-Feed der Website.
 
 const API = "https://graph.instagram.com/v23.0";
 const MAX_HISTORY = 20;
@@ -28,13 +28,16 @@ export type WebhookBody = { object?: string; entry?: { id: string; messaging?: M
 
 // --- Hilfsfunktionen -------------------------------------------------------------------------
 
+// Neuere Meta-Apps haben kein „Instagram-Login“ mehr, sondern „Unified Login“ (Facebook Login for Business):
+// deren Schlüssel beginnen mit „EAA“ und funktionieren nur über graph.facebook.com, nicht über graph.instagram.com.
+const FB_API = "https://graph.facebook.com/v23.0";
+export const isFacebookToken = (token: string) => /^EAA/.test(token.trim());
+
 const graph = async (env: Env, path: string, body?: unknown) => {
   const token = await getToken(env);
   if (!token) throw new Error("INSTAGRAM_TOKEN fehlt");
-  // Facebook-Schlüssel (EAA…) werden von graph.instagram.com immer abgelehnt – klare Meldung statt rätselhaftem 400er
-  if (/^EAA/.test(token.trim()))
-    throw new Error("Falscher Instagram-Schlüssel: eingetragen ist ein Facebook-Schlüssel (EAA…). Benötigt wird der Instagram-Schlüssel (IG…) aus „API-Einrichtung mit Instagram-Login“.");
-  const res = await fetch(`${API}/${path}${path.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(token)}`, {
+  const base = isFacebookToken(token) ? FB_API : API;
+  const res = await fetch(`${base}/${path}${path.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(token.trim())}`, {
     method: body ? "POST" : "GET",
     headers: body ? { "Content-Type": "application/json" } : undefined,
     body: body ? JSON.stringify(body) : undefined,
@@ -56,8 +59,11 @@ const firstTime = async (env: Env, id: string) => {
 const seen = async (env: Env, id: string) =>
   Boolean(await (await db(env)).prepare("SELECT 1 FROM social_events WHERE id = ?").bind(id).first());
 
-const sendDm = async (env: Env, recipient: { id: string } | { comment_id: string }, text: string) => {
-  const res = await graph(env, "me/messages", { recipient, message: { text: text.slice(0, 1000) } });
+/** accountId = Instagram-Konto-ID (entry.id im Webhook); bei Unified Login statt „me“ nötig */
+const sendDm = async (env: Env, accountId: string, recipient: { id: string } | { comment_id: string }, text: string) => {
+  const token = (await getToken(env)) || "";
+  const path = isFacebookToken(token) ? `${accountId}/messages` : "me/messages";
+  const res = await graph(env, path, { recipient, message: { text: text.slice(0, 1000) } });
   // Eigene Nachrichten merken, damit wir sie von deinen Handantworten unterscheiden können
   if (typeof res.message_id === "string") await firstTime(env, `sent:${res.message_id}`);
 };
@@ -166,7 +172,7 @@ const handleMessaging = async (env: Env, accountId: string, m: Messaging) => {
     reply = await askClaude(env, INSTAGRAM_RULES, messages.slice(-MAX_HISTORY));
   }
   if (reply) {
-    await sendDm(env, { id: userId }, reply);
+    await sendDm(env, accountId, { id: userId }, reply);
     messages.push({ role: "assistant", content: reply });
   }
   await saveChat(env, chatId, messages);
@@ -201,7 +207,7 @@ const handleComment = async (env: Env, accountId: string, c: Change["value"]) =>
     const errors: string[] = [];
     let dmSent = false;
     try {
-      await sendDm(env, { comment_id: c.id }, keyword.dm);
+      await sendDm(env, accountId, { comment_id: c.id }, keyword.dm);
       dmSent = true;
     } catch (err) {
       errors.push(`DM: ${err instanceof Error ? err.message : String(err)}`);

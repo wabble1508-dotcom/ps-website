@@ -89,14 +89,19 @@ describe("Instagram Kommentar-Stichwort", () => {
     }
   });
 
-  it("Facebook-Schlüssel (EAA…): Fehler wird gemeldet statt stumm verschluckt, keine falsche „schau in deine DMs“-Antwort", async () => {
-    state.token = "EAAYfacebooktoken";
+  it("Unified-Login-Schlüssel (EAA…, wie live am 17.11.): DM und Antwort über graph.facebook.com mit Konto-ID statt „me“", async () => {
+    state.token = "EAAYunifiedlogintoken";
     await handleWebhook(env, commentWebhook("WEBSITE"));
 
-    expect(calls).toEqual([]); // nichts an graph.instagram.com geschickt
-    expect(state.log).toHaveLength(1);
-    expect(state.log[0]).toMatch(/^FEHLER .*Facebook-Schlüssel/);
-    expect(state.mails).toEqual(["FEHLER bei Stichwort-Kommentar von @websitenova.app"]);
+    const dm = calls.find((c) => c.url.includes("/messages"));
+    expect(dm?.url.startsWith(`https://graph.facebook.com/v23.0/${ACCOUNT}/messages?`)).toBe(true);
+    expect(dm?.body.recipient).toEqual({ comment_id: "17986241117900810" });
+
+    const reply = calls.find((c) => c.url.includes("/replies"));
+    expect(reply?.url.startsWith("https://graph.facebook.com/v23.0/17986241117900810/replies?")).toBe(true);
+    expect(reply?.body).toEqual({ message: "Ist raus – schau in deine DMs 📩" });
+    expect(calls.some((c) => c.url.includes("graph.instagram.com"))).toBe(false);
+    expect(state.log).toEqual([]);
   });
 
   it("DM wird von Instagram abgelehnt → Fehler im Log, keine öffentliche Antwort", async () => {

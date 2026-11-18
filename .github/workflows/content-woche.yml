@@ -1,9 +1,8 @@
+# ABGESCHALTET (18.11.2026): läuft nicht mehr automatisch, um Claude-Kosten zu sparen. Manuell startbar unter GitHub → Actions → „Run workflow“.
 # Jeden Sonntag gegen 17 Uhr: KI plant die Content-Woche (Ergebnis per E-Mail + im Admin-Bereich unter „Anfragen“).
 # Die Website plant nur, wenn der letzte Plan älter als 6 Tage ist – zweimal laufen schadet nicht.
 name: Content-Woche planen
 on:
-  schedule:
-    - cron: "7 16 * * 0"
   workflow_dispatch:
 jobs:
   plan:

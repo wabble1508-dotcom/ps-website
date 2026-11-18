@@ -58,21 +58,27 @@ export const resolveMeta = async (env: Env): Promise<MetaApi | null> => {
     return data;
   };
   let found: { pageId: string; token: string; igId: string } | null = null;
+  let pagesInfo = "";
   // Benutzer-Schlüssel: Seiten durchsuchen
   try {
     const pages = (await get("me/accounts?fields=id,name,access_token,instagram_business_account&limit=50", raw)) as {
-      data?: { id: string; access_token: string; instagram_business_account?: { id: string } }[];
+      data?: { id: string; name: string; access_token: string; instagram_business_account?: { id: string } }[];
     };
     const page = pages.data?.find((p) => p.instagram_business_account?.id);
     if (page) found = { pageId: page.id, token: page.access_token, igId: page.instagram_business_account!.id };
-  } catch {
-    // vermutlich schon ein Seiten-Schlüssel
+    else pagesInfo = `Seiten im Schlüssel: ${pages.data?.length ? pages.data.map((p) => p.name).join(", ") : "keine"}`;
+  } catch (err) {
+    pagesInfo = err instanceof Error ? err.message : String(err);
   }
   // Seiten-Schlüssel: direkt die verknüpfte Instagram-ID lesen
   if (!found) {
-    const me = (await get("me?fields=id,name,instagram_business_account", raw)) as { id: string; instagram_business_account?: { id: string } };
-    if (!me.instagram_business_account?.id) throw new Error("Mit diesem Facebook-Schlüssel ist keine Facebook-Seite mit verknüpftem Instagram-Konto erreichbar.");
-    found = { pageId: me.id, token: raw, igId: me.instagram_business_account.id };
+    const me = (await get("me?fields=id,name", raw)) as { id: string; name: string };
+    const page = await get(`${me.id}?fields=instagram_business_account`, raw).catch(() => null) as { instagram_business_account?: { id: string } } | null;
+    if (!page?.instagram_business_account?.id)
+      throw new Error(
+        `Mit diesem Facebook-Schlüssel (${me.name}) ist keine Facebook-Seite mit verknüpftem Instagram-Konto erreichbar. ${pagesInfo}. Beim Erzeugen müssen die Seite „PS Professional Solutions“ und die Rechte pages_show_list, pages_manage_metadata, instagram_basic, instagram_manage_messages, instagram_manage_comments ausgewählt sein.`,
+      );
+    found = { pageId: me.id, token: raw, igId: page.instagram_business_account.id };
   }
   const result: MetaApi = { kind: "fb", base: FB, ...found };
   await setSetting(env, "fb_meta", JSON.stringify({ ...result, src: raw.slice(-12) }));

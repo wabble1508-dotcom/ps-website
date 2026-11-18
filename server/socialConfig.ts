@@ -6,9 +6,9 @@ const WHATSAPP = "https://wa.me/4915207595260";
 
 export const SOCIAL_BOT = {
   /** KI beantwortet Instagram-DMs automatisch */
-  answerDms: true,
+  answerDms: false, // aus: kostet Claude-API (18.11.2026)
   /** Auf Kommentare ohne Stichwort kurz und freundlich öffentlich antworten */
-  replyToAllComments: true,
+  replyToAllComments: false, // aus: kostet Claude-API (18.11.2026)
   /** Wenn du selbst in einem Chat antwortest, schweigt die KI dort so viele Stunden */
   pauseHoursAfterHuman: 12,
 };

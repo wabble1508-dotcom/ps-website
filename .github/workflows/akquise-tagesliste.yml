@@ -1,9 +1,8 @@
+# ABGESCHALTET (18.11.2026): läuft nicht mehr automatisch, um Claude-Kosten zu sparen. Manuell startbar unter GitHub → Actions → „Run workflow“.
 # Jeden Morgen (Mo–Fr, ca. 7:40 Uhr): neue Betriebe suchen, KI-Nachrichten vorschreiben, Tagesliste per E-Mail.
 # Verschickt nichts an Betriebe – das Senden macht der Inhaber selbst (Admin → Akquise).
 name: Akquise-Tagesliste
 on:
-  schedule:
-    - cron: "41 6 * * 1-5"
   workflow_dispatch:
 jobs:
   liste:

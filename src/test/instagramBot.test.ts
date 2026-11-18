@@ -5,7 +5,12 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const state = vi.hoisted(() => ({ token: "IGAAtest", events: new Set<string>(), log: [] as string[], mails: [] as string[] }));
 
-vi.mock("../../server/social", () => ({ getToken: async () => state.token }));
+vi.mock("../../server/social", () => ({
+  resolveMeta: async () =>
+    state.token.startsWith("EAA")
+      ? { kind: "fb", base: "https://graph.facebook.com/v23.0", token: "PAGETOKEN", igId: "IG1", pageId: "PAGE1" }
+      : { kind: "ig", base: "https://graph.instagram.com/v23.0", token: state.token, igId: "me", pageId: "me" },
+}));
 vi.mock("../../server/mail", () => ({ notifyOwner: async (_env: unknown, subject: string) => void state.mails.push(subject) }));
 vi.mock("../../server/crm", () => ({ pushToCrm: async () => undefined }));
 vi.mock("../../server/db", () => ({
@@ -89,14 +94,14 @@ describe("Instagram Kommentar-Stichwort", () => {
     }
   });
 
-  it("Facebook-Schlüssel (EAA…): Fehler wird gemeldet statt stumm verschluckt, keine falsche „schau in deine DMs“-Antwort", async () => {
+  it("Facebook-Schlüssel (EAA…): DM läuft über die Facebook-Seite, öffentliche Antwort am Kommentar", async () => {
     state.token = "EAAYfacebooktoken";
     await handleWebhook(env, commentWebhook("WEBSITE"));
 
-    expect(calls).toEqual([]); // nichts an graph.instagram.com geschickt
-    expect(state.log).toHaveLength(1);
-    expect(state.log[0]).toMatch(/^FEHLER .*Facebook-Schlüssel/);
-    expect(state.mails).toEqual(["FEHLER bei Stichwort-Kommentar von @websitenova.app"]);
+    const dm = calls.find((c) => c.url.startsWith("https://graph.facebook.com/v23.0/PAGE1/messages"));
+    expect(dm?.body).toMatchObject({ recipient: { comment_id: "17986241117900810" } });
+    expect(dm?.url).toContain("access_token=PAGETOKEN");
+    expect(calls.some((c) => c.url.startsWith("https://graph.facebook.com/v23.0/17986241117900810/replies"))).toBe(true);
   });
 
   it("DM wird von Instagram abgelehnt → Fehler im Log, keine öffentliche Antwort", async () => {

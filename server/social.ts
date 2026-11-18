@@ -30,6 +30,55 @@ const setSetting = async (env: Env, key: string, value: string) =>
     .bind(key, value, new Date().toISOString())
     .run();
 
+// Zwei Arten von Schlüsseln werden unterstützt:
+//  • Instagram-Schlüssel (IG…, „API-Einrichtung mit Instagram-Login“) → graph.instagram.com
+//  • Facebook-Schlüssel (EAA…, Facebook-Login) → graph.facebook.com über die Facebook-Seite, mit der
+//    das Instagram-Konto verknüpft ist. Seite, Seiten-Schlüssel und Instagram-ID werden automatisch ermittelt.
+export type MetaApi = { kind: "ig" | "fb"; base: string; token: string; igId: string; pageId: string };
+
+const FB = "https://graph.facebook.com/v23.0";
+
+export const resolveMeta = async (env: Env): Promise<MetaApi | null> => {
+  const raw = (env.INSTAGRAM_TOKEN || "").trim();
+  if (!raw) return null;
+  if (!/^EAA/.test(raw)) {
+    const token = await getToken(env);
+    return token ? { kind: "ig", base: "https://graph.instagram.com/v23.0", token, igId: "me", pageId: "me" } : null;
+  }
+  // Ergebnis 12 Stunden merken (gebunden an den eingetragenen Schlüssel)
+  const cached = await getSetting(env, "fb_meta");
+  if (cached) {
+    const c = JSON.parse(cached.value) as MetaApi & { src: string };
+    if (c.src === raw.slice(-12) && Date.now() - Date.parse(cached.updated_at) < 12 * 3600_000) return c;
+  }
+  const get = async (path: string, token: string) => {
+    const res = await fetch(`${FB}/${path}${path.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(token)}`);
+    const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+    if (!res.ok) throw new Error(`Facebook ${path.split("?")[0]}: ${res.status} ${JSON.stringify(data).slice(0, 300)}`);
+    return data;
+  };
+  let found: { pageId: string; token: string; igId: string } | null = null;
+  // Benutzer-Schlüssel: Seiten durchsuchen
+  try {
+    const pages = (await get("me/accounts?fields=id,name,access_token,instagram_business_account&limit=50", raw)) as {
+      data?: { id: string; access_token: string; instagram_business_account?: { id: string } }[];
+    };
+    const page = pages.data?.find((p) => p.instagram_business_account?.id);
+    if (page) found = { pageId: page.id, token: page.access_token, igId: page.instagram_business_account!.id };
+  } catch {
+    // vermutlich schon ein Seiten-Schlüssel
+  }
+  // Seiten-Schlüssel: direkt die verknüpfte Instagram-ID lesen
+  if (!found) {
+    const me = (await get("me?fields=id,name,instagram_business_account", raw)) as { id: string; instagram_business_account?: { id: string } };
+    if (!me.instagram_business_account?.id) throw new Error("Mit diesem Facebook-Schlüssel ist keine Facebook-Seite mit verknüpftem Instagram-Konto erreichbar.");
+    found = { pageId: me.id, token: raw, igId: me.instagram_business_account.id };
+  }
+  const result: MetaApi = { kind: "fb", base: FB, ...found };
+  await setSetting(env, "fb_meta", JSON.stringify({ ...result, src: raw.slice(-12) }));
+  return result;
+};
+
 // Aktuellen Schlüssel holen; ein neu eingetragenes Secret hat Vorrang vor dem gespeicherten
 export const getToken = async (env: Env) => {
   if (!env.INSTAGRAM_TOKEN) return null;
@@ -65,11 +114,11 @@ const loadMedia = async (env: Env): Promise<RawMedia[]> => {
   const hit = await cache.match(cacheKey);
   if (hit) return hit.json();
 
-  const token = await getToken(env);
-  if (!token) return [];
   let media: RawMedia[] = [];
   try {
-    const res = await fetch(`${API}/me/media?fields=${FIELDS}&limit=30&access_token=${encodeURIComponent(token)}`);
+    const meta = await resolveMeta(env);
+    if (!meta) return [];
+    const res = await fetch(`${meta.base}/${meta.igId}/media?fields=${FIELDS}&limit=30&access_token=${encodeURIComponent(meta.token)}`);
     if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
     const data = (await res.json()) as { data?: (Omit<RawMedia, "type"> & { media_type: RawMedia["type"] })[] };
     media = (data.data || []).map((m) => ({ ...m, type: m.media_type, caption: m.caption || "" }));

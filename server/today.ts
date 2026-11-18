@@ -48,8 +48,6 @@ export const todayStatus = async (env: Env) => {
   const setup: string[] = [];
   if (!env.SMTP_PASSWORD && !env.RESEND_API_KEY) setup.push("E-Mail-Versand fehlt – bitte das Passwort von mondjal@ps-professional-solutions.de eintragen, sonst gehen KEINE E-Mails raus");
   if (!env.INSTAGRAM_TOKEN || !env.INSTAGRAM_APP_SECRET) setup.push("Instagram-Schlüssel fehlen – DM-Agent, Kommentar→DM und Begrüßungsfragen sind aus");
-  else if (/^EAA/.test(env.INSTAGRAM_TOKEN.trim()))
-    setup.push("Falscher Instagram-Schlüssel: eingetragen ist ein Facebook-Schlüssel (EAA…). Bitte in der Meta-App unter „API-Einrichtung mit Instagram-Login“ → „Token generieren“ den Instagram-Schlüssel (IG…) holen und unter Einstellungen ersetzen – sonst antwortet der Autopilot nicht und der Feed bleibt leer");
   if (!(await n("SELECT COUNT(*) n FROM settings WHERE key = 'admin_auth'")))
     setup.push("Admin-Passwort noch nicht geändert – das alte war in einem Chat. Einstellungen → „Admin-Passwort ändern“");
   if (!env.WEBSITENOVA_API_KEY) setup.push("WebsiteNova (CRM) ist nicht verbunden");

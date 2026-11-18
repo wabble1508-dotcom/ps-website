@@ -4,7 +4,7 @@ import { db, type ChatMessage } from "./db";
 import { notifyOwner } from "./mail";
 import { pushToCrm } from "./crm";
 import { SYSTEM_PROMPT } from "./prompt";
-import { getToken } from "./social";
+import { resolveMeta } from "./social";
 import { COMMENT_KEYWORDS, COMMENT_RULES, ICE_BREAKERS, INSTAGRAM_RULES, SOCIAL_BOT } from "./socialConfig";
 
 // Instagram-Autopilot: beantwortet DMs mit KI, schickt bei Kommentar-Stichwörtern automatisch
@@ -29,18 +29,17 @@ export type WebhookBody = { object?: string; entry?: { id: string; messaging?: M
 // --- Hilfsfunktionen -------------------------------------------------------------------------
 
 const graph = async (env: Env, path: string, body?: unknown) => {
-  const token = await getToken(env);
-  if (!token) throw new Error("INSTAGRAM_TOKEN fehlt");
-  // Facebook-Schlüssel (EAA…) werden von graph.instagram.com immer abgelehnt – klare Meldung statt rätselhaftem 400er
-  if (/^EAA/.test(token.trim()))
-    throw new Error("Falscher Instagram-Schlüssel: eingetragen ist ein Facebook-Schlüssel (EAA…). Benötigt wird der Instagram-Schlüssel (IG…) aus „API-Einrichtung mit Instagram-Login“.");
-  const res = await fetch(`${API}/${path}${path.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(token)}`, {
+  const meta = await resolveMeta(env);
+  if (!meta) throw new Error("INSTAGRAM_TOKEN fehlt");
+  // Mit Facebook-Schlüssel laufen Nachrichten über die Facebook-Seite
+  const p = meta.kind === "fb" ? path.replace(/^me\/messages\b/, `${meta.pageId}/messages`) : path;
+  const res = await fetch(`${meta.base}/${p}${p.includes("?") ? "&" : "?"}access_token=${encodeURIComponent(meta.token)}`, {
     method: body ? "POST" : "GET",
     headers: body ? { "Content-Type": "application/json" } : undefined,
     body: body ? JSON.stringify(body) : undefined,
   });
   const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-  if (!res.ok) throw new Error(`Instagram ${path}: ${res.status} ${JSON.stringify(data)}`);
+  if (!res.ok) throw new Error(`Instagram ${p.split("?")[0]}: ${res.status} ${JSON.stringify(data)}`);
   return data;
 };
 
@@ -254,13 +253,21 @@ export const handleWebhook = async (env: Env, body: WebhookBody) => {
 };
 
 /** Begrüßungsfragen bei Instagram eintragen (einmalig bzw. nach Änderungen in socialConfig.ts) */
-export const setupIceBreakers = (env: Env) =>
-  graph(env, "me/messenger_profile", {
+export const setupIceBreakers = async (env: Env) => {
+  const meta = await resolveMeta(env);
+  // Mit Facebook-Schlüssel: Seite für Instagram-Nachrichten-Webhooks an die App binden
+  let subscribed: unknown = null;
+  if (meta?.kind === "fb") {
+    subscribed = await graph(env, `${meta.pageId}/subscribed_apps?subscribed_fields=messages,messaging_postbacks,feed`, {}).catch((e: Error) => e.message);
+  }
+  const iceBreakers = await graph(env, "me/messenger_profile?platform=instagram", {
     platform: "instagram",
     ice_breakers: [
       { locale: "default", call_to_actions: ICE_BREAKERS.slice(0, 4).map(({ question, payload }) => ({ question, payload })) },
     ],
   });
+  return { api: meta?.kind, iceBreakers, subscribed };
+};
 
 /** Webhook-Signatur prüfen (Header X-Hub-Signature-256, Schlüssel = Instagram-App-Geheimschlüssel) */
 export const validSignature = async (secret: string, raw: string, header: string | null) => {

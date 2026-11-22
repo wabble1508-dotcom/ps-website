@@ -61,7 +61,7 @@ export const onRequest = async ({ request, env }: Ctx) => {
       case "write": {
         const p = await getProspect(env, String(body.id || ""));
         if (!p) return json({ error: "nicht gefunden" }, 404);
-        return json({ messages: await writeMessages(env, p, SYSTEM_PROMPT) });
+        return json({ messages: await writeMessages(env, p) });
       }
       default:
         return json({ error: "unbekannte action" }, 400);

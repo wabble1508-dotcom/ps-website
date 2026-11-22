@@ -1,4 +1,3 @@
-import Anthropic from "@anthropic-ai/sdk";
 import type { Env } from "./env";
 import { db } from "./db";
 import { pushToCrm, type CrmLead } from "./crm";
@@ -6,7 +5,7 @@ import { sendDueMails, startFlow, stopFlows } from "./emailFlow";
 import { writeNextArticle } from "./articles";
 import { sendReminders } from "./reminders";
 
-// Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), KI-Nachrichten schreiben,
+// Akquise: Betriebe aus OpenStreetMap finden (kostenlos, ohne Schlüssel), Nachrichten aus Vorlagen (ohne KI-Kosten),
 // Status verfolgen. Verschickt wird NICHTS automatisch – der Inhaber tippt selbst auf „Senden“.
 
 export const CATEGORIES: Record<string, { label: string; filter: string[] }> = {
@@ -150,57 +149,53 @@ export const deleteProspect = async (env: Env, id: string) => {
   await (await ensureTable(env)).prepare("DELETE FROM prospects WHERE id = ?").bind(id).run();
 };
 
-const MESSAGE_SCHEMA = {
-  type: "object",
-  additionalProperties: false,
-  required: ["call_script", "whatsapp", "instagram", "email_subject", "email_body"],
-  properties: {
-    call_script: { type: "string", description: "Telefon-Leitfaden mit Zeilenumbrüchen" },
-    whatsapp: { type: "string" },
-    instagram: { type: "string" },
-    email_subject: { type: "string" },
-    email_body: { type: "string" },
-  },
+// Nachrichten aus festen Vorlagen (kostenlos, ohne KI). Name, Branche und Ort werden eingesetzt.
+// Texte unten direkt anpassen (HOOK pro Branche, Angebot, Fragen).
+const SIGNATURE = "Viele Grüße\nPankaj Mondjal\nPS Professional Solutions\n+49 1520 7595260 · ps-professional-solutions.de";
+
+// Pro Branche ein kurzer Satz, wie Kunden heute suchen bzw. buchen
+const HOOK: Record<string, string> = {
+  friseur: "viele Kundinnen und Kunden suchen ihren Friseur heute bei Google und buchen den Termin direkt online",
+  kosmetik: "viele Kundinnen suchen Kosmetik- und Nagelstudios bei Google und buchen am liebsten direkt online",
+  handwerk: "viele Kunden suchen Handwerker heute zuerst bei Google und fragen direkt über die Website an",
+  kfz: "viele Autofahrer suchen ihre Werkstatt bei Google und vereinbaren den Termin am liebsten online",
+  restaurant: "viele Gäste schauen vor dem Besuch online nach Speisekarte, Öffnungszeiten und Reservierung",
+  cafe: "viele Gäste schauen vorher online nach Öffnungszeiten, Angebot und Fotos",
+  imbiss: "viele Gäste suchen abends bei Google nach Speisekarte und Bestellmöglichkeit",
+  physio: "viele Patienten suchen ihre Praxis bei Google und möchten Termine online anfragen",
+  praxis: "viele Patienten suchen Praxen bei Google und möchten Termine online anfragen",
+  fitness: "viele Interessenten vergleichen Studios online und buchen ein Probetraining direkt über die Website",
+  schneiderei: "viele Kunden suchen Änderungsschneidereien bei Google und wollen vorher Preise und Öffnungszeiten sehen",
+  laden: "viele Kunden schauen vor dem Besuch online nach Öffnungszeiten und Angebot",
 };
 
-const RULES = `Du schreibst als Pankaj Mondjal (PS Professional Solutions, Dortmund) eine erste, persönliche Nachricht an einen lokalen Betrieb.
-Ziel: ein kurzes, kostenloses Erstgespräch oder einen kostenlosen Website-Check anbieten – nicht verkaufen.
-Regeln:
-- Sie-Form, freundlich, wie von einem Menschen aus der Region. Keine Floskeln wie „Ich hoffe, diese Nachricht erreicht Sie gut“.
-- Konkreter Bezug zum Betrieb: Name, Branche, Ort. Wenn keine Website bekannt ist: darauf eingehen (Kunden suchen bei Google, buchen online). Wenn eine Website existiert: kostenlosen Website-Check anbieten, nichts über die Website behaupten, was du nicht weißt.
-- Höchstens einen Preis nennen und nur aus den Angaben oben (z. B. „ab 49 € im Monat, 0 € Einrichtung“).
-- Ende mit einer einfachen Ja/Nein-Frage („Darf ich Ihnen zwei Beispiele aus Ihrer Branche schicken?“).
-- WhatsApp: max. 4 kurze Sätze, 0–1 Emoji. Instagram-DM: max. 3 Sätze, locker, 1 Emoji.
-- E-Mail: Betreff max. 7 Wörter, Text max. 120 Wörter, Gruß „Viele Grüße\\nPankaj Mondjal\\nPS Professional Solutions\\n+49 1520 7595260 · ps-professional-solutions.de“,
-  letzte Zeile: „Kein Interesse? Kurze Antwort genügt, dann melde ich mich nicht wieder.“
-- Anruf-Leitfaden (call_script) für Pankaj, kurz und natürlich gesprochen, als Zeilen:
-  „Begrüßung:“ (Name, PS Professional Solutions aus Dortmund, Grund in einem Satz mit Bezug zum Betrieb) /
-  „Frage:“ eine offene Frage (z. B. wie Kunden heute Termine buchen) /
-  „Ziel:“ Erlaubnis, Infos per E-Mail oder WhatsApp zu schicken, oder 15-Minuten-Termin /
-  „Wenn ‚keine Zeit‘:“ / „Wenn ‚haben Instagram/Facebook‘:“ / „Wenn ‚zu teuer‘:“ / „Wenn ‚kein Interesse‘:“ – jeweils ein kurzer, respektvoller Satz.
-  Bei „kein Interesse“ freundlich verabschieden, nicht drängen.
-- Erfinde keine Referenzen, Zahlen oder Zusagen. Kein Markdown.`;
+export const templateMessages = (p: Pick<Prospect, "name" | "category" | "city" | "address" | "website">) => {
+  const branche = CATEGORIES[p.category]?.label || p.category;
+  const ort = p.city || p.address;
+  const hook = HOOK[p.category] || "viele Kunden suchen lokale Betriebe heute zuerst bei Google";
+  const offer = p.website
+    ? `Ich biete Ihnen gern einen kostenlosen Website-Check an: Ich schaue mir Ihre Seite an und sage Ihnen die 3 wichtigsten Punkte, die Ihnen gerade Kunden kosten.`
+    : `Mir ist aufgefallen, dass ich für ${p.name} keine eigene Website gefunden habe. Bei uns gibt es eine moderne Website ab 49 € im Monat, 0 € Einrichtung, monatlich kündbar.`;
+  const question = p.website ? "Darf ich Ihnen den kurzen Check schicken?" : "Darf ich Ihnen zwei Beispiele aus Ihrer Branche schicken?";
+  return {
+    call_script: [
+      `Begrüßung: Guten Tag, hier ist Pankaj Mondjal von PS Professional Solutions aus Dortmund. Ich rufe an, weil ${hook} – und ich helfe Betrieben wie ${p.name} genau dabei.`,
+      `Frage: Wie finden neue Kunden Sie heute, und wie laufen bei Ihnen Anfragen oder Termine?`,
+      `Ziel: Darf ich Ihnen kurz Infos per E-Mail oder WhatsApp schicken – oder passt ein 15-Minuten-Termin diese Woche?`,
+      `Wenn ‚keine Zeit‘: Kein Problem – darf ich Ihnen die Infos einfach kurz schicken, dann schauen Sie in Ruhe rein?`,
+      `Wenn ‚haben Instagram/Facebook‘: Super, das ist eine gute Basis – eine Website sorgt zusätzlich dafür, dass man Sie bei Google findet.`,
+      `Wenn ‚zu teuer‘: Verstehe ich – darum gibt es bei uns 0 € Einrichtung und monatlich kündbar ab 49 €.`,
+      `Wenn ‚kein Interesse‘: Alles klar, danke für Ihre Zeit und weiterhin viel Erfolg!`,
+    ].join("\n"),
+    whatsapp: `Guten Tag, hier ist Pankaj von PS Professional Solutions aus Dortmund. ${hook.charAt(0).toUpperCase()}${hook.slice(1)}. ${offer} ${question}`,
+    instagram: `Hi 👋 Pankaj hier von PS Professional Solutions aus Dortmund. ${p.website ? "Ich mache gerade kostenlose Website-Checks für Betriebe in " + ort + "." : "Ich habe für euch keine Website gefunden – ich baue moderne Websites ab 49 €/Monat."} ${question}`,
+    email_subject: p.website ? `Kostenloser Website-Check für ${p.name}` : `Website für ${p.name}`,
+    email_body: `Guten Tag,\n\nich bin Pankaj Mondjal von PS Professional Solutions aus Dortmund. ${hook.charAt(0).toUpperCase()}${hook.slice(1)} – das gilt auch für ${branche} in ${ort}.\n\n${offer}\n\n${question}\n\n${SIGNATURE}\n\nKein Interesse? Kurze Antwort genügt, dann melde ich mich nicht wieder.`,
+  };
+};
 
-export const writeMessages = async (env: Env, p: Prospect, systemPrompt: string) => {
-  const client = new Anthropic({ apiKey: (env.ANTHROPIC_API_KEY || "").trim(), baseURL: env.ANTHROPIC_BASE_URL || undefined });
-  const response = await client.beta.messages.create({
-    model: "claude-haiku-5-5",
-    max_tokens: 2500,
-    output_config: { effort: "low", format: { type: "json_schema", schema: MESSAGE_SCHEMA } },
-    system: `${systemPrompt}\n\n${RULES}`,
-    messages: [
-      {
-        role: "user",
-        content: `Betrieb: ${p.name}\nBranche: ${CATEGORIES[p.category]?.label || p.category}\nOrt: ${p.address || p.city}\nWebsite: ${p.website || "keine bekannt"}\nNotiz von Pankaj: ${p.note || "–"}`,
-      },
-    ],
-  });
-  if (response.stop_reason === "refusal") throw new Error("Die KI hat die Nachricht abgelehnt");
-  const text = response.content
-    .filter((b): b is Anthropic.Beta.BetaTextBlock => b.type === "text")
-    .map((b) => b.text)
-    .join("");
-  const messages = JSON.parse(text) as Record<string, string>;
+export const writeMessages = async (env: Env, p: Prospect) => {
+  const messages = templateMessages(p);
   await updateProspect(env, p.id, { messages: JSON.stringify(messages) });
   return messages;
 };
@@ -296,7 +291,7 @@ export const dailyStep = async (env: Env, step: string, systemPrompt: string, no
   }
   if (step === "write") {
     const list = await waitingList(env, true);
-    const results = await Promise.allSettled(list.map((p) => writeMessages(env, p, systemPrompt)));
+    const results = await Promise.allSettled(list.map((p) => writeMessages(env, p)));
     results.forEach((r, i) => r.status === "rejected" && console.error("Tagesliste", list[i].name, r.reason));
     return { written: results.filter((r) => r.status === "fulfilled").length };
   }

@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CallMode } from "@/components/admin/CallMode";
 
-// Reiter „Akquise“: Betriebe finden, KI-Nachricht schreiben lassen, selbst per WhatsApp/Instagram/E-Mail senden.
+// Reiter „Akquise“: Betriebe finden, Nachricht aus Vorlage erstellen (kostenlos), selbst per WhatsApp/Instagram/E-Mail senden.
 type Prospect = {
   id: string;
   name: string;
@@ -245,10 +245,10 @@ export const ProspectsTab = ({ password }: { password: string }) => {
                   <Input placeholder="E-Mail" defaultValue={p.email} onBlur={(e) => e.target.value !== p.email && update(p.id, { email: e.target.value })} />
                   <Input placeholder="Instagram-Name" defaultValue={p.instagram} onBlur={(e) => e.target.value !== p.instagram && update(p.id, { instagram: e.target.value.replace(/^@/, "") })} />
                 </div>
-                <Textarea placeholder="Notiz (z. B. „Inhaberin heißt Frau Yilmaz, will Online-Termine“) – die KI nutzt sie für die Nachricht" defaultValue={p.note} onBlur={(e) => e.target.value !== p.note && update(p.id, { note: e.target.value })} />
+                <Textarea placeholder="Notiz (z. B. „Inhaberin heißt Frau Yilmaz, will Online-Termine“) – nur für dich" defaultValue={p.note} onBlur={(e) => e.target.value !== p.note && update(p.id, { note: e.target.value })} />
 
                 <Button variant="outline" onClick={() => write(p)} disabled={busy === p.id}>
-                  {busy === p.id ? "KI schreibt …" : msg.whatsapp ? "Neue Nachricht schreiben lassen" : "✨ Nachricht von KI schreiben lassen"}
+                  {busy === p.id ? "Wird erstellt …" : msg.whatsapp ? "Nachricht neu erstellen" : "✉️ Nachricht erstellen (kostenlos)"}
                 </Button>
 
                 {msg.whatsapp && (

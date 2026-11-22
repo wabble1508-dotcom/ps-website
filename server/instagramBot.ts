@@ -181,7 +181,7 @@ const handleMessaging = async (env: Env, accountId: string, m: Messaging) => {
       notes: `https://instagram.com/${name}`,
       entry: `Instagram-Nachricht:\n${text}${reply ? `\n\nKI-Antwort:\n${reply}` : ""}`,
     });
-    await notifyOwner(
+    if (SOCIAL_BOT.emailNotifications) await notifyOwner(
       env,
       isNew ? `Neue Instagram-Anfrage von @${name}` : `Kontaktdaten per Instagram von @${name}`,
       `@${name} schreibt auf Instagram:\n\n${text}\n\n${reply ? `KI hat geantwortet:\n${reply}\n\n` : ""}Ganzer Verlauf: https://ps-professional-solutions.de/admin (Chats)`,
@@ -217,7 +217,7 @@ const handleComment = async (env: Env, accountId: string, c: Change["value"]) =>
       console.error("Instagram-Stichwort", c.id, errors);
       await logBotError(env, `Stichwort-Kommentar ${who} („${c.text.slice(0, 80)}“): ${errors.join(" | ")}`);
     }
-    await notifyOwner(
+    if (errors.length || SOCIAL_BOT.emailNotifications) await notifyOwner(
       env,
       errors.length ? `FEHLER bei Stichwort-Kommentar von ${who}` : `Stichwort-Kommentar von ${who}`,
       errors.length

@@ -11,6 +11,8 @@ export const SOCIAL_BOT = {
   replyToAllComments: false, // aus: kostet Claude-API (18.11.2026)
   /** Wenn du selbst in einem Chat antwortest, schweigt die KI dort so viele Stunden */
   pauseHoursAfterHuman: 12,
+  /** E-Mail an dich bei neuen Instagram-Nachrichten und erfolgreichen Stichwort-DMs (Fehler-Mails kommen immer) */
+  emailNotifications: false, // aus: Inhaber will keine Mails (22.11.2026)
 };
 
 // Kommentar-Stichwörter: Wer z. B. „WEBSITE“ unter einen Beitrag schreibt, bekommt sofort

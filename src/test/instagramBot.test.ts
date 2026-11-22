@@ -84,6 +84,7 @@ describe("Instagram Kommentar-Stichwort", () => {
     const reply = calls.find((c) => c.url.includes("/17986241117900810/replies"));
     expect(reply?.body).toEqual({ message: "Ist raus – schau in deine DMs 📩" });
     expect(state.log).toEqual([]);
+    expect(state.mails).toEqual([]); // keine Erfolgs-Mail (emailNotifications aus)
   });
 
   it("erkennt das Stichwort auch klein, mit Emoji oder Satzzeichen", async () => {
@@ -116,6 +117,7 @@ describe("Instagram Kommentar-Stichwort", () => {
 
     expect(calls.filter((c) => c.url.includes("/replies"))).toEqual([]);
     expect(state.log[0]).toMatch(/Invalid OAuth access token/);
+    expect(state.mails).toEqual(["FEHLER bei Stichwort-Kommentar von @websitenova.app"]); // Fehler-Mail kommt trotzdem
   });
 
   it("derselbe Kommentar doppelt geliefert → nur eine DM", async () => {

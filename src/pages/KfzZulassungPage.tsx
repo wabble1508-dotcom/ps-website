@@ -58,7 +58,7 @@ export default function KfzZulassungPage() {
           "Stellen Sie sich vor, Ihre Kunden geben ihr Wunschkennzeichen online ein, prüfen die Verfügbarkeit in Sekunden und bestellen die Schilder direkt – ohne einen einzigen Gang zum Amt. Wir zeigen Ihnen schlüsselfertig, wie Sie sofort Zeit sparen und Kunden begeistern. Kein technisches Wissen nötig.",
         buttonText: "Kostenlosen KI-Check anfordern",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -66,14 +66,14 @@ export default function KfzZulassungPage() {
         description:
           "Hören Sie auf, Ihren Kunden Wartezeiten und Wege zuzumuten. Unser System prüft das Wunschkennzeichen live, verlinkt direkt zur Zulassungsstelle der jeweiligen Stadt und leitet den digitalen i-Kfz-Stufe-4-Prozess ein. DIN-zertifizierte Schilder werden online bestellt und zugestellt. Ihr Kunde ist in unter 5 Minuten durch – komplett von zuhause aus.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       benefits: {
         title: "Mehr Zulassungen abwickeln – ohne mehr Personal am Schalter.",
         description:
           "Wachstum bedeutet normalerweise mehr Personal. Bei uns nicht. Egal ob 5 oder 500 Anfragen: Das System bleibt stabil und hält Ihren Rücken frei. So bleibt Ihr Umsatz planbar und Ihre Kunden rundum zufrieden.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       checkmarksSection: {
         title:
@@ -81,7 +81,7 @@ export default function KfzZulassungPage() {
         subtitle:
           "Schluss mit Wartezeiten und Papierkram. Sparen Sie jede Woche wertvolle Stunden.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
         list: [
           {
             title:
@@ -108,7 +108,7 @@ export default function KfzZulassungPage() {
         description:
           "Sehen Sie, wie die von uns entwickelte Plattform für Matou Kfz Schilder Express funktioniert: Live-Wunschkennzeichen-Konfigurator, i-Kfz Stufe 4 Express-Zulassung, Schilder-Shop & städtischer Behörden-Finder.",
         beforeImage:
-          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.png",
+          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.webp",
         afterImage:
           "/media/vibe.filesafe.space/1779266194699726281/attachments/f908adde-363b-424a-9efa-c58282ea44bb.jpg",
       },
@@ -253,7 +253,7 @@ export default function KfzZulassungPage() {
           "Imagine your customers entering their custom plate online, checking availability in seconds, and ordering the plates directly – without a single trip to the office. We show you turnkey how to immediately save time and delight customers. No technical knowledge required.",
         buttonText: "Request Free AI Check",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -261,14 +261,14 @@ export default function KfzZulassungPage() {
         description:
           "Stop imposing waiting times and trips on your customers. Our system checks the custom plate live, links directly to the registration authority of the respective city, and initiates the digital i-Kfz Stage 4 process. DIN-certified plates are ordered online and delivered. Your customer is done in under 5 minutes – completely from home.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       benefits: {
         title: "Handle more registrations – without more staff at the counter.",
         description:
           "Growth usually means more staff. Not with us. Whether 5 or 500 inquiries: the system stays stable and has your back. This keeps your revenue predictable and your customers fully satisfied.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       checkmarksSection: {
         title:
@@ -276,7 +276,7 @@ export default function KfzZulassungPage() {
         subtitle:
           "No more waiting times and paperwork. Save valuable hours every week.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
         list: [
           {
             title: "Custom plate configurator with live availability check",
@@ -301,7 +301,7 @@ export default function KfzZulassungPage() {
         description:
           "See how the platform developed by us for Matou Kfz Schilder Express works: Live plate configurator, i-Kfz Stage 4 express registration, plate shop & city office locator.",
         beforeImage:
-          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.png",
+          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.webp",
         afterImage:
           "/media/vibe.filesafe.space/1779266194699726281/attachments/f908adde-363b-424a-9efa-c58282ea44bb.jpg",
       },
@@ -414,21 +414,21 @@ export default function KfzZulassungPage() {
           "Müşterilerinizin istenen plakayı online girmesini, müsaitliği saniyeler içinde kontrol etmesini ve plakaları doğrudan sipariş etmesini hayal edin – kuruma tek bir gidiş olmadan. Zaman nasıl hemen kazanıp müşterileri büyüleyeceğinizi anahtar teslim gösteriyoruz. Teknik bilgi gerekmez.",
         buttonText: "Ücretsiz Yapay Zeka Kontrolü İste",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title: "Plakadan tescile – kapıdan dışarı adım atmadan.",
         description:
           "Müşterilerinize bekleme süreleri ve yolculuklar dayatmayı bırakın. Sistemimiz istenen plakayı canlı kontrol eder, ilgili şehrin tescil dairesine doğrudan bağlantı verir ve dijital i-Kfz Aşama 4 sürecini başlatır. DIN sertifikalı plakalar online sipariş edilir ve teslim edilir. Müşteriniz 5 dakikadan kısa sürede işini bitirir – tamamen evden.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       benefits: {
         title: "Daha fazla tescil işle – gişede daha fazla personel olmadan.",
         description:
           "Büyüme normalde daha fazla personel demek. Bizde değil. 5 veya 500 talep: Sistem kararlı kalır ve arkanızı kollar. Böylece geliriniz öngörülebilir ve müşterileriniz tamamen memnun kalır.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
       },
       checkmarksSection: {
         title:
@@ -436,7 +436,7 @@ export default function KfzZulassungPage() {
         subtitle:
           "Bekleme sürelerine ve evraka son. Her hafta değerli saatler kazanın.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/706d07b7-1221-424b-845f-eed64de36c4c.webp",
         list: [
           {
             title: "Canlı müsaitlik kontrolü ile istenen plaka konfigüratörü",
@@ -461,7 +461,7 @@ export default function KfzZulassungPage() {
         description:
           "Matou Kfz Schilder Express için geliştirdiğimiz platformun nasıl çalıştığını görün: Canlı plaka konfigüratörü, i-Kfz Aşama 4 hızlı tescil, plaka mağazası & şehir kurum bulucu.",
         beforeImage:
-          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.png",
+          "/media/vibe.filesafe.space/1779266194699726281/assets/9f6c39b7-8d87-45d2-815d-644557c02b98.webp",
         afterImage:
           "/media/vibe.filesafe.space/1779266194699726281/attachments/f908adde-363b-424a-9efa-c58282ea44bb.jpg",
       },

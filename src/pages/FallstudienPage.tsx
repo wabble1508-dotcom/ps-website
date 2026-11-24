@@ -22,7 +22,7 @@ const FallstudienPage = () => {
       client: "Arvené",
       industry: isEn ? "Premium Beauty Salon" : "Premium Beauty-Salon",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/attachments/12ea5c34-dace-4303-8cf4-f21c47723265.png",
+        "/media/vibe.filesafe.space/1778931020193405557/attachments/12ea5c34-dace-4303-8cf4-f21c47723265.webp",
       metrics: [
         {
           icon: TrendingUp,
@@ -202,7 +202,7 @@ const FallstudienPage = () => {
 
                   <div className="bg-secondary p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-50"></div>
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={study.image}
                       alt={study.client}
                       className="w-48 h-48 object-contain mx-auto mb-12 relative z-10 drop-shadow-2xl bg-white/10 rounded-full p-4 border border-white/20"

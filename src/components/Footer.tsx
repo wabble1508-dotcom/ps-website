@@ -28,6 +28,14 @@ export const Footer = () => {
     { to: "/guenstige-website", label: t("nav", "cheapWebsite") },
     { to: "/webdesign-dortmund", label: t("nav", "webdesignDortmund") },
     {
+      to: "/webdesign-ruhrgebiet",
+      label: language === "de" ? "Webdesign Ruhrgebiet" : language === "tr" ? "Web tasarım Ruhr bölgesi" : "Web design Ruhr area",
+    },
+    {
+      to: "/kostenlose-website",
+      label: language === "de" ? "Kostenlose Website – die Alternative" : language === "tr" ? "Ücretsiz web sitesi – alternatif" : "Free website – the alternative",
+    },
+    {
       to: "/all-in-one-dashboard",
       label: "All-in-One Dashboard",
     },
@@ -64,7 +72,7 @@ export const Footer = () => {
         <div className="grid gap-12 md:grid-cols-6">
           <div className="space-y-6 md:col-span-2">
             <Link to="/" className="inline-block">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png"
                 alt="PS Professional Solutions Logo"
                 className="h-24 w-auto brightness-0 invert"

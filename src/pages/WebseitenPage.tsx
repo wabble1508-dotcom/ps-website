@@ -12,7 +12,7 @@ export default function WebseitenPage() {
     heroIconUrl:
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png",
     problemImage:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/89a297ba-38fa-4d32-868f-8fced24edf8b.png",
+      "/media/vibe.filesafe.space/1778931020193405557/assets/89a297ba-38fa-4d32-868f-8fced24edf8b.webp",
     cardIcons: [
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png",
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magnifying_glass_tilted_left/3D/magnifying_glass_tilted_left_3d.png",

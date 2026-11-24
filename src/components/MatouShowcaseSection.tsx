@@ -220,7 +220,7 @@ export const MatouShowcaseSection = () => {
 
               {/* Image Preview */}
               <div className="relative group bg-slate-900 overflow-hidden">
-                <img
+                <img loading="lazy" decoding="async"
                   src={screenshotMap[activeTab].img}
                   alt={screenshotMap[activeTab].title}
                   className="w-full h-auto object-cover max-h-[600px] object-top transition-transform duration-500 group-hover:scale-[1.02]"

@@ -45,7 +45,7 @@ export default function BlogPage() {
       readTime: "5 min",
       author: "PS Solutions",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/4d0a0e7d-3e36-4239-b90d-3c52d1c72a30.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/4d0a0e7d-3e36-4239-b90d-3c52d1c72a30.webp",
       featured: true,
     },
     {
@@ -60,7 +60,7 @@ export default function BlogPage() {
       readTime: "7 min",
       author: "PS Solutions",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/5545baec-5613-4c23-bba1-7b1e5b1bbca9.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/5545baec-5613-4c23-bba1-7b1e5b1bbca9.webp",
       featured: false,
     },
     {
@@ -75,7 +75,7 @@ export default function BlogPage() {
       readTime: "4 min",
       author: "PS Solutions",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d2954749-7bd7-45e0-828b-1e2482d8b79b.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d2954749-7bd7-45e0-828b-1e2482d8b79b.webp",
       featured: false,
     },
     {
@@ -120,7 +120,7 @@ export default function BlogPage() {
       readTime: "5 min",
       author: "PS Solutions",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.webp",
       featured: false,
     },
     {
@@ -176,7 +176,7 @@ export default function BlogPage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-secondary py-20 lg:py-32">
-        <div className="absolute inset-0 bg-[url('/media/vibe.filesafe.space/1778931020193405557/assets/cfe4e59e-209b-42b1-8f9e-ddd5079f51b4.jpg')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
+        <div className="absolute inset-0 bg-[url('/media/vibe.filesafe.space/1778931020193405557/assets/cfe4e59e-209b-42b1-8f9e-ddd5079f51b4.webp')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
         <FadeIn className="container relative z-10 mx-auto px-4 text-center">
           <BookOpen className="w-12 h-12 text-primary mx-auto mb-6" />
           <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
@@ -294,7 +294,7 @@ export default function BlogPage() {
                 <FadeIn key={post.id} delay={i * 100}>
                   <Card className="overflow-hidden border-none shadow-lg group hover:-translate-y-2 transition-transform duration-500 h-full flex flex-col bg-white">
                     <div className="relative h-64 overflow-hidden">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={post.image}
                         alt={post.title}
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"

@@ -132,7 +132,7 @@ export function NfcShopProducts({
                     <CardContent className="flex flex-col flex-1 p-6">
                       {/* Product Image */}
                       <div className="mb-5 bg-muted/40 dark:bg-muted/15 p-4 rounded-xl flex items-center justify-center">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={p.image}
                           alt={language === "en" ? p.nameEn : p.nameDe}
                           className="w-full h-32 object-contain"

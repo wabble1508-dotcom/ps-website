@@ -97,8 +97,8 @@ export default function UeberUnsPage() {
             <FadeIn direction="left" className="flex justify-center">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-primary/30 rounded-full blur-3xl group-hover:bg-primary/50 transition-colors duration-700"></div>
-                <img
-                  src="/media/vibe.filesafe.space/1778931020193405557/attachments/6c0b29ab-e370-4b58-8219-100f9213eee1.jpg"
+                <img loading="lazy" decoding="async"
+                  src="/media/vibe.filesafe.space/1778931020193405557/attachments/6c0b29ab-e370-4b58-8219-100f9213eee1.webp"
                   alt="Pankaj Mondjal — Gründer & CEO von PS Professional Solutions"
                   className="relative w-72 h-auto md:w-80 rounded-3xl shadow-2xl object-cover border-4 border-white/20 group-hover:scale-105 transition-transform duration-700"
                 />

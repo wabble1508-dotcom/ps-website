@@ -13,7 +13,7 @@ export default function TerminAutomationPage() {
     heroIconUrl:
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Calendar/3D/calendar_3d.png",
     problemImage:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/7368cfb3-86d7-40ac-a27e-07b12748e90b.png",
+      "/media/vibe.filesafe.space/1778931020193405557/assets/7368cfb3-86d7-40ac-a27e-07b12748e90b.webp",
     cardIcons: [
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Alarm_clock/3D/alarm_clock_3d.png",
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Check_mark_button/3D/check_mark_button_3d.png",

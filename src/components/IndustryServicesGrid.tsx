@@ -133,7 +133,7 @@ const ServiceCard = ({
   >
     <div className="relative mb-6">
       <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/40 transition-colors duration-500" />
-      <img
+      <img loading="lazy" decoding="async"
         src={service.image}
         alt={service.title}
         className={`relative object-contain drop-shadow-xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 ${

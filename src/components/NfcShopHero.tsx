@@ -139,7 +139,7 @@ export function NfcShopHero({
                     selectedPlatform === "whatsapp"
                       ? "/media/vibe.filesafe.space/1778931020193405557/attachments/0bc4dc89-1898-4712-b889-5603a2eeb816.png"
                       : selectedPlatform === "instagram"
-                        ? "/media/vibe.filesafe.space/1778931020193405557/attachments/c63ba50b-7667-4b4d-8304-e694dce5bbff.png"
+                        ? "/media/vibe.filesafe.space/1778931020193405557/attachments/c63ba50b-7667-4b4d-8304-e694dce5bbff.webp"
                         : "/media/vibe.filesafe.space/1778931020193405557/attachments/5bf63474-2030-4a26-92b8-81400b6a8a5b.png"
                   }
                   alt="NFC Google, Instagram & WhatsApp Aufsteller & Karten"

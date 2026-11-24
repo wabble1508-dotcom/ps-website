@@ -5,28 +5,30 @@ import { Switch } from "@/components/ui/switch";
 import { onConsentOpen, saveConsent, useConsent } from "@/lib/consent";
 
 // Einwilligungs-Banner: „Alle akzeptieren“ und „Nur notwendige“ sind gleichwertig,
-// externe Medien werden erst nach Zustimmung geladen.
+// externe Medien und Google Analytics werden erst nach Zustimmung geladen.
 export const CookieBanner = () => {
-  const { decided, media } = useConsent();
+  const { decided, media, stats } = useConsent();
   const [open, setOpen] = useState(false);
   const [details, setDetails] = useState(false);
   const [mediaChoice, setMediaChoice] = useState(media);
+  const [statsChoice, setStatsChoice] = useState(stats);
 
   useEffect(() => setOpen(!decided), [decided]);
   useEffect(
     () =>
       onConsentOpen(() => {
         setMediaChoice(media);
+        setStatsChoice(stats);
         setDetails(true);
         setOpen(true);
       }),
-    [media],
+    [media, stats],
   );
 
   if (!open) return null;
 
-  const choose = (value: boolean) => {
-    saveConsent(value);
+  const choose = (mediaValue: boolean, statsValue: boolean) => {
+    saveConsent(mediaValue, statsValue);
     setOpen(false);
     setDetails(false);
   };
@@ -40,10 +42,11 @@ export const CookieBanner = () => {
       <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-[#0f222d] p-5 text-white shadow-2xl">
         <p className="font-semibold mb-2">Ihre Privatsphäre</p>
         <p className="text-sm text-white/80">
-          Wir verwenden nur technisch notwendige Speicherungen (z. B. Ihre Sprachauswahl). Mit Ihrer Zustimmung
-          laden wir zusätzlich externe Medien wie YouTube-Videos, Instagram-Beiträge und unser TikTok-Profil. Dabei
-          werden Daten (z. B. Ihre IP-Adresse) an Google, Meta bzw. TikTok übermittelt, auch in Länder außerhalb der EU. Sie können Ihre Auswahl
-          jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern. Mehr in der{" "}
+          Wir verwenden technisch notwendige Speicherungen (z. B. Ihre Sprachauswahl). Mit Ihrer Zustimmung
+          nutzen wir zusätzlich Google Analytics, um zu verstehen, wie unsere Website genutzt wird (dabei werden
+          Cookies gesetzt), und laden externe Medien wie YouTube-Videos, Instagram-Beiträge und unser TikTok-Profil.
+          Dabei werden Daten (z. B. Ihre IP-Adresse) an Google, Meta bzw. TikTok übermittelt, auch in Länder außerhalb
+          der EU. Sie können Ihre Auswahl jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern. Mehr in der{" "}
           <Link to="/datenschutz" className="underline underline-offset-2" onClick={() => setOpen(false)}>
             Datenschutzerklärung
           </Link>
@@ -61,6 +64,13 @@ export const CookieBanner = () => {
             </div>
             <div className="flex items-start justify-between gap-4">
               <div>
+                <p className="font-medium">Statistik</p>
+                <p className="text-white/70">Google Analytics (Google Ireland Ltd.): Auswertung, welche Seiten wie genutzt werden. Setzt Cookies (_ga), Speicherdauer bis zu 2 Jahre.</p>
+              </div>
+              <Switch checked={statsChoice} onCheckedChange={setStatsChoice} aria-label="Statistik" />
+            </div>
+            <div className="flex items-start justify-between gap-4">
+              <div>
                 <p className="font-medium">Externe Medien</p>
                 <p className="text-white/70">YouTube-Videos (Google Ireland Ltd.), Instagram-Beiträge (Meta Platforms Ireland Ltd.) und TikTok-Videos (TikTok Technology Limited).</p>
               </div>
@@ -71,7 +81,7 @@ export const CookieBanner = () => {
 
         <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           {details ? (
-            <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(mediaChoice)}>
+            <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(mediaChoice, statsChoice)}>
               Auswahl speichern
             </Button>
           ) : (
@@ -79,10 +89,10 @@ export const CookieBanner = () => {
               Einstellungen
             </Button>
           )}
-          <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(false)}>
+          <Button variant="outline" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white" onClick={() => choose(false, false)}>
             Nur notwendige
           </Button>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => choose(true)}>
+          <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => choose(true, true)}>
             Alle akzeptieren
           </Button>
         </div>

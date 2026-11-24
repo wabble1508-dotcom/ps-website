@@ -4,11 +4,11 @@ import { useContactForm } from "@/components/ContactFormDialog";
 
 const logos = [
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/443224bc-320d-45db-82d3-43c4deb617dd.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/443224bc-320d-45db-82d3-43c4deb617dd.webp",
     alt: "Alawy Autos Dortmund",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/ec2cff87-208b-4d77-8bad-7d349fc9f8f1.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/ec2cff87-208b-4d77-8bad-7d349fc9f8f1.webp",
     alt: "Juicy Flame Burger & Steaks",
   },
   {
@@ -49,11 +49,11 @@ const logos = [
     alt: "SME MONDE",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/f1fa5753-7795-41c3-8095-0debdcb83dcd.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/f1fa5753-7795-41c3-8095-0debdcb83dcd.webp",
     alt: "L&M Diamond & Hijabs - Moroccan Beldi Jewelry",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/ad223435-ce05-4d8e-9385-3bef60069238.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/ad223435-ce05-4d8e-9385-3bef60069238.webp",
     alt: "GSA Creation of Bondings",
   },
   {
@@ -110,7 +110,7 @@ const logos = [
     alt: "PAKUMO",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/9ad3b078-d54a-4b51-8362-4747e5f662f4.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/9ad3b078-d54a-4b51-8362-4747e5f662f4.webp",
     alt: "Do Not Draw This",
   },
   {
@@ -130,7 +130,7 @@ const logos = [
     alt: "Delphin Feinkost",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/e537852e-63c5-4073-b66d-82ce11df5233.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/e537852e-63c5-4073-b66d-82ce11df5233.webp",
     alt: "Arvené",
   },
   {
@@ -155,7 +155,7 @@ const logos = [
     alt: "Öz Urfa Deluxe Café & Restaurant",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.webp",
     alt: "AM Hähnchenbuderei Grillhähnchen Restaurant",
   },
   {
@@ -168,11 +168,11 @@ const logos = [
     alt: "Lilyum Cosmetics Parfum",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.webp",
     alt: "PureSkin Bochum Kosmetikstudio",
   },
   {
-    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/5adb3919-af67-49d1-905d-22aac3fc8cf2.png",
+    src: "/media/vibe.filesafe.space/1778931020193405557/attachments/5adb3919-af67-49d1-905d-22aac3fc8cf2.webp",
     alt: "Burek Bar Café & Restaurant",
   },
   {
@@ -204,7 +204,7 @@ export const LogoSliderSection = () => {
           style={{ animationDuration: "50s" }}
         >
           {logos.map((logo, i) => (
-            <img
+            <img loading="lazy" decoding="async"
               key={i}
               src={logo.src}
               alt={logo.alt}
@@ -220,7 +220,7 @@ export const LogoSliderSection = () => {
           aria-hidden="true"
         >
           {logos.map((logo, i) => (
-            <img
+            <img loading="lazy" decoding="async"
               key={i}
               src={logo.src}
               alt={logo.alt}
@@ -262,8 +262,8 @@ export const ReferencesSection = () => {
               {t("home", "refDesc1")}
             </p>
             <div className="mt-auto group-hover:scale-105 transition-transform duration-500">
-              <img
-                src="/media/vibe.filesafe.space/1778931020193405557/attachments/12ea5c34-dace-4303-8cf4-f21c47723265.png"
+              <img loading="lazy" decoding="async"
+                src="/media/vibe.filesafe.space/1778931020193405557/attachments/12ea5c34-dace-4303-8cf4-f21c47723265.webp"
                 alt="Arvené"
                 className="h-48 md:h-64 w-auto object-contain drop-shadow-xl"
               />
@@ -283,7 +283,7 @@ export const ReferencesSection = () => {
               {matouDesc}
             </p>
             <div className="mt-auto group-hover:scale-105 transition-transform duration-500">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/media/vibe.filesafe.space/1779266194699726281/attachments/f908adde-363b-424a-9efa-c58282ea44bb.jpg"
                 alt="Matou Kfz Schilder Express"
                 className="h-36 md:h-48 w-auto object-contain drop-shadow-xl rounded-2xl"

@@ -98,7 +98,7 @@ export const standProducts: NfcProduct[] = [
     ],
     popular: true,
     image:
-      "/media/vibe.filesafe.space/1778931020193405557/attachments/c63ba50b-7667-4b4d-8304-e694dce5bbff.png",
+      "/media/vibe.filesafe.space/1778931020193405557/attachments/c63ba50b-7667-4b4d-8304-e694dce5bbff.webp",
   },
   {
     id: "stand-business",

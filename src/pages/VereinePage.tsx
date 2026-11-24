@@ -47,7 +47,7 @@ export default function VereinePage() {
         "Kompakter Leitfaden: So stellen Sie Mitgliedsanträge, Spendenquittungen und WhatsApp-Vereinsgruppen in unter 14 Tagen auf Autopilot um. 100% DSGVO-konform.",
       buttonText: "Gratis Vereins-Fahrplan herunterladen",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title:
@@ -167,7 +167,7 @@ export default function VereinePage() {
         "How associations switch to paperless applications and automated donations in under 14 days. 100% GDPR compliant.",
       buttonText: "Download Free Roadmap",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "From first website visit to active club membership.",
@@ -264,7 +264,7 @@ export default function VereinePage() {
         "Dernekler başvuruları ve bağışları 14 günden kısa sürede nasıl kağıtsız ve otomatik hale getirir. %100 GDPR uyumlu.",
       buttonText: "Ücretsiz Yol Haritasını İndir",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "İlk web sitesi ziyaretinden aktif dernek üyeliğine.",

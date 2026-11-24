@@ -283,8 +283,8 @@ export function LeadMagnetSection() {
               {/* Before/After Slider Container */}
               <div className="bg-white p-3 rounded-[2rem] shadow-2xl border border-border/50 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                 <BeforeAfterSlider
-                  beforeImage="/media/vibe.filesafe.space/1778931020193405557/assets/27644151-71d2-46ac-971f-c0a962d1b1f3.png"
-                  afterImage="/media/vibe.filesafe.space/1778931020193405557/assets/58de0893-b650-46e0-97bd-e952621ca26e.png"
+                  beforeImage="/media/vibe.filesafe.space/1778931020193405557/assets/27644151-71d2-46ac-971f-c0a962d1b1f3.webp"
+                  afterImage="/media/vibe.filesafe.space/1778931020193405557/assets/58de0893-b650-46e0-97bd-e952621ca26e.webp"
                   beforeLabel={pick(language, {
                     de: "Schlechte Webseite",
                     en: "Bad Website",

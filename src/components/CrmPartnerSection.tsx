@@ -41,7 +41,7 @@ export const CrmPartnerSection = () => {
               className="group flex items-center justify-center"
               aria-label="Une Solutions"
             >
-              <img
+              <img decoding="async"
                 src="/media/partner/une-solutions.png"
                 alt="Une Solutions Logo"
                 width={320}

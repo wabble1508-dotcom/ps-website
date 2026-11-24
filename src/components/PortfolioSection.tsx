@@ -88,7 +88,7 @@ export const PortfolioSection = () => {
                 <ScrollTilt>
                 <BrowserFrame url={p.url.replace(/^https:\/\/|\/$/g, "")}>
                   <div className="aspect-[16/10] overflow-hidden">
-                    <img
+                    <img decoding="async"
                       src={p.image}
                       alt={`${p.name} – ${pick(p.type)}`}
                       loading="lazy"

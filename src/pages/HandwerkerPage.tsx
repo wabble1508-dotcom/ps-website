@@ -42,21 +42,21 @@ export default function HandwerkerPage() {
         "Stellen Sie sich vor, 3 nervige Büro-Aufgaben fallen ab morgen weg – weil die KI sie macht. Wir werfen einen Blick auf Ihren Betrieb und zeigen Ihnen schlüsselfertig, wo Sie sofort Zeit gewinnen. Kein technisches Wissen nötig.",
       buttonText: "Kostenlosen KI-Check Anfordern",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.webp",
     },
     workflow: {
       title: "Vom Anruf zum Auftrag – ohne dass Sie den Hörer halten.",
       description:
         "Hören Sie auf, abends noch Termine zu bestätigen. Unser System übernimmt das Nachfassen vollautomatisch per SMS. Während Sie auf der Baustelle Gas geben, wird im Hintergrund Ihr Kalender gefüllt. Jeder Interessent bekommt sofort eine Antwort – kein Warten, kein Vergessen.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.jpg",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.webp",
     },
     benefits: {
       title: "Mehr Aufträge schaffen – ohne mehr Zeit im Büro.",
       description:
         "Wachstum bedeutet normalerweise mehr Papierkram. Bei uns nicht. Egal ob 5 oder 50 Anfragen: Das System bleibt stabil und hält Ihnen den Rücken frei. So bleibt Ihr Umsatz planbar und Ihr Feierabend heilig.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.webp",
     },
     checkmarksSection: {
       title:
@@ -64,7 +64,7 @@ export default function HandwerkerPage() {
       subtitle:
         "Sparen Sie jede Woche wertvolle Stunden. Mehr Effizienz, weniger Stress, bessere Ergebnisse.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.webp",
       list: [
         {
           title: "Automatisierte Terminbuchung & SMS-Erinnerungen",
@@ -96,21 +96,21 @@ export default function HandwerkerPage() {
         description:
           "Ergebnis: 42 Termine vollautomatisch gebucht im ersten Monat.\n\nWie: Durch den KI-Telefon-Assistenten wurden Anfragen direkt qualifiziert und eingebucht, während das gesamte Team auf der Baustelle im Einsatz war. Kein wichtiger Auftrag ging mehr verloren.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.webp",
       },
       {
         title: "Sanitär- & Heizungsbau (NRW)",
         description:
           "Ergebnis: Senkung der Fehlfahrten und Material-Verzögerungen um 70%.\n\nWie: Automatisierte Bestätigungsstrecke und digitale Vorab-Abfrage von Fotos der Baustelle. Der Monteur weiß schon vor der Abfahrt exakt, was ihn erwartet und welches Teil er braucht.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.webp",
       },
       {
         title: "Schreinerei / Innenausbau (Berlin)",
         description:
           'Ergebnis: 100% Erreichbarkeit durch "Missed Call Text Back".\n\nWie: Jeder verpasste Anruf erhielt innerhalb von 30 Sekunden eine SMS-Antwort mit einem Link zur Terminbuchung. Das Ergebnis: 12 neue qualifizierte Leads pro Woche ohne einen einzigen Rückruf.',
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.webp",
       },
     ],
     websitePreview: {
@@ -182,21 +182,21 @@ export default function HandwerkerPage() {
         "Imagine 3 annoying office tasks disappearing tomorrow – because AI does them. We take a look at your business and show you turnkey where you can immediately gain time. No technical knowledge required.",
       buttonText: "Request Free AI Check",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.webp",
     },
     workflow: {
       title: "From call to order – without you holding the receiver.",
       description:
         "Stop confirming appointments in the evening. Our system handles follow-ups fully automatically via SMS. While you push hard on the construction site, your calendar is filled in the background. Every prospect gets an immediate answer – no waiting, no forgetting.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.jpg",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.webp",
     },
     benefits: {
       title: "Create more orders – without more time in the office.",
       description:
         "Growth usually means more paperwork. Not with us. Whether 5 or 50 inquiries: The system stays stable and has your back. This keeps your revenue predictable and your evening sacred.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.webp",
     },
     checkmarksSection: {
       title:
@@ -204,7 +204,7 @@ export default function HandwerkerPage() {
       subtitle:
         "Save valuable hours every week. More efficiency, less stress, better results.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.webp",
       list: [
         {
           title: "Automated appointment booking & SMS reminders",
@@ -236,21 +236,21 @@ export default function HandwerkerPage() {
         description:
           "Result: 42 appointments fully automatically booked in the first month.\n\nHow: Through the AI telephone assistant, inquiries were directly qualified and booked while the entire team was on the construction site. No important order was lost anymore.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.webp",
       },
       {
         title: "Plumbing & Heating (NRW)",
         description:
           "Result: Reduction of wrong trips and material delays by 70%.\n\nHow: Automated confirmation sequence and digital pre-query of construction site photos. The fitter knows exactly what to expect and which part he needs before departure.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.webp",
       },
       {
         title: "Carpentry / Interior (Berlin)",
         description:
           'Result: 100% availability through "Missed Call Text Back".\n\nHow: Every missed call received an SMS reply within 30 seconds with a link to book an appointment. The result: 12 new qualified leads per week without a single callback.',
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.webp",
       },
     ],
     websitePreview: {
@@ -321,21 +321,21 @@ export default function HandwerkerPage() {
         "Hayatınızdan 3 sinir bozucu ofis görevinin yarından itibaren kaybolmasını hayal edin – yapay zeka yapıyor. İşletmenize bakıyor ve nerede hemen zaman kazanacağınızı anahtar teslim gösteriyoruz. Teknik bilgi gerekmez.",
       buttonText: "Ücretsiz Yapay Zeka Kontrolü İste",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.webp",
     },
     workflow: {
       title: "Aramadan işe – ahizeyi tutmadan.",
       description:
         "Akşam randevuları onaylamayı bırakın. Sistemimiz takip işlemlerini SMS ile tam otomatik yürütür. Siz şantiyede hız yaparken, arka planda takviminiz dolar. Her ilgilenen anında yanıt alır – bekleme yok, unutma yok.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.jpg",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.webp",
     },
     benefits: {
       title: "Daha fazla iş yaratın – ofiste daha fazla zaman olmadan.",
       description:
         "Büyüme normalde daha fazla evrak demek. Bizde değil. 5 veya 50 talep: Sistem kararlı kalır ve arkanızı kollar. Böylece geliriniz öngörülebilir ve akşamınız kutsal kalır.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.webp",
     },
     checkmarksSection: {
       title:
@@ -343,7 +343,7 @@ export default function HandwerkerPage() {
       subtitle:
         "Her hafta değerli saatler kazanın. Daha fazla verimlilik, daha az stres, daha iyi sonuçlar.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.webp",
       list: [
         {
           title: "Otomatik randevu & SMS hatırlatmalar",
@@ -375,21 +375,21 @@ export default function HandwerkerPage() {
         description:
           "Sonuç: İlk ayda 42 randevu tam otomatik ayarlandı.\n\nNasıl: Yapay zeka telefon asistanı ile talepler doğrudan nitelendirildi ve kaydedildi, tüm ekip şantiyedeyken. Hiçbir önemli iş daha fazla kaybolmadı.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.webp",
       },
       {
         title: "Tesisat & Isıtma (NRW)",
         description:
           "Sonuç: Yanlış seferler ve malzeme gecikmelerinde %70 azalma.\n\nNasıl: Otomatik onay dizisi ve şantiye fotoğraflarının dijital ön sorgusu. Montajcı yola çıkmadan önce neyle karşılaşacağını ve hangi parçaya ihtiyacı olduğunu tam olarak biliyor.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.webp",
       },
       {
         title: "Marangozhane / İç Mimari (Berlin)",
         description:
           'Sonuç: "Cevapsız Arama Geri Dönüşü" ile %100 ulaşılabilirlik.\n\nNasıl: Her kaçırılan arama 30 saniye içinde randevu linki içeren bir SMS yanıtı aldı. Sonuç: Tek bir geri arama olmadan haftada 12 yeni nitelikli müşteri.',
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.webp",
       },
     ],
     websitePreview: {

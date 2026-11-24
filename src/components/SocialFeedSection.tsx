@@ -152,7 +152,7 @@ export const SocialFeedSection = () => {
                     className="group relative aspect-square overflow-hidden rounded-2xl bg-muted"
                     data-no-translate
                   >
-                    <img
+                    <img decoding="async"
                       src={`/api/social-image?id=${post.id}`}
                       alt={post.caption.slice(0, 120) || "Instagram-Beitrag"}
                       loading="lazy"

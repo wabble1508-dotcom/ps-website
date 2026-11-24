@@ -82,12 +82,12 @@ export const IndustryPartnerSlider = ({
   const logos = customPartnerLogos || [
     "/media/vibe.filesafe.space/1778931020193405557/attachments/0aed8fdd-4881-47a3-be5c-3df062f0d503.jpg",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/13ef37d7-4c1d-41ec-81ce-a10efeb84752.jpg",
-    "/media/vibe.filesafe.space/1778931020193405557/attachments/9ad3b078-d54a-4b51-8362-4747e5f662f4.png",
+    "/media/vibe.filesafe.space/1778931020193405557/attachments/9ad3b078-d54a-4b51-8362-4747e5f662f4.webp",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/b644a54f-e4a4-4718-846c-d73a3ab96bb2.png",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/3c0772b0-8ceb-4ebb-84cd-f7152044fa7c.png",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/36aa3eed-d489-42d6-b968-05cf870092c3.png",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/2ffe9c2a-bd0d-4ad8-a0f9-cdde2678adf3.png",
-    "/media/vibe.filesafe.space/1778931020193405557/attachments/e537852e-63c5-4073-b66d-82ce11df5233.png",
+    "/media/vibe.filesafe.space/1778931020193405557/attachments/e537852e-63c5-4073-b66d-82ce11df5233.webp",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/d290e9e6-da6c-4e4c-9522-a24ec18ef546.png",
     "/media/vibe.filesafe.space/1778931020193405557/attachments/d6882ce2-4b5e-46f6-b8d9-80581a6e4199.png",
   ];
@@ -102,7 +102,7 @@ export const IndustryPartnerSlider = ({
       <div className="flex w-full overflow-hidden whitespace-nowrap relative">
         <div className="flex animate-marquee min-w-full shrink-0 items-center justify-around gap-8 md:gap-16 px-4 md:px-8">
           {logos.map((logo, idx) => (
-            <img
+            <img loading="lazy" decoding="async"
               key={idx}
               src={logo}
               alt={logoName(logo)}
@@ -115,7 +115,7 @@ export const IndustryPartnerSlider = ({
           aria-hidden="true"
         >
           {logos.map((logo, idx) => (
-            <img
+            <img loading="lazy" decoding="async"
               key={idx}
               src={logo}
               alt={logoName(logo)}

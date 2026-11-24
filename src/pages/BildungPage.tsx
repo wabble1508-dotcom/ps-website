@@ -51,28 +51,28 @@ export default function BildungPage() {
         "Erfahren Sie, wie moderne Nachhilfezentren und Sprachschulen durch automatisierte Eltern-Funnels und WhatsApp-Probestunden-Reminder planbar wachsen.",
       buttonText: "Gratis Bildungs-Leitfaden downloaden",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Kostenlose Probestunde online buchen – in unter 60 Sekunden.",
       description:
         "Eltern wählen Fach, Klassenstufe und Wunschtermin direkt online. Unser System bestätigt sofort und erinnert Eltern 24h vorher per WhatsApp – für eine 95%+ Erscheinungsquote.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Zentraler WhatsApp-Kanal für Eltern-Fragen & Kurs-Infos.",
       description:
         "Kein E-Mail-Stau mehr: Häufige Elternfragen zu Ferienkursen, Tarifen und Stundenplänen beantwortet Ihr KI-Assistent rund um die Uhr sofort und sympathisch.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Die digitale All-in-One Plattform für Schulen & Nachhilfe.",
       subtitle:
         "Vom ersten Webseiten-Besuch der Eltern bis zur festen Kursanmeldung.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Automatisierter Probestunden-Kalender",
@@ -174,28 +174,28 @@ export default function BildungPage() {
         "Learn how tutoring institutes scale with smart parent funnels and WhatsApp booking reminders.",
       buttonText: "Download Free Education Guide",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Trial lessons booked in under 60 seconds.",
       description:
         "Parents select subject, grade, and date online. Automated reminders ensure a 95%+ attendance rate.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Dedicated WhatsApp channel for parent inquiries.",
       description:
         "Instant answers to common questions about schedules, fees, and holiday programs 24/7.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "The complete digital setup for tutoring centers & schools.",
       subtitle:
         "From initial parent consultation to automated digital contract signing.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Automated Trial Lesson Calendar",
@@ -269,27 +269,27 @@ export default function BildungPage() {
         "Modern etüt merkezlerinin WhatsApp deneme dersi hatırlatıcılarıyla nasıl büyüdüğünü keşfedin.",
       buttonText: "Ücretsiz Eğitim Rehberini İndir",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "60 saniyede online ücretsiz deneme dersi rezervasyonu.",
       description:
         "Veliler ders ve saati online seçer. Otomatik hatırlatıcılar %95+ katılım sağlar.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Veli soruları ve ders bilgileri için 7/24 WhatsApp kanalı.",
       description:
         "E-posta kuyruklarına son: Tatil kursları ve program sorularını anında yanıtlayın.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Eğitim ve kurs merkezleri için eksiksiz dijital platform.",
       subtitle: "İlk veli temasından dijital sözleşme imzasına kadar.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Otomatik Deneme Dersi Takvimi",

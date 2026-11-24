@@ -223,7 +223,7 @@ export const IndustryPage = ({ data }: { data: IndustryPageProps }) => {
               </div>
             </div>
             <div className="relative flex justify-center">
-              <img
+              <img loading="lazy" decoding="async"
                 src={data.checkmarksSection.image}
                 alt="Checkmarks visual"
                 className="rounded-3xl shadow-2xl max-h-[500px] object-cover border-4 border-white/10"

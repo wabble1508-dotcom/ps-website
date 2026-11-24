@@ -51,28 +51,28 @@ export default function SchneidereiPage() {
         "Erfahren Sie, wie moderne Änderungsateliers durch WhatsApp-Foto-Anfragen und Google-Local-SEO jeden Monat Dutzende neue Stammkunden gewinnen.",
       buttonText: "Gratis Schneiderei-Guide sichern",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Preisanfrage per WhatsApp mit Foto – in unter 60 Sekunden.",
       description:
         "Kunden fotografieren das Kleidungsstück (z.B. Brautkleid, Reißverschluss, Anzug kürzen) und schicken es direkt per WhatsApp. Sie nennen mit einem Klick den Richtpreis und sichern sich den Auftrag.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Automatische 'Abholbereit'-Nachricht per WhatsApp.",
       description:
         "Sobald die Änderung fertig ist, genügt ein Klick: Der Kunde erhält eine freundliche Nachricht mit Öffnungszeiten und Betrag. Keine Anrufe, keine Wartezeiten an der Theke.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Die digitale Lösung für moderne Änderungsschneidereien.",
       subtitle:
         "Von der transparenten Preisliste bis zum automatischen 5-Sterne-Bewertungsbooster.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Digitale Preisübersicht für Änderungen",
@@ -175,27 +175,27 @@ export default function SchneidereiPage() {
         "Discover how modern alteration shops win loyal customers each month with WhatsApp funnels and local SEO.",
       buttonText: "Get Free Tailoring Guide",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Quote requests via WhatsApp with photo – under 60 seconds.",
       description:
         "Clients take a photo of the garment and send it directly via WhatsApp for quick pricing.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Automated 'Ready for Pickup' WhatsApp notifications.",
       description:
         "One tap notifies the customer that their garment is finished and ready for pickup.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "The complete digital solution for modern alteration shops.",
       subtitle: "From clear pricing to automatic 5-star Google reviews.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Digital Pricing Overview",
@@ -272,26 +272,26 @@ export default function SchneidereiPage() {
         "Modern terzilerin WhatsApp ve yerel SEO ile nasıl büyüdüğünü keşfedin.",
       buttonText: "Ücretsiz Terzi Rehberini İndir",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "WhatsApp ile fotoğraflı fiyat teklifi – 60 saniyede.",
       description:
         "Müşteriler kıyafetin fotoğrafını çekip doğrudan WhatsApp'tan gönderir.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "WhatsApp ile otomatik 'Teslim Almaya Hazır' mesajı.",
       description: "Tadilat bittiğinde tek tıkla müşteriye hazır mesajı gider.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Modern tadilat terzileri için eksiksiz dijital altyapı.",
       subtitle: "Şeffaf fiyat listesinden Google 5 yıldızlı yorumlara kadar.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Dijital Tadilat Fiyat Listesi",

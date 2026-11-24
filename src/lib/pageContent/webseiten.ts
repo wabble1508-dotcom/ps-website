@@ -12,7 +12,7 @@ export const webseiten: Record<string, FeatureTextContent> = {
       localBusiness: true,
     },
     hero: {
-      title: "Webdesign Dortmund — Professionell Programmierte Webseiten",
+      title: "Website erstellen lassen – professionell programmiert statt Baukasten",
       highlight:
         "Ihre neue Webseite: Lokal in Dortmund & bundesweit gefunden werden",
       subtitle:

@@ -62,7 +62,7 @@ export const de = {
     successDescMagnet: "Ihre Anfrage wurde erfolgreich übermittelt.",
   },
   home: {
-    heroTitle: "Professionelle Webseiten, die Kunden bringen.",
+    heroTitle: "Webdesign & Apps aus Dortmund, die Kunden bringen.",
     heroSubtitle:
       "Wir programmieren Websites und Apps, die bei Google und in KI-Suchen gefunden werden – schnell, sauber und ohne Baukasten. Ein Ansprechpartner von der Idee bis zum Livegang.",
     heroBtn: "Jetzt Website-Check anfordern",

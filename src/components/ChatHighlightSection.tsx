@@ -143,7 +143,7 @@ export const ChatHighlightSection = () => {
           </FadeIn>
           <FadeIn className="relative" direction="right">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-border bg-gradient-to-br from-muted/50 to-muted/20 p-6 md:p-10 min-h-[400px]">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Robot/3D/robot_3d.png"
                 alt="AI Chat"
                 className="w-32 h-32 mx-auto drop-shadow-2xl animate-bounce"

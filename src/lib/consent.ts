@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { applyAnalyticsConsent } from "./analytics";
 
-// Einwilligung für externe Medien (YouTube, Instagram, TikTok). Notwendige Speicherungen
-// (Sprache, diese Auswahl) brauchen keine Einwilligung.
+// Einwilligung für externe Medien (YouTube, Instagram, TikTok) und Statistik (Google Analytics).
+// Notwendige Speicherungen (Sprache, diese Auswahl) brauchen keine Einwilligung.
 const KEY = "ps_consent";
 const EVENT = "ps-consent-change";
 const OPEN_EVENT = "ps-consent-open";
 
-export type Consent = { media: boolean; date: string };
+// stats fehlt bei Auswahlen von vor Einführung der Statistik → Banner fragt einmal neu
+export type Consent = { media: boolean; stats?: boolean; date: string };
 
 export const readConsent = (): Consent | null => {
   try {
@@ -17,12 +19,15 @@ export const readConsent = (): Consent | null => {
   }
 };
 
-export const saveConsent = (media: boolean) => {
+/** Speichert die Auswahl. Ohne `stats` bleibt die bisherige Statistik-Einwilligung unverändert (sonst „nein“). */
+export const saveConsent = (media: boolean, stats?: boolean) => {
+  const nextStats = stats ?? readConsent()?.stats ?? false;
   try {
-    localStorage.setItem(KEY, JSON.stringify({ media, date: new Date().toISOString() }));
+    localStorage.setItem(KEY, JSON.stringify({ media, stats: nextStats, date: new Date().toISOString() }));
   } catch {
     // ohne Speicher gilt die Auswahl nur für diesen Besuch
   }
+  applyAnalyticsConsent(nextStats);
   window.dispatchEvent(new CustomEvent(EVENT, { detail: media }));
 };
 
@@ -40,7 +45,7 @@ export const useConsent = () => {
     window.addEventListener(EVENT, onChange);
     return () => window.removeEventListener(EVENT, onChange);
   }, []);
-  return { decided: consent !== null, media };
+  return { decided: consent !== null && consent.stats !== undefined, media, stats: consent?.stats ?? false };
 };
 
 export const onConsentOpen = (fn: () => void) => {

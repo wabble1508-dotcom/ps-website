@@ -36,6 +36,8 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Vorschaubilder für geteilte Links: je Seite `public/og/<seite>.jpg` (1200×630), erzeugt mit `node tools/og-images.mjs "$(npm root -g)/playwright"` (Texte/Symbole dort pflegen, danach Snapshot neu erzeugen). Fallback `public/og-image.jpg`.
 - Deutsche Google-Titel/-Beschreibungen aller Seiten zentral in `src/lib/seoOverrides.ts` (keine Ranking-Garantien, „kostenlos“ nur ehrlich als 0 € Einrichtung).
 - SEO-Landingpages (günstige/kostenlose Website, Webdesign Dortmund, Software-Entwicklung): Inhalte in `src/lib/landingPages.ts`, Vorlage `src/components/SeoLandingPage.tsx`.
+- Google Search Console (Domain-Property) und Google Analytics 4 laufen im Konto mondjal@ps-professional-solutions.de. GA4 (Mess-ID `G-TTD23ZTRSQ`, `src/lib/analytics.ts`) lädt nur nach Einwilligung „Statistik“ im Cookie-Banner (`src/lib/consent.ts`, `CookieBanner.tsx`); beim Widerruf werden die `_ga`-Cookies gelöscht. Datenschutzerklärung Abschnitt 4 beschreibt das – bei Änderungen mitpflegen.
+- Bilder: große Fotos/Logos als WebP (max. 1600 px, Originale liegen daneben), Bilder unterhalb des sichtbaren Bereichs mit `loading="lazy"`.
 - Für KI-Suchmaschinen: Seitentext steht als `<noscript>` im HTML (vom Snapshot erzeugt) und `public/llms.txt` fasst Firma, Preise und Seiten zusammen – bei Preisänderungen mitpflegen.
 
 ## Übersetzungen

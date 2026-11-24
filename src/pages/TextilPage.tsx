@@ -49,7 +49,7 @@ export default function TextilPage() {
         "Erfahren Sie, wie erfolgreiche Textilmarken durch smarte KI-Größenfinder, B2B-Muster-Funnels und WhatsApp-Styling-Chats ihren Gewinn maximieren.",
       buttonText: "Kostenlosen Mode-Leitfaden laden",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Vom Stoffentwurf zum vollautomatisierten B2C- und B2B-Verkauf.",
@@ -167,7 +167,7 @@ export default function TextilPage() {
         "Discover how top apparel brands leverage AI fit recommendations and B2B volume pricing to grow faster.",
       buttonText: "Get Free Fashion Blueprint",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "From design collection to automated wholesale and retail sales.",
@@ -267,7 +267,7 @@ export default function TextilPage() {
         "En iyi moda markalarının yapay zeka uyum önerileri ve B2B hacim fiyatlandırması ile nasıl daha hızlı büyüdüğünü keşfedin.",
       buttonText: "Ücretsiz Moda Planını Al",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Tasarım koleksiyonundan otomatik toptan ve perakende satışa.",

@@ -8,7 +8,7 @@ import { openConsentSettings } from "@/lib/consent";
 type Text = [de: string, en: string];
 type Section = { title: Text; blocks: (Text | { list: Text[] } | { sub: Text })[] };
 
-const STAND: Text = ["Stand: Oktober 2026", "Last updated: October 2026"];
+const STAND: Text = ["Stand: November 2026", "Last updated: November 2026"];
 
 const SECTIONS: Section[] = [
   {
@@ -58,8 +58,12 @@ const SECTIONS: Section[] = [
     title: ["4. Speicherungen in Ihrem Browser und Einwilligung", "4. Browser storage and consent"],
     blocks: [
       [
-        "Wir setzen keine Werbe- oder Tracking-Cookies. Im lokalen Speicher Ihres Browsers (localStorage) legen wir nur ab, was für die gewünschte Funktion nötig ist: Ihre Sprachauswahl, Ihre Datenschutz-Einstellung und – nur im Admin-Bereich – die Anmeldung. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG.",
-        "We do not use advertising or tracking cookies. In your browser's local storage (localStorage) we only keep what is required for the function you request: your language selection, your privacy settings and – only in the admin area – the login. The legal basis is Section 25(2) No. 2 TDDDG.",
+        "Wir setzen keine Werbe-Cookies. Ohne Ihre Einwilligung legen wir im lokalen Speicher Ihres Browsers (localStorage) nur ab, was für die gewünschte Funktion nötig ist: Ihre Sprachauswahl, Ihre Datenschutz-Einstellung und – nur im Admin-Bereich – die Anmeldung. Rechtsgrundlage ist § 25 Abs. 2 Nr. 2 TDDDG. Statistik-Cookies (Google Analytics) setzen wir nur mit Ihrer Einwilligung, siehe Abschnitt „Webanalyse mit Google Analytics“.",
+        "We do not use advertising cookies. Without your consent, we only keep what is required for the function you request in your browser's local storage (localStorage): your language selection, your privacy settings and – only in the admin area – the login. The legal basis is Section 25(2) No. 2 TDDDG. We only set statistics cookies (Google Analytics) with your consent, see the section “Web analytics with Google Analytics”.",
+      ],
+      [
+        "Webanalyse mit Google Analytics: Wenn Sie im Einwilligungs-Banner „Statistik“ zustimmen (oder „Alle akzeptieren“ wählen), nutzen wir Google Analytics 4 der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Damit sehen wir, welche Seiten wie oft besucht werden, woher Besucher kommen (z. B. Google-Suche) und wie die Website genutzt wird, um unser Angebot zu verbessern. Dabei werden Cookies (_ga, _ga_*) mit einer Speicherdauer von bis zu 2 Jahren gesetzt und Nutzungsdaten wie Ihre gekürzte IP-Adresse, Geräte- und Browserinformationen, aufgerufene Seiten und Verweisquelle an Google übermittelt. Google kann diese Daten auch in den USA verarbeiten; Google ist unter dem EU-US Data Privacy Framework zertifiziert. Mit Google besteht ein Vertrag zur Auftragsverarbeitung. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können sie jederzeit mit Wirkung für die Zukunft über „Cookie-Einstellungen“ im Seitenfuß widerrufen; die Messung endet dann sofort und die Analytics-Cookies werden gelöscht. Die Nutzungsdaten werden in Google Analytics nach 2 Monaten gelöscht.",
+        "Web analytics with Google Analytics: If you consent to “Statistics” in the consent banner (or choose “Accept all”), we use Google Analytics 4 by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. This shows us which pages are visited and how often, where visitors come from (e.g. Google Search) and how the website is used, so that we can improve our services. Cookies (_ga, _ga_*) with a lifetime of up to 2 years are set, and usage data such as your shortened IP address, device and browser information, pages visited and referrer are transmitted to Google. Google may also process this data in the USA; Google is certified under the EU-US Data Privacy Framework. We have concluded a data processing agreement with Google. The legal basis is your consent (Art. 6(1)(a) GDPR, Section 25(1) TDDDG). You can withdraw it at any time with effect for the future via “Cookie settings” in the footer; measurement then stops immediately and the analytics cookies are deleted. The usage data is deleted in Google Analytics after 2 months.",
       ],
       [
         "Externe Medien (YouTube, Instagram, TikTok) laden wir erst, wenn Sie im Einwilligungs-Banner zustimmen oder ein einzelnes Video aktiv laden (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft über „Cookie-Einstellungen“ im Seitenfuß widerrufen.",

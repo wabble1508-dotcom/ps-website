@@ -5,7 +5,7 @@ import { useLanguage } from "@/components/LanguageContext";
 // Logos der Partner-Salons (in allen Sprachen gleich)
 const PARTNER_LOGOS = [
   "/media/kunden/lilyum-cosmetics.jpg", // Lilyum Cosmetics
-  "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.png", // PureSkin Bochum
+  "/media/vibe.filesafe.space/1778931020193405557/attachments/e109f0da-e936-4668-955f-5484b6b3917e.webp", // PureSkin Bochum
   "/media/vibe.filesafe.space/1778931020193405557/attachments/5ec2ed97-535c-4ec2-8c6b-c5b459c2f643.jpg",
   "/media/vibe.filesafe.space/1778931020193405557/attachments/1581d816-62fb-42c0-934a-b764b6c059a5.png",
   "/media/vibe.filesafe.space/1778931020193405557/attachments/b8943ca4-7beb-4f04-9a19-6a27cb624eb0.jpg",
@@ -62,7 +62,7 @@ export default function BeautysalonPage() {
           "Stellen Sie sich vor, 3 nervige Aufgaben zwischen Haarschnitt und Kasse fallen ab morgen weg – weil die KI sie übernimmt. Wir werfen einen Blick auf Ihren Salon und zeigen Ihnen schlüsselfertig, wie Sie sofort mehr Zeit für Ihre Kunden gewinnen. Kein technisches Wissen nötig.",
         buttonText: "Kostenlosen KI-Check anfordern",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -70,14 +70,14 @@ export default function BeautysalonPage() {
         description:
           "Hören Sie auf, abends noch Termine zu bestätigen. Unser System übernimmt das Nachfassen vollautomatisch per SMS. Während Sie im Salon kreativ sind, wird im Hintergrund Ihr Kalender gefüllt. Jeder Interessent bekommt sofort eine Antwort – kein Warten, kein Vergessen.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
       },
       benefits: {
         title: "Mehr Kunden begeistern – ohne mehr Zeit im Büro.",
         description:
           "Ein voller Salon bedeutet normalerweise mehr Papierkram. Bei uns nicht. Egal ob 5 oder 50 Anfragen: Das System bleibt stabil und hält Ihnen den Rücken frei. So bleibt Ihr Umsatz planbar und Ihr Feierabend heilig.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
       },
       checkmarksSection: {
         title:
@@ -85,7 +85,7 @@ export default function BeautysalonPage() {
         subtitle:
           "Schluss mit Termin-Chaos und verpassten Kundinnen. Sparen Sie jede Woche wertvolle Stunden.",
         image:
-          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
         list: [
           {
             title: "Automatisierte Terminbuchung & SMS-Erinnerung",
@@ -113,21 +113,21 @@ export default function BeautysalonPage() {
           description:
             'Ergebnis: Senkung der Terminausfälle um 85%.\n\nWie: Durch die automatisierte SMS-Erinnerungsstrecke und eine integrierte Anzahlungsfunktion für Neukunden. Kein Geldverlust mehr durch "No-Shows".',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.webp",
         },
         {
           title: "Kosmetik- & Laser-Praxis (Dortmund)",
           description:
             "Ergebnis: 100% Erreichbarkeit ohne Rezeptionskraft.\n\nWie: Der KI-Telefon-Assistent bucht Termine direkt ins System, während das Team Laser-Behandlungen durchführt. 35 neue Buchungen vollautomatisch im ersten Monat.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.webp",
         },
         {
           title: "Nagel- & Lash-Studio (Berlin)",
           description:
             'Ergebnis: 12 neue Leads pro Woche über Instagram & Website.\n\nWie: Automatisierter "Missed Call Text Back" und sofortige Antwort-Bots auf Anfragen. Jede Interessentin erhält innerhalb von 30 Sekunden eine Rückmeldung.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.webp",
         },
       ],
       videoTestimonial: {
@@ -201,7 +201,7 @@ export default function BeautysalonPage() {
           "Imagine 3 annoying tasks between haircut and checkout disappearing tomorrow – because AI takes them over. We take a look at your salon and show you turnkey solutions on how to immediately gain more time for your customers. No technical knowledge required.",
         buttonText: "Request Free AI Check",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -209,14 +209,14 @@ export default function BeautysalonPage() {
         description:
           "Stop confirming appointments in the evening. Our system handles follow-ups fully automatically via SMS. While you're creative in the salon, your calendar is filled in the background. Every prospect gets an immediate answer – no waiting, no forgetting.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
       },
       benefits: {
         title: "Inspire more customers – without more time in the office.",
         description:
           "A full salon usually means more paperwork. Not with us. Whether 5 or 50 inquiries: The system remains stable and has your back. This keeps your revenue predictable and your evening sacred.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
       },
       checkmarksSection: {
         title:
@@ -224,7 +224,7 @@ export default function BeautysalonPage() {
         subtitle:
           "End appointment chaos and missed customers. Save valuable hours every week.",
         image:
-          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
         list: [
           {
             title: "Automated appointment booking & SMS reminder",
@@ -253,21 +253,21 @@ export default function BeautysalonPage() {
           description:
             'Result: Reduction of appointment cancellations by 85%.\n\nHow: Through the automated SMS reminder sequence and an integrated deposit function for new customers. No more money lost through "no-shows".',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.webp",
         },
         {
           title: "Cosmetics & Laser Practice (Dortmund)",
           description:
             "Result: 100% availability without a receptionist.\n\nHow: The AI telephone assistant books appointments directly into the system while the team performs laser treatments. 35 new bookings fully automatically in the first month.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.webp",
         },
         {
           title: "Nail & Lash Studio (Berlin)",
           description:
             'Result: 12 new leads per week via Instagram & Website.\n\nHow: Automated "Missed Call Text Back" and instant reply bots for inquiries. Every interested party receives feedback within 30 seconds.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.webp",
         },
       ],
       videoTestimonial: {
@@ -340,14 +340,14 @@ export default function BeautysalonPage() {
           "Hayatınızdan 3 sinir bozucu görevin yarından itibaren kaybolmasını hayal edin – yapay zeka üstleniyor. Salonunuza bakıyor ve müşterileriniz için nasıl daha fazla zaman kazanacağınızı anahtar teslim gösteriyoruz. Teknik bilgi gerekmez.",
         buttonText: "Ücretsiz Yapay Zeka Kontrolü İste",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title: "Aramadan dolu randevu defterine – saç kurutmayı bırakmadan.",
         description:
           "Akşam randevuları onaylamayı bırakın. Sistemimiz takip işlemlerini SMS ile tam otomatik yürütür. Siz salonda yaratıcıyken, arka planda takviminiz dolar. Her ilgilenen anında yanıt alır – bekleme yok, unutma yok.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
       },
       benefits: {
         title:
@@ -355,7 +355,7 @@ export default function BeautysalonPage() {
         description:
           "Dolu bir salon normalde daha fazla evrak demek. Bizde değil. 5 veya 50 talep: Sistem kararlı kalır ve arkanızı kollar. Böylece geliriniz öngörülebilir ve akşamınız kutsal kalır.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
       },
       checkmarksSection: {
         title:
@@ -363,7 +363,7 @@ export default function BeautysalonPage() {
         subtitle:
           "Randevu kaosuna ve kayıp müşterilere son. Her hafta değerli saatler kazanın.",
         image:
-          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+          "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
         list: [
           {
             title: "Otomatik randevu & SMS hatırlatma",
@@ -390,21 +390,21 @@ export default function BeautysalonPage() {
           description:
             'Sonuç: Randevu iptallerinde %85 azalma.\n\nNasıl: Otomatik SMS hatırlatma dizisi ve yeni müşteriler için entegre depozito işlevi. "Gelmeyenler" nedeniyle para kaybı yok.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/65a52476-273a-4d5d-b335-995561191917.webp",
         },
         {
           title: "Kozmetik & Lazer Pratiği (Dortmund)",
           description:
             "Sonuç: Resepsiyonist olmadan %100 ulaşılabilirlik.\n\nNasıl: Yapay zeka telefon asistanı randevuları doğrudan sisteme kaydederken ekip lazer tedavileri yapıyor. İlk ayda 35 yeni otomatik rezervasyon.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/d96ddb74-9244-4555-9131-4d6ba35a0f4a.webp",
         },
         {
           title: "Tırnak & Kirpik Stüdyosu (Berlin)",
           description:
             'Sonuç: Instagram & Web sitesi üzerinden haftada 12 yeni müşteri.\n\nNasıl: Otomatik "Cevapsız Arama Geri Dönüşü" ve anında yanıt botları. Her ilgilenen 30 saniye içinde geri bildirim alır.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/8327775c-56bc-45cd-9bdc-0e97555f23ae.webp",
         },
       ],
       videoTestimonial: {

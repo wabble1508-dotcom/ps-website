@@ -48,7 +48,7 @@ export default function FestivalsPage() {
         "Entdecken Sie, wie moderne Festivals durch WhatsApp-VIP-Listen, Early-Bird-Funnels und KI-Support die Ticket-Verkäufe um bis zu 40% steigern. Kostenlos für Veranstalter.",
       buttonText: "Gratis Festival-Leitfaden sichern",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Vom Ankündigungs-Teaser zum ausverkauften Open-Air.",
@@ -167,7 +167,7 @@ export default function FestivalsPage() {
         "Learn how top music festivals use WhatsApp VIP drops and AI ticket funnels to boost sales by 40%. Free for event organizers.",
       buttonText: "Get Free Festival Blueprint",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "From announcement teaser to a completely sold-out festival.",
@@ -266,7 +266,7 @@ export default function FestivalsPage() {
         "Modern festivallerin WhatsApp VIP drop'ları ve yapay zeka bilet funnelleri ile satışları %40 nasıl artırdığını öğrenin. Etkinlik düzenleyiciler için ücretsiz.",
       buttonText: "Ücretsiz Festival Planını Al",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Duyuru teaserından tamamen tükenmiş festivale.",

@@ -46,16 +46,16 @@ export const VIDEO =
 
 export const IMG = {
   leadMagnet:
-    "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.png",
+    "/media/vibe.filesafe.space/1778931020193405557/assets/a3c9dd74-8624-4cce-be45-1c029e9e5cd8.webp",
   workflow:
-    "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.jpg",
+    "/media/vibe.filesafe.space/1778931020193405557/assets/70eae435-8182-4919-8250-c8e7b34bfb4d.webp",
   benefits:
-    "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.png",
+    "/media/vibe.filesafe.space/1778931020193405557/assets/7b604297-5c2c-490d-9ee2-c68d97f2ca18.webp",
   checkmarks:
-    "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.png",
-  t1: "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.png",
-  t2: "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.png",
-  t3: "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.png",
+    "/media/vibe.filesafe.space/1778931020193405557/assets/7a661b8e-f320-46a9-8761-45f0d6b1e43e.webp",
+  t1: "/media/vibe.filesafe.space/1778931020193405557/assets/e2c1019e-7265-48e1-b03f-07ee277de34c.webp",
+  t2: "/media/vibe.filesafe.space/1778931020193405557/assets/e3467e9b-4e19-472d-a362-434b2db9295f.webp",
+  t3: "/media/vibe.filesafe.space/1778931020193405557/assets/fbb16852-5543-447f-a9a5-421b56223091.webp",
   before:
     "/media/vibe.filesafe.space/1778931020193405557/assets/b2e515e2-c9f8-4727-9cd4-9cfd4580e5af.png",
   after:

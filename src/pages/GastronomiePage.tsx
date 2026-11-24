@@ -9,12 +9,12 @@ export default function GastronomiePage() {
   const { language } = useLanguage();
 
   const gastroLogos = [
-    "/media/vibe.filesafe.space/1778931020193405557/attachments/5adb3919-af67-49d1-905d-22aac3fc8cf2.png", // Burek Bar
+    "/media/vibe.filesafe.space/1778931020193405557/attachments/5adb3919-af67-49d1-905d-22aac3fc8cf2.webp", // Burek Bar
     "/media/vibe.filesafe.space/1778931020193405557/attachments/b9526442-40fd-4557-8b49-fecebcca6fad.png", // Öz Urfa
-    "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.png", // AM Hähnchenbuderei
+    "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.webp", // AM Hähnchenbuderei
     "/media/vibe.filesafe.space/1778931020193405557/attachments/c0d2d99f-a3ec-4b6e-b299-599a3a899844.png", // Café Sis
     "/media/vibe.filesafe.space/1778931020193405557/attachments/033385ce-5c4d-42dc-bb95-0348615e3827.png", // La Roma
-    "/media/vibe.filesafe.space/1778931020193405557/attachments/ec2cff87-208b-4d77-8bad-7d349fc9f8f1.png", // Juicy Flame
+    "/media/vibe.filesafe.space/1778931020193405557/attachments/ec2cff87-208b-4d77-8bad-7d349fc9f8f1.webp", // Juicy Flame
     "/media/vibe.filesafe.space/1778931020193405557/attachments/2ffe9c2a-bd0d-4ad8-a0f9-cdde2678adf3.png", // Delphin Feinkost
     "/media/vibe.filesafe.space/1778931020193405557/attachments/80f19b88-7fa1-4837-9517-08c9f6c75a4a.png", // madebyanu
   ];
@@ -57,28 +57,28 @@ export default function GastronomiePage() {
         "Erfahren Sie, wie Top-Restaurants mit eigener digitaler Bestell- und Reservierungs-Infrastruktur unabhängig von teuren Drittanbietern werden.",
       buttonText: "Gratis Gastro-Guide sichern",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Tischreservierung 24/7 vollautomatisch per WhatsApp und Web.",
       description:
         "Gäste reservieren rund um die Uhr in Sekunden. Automatische SMS/WhatsApp-Erinnerungen senken No-Shows um bis zu 85%. Ihr Team konzentriert sich voll auf perfekten Service und glückliche Gäste.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Eigener provisionsfreier Online-Shop für Abholung & Lieferung.",
       description:
         "Sparen Sie monatlich tausende Euro an Vermittlungsgebühren. Mit Ihrem eigenen Online-Bestellsystem bestellen Stammkunden direkt bei Ihnen – mobiloptimiert und blitzschnell.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Die digitale Komplettlösung für moderne Restaurants & Cafés.",
       subtitle:
         "Von der interaktiven Speisekarte bis zum automatisierten Google-Bewertungs-Booster.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Digitale QR-Code Speisekarte",
@@ -115,7 +115,7 @@ export default function GastronomiePage() {
         description:
           "Ergebnis: Digitaler Vorbestellservice für Stoßzeiten. Gäste bestellen online vor und holen ohne Wartezeit ab.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.webp",
       },
       {
         title: "Café Sis Coffee Kitchen & La Roma Steinofenpizza",
@@ -187,27 +187,27 @@ export default function GastronomiePage() {
         "Discover how modern restaurants use proprietary booking and ordering funnels to eliminate third-party commission fees.",
       buttonText: "Get Free Restaurant Guide",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "Table bookings on autopilot 24/7 via WhatsApp and Web.",
       description:
         "Guests reserve in seconds. Automated reminders reduce no-shows by up to 85%.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Your own commission-free online ordering platform.",
       description:
         "Keep 100% of your earnings. Customers order directly from your mobile-optimized website.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "The complete digital infrastructure for restaurants and cafes.",
       subtitle: "From digital QR menus to automated Google review boosters.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Digital QR Code Menu",
@@ -240,7 +240,7 @@ export default function GastronomiePage() {
         description:
           "Pre-order rush service for express pickup with zero counter queues.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.png",
+          "/media/vibe.filesafe.space/1778931020193405557/attachments/c3fedf79-deb1-401a-b8a9-f94a12346b8c.webp",
       },
     ],
     faqs: [
@@ -294,27 +294,27 @@ export default function GastronomiePage() {
         "Modern restoranların komisyonsuz kendi sistemleriyle nasıl büyüdüğünü keşfedin.",
       buttonText: "Ücretsiz Restoran Rehberini İndir",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
     },
     workflow: {
       title: "WhatsApp ve Web üzerinden 7/24 otomatik masa rezervasyonu.",
       description:
         "Müşteriler saniyeler içinde rezervasyon yapar. Otomatik hatırlatıcılar gelmeme oranını %85 düşürür.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/aa5aae20-bf3a-4d0f-83a3-016c6fade722.webp",
     },
     benefits: {
       title: "Kendi komisyonsuz paket servis ve sipariş mağazanız.",
       description:
         "Kazancınızın %100'ü sizde kalsın. Müşterileriniz doğrudan kendi sitenizden sipariş verir.",
       image:
-        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.png",
+        "/media/vibe.filesafe.space/1778931020193405557/assets/69315927-1c72-481c-9ea3-adacca2087b2.webp",
     },
     checkmarksSection: {
       title: "Restoran ve kafeler için eksiksiz dijital altyapı.",
       subtitle: "QR menülerden NFC Google yorum arttırıcılara kadar.",
       image:
-        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.png",
+        "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69dbfea7a4e6aa34cb09da91.webp",
       list: [
         {
           title: "Dijital QR Kod Menü",

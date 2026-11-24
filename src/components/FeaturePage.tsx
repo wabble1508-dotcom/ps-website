@@ -237,7 +237,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
                 >
                   <div className="w-16 h-16 flex items-center justify-center shrink-0 text-primary group-hover:scale-110 transition-transform duration-300">
                     {typeof card.icon === "string" ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={card.icon}
                         alt={card.title}
                         className="w-full h-full object-contain drop-shadow-md"
@@ -313,7 +313,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
                   "Şantiyeyi terk etmek yerine müşteri kazanın – Yapay zeka asistanınız randevuları doğrudan yerinde düzenler.",
                 ),
                 image:
-                  "/media/vibe.filesafe.space/1778931020193405557/assets/4d0a0e7d-3e36-4239-b90d-3c52d1c72a30.png",
+                  "/media/vibe.filesafe.space/1778931020193405557/assets/4d0a0e7d-3e36-4239-b90d-3c52d1c72a30.webp",
                 video: "https://www.youtube.com/embed/EdMmS0uehe4?rel=0",
               },
               {
@@ -328,7 +328,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
                   "Saç stilistine değil, telefona değil. Online randevular ve SMS hatırlatmaları iptalleri azaltır.",
                 ),
                 image:
-                  "/media/vibe.filesafe.space/1778931020193405557/assets/d2954749-7bd7-45e0-828b-1e2482d8b79b.png",
+                  "/media/vibe.filesafe.space/1778931020193405557/assets/d2954749-7bd7-45e0-828b-1e2482d8b79b.webp",
                 video: "https://www.youtube.com/embed/7SEMZ-6fEhg?rel=0",
               },
               {
@@ -362,7 +362,7 @@ export const FeaturePage = ({ data }: { data: FeaturePageProps }) => {
                     <ExternalEmbed src={industry.video} title={industry.title} className="absolute inset-0 w-full h-full" allowFullScreen />
                   ) : (
                     <>
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={industry.image}
                         alt={industry.title}
                         className="h-full w-full object-cover opacity-60 group-hover:scale-110 group-hover:opacity-80 transition-all duration-700"

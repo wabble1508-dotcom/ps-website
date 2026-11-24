@@ -21,7 +21,7 @@ export default function DashboardPage() {
     heroIconUrl:
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clipboard/3D/clipboard_3d.png",
     problemImage:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/adb2ec8d-535e-4ec8-925c-0679789d5c46.png",
+      "/media/vibe.filesafe.space/1778931020193405557/assets/adb2ec8d-535e-4ec8-925c-0679789d5c46.webp",
     cardIcons: [
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Mobile_phone/3D/mobile_phone_3d.png",
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Laptop/3D/laptop_3d.png",

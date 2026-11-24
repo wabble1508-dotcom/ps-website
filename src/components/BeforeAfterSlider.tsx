@@ -69,7 +69,7 @@ export function BeforeAfterSlider({
       onPointerDown={onPointerDown}
     >
       {/* Base Image (After / New / Good) */}
-      <img
+      <img loading="lazy" decoding="async"
         src={afterImage}
         className="absolute inset-0 w-full h-full object-cover object-top"
         alt="After"
@@ -88,7 +88,7 @@ export function BeforeAfterSlider({
           clipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`,
         }}
       >
-        <img
+        <img loading="lazy" decoding="async"
           src={beforeImage}
           className="absolute inset-0 w-full h-full object-cover object-top filter grayscale-[20%]"
           alt="Before"

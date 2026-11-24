@@ -13,7 +13,7 @@ export default function GoogleBusinessPage() {
     heroIconUrl:
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Round_pushpin/3D/round_pushpin_3d.png",
     problemImage:
-      "/media/vibe.filesafe.space/1778931020193405557/assets/7835fc00-e089-4e7f-91c5-702f90c939ec.jpg",
+      "/media/vibe.filesafe.space/1778931020193405557/assets/7835fc00-e089-4e7f-91c5-702f90c939ec.webp",
     cardIcons: [
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Round_pushpin/3D/round_pushpin_3d.png",
       "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Star/3D/star_3d.png",

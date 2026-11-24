@@ -4,7 +4,7 @@ import type { IndustryTextContent, LanguageCode } from "./industryTypes";
 const HERO_VIDEO =
   "/media/assets.cdn.filesafe.space/VkExHAgs8XW3SXXelIlC/media/69c04a4a3b3a582edddbee4d.mp4";
 const LEAD_IMAGE =
-  "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png";
+  "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp";
 
 const PAIN_ICONS = [
   "/media/raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Spiral_calendar/3D/spiral_calendar_3d.png",

@@ -54,7 +54,7 @@ export default function GesundheitswesenPage() {
           "Stellen Sie sich vor, 3 nervige Büro-Aufgaben fallen ab morgen weg – weil die KI sie macht. Wir werfen einen Blick auf Ihren Betrieb und zeigen Ihnen schlüsselfertig, wo Sie sofort Zeit gewinnen. Kein technisches Wissen nötig.",
         buttonText: "Kostenlosen KI-Check Anfordern",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -62,7 +62,7 @@ export default function GesundheitswesenPage() {
         description:
           "Hören Sie auf, wertvolle Zeit mit Terminabsagen und Rückrufen zu verschwenden. Unser System übernimmt das Patienten-Management vollautomatisch. Während Sie sich im Behandlungszimmer voll auf Ihre Patienten konzentrieren, wird im Hintergrund Ihr Kalender koordiniert. Jeder Patient bekommt sofort eine Bestätigung – kein Besetztzeichen, kein langes Warten, keine vergessenen Termine.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.webp",
       },
       checkmarksSection: {
         title:
@@ -70,7 +70,7 @@ export default function GesundheitswesenPage() {
         subtitle:
           "Schluss mit überlasteten Leitungen und Stress am Empfang. Sparen Sie jede Woche wertvolle Stunden.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.webp",
         list: [
           {
             title: "KI-Telefon-Assistent & Rezept-Hotline",
@@ -99,7 +99,7 @@ export default function GesundheitswesenPage() {
           description:
             "Ergebnis: 65 Termine vollautomatisch gebucht im ersten Monat.\n\nWie: Die KI qualifiziert Anfragen vorab und bucht sie direkt in den Kalender. Ihr Team wird entlastet und kann sich voll auf die Patienten vor Ort konzentrieren.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.webp",
         },
         {
           title: "Physiotherapie Rossa Dortmund",
@@ -113,7 +113,7 @@ export default function GesundheitswesenPage() {
           description:
             'Ergebnis: 100% Erreichbarkeit durch "Missed Call Text Back"\n\nWie: Jeder verpasste Anruf erhält innerhalb von 30 Sekunden eine SMS mit Buchungslink. Ergebnis: 12 neue Patienten pro Woche – ohne einen einzigen Rückruf.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.webp",
         },
       ],
       videoTestimonial: {
@@ -194,7 +194,7 @@ export default function GesundheitswesenPage() {
           "Imagine 3 annoying office tasks disappearing tomorrow – because AI does them. We take a look at your business and show you turnkey solutions where you can immediately gain time. No technical knowledge required.",
         buttonText: "Request Free AI Check",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title:
@@ -202,7 +202,7 @@ export default function GesundheitswesenPage() {
         description:
           "Stop wasting valuable time with appointment cancellations and callbacks. Our system takes over patient management fully automatically. While you concentrate fully on your patients in the treatment room, your calendar is coordinated in the background. Every patient receives immediate confirmation – no busy signal, no long waiting, no forgotten appointments.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.webp",
       },
       checkmarksSection: {
         title:
@@ -210,7 +210,7 @@ export default function GesundheitswesenPage() {
         subtitle:
           "No more overloaded lines and stress at reception. Save valuable hours every week.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.webp",
         list: [
           {
             title: "AI Telephone Assistant & Prescription Hotline",
@@ -238,7 +238,7 @@ export default function GesundheitswesenPage() {
           description:
             "Result: 65 appointments fully automatically booked in the first month.\n\nHow: The AI pre-qualifies inquiries and books them directly into the calendar. Your team is relieved and can focus entirely on the patients on site.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.webp",
         },
         {
           title: "Physiotherapie Rossa Dortmund",
@@ -252,7 +252,7 @@ export default function GesundheitswesenPage() {
           description:
             'Result: 100% availability through "Missed Call Text Back"\n\nHow: Every missed call receives an SMS with a booking link within 30 seconds. Result: 12 new patients per week – without a single callback.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.webp",
         },
       ],
       videoTestimonial: {
@@ -333,14 +333,14 @@ export default function GesundheitswesenPage() {
           "Hayatınızdan 3 sinir bozucu ofis görevinin yarından itibaren kaybolmasını hayal edin – yapay zeka yapıyor. İşletmenize bakıyor ve nerede hemen zaman kazanacağınızı anahtar teslim gösteriyoruz. Teknik bilgi gerekmez.",
         buttonText: "Ücretsiz Yapay Zeka Kontrolü İste",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d081e0c4-994b-433f-b736-7dcf367fda58.webp",
       },
       workflow: {
         title: "Telefonda hastalar, eller işte – Randevularınızı yönetiyoruz.",
         description:
           "Randevu iptalleri ve geri aramalarla değerli zaman kaybetmeyi bırakın. Sistemimiz hasta yönetimini tam otomatik üstlenir. Siz tedavi odasında hastalarınıza tam odaklanırken, arka planda takviminiz koordine edilir. Her hasta anında onay alır – meşgul sinyali yok, uzun bekleme yok, unutulan randevu yok.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d423db02-a69d-46fa-90e9-1ca12f8b0adb.webp",
       },
       checkmarksSection: {
         title:
@@ -348,7 +348,7 @@ export default function GesundheitswesenPage() {
         subtitle:
           "Aşırı yüklenmiş hatlara ve resepsiyonda strese son. Her hafta değerli saatler kazanın.",
         image:
-          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.png",
+          "/media/vibe.filesafe.space/1778931020193405557/assets/d96e9675-aff3-4aea-be8a-9b6508d555ad.webp",
         list: [
           {
             title: "Yapay Zeka Telefon Asistanı & Reçete Hattı",
@@ -376,7 +376,7 @@ export default function GesundheitswesenPage() {
           description:
             "Sonuç: İlk ayda 65 randevu tam otomatik ayarlandı.\n\nNasıl: Yapay zeka talepleri ön nitelendirir ve doğrudan takvime kaydeder. Ekibiniz rahatlar ve yerdeki hastalara tam odaklanabilir.",
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/e672104f-6d1a-43fa-aa15-f711ac4aa99a.webp",
         },
         {
           title: "Physiotherapie Rossa Dortmund",
@@ -390,7 +390,7 @@ export default function GesundheitswesenPage() {
           description:
             'Sonuç: "Cevapsız Arama Geri Dönüşü" ile %100 ulaşılabilirlik\n\nNasıl: Her kaçırılan arama 30 saniye içinde randevu linki içeren SMS alır. Sonuç: Haftada 12 yeni hasta – tek bir geri arama olmadan.',
           image:
-            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.png",
+            "/media/vibe.filesafe.space/1778931020193405557/assets/861d9bbc-a913-4778-a29d-31f14d9b8e78.webp",
         },
       ],
       videoTestimonial: {

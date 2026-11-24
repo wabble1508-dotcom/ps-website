@@ -122,14 +122,14 @@ export const Header = () => {
   return (
     <>
       <div
-        className="fixed top-0 left-0 h-1 bg-primary z-[100] transition-all duration-150"
+        className="fixed top-0 left-0 h-0.5 bg-[#7ee3ee] z-[100] transition-all duration-150"
         style={{ width: `${scrollProgress * 100}%` }}
       />
       <header
-        className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm transition-all duration-300 ${isScrolled ? "py-0" : "py-1"}`}
+        className="sticky top-0 z-50 w-full px-2 pt-2 md:px-4 md:pt-3"
       >
         <div
-          className={`container mx-auto flex items-center justify-between px-4 transition-all duration-300 ${isScrolled ? "h-16 md:h-20" : "h-24 md:h-28"}`}
+          className={`glass mx-auto flex max-w-[1400px] items-center justify-between rounded-2xl px-3 transition-all duration-300 md:px-5 ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-[4.5rem]"}`}
         >
           <div className="flex items-center gap-3 md:gap-4 shrink-0">
             <Link
@@ -139,7 +139,7 @@ export const Header = () => {
               <img
                 src="/media/vibe.filesafe.space/1778931020193405557/attachments/98e2f944-6284-4364-828f-058da15e3823.png"
                 alt="PS Professional Solutions Logo"
-                className={`w-auto object-contain transition-all duration-300 ${isScrolled ? "h-12 md:h-14" : "h-16 md:h-20"}`}
+                className={`w-auto object-contain transition-all duration-300 ${isScrolled ? "h-9 md:h-11" : "h-11 md:h-14"}`}
               />
             </Link>
 

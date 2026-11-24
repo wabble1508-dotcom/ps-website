@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { SectionHead } from "@/components/SectionHead";
@@ -55,6 +57,21 @@ const BrowserFrame = ({ children, url }: { children: React.ReactNode; url: strin
   </div>
 );
 
+// Screenshot kippt beim Hereinscrollen aus der Schräge in die Gerade (3D)
+const ScrollTilt = ({ children }: { children: React.ReactNode }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "center center"] });
+  const rotateX = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 24, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [reduce ? 1 : 0.88, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [reduce ? 1 : 0.3, 1]);
+  return (
+    <div ref={ref} style={{ perspective: 1200 }}>
+      <motion.div style={{ rotateX, scale, opacity, transformOrigin: "50% 100%" }}>{children}</motion.div>
+    </div>
+  );
+};
+
 export const PortfolioSection = () => {
   const { language } = useLanguage();
   const { openForm } = useContactForm();
@@ -68,6 +85,7 @@ export const PortfolioSection = () => {
           {PROJECTS.map((p) => (
             <FadeIn key={p.name}>
               <a href={p.url} target="_blank" rel="noopener" className="group block">
+                <ScrollTilt>
                 <BrowserFrame url={p.url.replace(/^https:\/\/|\/$/g, "")}>
                   <div className="aspect-[16/10] overflow-hidden">
                     <img
@@ -78,6 +96,7 @@ export const PortfolioSection = () => {
                     />
                   </div>
                 </BrowserFrame>
+                </ScrollTilt>
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-xl font-semibold text-white group-hover:text-[#7ee3ee]">{p.name}</h3>
@@ -102,7 +121,7 @@ export const PortfolioSection = () => {
           <button
             type="button"
             onClick={() => openForm("contact", "Portfolio")}
-            className="group flex w-full flex-col items-center gap-3 rounded-2xl border border-white/15 p-8 text-center transition-colors hover:border-white/40 hover:bg-white/[0.04] sm:flex-row sm:text-left"
+            className="glass group flex w-full flex-col items-center gap-3 rounded-2xl p-8 text-center transition-colors hover:border-white/40 hover:bg-white/[0.04] sm:flex-row sm:text-left"
           >
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-transform group-hover:scale-110">
               <Plus className="h-7 w-7" />

@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/FadeIn";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHead } from "@/components/SectionHead";
+import { TiltCard } from "@/components/TiltCard";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -186,46 +187,44 @@ export const ServicesSection = () => {
     );
 
   return (
-    <section className="dark relative bg-background py-20 text-foreground md:py-28">
-      <div className="container mx-auto max-w-6xl px-4">
+    <section className="dark relative overflow-hidden bg-background py-20 text-foreground md:py-28">
+      {/* farbige Lichtflächen hinter dem Glas */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-0">
+        <div className="absolute left-[8%] top-[30%] h-[28rem] w-[28rem] rounded-full bg-[#1e9fae]/25 blur-[120px]" />
+        <div className="absolute right-[5%] top-[45%] h-[24rem] w-[24rem] rounded-full bg-[#3b5bdb]/20 blur-[120px]" />
+      </div>
+      <div className="container relative mx-auto max-w-6xl px-4">
         <SectionHead index="01" kicker={labels.kicker} title={title} sub={labels.sub} />
 
-        <ol className="border-t border-border">
+        <div className="grid gap-4 md:grid-cols-3">
           {MAIN.map(({ service, price, tags }, i) => (
-            <li key={service.link}>
-              <FadeIn>
-                <Link
-                  to={service.link}
-                  className="group grid grid-cols-[2.5rem_1fr_auto] items-start gap-x-4 gap-y-3 border-b border-border py-8 transition-colors hover:bg-white/[0.025] md:grid-cols-[4rem_1.2fr_1fr_auto] md:items-center md:gap-x-8 md:py-10"
-                >
-                  <span className="pt-2 font-display text-sm tabular-nums text-muted-foreground md:pt-0">0{i + 1}</span>
-                  <h3 className="text-3xl font-semibold leading-tight transition-transform duration-300 group-hover:translate-x-1 md:text-5xl">
-                    {pick(language, service.titles)}
-                  </h3>
-                  <ArrowUpRight className="mt-2 h-6 w-6 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7ee3ee] md:order-last md:mt-0" />
-                  <div className="col-start-2 col-end-4 md:col-start-auto md:col-end-auto">
-                    <p className="text-muted-foreground">{pick(language, service.descs)}</p>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-                      <span className="font-semibold text-foreground">{pick(language, price)}</span>
-                      <span className="text-muted-foreground" data-no-translate>
-                        {tags.join(" · ")}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </FadeIn>
-            </li>
+            <FadeIn key={service.link} delay={i * 90}>
+              <TiltCard to={service.link} className="flex h-full min-h-[22rem] flex-col p-7 md:p-8">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-sm tabular-nums text-white/60">0{i + 1}</span>
+                  <ArrowUpRight className="h-5 w-5 text-white/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7ee3ee]" />
+                </div>
+                <h3 className="mt-auto pt-16 text-3xl font-semibold leading-tight text-white md:text-4xl">{pick(language, service.titles)}</h3>
+                <p className="mt-3 text-sm text-white/70">{pick(language, service.descs)}</p>
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-4 text-sm">
+                  <span className="font-semibold text-white">{pick(language, price)}</span>
+                  <span className="text-white/55" data-no-translate>
+                    {tags.join(" · ")}
+                  </span>
+                </div>
+              </TiltCard>
+            </FadeIn>
           ))}
-        </ol>
+        </div>
 
-        <div className="mt-14 grid gap-x-12 md:grid-cols-[10rem_1fr]">
+        <div className="glass mt-6 grid gap-x-12 rounded-3xl p-6 md:grid-cols-[10rem_1fr] md:p-8">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{labels.more}</p>
           <ul className="grid sm:grid-cols-2 sm:gap-x-10">
             {more.map((service, i) => (
               <li key={service.link}>
                 <Link
                   to={service.link}
-                  className="group flex items-baseline gap-4 border-b border-border py-4 transition-colors hover:text-[#7ee3ee]"
+                  className="group flex items-baseline gap-4 border-b border-white/10 py-4 transition-colors hover:text-[#7ee3ee]"
                 >
                   <span className="font-display text-xs tabular-nums text-muted-foreground">0{i + 4}</span>
                   <span className="flex-1">

@@ -36,7 +36,11 @@ export const LOCAL_BUSINESS = {
     addressCountry: "DE",
   },
   geo: { "@type": "GeoCoordinates", latitude: 51.5381, longitude: 7.4378 },
-  areaServed: [{ "@type": "City", name: "Dortmund" }, { "@type": "Country", name: "Deutschland" }],
+  areaServed: [
+    ...["Dortmund", "Bochum", "Essen", "Unna", "Lünen", "Hagen", "Herne", "Castrop-Rauxel", "Gelsenkirchen", "Hamm", "Schwerte", "Witten", "Kamen"].map((name) => ({ "@type": "City", name })),
+    { "@type": "AdministrativeArea", name: "Ruhrgebiet" },
+    { "@type": "Country", name: "Deutschland" },
+  ],
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -47,7 +51,7 @@ export const LOCAL_BUSINESS = {
   ],
   priceRange: "ab 49 €",
   sameAs: activeSocialLinks().map((s) => s.url),
-  knowsAbout: ["Webdesign", "Website-Erstellung", "App-Entwicklung", "Software-Entwicklung", "Suchmaschinenoptimierung", "KI-Automatisierung"],
+  knowsAbout: ["Webdesign", "Website-Erstellung", "App-Entwicklung", "iOS-App-Entwicklung", "Android-App-Entwicklung", "Web-Apps", "Progressive Web Apps", "Software-Entwicklung", "Suchmaschinenoptimierung", "Generative Engine Optimization", "KI-Automatisierung"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Leistungen",

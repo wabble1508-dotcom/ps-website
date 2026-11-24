@@ -84,6 +84,7 @@ const App = () => (
                 <Route path="/guenstige-website" element={<SeoLandingPage data={LANDING_PAGES["/guenstige-website"]} />} />
                 <Route path="/kostenlose-website" element={<SeoLandingPage data={LANDING_PAGES["/kostenlose-website"]} />} />
                 <Route path="/webdesign-dortmund" element={<SeoLandingPage data={LANDING_PAGES["/webdesign-dortmund"]} />} />
+                <Route path="/webdesign-ruhrgebiet" element={<SeoLandingPage data={LANDING_PAGES["/webdesign-ruhrgebiet"]} />} />
                 <Route path="/software-entwicklung" element={<SeoLandingPage data={LANDING_PAGES["/software-entwicklung"]} />} />
                 <Route path="/ki-live-chat" element={<KiLiveChatPage />} />
                 <Route path="/magazin" element={<BlogPage />} />

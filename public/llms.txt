@@ -1,6 +1,6 @@
 # PS Professional Solutions
 
-> Webdesign, App- und Software-Entwicklung aus Dortmund. Wir programmieren Websites für kleine und mittlere Unternehmen ab 49 € im Monat ohne Einrichtungskosten (monatlich kündbar), entwickeln Apps und individuelle Software und binden KI-Lösungen wie einen KI-Live-Chat oder KI-Telefonassistenten ein.
+> Webdesign, App- und Software-Entwicklung aus Dortmund. Wir programmieren Websites für kleine und mittlere Unternehmen ab 49 € im Monat ohne Einrichtungskosten (monatlich kündbar), entwickeln Apps und individuelle Software und sorgen mit SEO und GEO dafür, dass Betriebe bei Google und in KI-Suchen gefunden werden.
 
 Inhaber: Pankaj Mondjal. Adresse: Lindenhorster Str. 185, 44339 Dortmund, Deutschland. Telefon: +49 1520 7595260. E-Mail: info@ps-professional-solutions.de. Erreichbar Montag bis Freitag, 9 bis 18 Uhr. Tätig in Dortmund, im Ruhrgebiet und bundesweit online.
 
@@ -21,7 +21,8 @@ Alle Preise sind Endpreise; als Kleinunternehmer nach § 19 UStG wird keine Umsa
 - [Kostenlose Website – die Alternative](https://ps-professional-solutions.de/kostenlose-website): 0 € Einrichtung statt Baukasten mit Werbung
 - [Website erstellen lassen](https://ps-professional-solutions.de/webseiten): programmiertes Webdesign
 - [Webdesign Dortmund](https://ps-professional-solutions.de/webdesign-dortmund): Webdesigner vor Ort in Dortmund und im Ruhrgebiet
-- [App-Entwicklung](https://ps-professional-solutions.de/app-entwicklung): Web-Apps, iOS- und Android-Apps, Kundenportale
+- [Webdesign Ruhrgebiet](https://ps-professional-solutions.de/webdesign-ruhrgebiet): Websites und Apps für Betriebe in Bochum, Essen, Unna, Lünen, Hagen, Herne, Castrop-Rauxel und Umgebung
+- [App-Entwicklung / App entwickeln lassen](https://ps-professional-solutions.de/app-entwicklung): Web-Apps (PWA), Apps für iOS und Android, Kundenportale, Bonus- und Buchungs-Apps, SaaS-Plattformen; Projekte ab 4.900 €, Festpreis-Angebot nach kostenlosem Erstgespräch, Nutzungsrechte beim Kunden
 - [Software-Entwicklung](https://ps-professional-solutions.de/software-entwicklung): individuelle Software, Schnittstellen, KI-Automatisierung
 - [KI-Live-Chat](https://ps-professional-solutions.de/ki-live-chat): beantwortet Website-Besuchern Fragen rund um die Uhr
 - [KI-Telefonassistent](https://ps-professional-solutions.de/ki-telefon-assistent): nimmt Anrufe an und bucht Termine

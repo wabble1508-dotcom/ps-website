@@ -58,6 +58,7 @@ export const RELATED: Record<string, L> = {
   "/guenstige-website": { de: "Günstige Website ab 49 €", en: "Affordable website from €49", tr: "49 €'dan uygun fiyatlı web sitesi" },
   "/kostenlose-website": { de: "Kostenlose Website – die Alternative", en: "Free website – the alternative", tr: "Ücretsiz web sitesi – alternatif" },
   "/webdesign-dortmund": { de: "Webdesign Dortmund", en: "Web design Dortmund", tr: "Web tasarım Dortmund" },
+  "/webdesign-ruhrgebiet": { de: "Webdesign Ruhrgebiet", en: "Web design Ruhr area", tr: "Web tasarım Ruhr bölgesi" },
   "/webseiten": { de: "Website erstellen lassen", en: "Get a website built", tr: "Web sitesi yaptırın" },
   "/app-entwicklung": { de: "App-Entwicklung", en: "App development", tr: "Uygulama geliştirme" },
   "/software-entwicklung": { de: "Software-Entwicklung", en: "Software development", tr: "Yazılım geliştirme" },
@@ -638,12 +639,12 @@ export const LANDING_PAGES: Record<string, LandingData> = {
           },
         },
         {
-          icon: MessageSquare,
-          title: { de: "KI-Live-Chat & Terminbuchung", en: "AI live chat & booking", tr: "AI canlı sohbet ve randevu" },
+          icon: Sparkles,
+          title: { de: "SEO & GEO", en: "SEO & GEO", tr: "SEO ve GEO" },
           text: {
-            de: "Ihre Website beantwortet Fragen und nimmt Termine an – rund um die Uhr.",
-            en: "Your website answers questions and takes bookings – around the clock.",
-            tr: "Siteniz soruları yanıtlar ve randevu alır – 7/24.",
+            de: "Gefunden bei Google und in KI-Suchen wie ChatGPT – mit Online-Terminbuchung auf Wunsch.",
+            en: "Found on Google and in AI search like ChatGPT – with online booking if you like.",
+            tr: "Google'da ve ChatGPT gibi AI aramalarında bulunun – isterseniz online randevuyla.",
           },
         },
         {
@@ -720,13 +721,179 @@ export const LANDING_PAGES: Record<string, LandingData> = {
         },
       },
     ],
-    related: ["/guenstige-website", "/webseiten", "/app-entwicklung", "/software-entwicklung", "/google-business-optimierung", "/preise"],
+    related: ["/webdesign-ruhrgebiet", "/guenstige-website", "/webseiten", "/app-entwicklung", "/software-entwicklung", "/google-business-optimierung", "/preise"],
     final: {
       title: { de: "Lernen wir uns kennen – in Dortmund oder online", en: "Let's get to know each other – in Dortmund or online", tr: "Tanışalım – Dortmund'da veya online" },
       text: {
         de: "Erzählen Sie uns von Ihrem Betrieb. Das Erstgespräch ist kostenlos und unverbindlich.",
         en: "Tell us about your business. The initial consultation is free and non-binding.",
         tr: "Bize işletmenizden bahsedin. İlk görüşme ücretsiz ve bağlayıcı değildir.",
+      },
+    },
+    localBusiness: true,
+  },
+
+  "/webdesign-ruhrgebiet": {
+    path: "/webdesign-ruhrgebiet",
+    seo: {
+      title: {
+        de: "Webdesign Ruhrgebiet | Websites & Apps für Bochum, Essen, Unna",
+        en: "Web design Ruhr area | Websites & apps for Bochum, Essen, Unna",
+        tr: "Web tasarım Ruhr bölgesi | Bochum, Essen, Unna için siteler ve uygulamalar",
+      },
+      description: {
+        de: "Webdesigner und App-Entwickler für das Ruhrgebiet: programmierte Websites ab 49 €/Monat und Apps nach Maß für Betriebe in Bochum, Essen, Unna, Lünen, Hagen und Umgebung.",
+        en: "Web designer and app developer for the Ruhr area: hand-coded websites from €49/month and custom apps for businesses in Bochum, Essen, Unna, Lünen, Hagen and around.",
+        tr: "Ruhr bölgesi için web tasarımcı ve uygulama geliştirici: Bochum, Essen, Unna, Lünen, Hagen ve çevresindeki işletmeler için aylık 49 €'dan kodlanmış siteler ve özel uygulamalar.",
+      },
+      keywords:
+        "Webdesign Ruhrgebiet, Webdesigner Ruhrgebiet, Webagentur Ruhrgebiet, Webdesign Bochum, Webdesign Essen, Webdesign Unna, Webdesign Lünen, Webdesign Hagen, Webdesign Castrop-Rauxel, Webdesign Herne, Website erstellen lassen Ruhrgebiet, App Entwicklung Ruhrgebiet",
+      service: "Webdesign Ruhrgebiet",
+    },
+    hero: {
+      kicker: { de: "Webdesign Ruhrgebiet", en: "Web design Ruhr area", tr: "Web tasarım Ruhr bölgesi" },
+      title: {
+        de: "Webdesign fürs Ruhrgebiet – aus Dortmund, für Ihren Betrieb",
+        en: "Web design for the Ruhr area – from Dortmund, for your business",
+        tr: "Ruhr bölgesi için web tasarım – Dortmund'dan, işletmeniz için",
+      },
+      subtitle: {
+        de: "Programmierte Websites, Apps und Software für Unternehmen zwischen Hagen und Hamm, Essen und Unna. Kurze Wege, ein fester Ansprechpartner und Preise, die zum Mittelstand passen.",
+        en: "Hand-coded websites, apps and software for businesses between Hagen and Hamm, Essen and Unna. Short distances, one fixed contact person and prices that suit small and mid-sized companies.",
+        tr: "Hagen ile Hamm, Essen ile Unna arasındaki işletmeler için kodlanmış siteler, uygulamalar ve yazılımlar. Kısa yollar, sabit bir muhatap ve KOBİ'lere uygun fiyatlar.",
+      },
+      badges: [
+        { de: "Ganzes Ruhrgebiet", en: "Entire Ruhr area", tr: "Tüm Ruhr bölgesi" },
+        { de: "ab 49 €/Monat", en: "from €49/month", tr: "aylık 49 €'dan" },
+        { de: "Termine vor Ort oder per Video", en: "Meetings on site or by video", tr: "Yerinde veya görüntülü görüşme" },
+        { de: "Websites & Apps", en: "Websites & apps", tr: "Siteler ve uygulamalar" },
+      ],
+      cta: { de: "Kostenloses Erstgespräch", en: "Free initial consultation", tr: "Ücretsiz ilk görüşme" },
+    },
+    intro: {
+      title: { de: "Ihr Webdesigner für das Ruhrgebiet", en: "Your web designer for the Ruhr area", tr: "Ruhr bölgesi için web tasarımcınız" },
+      paragraphs: [
+        {
+          de: "Im Ruhrgebiet zählt, was funktioniert: Eine Website soll Kunden bringen, schnell laden und auf dem Handy gut aussehen. Genau das bauen wir – programmiert statt aus dem Baukasten, mit sauberer Technik für Google und einem Design, das zu Ihrem Betrieb passt.",
+          en: "In the Ruhr area, what counts is what works: a website should bring in customers, load fast and look good on a phone. That's exactly what we build – hand-coded rather than from a site builder, with clean technology for Google and a design that fits your business.",
+          tr: "Ruhr bölgesinde önemli olan işe yarayandır: Bir web sitesi müşteri getirmeli, hızlı yüklenmeli ve telefonda iyi görünmelidir. Tam olarak bunu yapıyoruz – site oluşturucuyla değil kodlanarak, Google için temiz teknikle ve işletmenize uyan bir tasarımla.",
+        },
+        {
+          de: "Unser Büro liegt in Dortmund-Lindenhorst. Von hier aus betreuen wir Friseure, Handwerker, Restaurants, Praxen, Händler und Dienstleister in der ganzen Region. Wer lieber vor Ort spricht, trifft uns persönlich – alle anderen erreichen uns per Telefon, WhatsApp oder Video.",
+          en: "Our office is in Dortmund-Lindenhorst. From here we look after hair salons, tradespeople, restaurants, practices, retailers and service providers across the whole region. If you prefer to talk in person, we'll meet you – everyone else reaches us by phone, WhatsApp or video.",
+          tr: "Ofisimiz Dortmund-Lindenhorst'ta. Buradan tüm bölgedeki kuaförlere, ustalara, restoranlara, muayenehanelere, satıcılara ve hizmet sağlayıcılara hizmet veriyoruz. Yüz yüze konuşmak isteyenlerle buluşuyoruz – diğerleri bize telefon, WhatsApp veya görüntülü ulaşır.",
+        },
+        {
+          de: "Neben Websites entwickeln wir Apps und individuelle Software: Buchungs- und Bonus-Apps, Kundenportale und interne Tools. So bekommen Betriebe im Ruhrgebiet alles aus einer Hand – vom Google-Unternehmensprofil bis zur eigenen App.",
+          en: "Besides websites we develop apps and custom software: booking and loyalty apps, customer portals and internal tools. So businesses in the Ruhr area get everything from one source – from the Google Business Profile to their own app.",
+          tr: "Web sitelerinin yanı sıra uygulamalar ve özel yazılımlar geliştiriyoruz: randevu ve sadakat uygulamaları, müşteri portalları ve dahili araçlar. Böylece Ruhr bölgesindeki işletmeler Google İşletme Profili'nden kendi uygulamalarına kadar her şeyi tek elden alır.",
+        },
+      ],
+    },
+    features: {
+      title: { de: "Für Betriebe in diesen Städten", en: "For businesses in these cities", tr: "Bu şehirlerdeki işletmeler için" },
+      items: [
+        {
+          icon: MapPin,
+          title: { de: "Dortmund, Lünen & Castrop-Rauxel", en: "Dortmund, Lünen & Castrop-Rauxel", tr: "Dortmund, Lünen ve Castrop-Rauxel" },
+          text: {
+            de: "Unser Heimatgebiet – Termine vor Ort meist kurzfristig möglich.",
+            en: "Our home turf – on-site meetings usually possible at short notice.",
+            tr: "Kendi bölgemiz – yerinde görüşmeler genellikle kısa sürede mümkün.",
+          },
+        },
+        {
+          icon: MapPin,
+          title: { de: "Bochum, Herne & Witten", en: "Bochum, Herne & Witten", tr: "Bochum, Herne ve Witten" },
+          text: {
+            de: "Websites für Gastronomie, Handel und Dienstleister im mittleren Ruhrgebiet.",
+            en: "Websites for restaurants, retail and service providers in the central Ruhr area.",
+            tr: "Orta Ruhr bölgesindeki restoranlar, perakende ve hizmet sağlayıcılar için siteler.",
+          },
+        },
+        {
+          icon: MapPin,
+          title: { de: "Essen & Gelsenkirchen", en: "Essen & Gelsenkirchen", tr: "Essen ve Gelsenkirchen" },
+          text: {
+            de: "Programmierte Websites und Apps für Unternehmen im westlichen Ruhrgebiet.",
+            en: "Hand-coded websites and apps for businesses in the western Ruhr area.",
+            tr: "Batı Ruhr bölgesindeki işletmeler için kodlanmış siteler ve uygulamalar.",
+          },
+        },
+        {
+          icon: MapPin,
+          title: { de: "Unna, Kamen & Hamm", en: "Unna, Kamen & Hamm", tr: "Unna, Kamen ve Hamm" },
+          text: {
+            de: "Für Handwerk, Praxen und Mittelstand im östlichen Ruhrgebiet.",
+            en: "For trades, practices and SMEs in the eastern Ruhr area.",
+            tr: "Doğu Ruhr bölgesindeki zanaat, muayenehaneler ve KOBİ'ler için.",
+          },
+        },
+        {
+          icon: MapPin,
+          title: { de: "Hagen & Schwerte", en: "Hagen & Schwerte", tr: "Hagen ve Schwerte" },
+          text: {
+            de: "Webdesign und Google-Optimierung für Betriebe am südlichen Rand des Reviers.",
+            en: "Web design and Google optimisation for businesses on the southern edge of the region.",
+            tr: "Bölgenin güney ucundaki işletmeler için web tasarım ve Google optimizasyonu.",
+          },
+        },
+        {
+          icon: Globe,
+          title: { de: "Und ganz Deutschland", en: "And all of Germany", tr: "Ve tüm Almanya" },
+          text: {
+            de: "Websites, Apps und Software online – mit demselben persönlichen Service.",
+            en: "Websites, apps and software online – with the same personal service.",
+            tr: "Siteler, uygulamalar ve yazılım online – aynı kişisel hizmetle.",
+          },
+        },
+      ],
+    },
+    comparison: true,
+    steps: WEBSITE_STEPS,
+    references: true,
+    price: START_PRICE,
+    faq: [
+      {
+        q: { de: "Kommen Sie für ein Gespräch auch zu uns nach Bochum oder Essen?", en: "Will you come to us in Bochum or Essen for a meeting?", tr: "Görüşme için Bochum veya Essen'e de gelir misiniz?" },
+        a: {
+          de: "Ja, nach Absprache kommen wir im Ruhrgebiet gern persönlich vorbei. Viele Kunden bevorzugen aber ein kurzes Video- oder Telefongespräch – das geht schneller und ist genauso persönlich.",
+          en: "Yes, by arrangement we are happy to visit you in person within the Ruhr area. Many clients prefer a short video or phone call though – it's quicker and just as personal.",
+          tr: "Evet, anlaşarak Ruhr bölgesinde sizi memnuniyetle ziyaret ederiz. Ancak birçok müşteri kısa bir görüntülü veya telefon görüşmesini tercih ediyor – daha hızlı ve aynı derecede kişisel.",
+        },
+      },
+      {
+        q: { de: "Was kostet eine Website im Ruhrgebiet bei Ihnen?", en: "How much does a website cost with you in the Ruhr area?", tr: "Ruhr bölgesinde sizde bir web sitesi ne kadar?" },
+        a: {
+          de: "Überall gleich: ab 49 € im Monat ohne Einrichtungsgebühr (Start), mit SEO, GEO und Online-Terminbuchung ab 129 € im Monat (Business). Apps und individuelle Software ab 4.900 €.",
+          en: "The same everywhere: from €49 a month with no setup fee (Start), with SEO, GEO and online booking from €129 a month (Business). Apps and custom software from €4,900.",
+          tr: "Her yerde aynı: kurulum ücreti olmadan aylık 49 €'dan (Start), SEO, GEO ve online randevuyla aylık 129 €'dan (Business). Uygulamalar ve özel yazılım 4.900 €'dan.",
+        },
+      },
+      {
+        q: { de: "Werde ich mit der Website auch in meiner Stadt bei Google gefunden?", en: "Will my website be found on Google in my city?", tr: "Sitemle kendi şehrimde Google'da bulunur muyum?" },
+        a: {
+          de: "Dafür richten wir Ihre Website auf Ihre Stadt und Ihre Leistungen aus, pflegen Ihr Google-Unternehmensprofil und sorgen für eine technisch saubere Seite. Eine bestimmte Platzierung kann niemand seriös garantieren – aber die Grundlagen, die Google für lokale Suchen auswertet, setzen wir vollständig um.",
+          en: "We align your website with your city and your services, maintain your Google Business Profile and ensure a technically clean site. No one can seriously guarantee a specific ranking – but we fully implement the basics Google evaluates for local searches.",
+          tr: "Bunun için sitenizi şehrinize ve hizmetlerinize göre düzenliyor, Google İşletme Profilinizi yönetiyor ve teknik olarak temiz bir site sağlıyoruz. Kimse ciddi olarak belirli bir sıralamayı garanti edemez – ancak Google'ın yerel aramalarda değerlendirdiği temelleri eksiksiz uyguluyoruz.",
+        },
+      },
+      {
+        q: { de: "Entwickeln Sie auch Apps für Unternehmen im Ruhrgebiet?", en: "Do you also develop apps for businesses in the Ruhr area?", tr: "Ruhr bölgesindeki işletmeler için uygulama da geliştiriyor musunuz?" },
+        a: {
+          de: "Ja. Wir entwickeln Web-Apps sowie Apps für iOS und Android – zum Beispiel Buchungs-, Bestell- und Bonus-Apps, Kundenportale oder interne Tools für Ihr Team. Projekte starten ab 4.900 €.",
+          en: "Yes. We develop web apps as well as iOS and Android apps – for example booking, ordering and loyalty apps, customer portals or internal tools for your team. Projects start at €4,900.",
+          tr: "Evet. Web uygulamaları ile iOS ve Android uygulamaları geliştiriyoruz – örneğin randevu, sipariş ve sadakat uygulamaları, müşteri portalları veya ekibiniz için dahili araçlar. Projeler 4.900 €'dan başlar.",
+        },
+      },
+    ],
+    related: ["/webdesign-dortmund", "/app-entwicklung", "/guenstige-website", "/webseiten", "/software-entwicklung", "/preise"],
+    final: {
+      title: { de: "Ihr Betrieb im Ruhrgebiet verdient eine starke Website", en: "Your Ruhr area business deserves a strong website", tr: "Ruhr bölgesindeki işletmeniz güçlü bir siteyi hak ediyor" },
+      text: {
+        de: "Erzählen Sie uns kurz von Ihrem Betrieb – das Erstgespräch ist kostenlos und unverbindlich.",
+        en: "Tell us briefly about your business – the initial consultation is free and non-binding.",
+        tr: "Bize kısaca işletmenizden bahsedin – ilk görüşme ücretsiz ve bağlayıcı değildir.",
       },
     },
     localBusiness: true,

@@ -12,7 +12,7 @@ const DOMAIN = "https://ps-professional-solutions.de";
 
 const routes = [...readFileSync("src/App.tsx", "utf8").matchAll(/path="(\/[^"]*)"/g)]
   .map((m) => m[1])
-  .filter((p) => p !== "/admin");
+  .filter((p) => p !== "/admin" && !p.includes(":")); // Platzhalter wie /magazin/:slug kommen aus sitemap-magazin.xml
 
 const server = spawn("npx", ["vite", "preview", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"], {
   stdio: "ignore",

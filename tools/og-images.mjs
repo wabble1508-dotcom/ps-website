@@ -10,10 +10,11 @@ const { chromium } = require(process.argv[2] || "playwright");
 
 // Seite → Symbol (tools/og/icons), Oberzeile, Überschrift, Stichpunkte
 const PAGES = {
-  "/": ["laptop", "Webdesign · Apps · Software", "Professionelle Websites, die Kunden bringen.", ["ab 49 €/Monat", "0 € Einrichtung", "KI-Live-Chat", "Apps & Software"]],
+  "/": ["laptop", "Webdesign · Apps · Software", "Professionelle Websites, die Kunden bringen.", ["ab 49 €/Monat", "0 € Einrichtung", "SEO & GEO", "Apps & Software"]],
   "/guenstige-website": ["euro_banknote", "Günstige Website", "Ihre Website ab 49 € im Monat.", ["0 € Einrichtung", "Monatlich kündbar", "Hosting & SSL inklusive"]],
   "/kostenlose-website": ["gem_stone", "Kostenlose Website?", "Die bessere Alternative: 0 € Einrichtung.", ["Keine Werbung", "Eigene Domain", "Wir bauen alles"]],
   "/webdesign-dortmund": ["round_pushpin", "Webdesign Dortmund", "Ihr Webdesigner aus Dortmund.", ["Persönlich vor Ort", "ab 49 €/Monat", "Websites, Apps & Software"]],
+  "/webdesign-ruhrgebiet": ["globe_with_meridians", "Webdesign Ruhrgebiet", "Websites & Apps fürs ganze Revier.", ["Bochum · Essen · Unna", "ab 49 €/Monat", "Websites, Apps & Software"]],
   "/software-entwicklung": ["gear", "Software-Entwicklung", "Software nach Maß für Ihre Abläufe.", ["Web-Apps & Portale", "Schnittstellen", "KI-Automatisierung"]],
   "/app-entwicklung": ["mobile_phone", "App-Entwicklung", "Ihre eigene App – vom Prototyp bis zum Store.", ["iOS & Android", "Web-Apps", "Projekte ab 4.900 €"]],
   "/webseiten": ["laptop", "Website erstellen lassen", "Programmierte Websites, die Kunden bringen.", ["Schnell", "Für Google optimiert", "Mobil perfekt"]],

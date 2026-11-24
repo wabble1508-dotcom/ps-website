@@ -15,7 +15,7 @@ const routes = [...readFileSync("src/App.tsx", "utf8").matchAll(/path="(\/[^"]*)
   .map((m) => m[1])
   .filter((p) => p !== "/admin");
 
-const server = spawn("npx", ["vite", "preview", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"], {
+const server = spawn(process.execPath, ["node_modules/vite/bin/vite.js", "preview", "--host", "127.0.0.1", "--port", String(PORT), "--strictPort"], {
   stdio: "ignore",
 });
 await new Promise((r) => setTimeout(r, 4000));

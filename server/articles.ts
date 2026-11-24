@@ -29,8 +29,19 @@ const PATTERNS = [
   (b: string) => `Was kostet eine Website für ${b}`,
   (b: string) => `Mehr Kunden für ${b} über Google`,
 ];
-// Reihenfolge: erst alle Branchen mit Muster 1, dann Muster 2 …
-export const KEYWORDS = PATTERNS.flatMap((p) => BRANCHES.map(p));
+// Allgemeine Themen zu App-Entwicklung, Webdesign und KI-Suche kommen zuerst (höchstes Suchvolumen)
+const TOPICS = [
+  "Was kostet eine App? Preise für App-Entwicklung 2026",
+  "App entwickeln lassen: Ablauf in 5 Schritten",
+  "Web-App oder App im App Store – was passt zu Ihrem Betrieb?",
+  "Bonus-App für Restaurant und Café entwickeln lassen",
+  "Buchungs-App für Friseur und Kosmetikstudio",
+  "Was kostet eine Website 2026? Preise im Überblick",
+  "GEO: So wird Ihr Betrieb in ChatGPT und Gemini gefunden",
+  "Website erstellen lassen oder Baukasten – der ehrliche Vergleich",
+];
+// Reihenfolge: erst die allgemeinen Themen, dann alle Branchen mit Muster 1, dann Muster 2 …
+export const KEYWORDS = [...TOPICS, ...PATTERNS.flatMap((p) => BRANCHES.map(p))];
 
 const table = async (env: Env) => {
   const database = await db(env);

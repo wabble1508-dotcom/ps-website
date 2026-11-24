@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 // Magazin-Artikel aus der Datenbank (geschrieben vom SEO-Writer, freigegeben im Admin)
 type Section = { heading: string; paragraphs: string[]; bullets: string[] };
-type Article = { slug: string; title: string; description: string; intro: string; sections: string; faq: string; published_at: string; created_at: string };
+type Article = { slug: string; keyword?: string; title: string; description: string; intro: string; sections: string; faq: string; published_at: string; created_at: string };
 
 export default function ArticlePage() {
   const { slug = "" } = useParams();
@@ -72,9 +72,20 @@ export default function ArticlePage() {
             ))}
           </section>
         )}
-        <div className="mt-12 rounded-2xl bg-secondary text-white p-8 text-center">
+        {/* Passende Leistungsseiten verlinken (hilft Lesern und Google) */}
+        <nav className="mt-12 flex flex-wrap gap-2" aria-label="Passende Leistungen">
+          {(/\bapps?\b|software|plattform|saas/i.test(`${a.keyword || ""} ${a.title}`)
+            ? [["/app-entwicklung", "App-Entwicklung"], ["/software-entwicklung", "Software-Entwicklung"], ["/preise", "Preise"]]
+            : [["/webseiten", "Website erstellen lassen"], ["/webdesign-dortmund", "Webdesign Dortmund"], ["/preise", "Preise"]]
+          ).map(([to, label]) => (
+            <Link key={to} to={to} className="rounded-full border px-4 py-2 text-sm font-semibold hover:border-primary hover:text-primary">
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <div className="mt-8 rounded-2xl bg-secondary text-white p-8 text-center">
           <p className="text-xl font-semibold">Kostenloses Erstgespräch</p>
-          <p className="mt-2 text-white/80">15 Minuten, unverbindlich – wir schauen gemeinsam, was Ihr Betrieb braucht.</p>
+          <p className="mt-2 text-white/80">30 Minuten, unverbindlich – wir schauen gemeinsam, was Ihr Betrieb braucht.</p>
           <Link to="/termin">
             <Button className="mt-4">Termin buchen</Button>
           </Link>

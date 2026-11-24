@@ -53,7 +53,7 @@ export const MobileStickyCTA = () => {
   );
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[60] bg-background/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-border px-3 py-2 shadow-[0_-8px_30px_rgba(0,0,0,0.12)] animate-in slide-in-from-bottom-full duration-500">
+    <div className="glass lg:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 right-3 z-[60] rounded-2xl px-2 py-2 animate-in slide-in-from-bottom-full duration-500">
       {/* pr-20 reserves the bottom-right corner for the LeadConnector chat widget */}
       <div className="flex items-center gap-1.5 max-w-md mx-auto pr-16 sm:pr-20">
         <a

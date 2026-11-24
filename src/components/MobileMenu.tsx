@@ -81,7 +81,7 @@ export const MobileMenu = () => {
   };
 
   return (
-    <div className="xl:hidden border-t bg-background h-[calc(100vh-5.5rem)] overflow-y-auto animate-in slide-in-from-top duration-300">
+    <div className="glass xl:hidden mt-2 rounded-2xl h-[calc(100svh-6.5rem)] overflow-y-auto animate-in slide-in-from-top-4 fade-in duration-300" style={{ backgroundColor: "hsl(var(--background) / 0.82)" }}>
       <div className="flex flex-col gap-2 py-3 px-3 pb-24">
         {/* Social row — compact */}
         <div className="flex items-center gap-2">

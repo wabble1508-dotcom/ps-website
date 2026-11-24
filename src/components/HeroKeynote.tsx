@@ -200,7 +200,7 @@ export const HeroKeynote = ({
               <MapPin className="h-4 w-4 text-[#5fd4dc]" /> {cityNote}
             </div>
           )}
-          <p className="mt-5 text-lg text-white/85 md:text-xl">{subtitle}</p>
+          <p className="mt-5 text-base text-white/85 sm:text-lg md:text-xl">{subtitle}</p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:items-start">
             <button
               type="button"
@@ -217,6 +217,27 @@ export const HeroKeynote = ({
               <CalendarCheck className="h-4 w-4" />
               {bookLabel}
             </Link>
+          </div>
+          {/* Handy & Tablet: Glas-Kärtchen als schwebende Reihe */}
+          <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start lg:hidden">
+            {CHIPS.map((chip, i) => {
+              const Icon = chip.icon;
+              return (
+                <motion.span
+                  key={chip.depth}
+                  initial={reduce ? false : { opacity: 0, y: 12, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  transition={{ duration: 0.7, delay: 0.9 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="glass chip-float inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3.5" style={{ animationDelay: `${i * 0.8}s` }}>
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-[#7ee3ee]">
+                      <Icon className="h-3.5 w-3.5" />
+                    </span>
+                    <span className="text-xs font-semibold text-white">{label(chip.title)}</span>
+                  </span>
+                </motion.span>
+              );
+            })}
           </div>
           <p className="mt-5 text-sm text-white/80">{priceNote}</p>
           <div className="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm md:justify-start">

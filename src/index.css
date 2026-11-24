@@ -134,8 +134,26 @@ All colors MUST be HSL.
   transition: opacity 0.4s;
   background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(126 227 238 / 0.18), transparent 60%);
 }
-.spotlight:hover::before {
+.spotlight:hover::before,
+.spotlight.is-lit::before {
   opacity: 1;
+}
+/* Auf dem Handy: aufleuchtende Karte hebt sich leicht an */
+@media (hover: none) {
+  .spotlight { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s; }
+  .spotlight.is-lit { transform: translateY(-4px) scale(1.01); border-color: rgb(126 227 238 / 0.35); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight.is-lit { transform: none; }
+}
+/* Sanftes Schweben für die Glas-Kärtchen auf dem Handy */
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.chip-float { animation: chip-float 5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .chip-float { animation: none; }
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass { background: rgb(255 255 255 / 0.95); }

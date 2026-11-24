@@ -140,7 +140,7 @@ export const AiChatWidget = () => {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label={t.title}
-        className="fixed z-[65] bottom-2 right-3 h-12 w-12 lg:bottom-8 lg:right-8 lg:h-14 lg:w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
+        className="fixed z-[65] bottom-[max(1rem,calc(env(safe-area-inset-bottom)+0.25rem))] right-5 h-12 w-12 lg:bottom-8 lg:right-8 lg:h-14 lg:w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </button>

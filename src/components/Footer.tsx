@@ -114,7 +114,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-6 text-lg font-bold text-primary">
+            <h4 className="mb-6 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
               {t("nav", "features")}
             </h4>
             <ul className="space-y-4 text-white/70">
@@ -132,7 +132,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-6 text-lg font-bold text-primary">
+            <h4 className="mb-6 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
               {t("nav", "industries")}
             </h4>
             <ul className="space-y-4 text-white/70">
@@ -220,7 +220,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-6 text-lg font-bold text-primary">
+            <h4 className="mb-6 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
               {language === "de" ? "Unternehmen" : "Company"}
             </h4>
             <ul className="space-y-4 text-white/70">
@@ -310,7 +310,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-6 text-lg font-bold text-primary">
+            <h4 className="mb-6 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
               {t("footer", "availability")}
             </h4>
             <ul className="space-y-4 text-white/70 mb-8">

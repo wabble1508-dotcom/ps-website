@@ -62,7 +62,7 @@ export const tr = {
   home: {
     heroTitle: "Müşteri getiren profesyonel web siteleri.",
     heroSubtitle:
-      "AI canlı sohbetten randevu sistemine kadar entegre AI otomasyonuyla özel, SEO uyumlu web siteleri programlıyoruz. Her şey tek elden – işletmeniz online görünsün ve otomatik büyüsün.",
+      "Google'da ve AI aramalarında bulunan web siteleri ve uygulamalar programlıyoruz – hızlı, temiz ve site oluşturucu olmadan. Fikirden yayına kadar tek muhatap.",
     heroBtn: "Web Sitesi Kontrolü İste",
     whyTitle: "Neden PS Professional Solutions?",
     whySubtitle: "Dijital özgürlüğe giden yolunuz.",

@@ -40,8 +40,12 @@ export const ContactSection = () => {
     <section id="kontakt" className="scroll-mt-24 border-t border-border bg-muted/30 py-20 md:py-24">
       <div className="container mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1fr_1.2fr]">
         <FadeIn>
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{pick(UI.kicker)}</span>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-5xl">{pick(UI.title)}</h2>
+          <p className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+            <span className="font-display tabular-nums text-primary dark:text-[#7ee3ee]">05</span>
+            {pick(UI.kicker)}
+            <span aria-hidden className="h-px flex-1 bg-border" />
+          </p>
+          <h2 className="mt-6 text-4xl font-semibold leading-[1.02] text-foreground md:text-6xl">{pick(UI.title)}</h2>
           <p className="mt-4 text-lg text-muted-foreground">{pick(UI.text)}</p>
           <div className="mt-8 space-y-3">
             {ways.map(({ icon: Icon, label, sub, href, external }) => (

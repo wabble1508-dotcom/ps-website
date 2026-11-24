@@ -8,6 +8,7 @@ import { useLanguage } from "@/components/LanguageContext";
 import { translations } from "@/lib/translations";
 import { PromiseSection } from "@/components/PromiseSection";
 import { HeroKeynote } from "@/components/HeroKeynote";
+import { SectionHead } from "@/components/SectionHead";
 import { ServicesSection } from "@/components/ServicesSection";
 import { LogoSliderSection } from "@/components/LogoAndReferences";
 import { FounderSection } from "@/components/FounderSection";
@@ -206,33 +207,24 @@ const Index = () => {
 
 
       {/* Stats Section */}
-      <section className="dark relative overflow-hidden bg-background py-20 text-center text-white md:py-24">
-        <FadeIn className="container mx-auto px-4">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">
-            {t("home", "whyTitle")}
-          </h2>
-          <h3 className="mb-8  text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            {t("home", "whySubtitle")}
-          </h3>
-          <p className="mx-auto mb-12 max-w-3xl text-lg text-white/75">
-            {t("home", "whyDesc")}
-          </p>
-
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+      <section className="dark relative bg-background py-20 text-foreground md:py-24">
+        <div className="container mx-auto max-w-6xl px-4">
+          <SectionHead index="03" kicker={t("home", "whyTitle")} title={t("home", "whySubtitle")} sub={t("home", "whyDesc")} />
+          <FadeIn className="grid grid-cols-2 border-y border-border md:grid-cols-5">
             {[...statItems, stat5Item].map((stat, i) => (
               <div
                 key={i}
-                className={`flex flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:bg-white/[0.06] ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
+                className={`border-border px-4 py-8 md:border-l md:first:border-l-0 md:px-6 ${i % 2 === 1 ? "border-l" : ""} ${i < 4 ? "border-b md:border-b-0" : "col-span-2 md:col-span-1"}`}
               >
-                <div className="text-white mb-1 text-5xl font-semibold tracking-tight lg:text-6xl">
+                <div className="font-display text-6xl font-semibold leading-none lg:text-7xl">
                   <AnimatedCounter value={stat.value} />
                 </div>
-                <div className="font-medium text-white">{stat.label}</div>
-                <p className="mt-1 text-xs text-white/75">{stat.description}</p>
+                <div className="mt-4 font-semibold">{stat.label}</div>
+                <p className="mt-1 text-sm text-muted-foreground">{stat.description}</p>
               </div>
             ))}
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </section>
       <div className="dark bg-background pb-20">
         <CtaRow source="Startseite – Kennzahlen" />
@@ -259,27 +251,13 @@ const Index = () => {
 
       {/* FAQ Section */}
       <section id="faqs" className="py-20 bg-background">
-        <div className="container mx-auto max-w-4xl px-4">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              {t("home", "faqTitle")}
-            </h2>
-            <p className="text-lg text-muted-foreground font-semibold">
-              {t("home", "faqDesc")}
-            </p>
-          </div>
-          <div className="space-y-6">
+        <div className="container mx-auto max-w-6xl px-4">
+          <SectionHead index="06" kicker="FAQ" title={t("home", "faqTitle")} sub={t("home", "faqDesc")} />
+          <div className="border-t border-border">
             {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="rounded-xl border bg-card px-8 py-6 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-300"
-              >
-                <h3 className="text-lg font-bold text-secondary mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-muted-foreground text-base leading-relaxed">
-                  {faq.answer}
-                </p>
+              <div key={i} className="grid gap-2 border-b border-border py-7 md:grid-cols-[1fr_1.4fr] md:gap-10">
+                <h3 className="text-lg font-semibold text-foreground">{faq.question}</h3>
+                <p className="text-base leading-relaxed text-muted-foreground">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -289,7 +267,7 @@ const Index = () => {
             </h3>
             <Button
               size="lg"
-              className="h-auto min-h-[3.5rem] py-3 px-4 sm:px-8 text-base sm:text-lg font-semibold shadow-xl hover:scale-105 transition-transform duration-300 w-full sm:w-auto whitespace-normal"
+              className="h-auto min-h-[3.5rem] py-3 px-4 sm:px-8 text-base sm:text-lg font-semibold w-full sm:w-auto whitespace-normal"
               onClick={() => openForm("contact", "Startseite - FAQ")}
             >
               {t("home", "faqBtn")}

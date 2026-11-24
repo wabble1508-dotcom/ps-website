@@ -58,7 +58,15 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+        sans: ['"Instrument Sans Variable"', "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Noto Sans", "Arial", "sans-serif"],
+        display: ['"Bricolage Grotesque Variable"', '"Instrument Sans Variable"', "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', "Georgia", "Times New Roman", "serif"],
+      },
       borderRadius: {
+        // bewusst weniger rund als Standard-Vorlagen
+        "2xl": "0.75rem",
+        "3xl": "1rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",

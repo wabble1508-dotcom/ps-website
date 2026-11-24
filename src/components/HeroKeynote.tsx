@@ -43,7 +43,7 @@ export const HeroKeynote = ({
   const second = comma > 0 ? title.slice(comma + 1).trim() : "";
 
   return (
-    <section className="dark relative isolate flex min-h-[86svh] items-center overflow-hidden bg-[#0b1419] text-white">
+    <section className="grain dark relative isolate flex min-h-[86svh] items-center overflow-hidden bg-[#0b1419] text-white">
       {/* Hintergrund: Standbild, darüber (nach Einwilligung) das Video */}
       <div aria-hidden className="absolute inset-0 -z-10">
         {/* am Rechner rechts neben dem Text, auf dem Handy vollflächig */}
@@ -81,15 +81,16 @@ export const HeroKeynote = ({
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mx-auto max-w-2xl text-center md:mx-0 md:text-left"
         >
-          <span className="inline-block rounded-md bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur">
+          <p className="flex items-center justify-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-white/75 md:justify-start">
+            <span aria-hidden className="h-px w-8 bg-[#5fd4dc]" />
             {eyebrow}
-          </span>
-          <h1 className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+          </p>
+          <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1] sm:text-6xl lg:text-7xl">
             {first}
             {second && (
               <>
                 {" "}
-                <span className="text-[#5fd4dc]">{second}</span>
+                <span className="accent-serif text-[#7ee3ee]">{second}</span>
               </>
             )}
           </h1>

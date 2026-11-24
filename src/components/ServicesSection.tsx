@@ -1,5 +1,6 @@
 import { FadeIn } from "@/components/FadeIn";
 import { ArrowUpRight } from "lucide-react";
+import { SectionHead } from "@/components/SectionHead";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -139,107 +140,103 @@ const pick = (lang: string, obj: { de: string; en: string; tr: string }) =>
   (obj as Record<string, string>)[lang] || obj.de;
 
 type Service = (typeof services)[number];
+type L = { de: string; en: string; tr: string };
 
-// Kachel im Bento-Raster: dunkel, mit Lichtschein beim Überfahren
-const Tile = ({
-  service,
-  language,
-  className = "",
-  big = false,
-  children,
-}: {
-  service: Service;
-  language: string;
-  className?: string;
-  big?: boolean;
-  children?: React.ReactNode;
-}) => (
-  <Link
-    to={service.link}
-    className={`group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.07] to-white/[0.02] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/25 md:p-8 ${className}`}
-  >
-    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/0 blur-3xl transition-colors duration-700 group-hover:bg-primary/30" />
-    <img
-      src={service.image}
-      alt={pick(language, service.titles)}
-      loading="lazy"
-      className={`relative mb-6 object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 ${big ? "h-28 w-28 md:h-40 md:w-40" : "h-16 w-16"}`}
-    />
-    <h3 className={`relative font-semibold tracking-tight text-white ${big ? "text-3xl md:text-5xl" : "text-xl"}`}>
-      {pick(language, service.titles)}
-    </h3>
-    <p className={`relative mt-3 text-white/75 ${big ? "max-w-md text-base md:text-lg" : "text-sm"}`}>
-      {pick(language, service.descs)}
-    </p>
-    {children}
-    <ArrowUpRight className="absolute right-6 top-6 h-5 w-5 text-white/30 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white" />
-  </Link>
-);
+// Hauptleistungen mit Preis-Hinweis und Stichworten
+const MAIN: { service: Service; price: L; tags: string[] }[] = [
+  {
+    service: services[0],
+    price: { de: "ab 49 € / Monat", en: "from €49 / month", tr: "aylık 49 €'dan" },
+    tags: ["SEO", "GEO", "Mobile first"],
+  },
+  {
+    service: devServices[0] as Service,
+    price: { de: "ab 4.900 €", en: "from €4,900", tr: "4.900 €'dan" },
+    tags: ["iOS", "Android", "Web-App"],
+  },
+  {
+    service: devServices[1] as Service,
+    price: { de: "nach Angebot", en: "on quote", tr: "teklife göre" },
+    tags: ["Tools", "Schnittstellen", "KI"],
+  },
+];
 
+// Leistungsliste im Studio-Stil: nummerierte Zeilen statt Kacheln mit Symbolen
 export const ServicesSection = () => {
   const { language } = useLanguage();
-  const [web, ...rest] = services;
-  const ki = rest.slice(0, 4);
-  const more = rest.slice(4);
+  const more = services.slice(1);
 
   const labels = {
     kicker: pick(language, { de: "Leistungen", en: "Services", tr: "Hizmetler" }),
-    title: pick(language, {
-      de: "Alles, was Ihr Business online braucht.",
-      en: "Everything your business needs online.",
-      tr: "İşletmenizin online ihtiyacı olan her şey.",
+    sub: pick(language, {
+      de: "Drei Schwerpunkte, ein Ansprechpartner. Alles selbst programmiert – keine Baukästen, keine Vorlagen.",
+      en: "Three focus areas, one contact person. Everything hand-coded – no site builders, no templates.",
+      tr: "Üç odak alanı, tek muhatap. Her şey elle kodlanmış – site oluşturucu yok, şablon yok.",
     }),
-    priceBadge: pick(language, {
-      de: "Website ab 49 €/Monat · 0 € Einrichtung",
-      en: "Website from €49/month · €0 setup",
-      tr: "Web sitesi aylık 49 €'dan · 0 € kurulum",
-    }),
-    tags: [
-      pick(language, { de: "Responsiv", en: "Responsive", tr: "Responsive" }),
-      pick(language, { de: "SEO-optimiert", en: "SEO-Optimized", tr: "SEO-Optimize" }),
-      pick(language, { de: "Blitzschnell", en: "Fast", tr: "Şimşek Hızında" }),
-    ],
+    more: pick(language, { de: "Außerdem", en: "Also", tr: "Ayrıca" }),
   };
 
-  return (
-    <section className="dark relative overflow-hidden bg-background py-20 text-white md:py-28">
-      <div className="container mx-auto max-w-6xl px-4">
-        <FadeIn className="mb-14 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{labels.kicker}</span>
-          <h2 className="mx-auto mt-3 max-w-3xl  text-4xl font-semibold tracking-tight text-white md:text-6xl">
-            {labels.title}
-          </h2>
-        </FadeIn>
+  const title =
+    language === "en" ? (
+      <>Websites, apps & software – <span className="accent-serif text-[#7ee3ee]">built by hand.</span></>
+    ) : language === "tr" ? (
+      <>Web siteleri, uygulamalar ve yazılım – <span className="accent-serif text-[#7ee3ee]">elle yapılmış.</span></>
+    ) : (
+      <>Websites, Apps & Software – <span className="accent-serif text-[#7ee3ee]">von Hand gebaut.</span></>
+    );
 
-        <div className="grid gap-4 md:grid-cols-6">
-          {/* Hauptprodukt Webdesign: große Kachel */}
-          <FadeIn className="md:col-span-4 md:row-span-2">
-            <Tile service={web} language={language} big className="h-full min-h-[420px] justify-end">
-              <div className="relative mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-black">{labels.priceBadge}</span>
-                {labels.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/15 px-3 py-1.5 text-sm text-white/70">
-                    {tag}
+  return (
+    <section className="dark relative bg-background py-20 text-foreground md:py-28">
+      <div className="container mx-auto max-w-6xl px-4">
+        <SectionHead index="01" kicker={labels.kicker} title={title} sub={labels.sub} />
+
+        <ol className="border-t border-border">
+          {MAIN.map(({ service, price, tags }, i) => (
+            <li key={service.link}>
+              <FadeIn>
+                <Link
+                  to={service.link}
+                  className="group grid grid-cols-[2.5rem_1fr_auto] items-start gap-x-4 gap-y-3 border-b border-border py-8 transition-colors hover:bg-white/[0.025] md:grid-cols-[4rem_1.2fr_1fr_auto] md:items-center md:gap-x-8 md:py-10"
+                >
+                  <span className="pt-2 font-display text-sm tabular-nums text-muted-foreground md:pt-0">0{i + 1}</span>
+                  <h3 className="text-3xl font-semibold leading-tight transition-transform duration-300 group-hover:translate-x-1 md:text-5xl">
+                    {pick(language, service.titles)}
+                  </h3>
+                  <ArrowUpRight className="mt-2 h-6 w-6 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7ee3ee] md:order-last md:mt-0" />
+                  <div className="col-start-2 col-end-4 md:col-start-auto md:col-end-auto">
+                    <p className="text-muted-foreground">{pick(language, service.descs)}</p>
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                      <span className="font-semibold text-foreground">{pick(language, price)}</span>
+                      <span className="text-muted-foreground" data-no-translate>
+                        {tags.join(" · ")}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </FadeIn>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-14 grid gap-x-12 md:grid-cols-[10rem_1fr]">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{labels.more}</p>
+          <ul className="grid sm:grid-cols-2 sm:gap-x-10">
+            {more.map((service, i) => (
+              <li key={service.link}>
+                <Link
+                  to={service.link}
+                  className="group flex items-baseline gap-4 border-b border-border py-4 transition-colors hover:text-[#7ee3ee]"
+                >
+                  <span className="font-display text-xs tabular-nums text-muted-foreground">0{i + 4}</span>
+                  <span className="flex-1">
+                    <span className="block font-semibold">{pick(language, service.titles)}</span>
+                    <span className="mt-0.5 block text-sm text-muted-foreground">{pick(language, service.descs)}</span>
                   </span>
-                ))}
-              </div>
-            </Tile>
-          </FadeIn>
-          {devServices.map((service) => (
-            <FadeIn key={service.link} className="md:col-span-2">
-              <Tile service={service} language={language} className="h-full" />
-            </FadeIn>
-          ))}
-          {ki.map((service) => (
-            <FadeIn key={service.link} className="md:col-span-3 lg:col-span-3 xl:col-span-3">
-              <Tile service={service} language={language} className="h-full" />
-            </FadeIn>
-          ))}
-          {more.map((service) => (
-            <FadeIn key={service.link} className="md:col-span-3">
-              <Tile service={service} language={language} className="h-full" />
-            </FadeIn>
-          ))}
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-[#7ee3ee]" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

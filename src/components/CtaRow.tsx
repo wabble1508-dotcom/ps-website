@@ -19,7 +19,7 @@ export const CtaRow = ({ source, className = "" }: { source: string; className?:
       <button
         type="button"
         onClick={() => openForm("contact", source)}
-        className="group inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-[0_10px_40px_-12px_rgba(30,159,174,0.8)] transition hover:-translate-y-0.5 hover:bg-primary/90"
+        className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
       >
         {pick(UI.quote)}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

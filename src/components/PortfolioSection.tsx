@@ -1,5 +1,6 @@
 import { ArrowUpRight, Plus } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
+import { SectionHead } from "@/components/SectionHead";
 import { useLanguage } from "@/components/LanguageContext";
 import { useContactForm } from "@/components/ContactFormDialog";
 
@@ -43,7 +44,7 @@ const UI = {
 };
 
 const BrowserFrame = ({ children, url }: { children: React.ReactNode; url: string }) => (
-  <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#121214] shadow-[0_30px_80px_-30px_rgba(30,159,174,0.45)] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/30">
+  <div className="overflow-hidden rounded-2xl border border-white/15 bg-[#121214] transition-all duration-500 group-hover:-translate-y-1 group-hover:border-white/30">
     <div className="flex items-center gap-2 border-b border-white/10 bg-[#1c1c1f] px-4 py-2.5">
       <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
       <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
@@ -62,11 +63,7 @@ export const PortfolioSection = () => {
   return (
     <section id="portfolio" className="dark scroll-mt-24 bg-background pb-24 pt-8 text-white md:pb-32">
       <div className="container mx-auto max-w-6xl px-4">
-        <FadeIn className="mb-12 text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7ee3ee]">{pick(UI.kicker)}</span>
-          <h2 className="mt-3  text-4xl font-semibold tracking-tight text-white md:text-6xl">{pick(UI.title)}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/75">{pick(UI.subtitle)}</p>
-        </FadeIn>
+        <SectionHead index="02" kicker={pick(UI.kicker)} title={pick(UI.title)} sub={pick(UI.subtitle)} />
         <div className="grid gap-10 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <FadeIn key={p.name}>
@@ -105,7 +102,7 @@ export const PortfolioSection = () => {
           <button
             type="button"
             onClick={() => openForm("contact", "Portfolio")}
-            className="group flex w-full flex-col items-center gap-3 rounded-3xl border border-dashed border-white/20 p-8 text-center transition-colors hover:border-white/40 hover:bg-white/[0.04] sm:flex-row sm:text-left"
+            className="group flex w-full flex-col items-center gap-3 rounded-2xl border border-white/15 p-8 text-center transition-colors hover:border-white/40 hover:bg-white/[0.04] sm:flex-row sm:text-left"
           >
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-transform group-hover:scale-110">
               <Plus className="h-7 w-7" />
@@ -114,7 +111,7 @@ export const PortfolioSection = () => {
               <span className="block text-lg font-semibold text-white">{pick(UI.nextTitle)}</span>
               <span className="block text-sm text-white/75">{pick(UI.nextText)}</span>
             </span>
-            <span className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black">{pick(UI.nextBtn)}</span>
+            <span className="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-black">{pick(UI.nextBtn)}</span>
           </button>
         </FadeIn>
       </div>

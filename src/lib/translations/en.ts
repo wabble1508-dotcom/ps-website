@@ -48,7 +48,7 @@ export const en = {
   home: {
     heroTitle: "Professional websites that bring customers.",
     heroSubtitle:
-      "We program custom, SEO-optimized websites with integrated AI automation – from AI live chat to appointment booking. Everything from one source, so your business becomes visible online and grows automatically.",
+      "We build websites and apps that get found on Google and in AI search – fast, clean and without site builders. One contact person from idea to launch.",
     heroBtn: "Request Website Check Now",
     industryItems: [
       {

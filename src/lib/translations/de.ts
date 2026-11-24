@@ -64,7 +64,7 @@ export const de = {
   home: {
     heroTitle: "Professionelle Webseiten, die Kunden bringen.",
     heroSubtitle:
-      "Wir programmieren maßgeschneiderte, SEO-optimierte Websites mit integrierter KI-Automatisierung – von KI-Live-Chat bis Terminbuchung. Alles aus einer Hand, damit Ihr Unternehmen online sichtbar wird und automatisch wächst.",
+      "Wir programmieren Websites und Apps, die bei Google und in KI-Suchen gefunden werden – schnell, sauber und ohne Baukasten. Ein Ansprechpartner von der Idee bis zum Livegang.",
     heroBtn: "Jetzt Website-Check anfordern",
     whyTitle: "Warum PS Professional Solutions?",
     whySubtitle: "Ihr Weg in die digitale Freiheit.",

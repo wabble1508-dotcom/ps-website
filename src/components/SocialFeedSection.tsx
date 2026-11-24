@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Instagram, Play, Images } from "lucide-react";
-import { FadeIn } from "@/components/FadeIn";
+import { SectionHead } from "@/components/SectionHead";
 import { useLanguage } from "@/components/LanguageContext";
 import { saveConsent, useConsent } from "@/lib/consent";
 import { pickPosts, SOCIAL_HIDDEN } from "@/lib/socialTopics";
@@ -131,11 +131,7 @@ export const SocialFeedSection = () => {
   return (
     <section className="border-t border-border bg-muted/30 py-16 md:py-20">
       <div className="container mx-auto max-w-6xl px-4">
-        <FadeIn className="mb-10 text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary">{pick(UI.kicker)}</span>
-          <h2 className="mt-2 text-3xl font-bold text-foreground md:text-4xl">{pick(UI.title)}</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">{pick(UI.subtitle)}</p>
-        </FadeIn>
+        <SectionHead index="@" kicker={pick(UI.kicker)} title={pick(UI.title)} sub={pick(UI.subtitle)} />
 
         <div className="grid items-start gap-8 lg:grid-cols-[1fr_360px]">
           <div>

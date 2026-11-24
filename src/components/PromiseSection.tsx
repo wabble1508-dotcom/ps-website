@@ -1,5 +1,6 @@
 import { BadgeEuro, CalendarX2, Code2, Clock, ShieldCheck, Star, UserRound } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
+import { SectionHead } from "@/components/SectionHead";
 import { useLanguage } from "@/components/LanguageContext";
 
 // Statt erfundener Kundenstimmen: überprüfbare Zusagen und ein Link, über den echte Kunden
@@ -89,24 +90,20 @@ export const PromiseSection = () => {
   return (
     <section className="py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-4">
-        <FadeIn className="mb-12 text-center">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary">{pick(UI.kicker)}</span>
-          <h2 className="mt-2 text-3xl font-bold text-foreground md:text-5xl">{pick(UI.title)}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">{pick(UI.subtitle)}</p>
-        </FadeIn>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PROMISES.map(({ icon: Icon, title, text }) => (
-            <FadeIn key={title.de} className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-                <Icon className="h-5 w-5 text-primary" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold text-foreground">{pick(title)}</h3>
-              <p className="text-sm text-muted-foreground">{pick(text)}</p>
-            </FadeIn>
+        <SectionHead index="04" kicker={pick(UI.kicker)} title={pick(UI.title)} sub={pick(UI.subtitle)} />
+        <ol className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+          {PROMISES.map(({ title, text }, i) => (
+            <li key={title.de} className="border-b border-border py-7 sm:pr-8">
+              <FadeIn>
+                <span className="font-display text-sm tabular-nums text-primary dark:text-[#7ee3ee]">0{i + 1}</span>
+                <h3 className="mt-3 text-xl font-semibold text-foreground">{pick(title)}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{pick(text)}</p>
+              </FadeIn>
+            </li>
           ))}
-        </div>
+        </ol>
         <FadeIn className="mt-12">
-          <div className="flex flex-col items-center gap-4 rounded-3xl bg-secondary p-8 text-center text-white md:flex-row md:text-left">
+          <div className="flex flex-col items-center gap-4 rounded-2xl border border-border p-8 text-center md:flex-row md:text-left">
             <div className="flex gap-1 text-yellow-400">
               {[0, 1, 2, 3, 4].map((i) => (
                 <Star key={i} className="h-6 w-6" fill="currentColor" />
@@ -114,13 +111,13 @@ export const PromiseSection = () => {
             </div>
             <div className="flex-1">
               <p className="text-lg font-bold">{pick(UI.reviewTitle)}</p>
-              <p className="text-sm text-white/75">{pick(UI.reviewText)}</p>
+              <p className="text-sm text-muted-foreground">{pick(UI.reviewText)}</p>
             </div>
             <a
               href={GOOGLE_REVIEWS}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-white px-6 py-3 text-sm font-bold text-secondary transition hover:bg-white/90"
+              className="rounded-lg bg-foreground px-6 py-3 text-sm font-bold text-background transition hover:opacity-90"
             >
               {pick(UI.reviewBtn)}
             </a>

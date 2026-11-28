@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Instagram, Play, Images } from "lucide-react";
 import { SectionHead } from "@/components/SectionHead";
 import { useLanguage } from "@/components/LanguageContext";
-import { saveConsent, useConsent } from "@/lib/consent";
 import { pickPosts, SOCIAL_HIDDEN } from "@/lib/socialTopics";
 import { activeSocialLinks, PINNED_POST } from "../../server/socialLinks";
 
@@ -25,19 +24,14 @@ const UI = {
   },
 
   pinnedTitle: { de: "Unser angepinntes Video", en: "Our pinned video", tr: "Sabitlenmiş videomuz" },
-  pinnedLoad: { de: "Video laden", en: "Load video", tr: "Videoyu yükle" },
-  pinnedNotice: {
-    de: "Das Video wird von Instagram geladen. Mit Klick stimmen Sie zu, dass Daten an Meta übermittelt werden.",
-    en: "The video is loaded from Instagram. By clicking you agree that data will be transmitted to Meta.",
-    tr: "Video Instagram'dan yüklenir. Tıklayarak verilerin Meta'ya aktarılmasını kabul etmiş olursunuz.",
-  },
   pinnedOpen: { de: "Direkt auf Instagram ansehen", en: "Watch directly on Instagram", tr: "Doğrudan Instagram'da izle" },
-  tiktokLoad: { de: "TikTok-Videos laden", en: "Load TikTok videos", tr: "TikTok videolarını yükle" },
-  tiktokNotice: {
-    de: "Unsere neuesten Videos werden von TikTok geladen. Mit Klick stimmen Sie zu, dass Daten an TikTok übermittelt werden.",
-    en: "Our latest videos are loaded from TikTok. By clicking you agree that data will be transmitted to TikTok.",
-    tr: "En yeni videolarımız TikTok'tan yüklenir. Tıklayarak verilerin TikTok'a aktarılmasını kabul etmiş olursunuz.",
+  tiktokTitle: { de: "Kurze Videos rund um Websites, Apps & KI", en: "Short videos about websites, apps & AI", tr: "Web siteleri, uygulamalar ve AI hakkında kısa videolar" },
+  tiktokText: {
+    de: "Tipps für Selbstständige, Einblicke in echte Projekte und ehrliche Antworten – direkt aus Dortmund.",
+    en: "Tips for business owners, insights into real projects and honest answers – straight from Dortmund.",
+    tr: "Serbest çalışanlar için ipuçları, gerçek projelerden kareler ve dürüst cevaplar – doğrudan Dortmund'dan.",
   },
+  tiktokOpen: { de: "Auf TikTok ansehen", en: "Watch on TikTok", tr: "TikTok'ta izle" },
 };
 
 // Beiträge nur einmal pro Besuch laden
@@ -48,71 +42,69 @@ const loadPosts = () =>
     .then((d: { instagram?: Post[] }) => d.instagram || [])
     .catch(() => []));
 
-const TikTokProfile = ({ pick }: { pick: (t: L) => string }) => {
-  const { media } = useConsent();
-  const box = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!media || !box.current) return;
-    box.current.innerHTML = `<blockquote class="tiktok-embed" cite="${TIKTOK_URL}" data-unique-id="${TIKTOK_USER}" data-embed-type="creator" style="max-width:780px;min-width:288px;margin:0"><section><a target="_blank" rel="noopener" href="${TIKTOK_URL}?refer=creator_embed">@${TIKTOK_USER}</a></section></blockquote>`;
-    // embed.js wandelt den Platzhalter in das Profil mit den neuesten Videos um
-    const script = document.createElement("script");
-    script.src = "https://www.tiktok.com/embed.js";
-    script.async = true;
-    box.current.appendChild(script);
-  }, [media]);
-
-  if (media) return <div ref={box} className="min-h-[420px] w-full" />;
-  return (
-    <div className="flex min-h-[420px] flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-[#111] via-[#1d1d2b] to-[#0f2533] p-6 text-center text-white">
-      <button
-        type="button"
-        onClick={() => saveConsent(true)}
-        className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black transition hover:scale-105"
-      >
-        <Play className="h-4 w-4" fill="currentColor" /> {pick(UI.tiktokLoad)}
-      </button>
-      <p className="max-w-xs text-xs text-white/70">{pick(UI.tiktokNotice)}</p>
-      <a href={TIKTOK_URL} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-[#7ee3ee] hover:underline">
-        @{TIKTOK_USER}
-      </a>
+// TikTok: eigene Karte statt TikToks Profil-Einbettung (die lud oft nur leer) – keine Daten an TikTok
+const TikTokProfile = ({ pick }: { pick: (t: L) => string }) => (
+  <div className="dark">
+  <a
+    href={TIKTOK_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="glass group relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-3xl p-7 text-white"
+  >
+    <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[#25F4EE]/25 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+    <div aria-hidden className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-[#FE2C55]/25 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
+    <div className="relative flex items-center gap-3">
+      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black">
+        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="white" aria-hidden="true">
+          <path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.4a2.9 2.9 0 1 1-2-2.7V9.2a6.3 6.3 0 1 0 5.4 6.2V8.6a8.2 8.2 0 0 0 3.8 1V6.7Z" />
+        </svg>
+      </span>
+      <span>
+        <span className="block font-semibold">TikTok</span>
+        <span className="block text-sm text-white/70">@{TIKTOK_USER}</span>
+      </span>
     </div>
-  );
-};
+    <div className="relative">
+      <p className="font-display text-3xl font-semibold leading-tight">{pick(UI.tiktokTitle)}</p>
+      <p className="mt-3 text-sm text-white/75">{pick(UI.tiktokText)}</p>
+      <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black transition group-hover:scale-[1.03]">
+        <Play className="h-4 w-4" fill="currentColor" /> {pick(UI.tiktokOpen)}
+      </span>
+    </div>
+  </a>
+  </div>
+);
 
-const PinnedInstagram = ({ pick }: { pick: (t: L) => string }) => {
-  const { media } = useConsent();
-  if (media) {
-    return (
-      <div className="mx-auto max-w-[420px] overflow-hidden rounded-2xl border border-border bg-white">
-        <iframe
-          src={`${PINNED_POST}embed/captioned/`}
-          title="Angepinntes Instagram-Video"
-          className="h-[620px] w-full"
-          loading="lazy"
-          allowFullScreen
-        />
+// Angepinntes Video: Vorschaubild von der eigenen Domain + Play-Knopf → öffnet Instagram.
+// (Instagrams Einbettung blieb bei Werbeblockern oder Sperren oft leer.)
+const PinnedInstagram = ({ pick }: { pick: (t: L) => string }) => (
+  <a
+    href={PINNED_POST}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="dark group relative block aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 sm:aspect-[16/10]"
+  >
+    <img
+      src="/media/hero/pankaj-hero.jpg"
+      alt={pick(UI.pinnedTitle)}
+      loading="lazy"
+      className="absolute inset-0 h-full w-full object-cover object-[60%_center] transition-transform duration-700 group-hover:scale-105"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+    <span className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/15 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+      <Play className="ml-1 h-8 w-8 text-white" fill="currentColor" />
+    </span>
+    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-white">
+      <div>
+        <p className="flex items-center gap-2 text-sm text-white/80">
+          <Instagram className="h-4 w-4" /> @ps_professional_solutions
+        </p>
+        <p className="mt-1 font-display text-2xl font-semibold">{pick(UI.pinnedTitle)}</p>
       </div>
-    );
-  }
-  return (
-    <div className="flex min-h-[320px] flex-col items-center justify-center gap-4 rounded-2xl bg-gradient-to-br from-[#5b2a86] via-[#a1286a] to-[#c13584] p-6 text-center text-white">
-      <Instagram className="h-10 w-10" />
-      <p className="text-lg font-bold">{pick(UI.pinnedTitle)}</p>
-      <button
-        type="button"
-        onClick={() => saveConsent(true)}
-        className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-black transition hover:scale-105"
-      >
-        <Play className="h-4 w-4" fill="currentColor" /> {pick(UI.pinnedLoad)}
-      </button>
-      <p className="max-w-sm text-xs text-white/85">{pick(UI.pinnedNotice)}</p>
-      <a href={PINNED_POST} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold underline">
-        {pick(UI.pinnedOpen)}
-      </a>
+      <span className="glass hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold sm:inline-flex">{pick(UI.pinnedOpen)}</span>
     </div>
-  );
-};
+  </a>
+);
 
 export const SocialFeedSection = () => {
   const { pathname } = useLocation();

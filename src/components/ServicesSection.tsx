@@ -177,14 +177,11 @@ export const ServicesSection = () => {
     more: pick(language, { de: "Außerdem", en: "Also", tr: "Ayrıca" }),
   };
 
-  const title =
-    language === "en" ? (
-      <>Websites, apps & software – <span className="accent-serif text-[#7ee3ee]">built by hand.</span></>
-    ) : language === "tr" ? (
-      <>Web siteleri, uygulamalar ve yazılım – <span className="accent-serif text-[#7ee3ee]">elle yapılmış.</span></>
-    ) : (
-      <>Websites, Apps & Software – <span className="accent-serif text-[#7ee3ee]">von Hand gebaut.</span></>
-    );
+  const title = pick(language, {
+    de: "Websites, Apps und Software – selbst programmiert",
+    en: "Websites, apps and software – hand-coded",
+    tr: "Web siteleri, uygulamalar ve yazılım – elle kodlanmış",
+  });
 
   return (
     <section className="dark relative overflow-hidden bg-background py-20 text-foreground md:py-28">
@@ -197,11 +194,10 @@ export const ServicesSection = () => {
         <SectionHead index="01" kicker={labels.kicker} title={title} sub={labels.sub} />
 
         <div className="grid gap-4 md:grid-cols-3">
-          {MAIN.map(({ service, price, tags }, i) => (
-            <FadeIn key={service.link} delay={i * 90}>
+          {MAIN.map(({ service, price, tags }) => (
+            <FadeIn key={service.link}>
               <TiltCard to={service.link} className="flex h-full min-h-[22rem] flex-col p-7 md:p-8">
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-sm tabular-nums text-white/60">0{i + 1}</span>
+                <div className="flex items-center justify-end">
                   <ArrowUpRight className="h-5 w-5 text-white/50 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#7ee3ee]" />
                 </div>
                 <h3 className="mt-auto pt-16 text-3xl font-semibold leading-tight text-white md:text-4xl">{pick(language, service.titles)}</h3>
@@ -209,7 +205,7 @@ export const ServicesSection = () => {
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-white/10 pt-4 text-sm">
                   <span className="font-semibold text-white">{pick(language, price)}</span>
                   <span className="text-white/55" data-no-translate>
-                    {tags.join(" · ")}
+                    {tags.join(", ")}
                   </span>
                 </div>
               </TiltCard>
@@ -218,15 +214,14 @@ export const ServicesSection = () => {
         </div>
 
         <div className="glass mt-6 grid gap-x-12 rounded-3xl p-6 md:grid-cols-[10rem_1fr] md:p-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">{labels.more}</p>
+          <p className="mb-4 text-base font-semibold text-foreground">{labels.more}</p>
           <ul className="grid sm:grid-cols-2 sm:gap-x-10">
-            {more.map((service, i) => (
+            {more.map((service) => (
               <li key={service.link}>
                 <Link
                   to={service.link}
                   className="group flex items-baseline gap-4 border-b border-white/10 py-4 transition-colors hover:text-[#7ee3ee]"
                 >
-                  <span className="font-display text-xs tabular-nums text-muted-foreground">0{i + 4}</span>
                   <span className="flex-1">
                     <span className="block font-semibold">{pick(language, service.titles)}</span>
                     <span className="mt-0.5 block text-sm text-muted-foreground">{pick(language, service.descs)}</span>

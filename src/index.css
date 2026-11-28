@@ -141,7 +141,7 @@ All colors MUST be HSL.
 /* Auf dem Handy: aufleuchtende Karte hebt sich leicht an */
 @media (hover: none) {
   .spotlight { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s; }
-  .spotlight.is-lit { transform: translateY(-4px) scale(1.01); border-color: rgb(126 227 238 / 0.35); }
+  .spotlight.is-lit { border-color: rgb(126 227 238 / 0.35); }
 }
 @media (prefers-reduced-motion: reduce) {
   .spotlight.is-lit { transform: none; }

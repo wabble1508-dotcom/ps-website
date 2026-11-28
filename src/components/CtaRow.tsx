@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CalendarCheck } from "lucide-react";
+import { CalendarCheck } from "lucide-react";
 import { useContactForm } from "@/components/ContactFormDialog";
 import { useLanguage } from "@/components/LanguageContext";
 
@@ -22,7 +22,6 @@ export const CtaRow = ({ source, className = "" }: { source: string; className?:
         className="group inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-primary/90"
       >
         {pick(UI.quote)}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
       </button>
       <Link
         to="/termin"

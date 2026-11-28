@@ -45,6 +45,11 @@ Der Inhaber (Pankaj) ist kein Entwickler: auf Deutsch, einfach und Schritt für 
 - Nach Textänderungen oder neuen Seiten: `npm run build && node tools/i18n-extract.mjs "$(npm root -g)/playwright"` → `tools/i18n-todo/<sprache>.json` listet neue, unübersetzte Texte; diese übersetzen und in die jeweilige `dict/<sprache>.json` eintragen.
 - Bereiche mit `data-no-translate` (Chat-Verlauf, Admin) werden nicht angefasst. Impressum/Datenschutz zeigen in Fremdsprachen den Hinweis, dass die deutsche Fassung verbindlich ist.
 
+## Design (nicht nach KI-Vorlage aussehen)
+- Regeln aus den Skills frontend-design (Anthropic), Impeccable und Vercel web-design-guidelines: das eine auffällige Element ist die Live-Website-Vorschau im Kopfbereich der Startseite (`src/components/HeroDemo.tsx`); alles andere ruhig.
+- Vermeiden: einzelnes Wort in Überschriften kursiv/farbig, Großbuchstaben-Labels über Überschriften, Nummern 01/02/03 ohne echte Reihenfolge, Mittelpunkt-Listen „A · B · C“, „→“ an Buttons, Einblenden jedes Abschnitts (`FadeIn` ist bewusst ohne Animation), gleiche Hover-Effekte auf allen Karten.
+- Schriften lokal: Bricolage Grotesque (Überschriften, schmal `wdth 85`), Instrument Sans (Text). Glas-Optik über `.glass` in `src/index.css`. `prefers-reduced-motion` immer beachten.
+
 ## KI-Kosten
 - Alle KI-Aufrufe (Chat, Instagram, Akquise, E-Mail-Strecken, Social-KI) nutzen `claude-haiku-5-5` mit `effort: "low"` – nicht auf teurere Modelle umstellen, der Inhaber zahlt per Guthaben.
 

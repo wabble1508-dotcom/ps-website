@@ -15,7 +15,6 @@ export const TiltCard = ({ to, className = "", children, max = 6 }: { to: string
     const py = (e.clientY - r.top) / r.height;
     el.style.setProperty("--mx", `${px * 100}%`);
     el.style.setProperty("--my", `${py * 100}%`);
-    if (!reduce) el.style.transform = `perspective(900px) rotateX(${(0.5 - py) * max}deg) rotateY(${(px - 0.5) * max}deg) translateY(-2px)`;
   };
   const onLeave = () => {
     if (ref.current) ref.current.style.transform = "";

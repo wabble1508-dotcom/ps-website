@@ -7,7 +7,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/components/LanguageContext";
 import { translations } from "@/lib/translations";
 import { PromiseSection } from "@/components/PromiseSection";
-import { HeroKeynote } from "@/components/HeroKeynote";
+import { HeroDemo } from "@/components/HeroDemo";
 import { SectionHead } from "@/components/SectionHead";
 import { ServicesSection } from "@/components/ServicesSection";
 import { LogoSliderSection } from "@/components/LogoAndReferences";
@@ -75,7 +75,6 @@ const Index = () => {
   const pick = (de: string, en: string) => (language === "en" ? en : de);
 
   const heroTitle = t("home", "heroTitle");
-  const [city, setCity] = useState("");
 
   const deHome = translations.de.home;
 
@@ -140,16 +139,6 @@ const Index = () => {
   };
 
 
-  useEffect(() => {
-    fetch("/api/geo")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.city) {
-          setCity(data.city);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   return (
     <div className="w-full">
@@ -176,22 +165,11 @@ const Index = () => {
         faqs={faqs}
       />
       {/* Hero Section */}
-      <HeroKeynote
+      <HeroDemo
         title={heroTitle}
         subtitle={t("home", "heroSubtitle")}
-        ctaLabel={language === "tr" ? "Teklif iste" : pick("Angebot anfragen", "Request a quote")}
         bookLabel={language === "tr" ? "Randevu al" : pick("Termin buchen", "Book an appointment")}
-        onCta={() => openForm("contact", "Startseite - Hero")}
-        projectsLabel={pick("Projekte ansehen", "View projects")}
-        eyebrow={pick("Webdesign · Apps · Software – Dortmund", "Web design · Apps · Software – Dortmund")}
-        priceNote={pick("Website ab 49 €/Monat · 0 € Einrichtung · monatlich kündbar", "Website from €49/month · €0 setup · cancellable monthly")}
-        cityNote={
-          city
-            ? language === "tr"
-              ? `Artık ${city}'deki işletmeler için uygun`
-              : pick(`Jetzt auch für Unternehmen in ${city}`, `Now available for businesses in ${city}`)
-            : undefined
-        }
+        priceNote={pick("Website ab 49 € im Monat, 0 € Einrichtung, monatlich kündbar.", "Website from €49 a month, €0 setup, cancellable monthly.")}
       />
 
 

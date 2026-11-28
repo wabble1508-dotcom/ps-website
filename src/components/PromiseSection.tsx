@@ -92,11 +92,10 @@ export const PromiseSection = () => {
       <div className="container mx-auto max-w-6xl px-4">
         <SectionHead index="04" kicker={pick(UI.kicker)} title={pick(UI.title)} sub={pick(UI.subtitle)} />
         <ol className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-3">
-          {PROMISES.map(({ title, text }, i) => (
+          {PROMISES.map(({ title, text }) => (
             <li key={title.de} className="border-b border-border py-7 sm:pr-8">
               <FadeIn>
-                <span className="font-display text-sm tabular-nums text-primary dark:text-[#7ee3ee]">0{i + 1}</span>
-                <h3 className="mt-3 text-xl font-semibold text-foreground">{pick(title)}</h3>
+                <h3 className=" text-xl font-semibold text-foreground">{pick(title)}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{pick(text)}</p>
               </FadeIn>
             </li>
